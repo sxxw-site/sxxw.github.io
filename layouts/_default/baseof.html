@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>{{ partial "head.html" . }}</head>
+  <body>
+    {{ partial "nav.html" . }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    <script src="/js/main.js"></script>
+  </body>
+</html>
