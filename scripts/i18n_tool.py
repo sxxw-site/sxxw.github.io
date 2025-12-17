@@ -524,21 +524,21 @@ def translate_tree(
         if not isinstance(src_text, str):
             return None
 
-        # 先还原占位符，再还原保护词
+        # 先还原占位符（安全）
         unmasked = unmask_placeholders(masked_tgt, masked_maps.get(path, {}))
-        unmasked = unmask_protected_terms(unmasked, term_maps.get(path, {}))
 
-        # 非 CJK 目标语言去掉中文（保留你原逻辑）
+        # ✅ 关键：先做“非CJK去中文”，此时保护词还是 __TERM#__ token，不会被删
         unmasked = ensure_no_cjk_when_forbidden(unmasked, tgt_code)
 
-        # 占位符一致性修复
+        # ✅ 然后再还原保护词（即使是中文，也会保留下来）
+        unmasked = unmask_protected_terms(unmasked, term_maps.get(path, {}))
+
+        # 占位符一致性修复（保持你原逻辑）
         if extract_placeholders(src_text) and not placeholders_equal(src_text, unmasked):
             src_ph = extract_placeholders(src_text)
             it = iter(src_ph)
-
             def repl(m: re.Match) -> str:
                 return next(it, m.group(0))
-
             unmasked = _PLACEHOLDER_RE.sub(repl, unmasked)
 
         return unmasked

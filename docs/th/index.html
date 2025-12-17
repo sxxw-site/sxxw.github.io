@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="上海树下小屋网络科技有限公司 - มุ่งเน้นการวิจัยอิสระและการสำรวจผลิตภัณฑ์" name="description"/>
+<title>上海树下小屋网络科技有限公司</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/style.css" rel="stylesheet"/>
+<!-- ✅ 语言切换的样式（你也可以挪到 style.css） -->
+<style>
+        .lang-wrap { position: relative; display: inline-flex; align-items: center; gap: 10px; }
+        .lang-select {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          border: 1px solid rgba(148,255,207,.35);
+          background: rgba(15,23,42,.55);
+          color: inherit;
+          padding: 10px 36px 10px 12px;
+          border-radius: 12px;
+          font: inherit;
+          line-height: 1;
+          cursor: pointer;
+          outline: none;
+        }
+        .lang-select:focus { box-shadow: 0 0 0 3px rgba(148,255,207,.18); }
+        .lang-caret {
+          position: absolute;
+          right: 12px;
+          pointer-events: none;
+          opacity: .8;
+          font-size: 12px;
+          transform: translateY(1px);
+        }
+        @media (max-width: 880px) {
+          .lang-wrap { margin-left: auto; }
+          .nav-menu { gap: 10px; }
+          .lang-select { padding: 10px 34px 10px 10px; }
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+<div class="container nav-inner">
+<a aria-label="上海树下小屋网络科技有限公司" class="brand" href="#hero">
+<span aria-hidden="true" class="brand-icon">
+<svg fill="none" height="32" role="img" viewbox="0 0 32 32" width="32">
+<circle cx="11" cy="10" fill="url(#gradTree)" r="6"></circle>
+<rect fill="#94ffcf" height="6" rx="1" width="3" x="9.5" y="14"></rect>
+<path d="M20 15 L26 19 L26 27 L14 27 L14 19 Z" fill="#1e293b" stroke="#94ffcf" stroke-width="1.5"></path>
+<path d="M14 19 L20 15 L26 19" fill="#1e293b" stroke="#94ffcf" stroke-width="1.5"></path>
+<rect fill="#0f172a" height="6" rx="0.5" stroke="#94ffcf" stroke-width="1" width="4" x="18" y="21"></rect>
+<defs>
+<radialgradient cx="0" cy="0" gradienttransform="translate(9 8) rotate(45) scale(10)" gradientunits="userSpaceOnUse" id="gradTree" r="1">
+<stop stop-color="#34d399"></stop>
+<stop offset="1" stop-color="#065f46"></stop>
+</radialgradient>
+</defs>
+</svg>
+</span>
+<span class="brand-text">
+<span class="cn">上海树下小屋网络科技有限公司</span>
+<span class="en">TreeHouse Tech · เซี่ยงไฮ้</span>
+</span>
+</a>
+<button aria-expanded="false" aria-label="ขยายเมนู" class="nav-toggle">
+<span class="bar"></span><span class="bar"></span><span class="bar"></span>
+</button>
+<nav class="nav-menu">
+<a class="nav-link" href="#hero">หน้าแรก</a>
+<a class="nav-link" href="#about">เกี่ยวกับเรา</a>
+<a class="nav-link cta-nav" href="#contact">ติดต่อเรา</a>
+<!-- ✅ 多语言切换：运行时读 assets/languages.json 自动生成 option -->
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect"></select>
+<span class="lang-caret">▾</span>
+</div>
+</nav>
+</div>
+</header>
+<section class="hero-section" id="hero">
+<div class="hero-bg"></div>
+<div class="container hero-inner">
+<div class="hero-copy reveal">
+<h1 class="hero-title">มุ่งเน้นการวิจัยและพัฒนาอิสระ <span class="accent"> และการสำรวจผลิตภัณฑ์ </span></h1>
+<p class="hero-desc">เราเป็นบริษัทเทคโนโลยีเครือข่ายที่มุ่งเน้นการวิจัยด้วยตนเอง เราสำรวจทิศทางผลิตภัณฑ์ที่มีคุณค่าและเส้นทางการดำเนินการทางเทคนิคอย่างต่อเนื่อง โดยมุ่งหวังที่จะมีการพัฒนาอย่างยั่งยืนและการส่งมอบที่มีเสถียรภาพในระยะยาว.</p>
+<div class="hero-cta-row">
+<a class="btn-primary" href="#contact">ข้อมูลการติดต่อ</a>
+<a class="btn-ghost" href="#about">เรียนรู้เพิ่มเติมเกี่ยวกับเรา →</a>
+</div>
+<div class="hero-meta">
+<div class="meta-item">
+<span class="meta-num">พัฒนาขึ้นเอง</span>
+<span class="meta-label">มุ่งเน้นผลิตภัณฑ์และวิศวกรรม</span>
+</div>
+<div class="meta-item">
+<span class="meta-num">ระยะยาว</span>
+<span class="meta-label">การปรับปรุงและพัฒนาอย่างต่อเนื่อง</span>
+</div>
+<div class="meta-item">
+<span class="meta-num">มั่นคง</span>
+<span class="meta-label">เน้นคุณภาพและการปฏิบัติตาม</span>
+</div>
+</div>
+</div>
+<div class="hero-card reveal">
+<div class="mini-card">
+<p class="mini-head">เคล็ดลับ</p>
+<p class="mini-main">สำรวจทิศทางธุรกิจอย่างต่อเนื่อง</p>
+<ul class="mini-stats">
+<li><span>โฟกัส</span><b>ผลิตภัณฑ์ที่พัฒนาขึ้นเอง</b></li>
+<li><span>รูปแบบ</span><b>ค่อยๆ ชัดเจนขึ้น</b></li>
+<li><span>จังหวะ</span><b>ความก้าวหน้าที่ทำซ้ำ</b></li>
+<li><span>เป้าหมาย</span><b>การเติบโตอย่างยั่งยืน</b></li>
+</ul>
+<p class="mini-foot">* เว็บไซต์ทางการปัจจุบันเป็นหน้าแนะนำพื้นฐาน และเนื้อหาจะถูกอัปเดตอย่างต่อเนื่องเมื่อธุรกิจดำเนินไป.</p>
+</div>
+<div class="glass-note">การสำรวจทิศทาง → การดำเนินการด้านวิศวกรรม → การปรับปรุงผลิตภัณฑ์ <span class="dot"></span> การมองระยะยาว / การส่งมอบอย่างต่อเนื่อง</div>
+</div>
+</div>
+</section>
+<section class="section about-section" id="about">
+<div class="container about-inner">
+<div class="about-copy reveal">
+<h2 class="section-title">เกี่ยวกับเรา</h2>
+<p class="section-desc">เราเป็นบริษัทเทคโนโลยีเครือข่ายที่มุ่งเน้นการวิจัยและพัฒนาตนเอง...</p>
+<p class="section-desc">ขอบเขตธุรกิจในปัจจุบันยังอยู่ในระหว่างการสำรวจอย่างต่อเนื่อง...</p>
+<div class="about-highlights">
+<div class="hl-box">
+<div class="hl-num">พัฒนาขึ้นเองเป็นครั้งแรก</div>
+<div class="hl-text">การลงทุนอย่างต่อเนื่องในผลิตภัณฑ์และธุรกิจของตนเอง.</div>
+</div>
+<div class="hl-box">
+<div class="hl-num">การพัฒนาอย่างต่อเนื่อง</div>
+<div class="hl-text">เน้นคุณภาพวิศวกรรม ความสามารถในการบำรุงรักษา และความสามารถในการขยายตัว.</div>
+</div>
+<div class="hl-box">
+<div class="hl-num">สำรวจอย่างต่อเนื่อง</div>
+<div class="hl-text">การพัฒนาทิศทางธุรกิจอย่างมีพลศาสตร์ค่อยๆ สร้างขอบเขตที่ชัดเจนขึ้น</div>
+</div>
+</div>
+</div>
+<div class="about-card reveal">
+<div class="about-glass">
+<p class="about-mini-title">เรากำลังทำอะไรอยู่?</p>
+<ul class="about-list">
+<li>การวิจัยและการตรวจสอบทิศทางผลิตภัณฑ์ (กำลังดำเนินการ)</li>
+<li>การพัฒนาความสามารถหลัก: ระบบวิศวกรรม / ความสามารถด้านข้อมูลและบริการ / โครงสร้างพื้นฐาน</li>
+<li>การสร้างต้นแบบและการปรับปรุงอย่างรวดเร็ว: จากแนวคิดสู่เวอร์ชันที่ใช้งานได้</li>
+<li>การปฏิบัติตามและความปลอดภัย: เน้นความปลอดภัยของข้อมูลและการปกป้องความเป็นส่วนตัว</li>
+</ul>
+<p class="about-mini-note">เนื่องจากขอบเขตของธุรกิจยังอยู่ในระยะสำรวจ...</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section contact-section" id="contact">
+<div class="container contact-inner">
+<div class="contact-left reveal" style="max-width: 720px;">
+<h2 class="section-title">ข้อมูลการติดต่อ</h2>
+<div class="contact-card">
+<div class="contact-row">
+<div class="contact-label">ชื่อบริษัท</div>
+<div class="contact-value">上海树下小屋网络科技有限公司</div>
+</div>
+<div class="contact-row">
+<div class="contact-label">อีเมล</div>
+<div class="contact-value">
+<a class="linkish" href="mailto:house@sxxw.site">house@sxxw.site</a>
+</div>
+</div>
+<div class="contact-row">
+<div class="contact-label">เมือง</div>
+<div class="contact-value">เซี่ยงไฮ้ · SHANGHAI</div>
+</div>
+</div>
+<p class="contact-hint">หากคุณต้องการติดต่อเรา โปรดสื่อสารทางอีเมล...</p>
+</div>
+</div>
+</section>
+<footer class="site-footer">
+<div class="container footer-inner">
+<div class="footer-left">
+<div class="footer-brand">上海树下小屋网络科技有限公司</div>
+<div class="footer-slogan">มุ่งเน้นการวิจัยและพัฒนาที่เป็นอิสระ · การสำรวจอย่างต่อเนื่อง · การปรับปรุงอย่างมั่นคง</div>
+</div>
+<div class="footer-right">
+<div class="footer-links">
+<a href="#hero">หน้าแรก</a>
+<a href="#about">เกี่ยวกับเรา</a>
+<a href="#contact">ติดต่อเรา</a>
+</div>
+<div class="footer-legal">
+<span>© 2025 上海树下小屋网络科技有限公司</span>
+</div>
+</div>
+</div>
+</footer>
+<noscript>เว็บไซต์นี้ต้องการ JavaScript เพื่อประสบการณ์การโต้ตอบที่สมบูรณ์ (เมนูนำทาง, เอฟเฟกต์การเลื่อน, ฯลฯ).</noscript>
+<script src="../assets/main.js"></script>
+<!-- ✅ 多语言切换脚本：也可以单独放到 assets/lang-switch.js 再引用 -->
+<script>
+    (function () {
+      const DEFAULT_LANG = "zh-hans";
+      const LANG_JSON_URL = "assets/languages.json";
+
+      function norm(code) {
+        return (code || "").trim().replace(/_/g, "-").toLowerCase();
+      }
+
+      function detectLangFromPath(pathname, supported) {
+        const parts = pathname.split("/").filter(Boolean);
+        for (let i = 0; i < Math.min(parts.length, 4); i++) {
+          const c = norm(parts[i]);
+          if (supported.has(c)) return c;
+        }
+        return null;
+      }
+
+      function stripLangFromPath(pathname, supported) {
+        const parts = pathname.split("/").filter(Boolean);
+        const idx = parts.findIndex(p => supported.has(norm(p)));
+        if (idx >= 0) parts.splice(idx, 1);
+        return "/" + parts.join("/") + (pathname.endsWith("/") ? "/" : "");
+      }
+
+      function inferBasePrefix(supported) {
+        const curParts = location.pathname.split("/").filter(Boolean);
+        const langIdx = curParts.findIndex(p => supported.has(norm(p)));
+
+        if (langIdx >= 0) return "/" + curParts.slice(0, langIdx).join("/") + "/";
+        if (curParts.length >= 1) return "/" + curParts[0] + "/"; // GitHub Pages repo 子路径
+        return "/";
+      }
+
+      function withLang(pathnameNoLang, lang, supported) {
+        const base = inferBasePrefix(supported);
+        const rest = pathnameNoLang.replace(/^\//, "");
+        if (lang === DEFAULT_LANG) return base + rest;
+        return base + lang + "/" + rest;
+      }
+
+      async function loadLanguages() {
+        const res = await fetch(LANG_JSON_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to load assets/languages.json");
+        const arr = await res.json();
+        return (arr || [])
+          .map(x => ({ code: norm(x.code), name: x.name || x.code }))
+          .filter(x => x.code);
+      }
+
+      // 可选：只展示真的“有构建产物”的语言（否则列表太长 & 404）
+      async function filterBuilt(langs) {
+        const supportedAll = new Set(langs.map(x => x.code));
+        const base = inferBasePrefix(supportedAll);
+
+        const checks = await Promise.all(langs.map(async (l) => {
+          if (l.code === DEFAULT_LANG) return true;
+          const url = base + l.code + "/index.html";
+          try {
+            const r = await fetch(url, { method: "HEAD" });
+            return r.ok;
+          } catch {
+            return false;
+          }
+        }));
+        return langs.filter((_, i) => checks[i]);
+      }
+
+      function renderSelect(sel, langs, current) {
+        sel.innerHTML = "";
+        for (const l of langs) {
+          const opt = document.createElement("option");
+          opt.value = l.code;
+          opt.textContent = l.name;
+          if (l.code === current) opt.selected = true;
+          sel.appendChild(opt);
+        }
+      }
+
+      async function init() {
+        const sel = document.getElementById("langSelect");
+        if (!sel) return;
+
+        let langs = await loadLanguages();
+        langs = await filterBuilt(langs); // ✅ 推荐开启：只显示已构建语言
+
+        const supported = new Set(langs.map(x => x.code));
+        const current =
+          detectLangFromPath(location.pathname, supported) ||
+          norm(localStorage.getItem("site_lang")) ||
+          DEFAULT_LANG;
+
+        const cur = supported.has(current) ? current : DEFAULT_LANG;
+        renderSelect(sel, langs, cur);
+
+        sel.addEventListener("change", () => {
+          const next = norm(sel.value) || DEFAULT_LANG;
+          localStorage.setItem("site_lang", next);
+
+          const noLang = stripLangFromPath(location.pathname, supported);
+          const target = withLang(noLang, next, supported);
+          location.href = target + location.search + location.hash;
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        init().catch(err => console.warn("[lang-switch] init failed:", err));
+      });
+    })();
+</script>
+</body>
+</html>
