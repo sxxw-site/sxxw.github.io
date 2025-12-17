@@ -357,7 +357,7 @@ def copy_assets() -> None:
     def ignore(_dir: str, names: List[str]) -> List[str]:
         ignored = []
         for n in names:
-            if n.lower() in {"languages.json"}:
+            if n.lower() in {""}:
                 ignored.append(n)
         return ignored
 
