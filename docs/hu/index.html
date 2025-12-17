@@ -8,39 +8,40 @@
 <meta content="上海树下小屋网络科技有限公司 - Független kutatásra és termékek felfedezésére összpontosít" name="description"/>
 <title>上海树下小屋网络科技有限公司</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- ✅ 关键：改成根路径，避免 /en/assets/style.css -->
 <link href="../assets/style.css" rel="stylesheet"/>
 <!-- ✅ 语言切换的样式（你也可以挪到 style.css） -->
 <style>
-        .lang-wrap { position: relative; display: inline-flex; align-items: center; gap: 10px; }
-        .lang-select {
-          appearance: none;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          border: 1px solid rgba(148,255,207,.35);
-          background: rgba(15,23,42,.55);
-          color: inherit;
-          padding: 10px 36px 10px 12px;
-          border-radius: 12px;
-          font: inherit;
-          line-height: 1;
-          cursor: pointer;
-          outline: none;
-        }
-        .lang-select:focus { box-shadow: 0 0 0 3px rgba(148,255,207,.18); }
-        .lang-caret {
-          position: absolute;
-          right: 12px;
-          pointer-events: none;
-          opacity: .8;
-          font-size: 12px;
-          transform: translateY(1px);
-        }
-        @media (max-width: 880px) {
-          .lang-wrap { margin-left: auto; }
-          .nav-menu { gap: 10px; }
-          .lang-select { padding: 10px 34px 10px 10px; }
-        }
-    </style>
+    .lang-wrap { position: relative; display: inline-flex; align-items: center; gap: 10px; }
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 1px solid rgba(148,255,207,.35);
+      background: rgba(15,23,42,.55);
+      color: inherit;
+      padding: 10px 36px 10px 12px;
+      border-radius: 12px;
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+      outline: none;
+    }
+    .lang-select:focus { box-shadow: 0 0 0 3px rgba(148,255,207,.18); }
+    .lang-caret {
+      position: absolute;
+      right: 12px;
+      pointer-events: none;
+      opacity: .8;
+      font-size: 12px;
+      transform: translateY(1px);
+    }
+    @media (max-width: 880px) {
+      .lang-wrap { margin-left: auto; }
+      .nav-menu { gap: 10px; }
+      .lang-select { padding: 10px 34px 10px 10px; }
+    }
+  </style>
 </head>
 <body>
 <header class="navbar">
@@ -73,7 +74,7 @@
 <a class="nav-link" href="#hero">Kezdőlap</a>
 <a class="nav-link" href="#about">Rólunk</a>
 <a class="nav-link cta-nav" href="#contact">Lépjen kapcsolatba velünk</a>
-<!-- ✅ 多语言切换：运行时读 assets/languages.json 自动生成 option -->
+<!-- ✅ 多语言切换：运行时读 /assets/languages.json 自动生成 option -->
 <div aria-label="Language switcher" class="lang-wrap">
 <select aria-label="Language" class="lang-select" id="langSelect"></select>
 <span class="lang-caret">▾</span>
@@ -200,117 +201,119 @@
 </div>
 </footer>
 <noscript>Ez az oldal JavaScript-et igényel a teljes interaktív élményhez (navigációs menü, görgetési effektusok stb.).</noscript>
+<!-- ✅ 关键：改成根路径，避免 /en/assets/main.js -->
 <script src="../assets/main.js"></script>
-<!-- ✅ 多语言切换脚本：也可以单独放到 assets/lang-switch.js 再引用 -->
+<!-- ✅ 多语言切换脚本：修复 languages.json 路径为 /assets/languages.json -->
 <script>
-    (function () {
-      const DEFAULT_LANG = "zh-hans";
-      const LANG_JSON_URL = "assets/languages.json";
+(function () {
+  const DEFAULT_LANG = "zh-hans";
+  const LANG_JSON_URL = "assets/languages.json"; // ✅ 关键修复：根路径
 
-      function norm(code) {
-        return (code || "").trim().replace(/_/g, "-").toLowerCase();
+  function norm(code) {
+    return (code || "").trim().replace(/_/g, "-").toLowerCase();
+  }
+
+  function detectLangFromPath(pathname, supported) {
+    const parts = pathname.split("/").filter(Boolean);
+    for (let i = 0; i < Math.min(parts.length, 6); i++) {
+      const c = norm(parts[i]);
+      if (supported.has(c)) return c;
+    }
+    return null;
+  }
+
+  function stripLangFromPath(pathname, supported) {
+    const parts = pathname.split("/").filter(Boolean);
+    const idx = parts.findIndex(p => supported.has(norm(p)));
+    if (idx >= 0) parts.splice(idx, 1);
+    return "/" + parts.join("/") + (pathname.endsWith("/") ? "/" : "");
+  }
+
+  // 推断 GitHub Pages 仓库子路径（如果有）
+  function inferBasePrefix(supported) {
+    const curParts = location.pathname.split("/").filter(Boolean);
+    const langIdx = curParts.findIndex(p => supported.has(norm(p)));
+    if (langIdx >= 0) return "/" + curParts.slice(0, langIdx).join("/") + "/";
+    if (curParts.length >= 1) return "/" + curParts[0] + "/"; // repo 子路径
+    return "/";
+  }
+
+  function withLang(pathnameNoLang, lang, supported) {
+    const base = inferBasePrefix(supported);
+    const rest = pathnameNoLang.replace(/^\//, "");
+    if (lang === DEFAULT_LANG) return base + rest;
+    return base + lang + "/" + rest;
+  }
+
+  async function loadLanguages() {
+    const res = await fetch(LANG_JSON_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load /assets/languages.json");
+    const arr = await res.json();
+    return (arr || [])
+      .map(x => ({ code: norm(x.code), name: x.name || x.code }))
+      .filter(x => x.code);
+  }
+
+  // 只展示“真的构建出来”的语言，避免点了 404
+  async function filterBuilt(langs) {
+    const supportedAll = new Set(langs.map(x => x.code));
+    const base = inferBasePrefix(supportedAll);
+
+    const checks = await Promise.all(langs.map(async (l) => {
+      if (l.code === DEFAULT_LANG) return true;
+      const url = base + l.code + "/index.html";
+      try {
+        const r = await fetch(url, { method: "HEAD" });
+        return r.ok;
+      } catch {
+        return false;
       }
+    }));
+    return langs.filter((_, i) => checks[i]);
+  }
 
-      function detectLangFromPath(pathname, supported) {
-        const parts = pathname.split("/").filter(Boolean);
-        for (let i = 0; i < Math.min(parts.length, 4); i++) {
-          const c = norm(parts[i]);
-          if (supported.has(c)) return c;
-        }
-        return null;
-      }
+  function renderSelect(sel, langs, current) {
+    sel.innerHTML = "";
+    for (const l of langs) {
+      const opt = document.createElement("option");
+      opt.value = l.code;
+      opt.textContent = l.name;
+      if (l.code === current) opt.selected = true;
+      sel.appendChild(opt);
+    }
+  }
 
-      function stripLangFromPath(pathname, supported) {
-        const parts = pathname.split("/").filter(Boolean);
-        const idx = parts.findIndex(p => supported.has(norm(p)));
-        if (idx >= 0) parts.splice(idx, 1);
-        return "/" + parts.join("/") + (pathname.endsWith("/") ? "/" : "");
-      }
+  async function init() {
+    const sel = document.getElementById("langSelect");
+    if (!sel) return;
 
-      function inferBasePrefix(supported) {
-        const curParts = location.pathname.split("/").filter(Boolean);
-        const langIdx = curParts.findIndex(p => supported.has(norm(p)));
+    let langs = await loadLanguages();
+    langs = await filterBuilt(langs);
 
-        if (langIdx >= 0) return "/" + curParts.slice(0, langIdx).join("/") + "/";
-        if (curParts.length >= 1) return "/" + curParts[0] + "/"; // GitHub Pages repo 子路径
-        return "/";
-      }
+    const supported = new Set(langs.map(x => x.code));
 
-      function withLang(pathnameNoLang, lang, supported) {
-        const base = inferBasePrefix(supported);
-        const rest = pathnameNoLang.replace(/^\//, "");
-        if (lang === DEFAULT_LANG) return base + rest;
-        return base + lang + "/" + rest;
-      }
+    const current =
+      detectLangFromPath(location.pathname, supported) ||
+      norm(localStorage.getItem("site_lang")) ||
+      DEFAULT_LANG;
 
-      async function loadLanguages() {
-        const res = await fetch(LANG_JSON_URL, { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to load assets/languages.json");
-        const arr = await res.json();
-        return (arr || [])
-          .map(x => ({ code: norm(x.code), name: x.name || x.code }))
-          .filter(x => x.code);
-      }
+    const cur = supported.has(current) ? current : DEFAULT_LANG;
+    renderSelect(sel, langs, cur);
 
-      // 可选：只展示真的“有构建产物”的语言（否则列表太长 & 404）
-      async function filterBuilt(langs) {
-        const supportedAll = new Set(langs.map(x => x.code));
-        const base = inferBasePrefix(supportedAll);
+    sel.addEventListener("change", () => {
+      const next = norm(sel.value) || DEFAULT_LANG;
+      localStorage.setItem("site_lang", next);
 
-        const checks = await Promise.all(langs.map(async (l) => {
-          if (l.code === DEFAULT_LANG) return true;
-          const url = base + l.code + "/index.html";
-          try {
-            const r = await fetch(url, { method: "HEAD" });
-            return r.ok;
-          } catch {
-            return false;
-          }
-        }));
-        return langs.filter((_, i) => checks[i]);
-      }
+      const noLang = stripLangFromPath(location.pathname, supported);
+      const target = withLang(noLang, next, supported);
+      location.href = target + location.search + location.hash;
+    });
+  }
 
-      function renderSelect(sel, langs, current) {
-        sel.innerHTML = "";
-        for (const l of langs) {
-          const opt = document.createElement("option");
-          opt.value = l.code;
-          opt.textContent = l.name;
-          if (l.code === current) opt.selected = true;
-          sel.appendChild(opt);
-        }
-      }
-
-      async function init() {
-        const sel = document.getElementById("langSelect");
-        if (!sel) return;
-
-        let langs = await loadLanguages();
-        langs = await filterBuilt(langs); // ✅ 推荐开启：只显示已构建语言
-
-        const supported = new Set(langs.map(x => x.code));
-        const current =
-          detectLangFromPath(location.pathname, supported) ||
-          norm(localStorage.getItem("site_lang")) ||
-          DEFAULT_LANG;
-
-        const cur = supported.has(current) ? current : DEFAULT_LANG;
-        renderSelect(sel, langs, cur);
-
-        sel.addEventListener("change", () => {
-          const next = norm(sel.value) || DEFAULT_LANG;
-          localStorage.setItem("site_lang", next);
-
-          const noLang = stripLangFromPath(location.pathname, supported);
-          const target = withLang(noLang, next, supported);
-          location.href = target + location.search + location.hash;
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        init().catch(err => console.warn("[lang-switch] init failed:", err));
-      });
-    })();
+  document.addEventListener("DOMContentLoaded", () => {
+    init().catch(err => console.warn("[lang-switch] init failed:", err));
+  });
+})();
 </script>
 </body>
 </html>
