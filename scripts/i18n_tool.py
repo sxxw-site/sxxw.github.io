@@ -35,6 +35,10 @@ MAX_WORKERS = int(os.getenv("I18N_WORKERS", "6"))
 CACHE_FILE = Path(".cache/i18n_translate_cache.json")
 APIKEY_FILE = Path("scripts/apikey")
 
+# ✅ 不翻译保护词（整句命中直接 copy；句子内出现会被掩码，翻完还原）
+# 文件格式：["TreeHouse Tech", "上海树下小屋网络科技有限公司", "sxxw.site"]
+PROTECTED_TERMS_FILE = Path("scripts/protected_terms.json")
+
 
 # =========================
 # 占位符保护 & CJK 处理
@@ -78,6 +82,64 @@ def mask_placeholders(text: str) -> Tuple[str, Dict[str, str]]:
     return _PLACEHOLDER_RE.sub(repl, text), mapping
 
 def unmask_placeholders(text: str, mapping: Dict[str, str]) -> str:
+    for k, v in mapping.items():
+        text = text.replace(k, v)
+    return text
+
+
+# =========================
+# 保护词：掩码/还原
+# =========================
+_TERM_TOKEN_RE = re.compile(r"__TERM(\d+)__")
+
+def load_protected_terms() -> List[str]:
+    # env: I18N_PROTECTED_TERMS="foo,bar,baz"
+    env = (os.getenv("I18N_PROTECTED_TERMS") or "").strip()
+    terms: List[str] = []
+    if env:
+        terms.extend([x.strip() for x in env.split(",") if x.strip()])
+
+    if PROTECTED_TERMS_FILE.exists():
+        try:
+            data = json.loads(PROTECTED_TERMS_FILE.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                terms.extend([str(x) for x in data if str(x).strip()])
+        except Exception:
+            pass
+
+    # 去重 + 长度降序（避免短词先替换导致长词无法匹配）
+    uniq: List[str] = []
+    seen = set()
+    for t in terms:
+        if t not in seen:
+            uniq.append(t)
+            seen.add(t)
+    uniq.sort(key=len, reverse=True)
+    return uniq
+
+def mask_protected_terms(text: str, terms: List[str]) -> Tuple[str, Dict[str, str]]:
+    """
+    把 text 里出现的保护词替换成 __TERM0__/__TERM1__...，避免被模型翻译
+    """
+    if not text or not terms:
+        return text, {}
+
+    mapping: Dict[str, str] = {}
+    out = text
+    idx = 0
+    for term in terms:
+        if not term:
+            continue
+        if term in out:
+            token = f"__TERM{idx}__"
+            mapping[token] = term
+            out = out.replace(term, token)
+            idx += 1
+    return out, mapping
+
+def unmask_protected_terms(text: str, mapping: Dict[str, str]) -> str:
+    if not text or not mapping:
+        return text
     for k, v in mapping.items():
         text = text.replace(k, v)
     return text
@@ -254,7 +316,7 @@ def build_system_prompt(src_lang_name: str, tgt_lang_name: str, tgt_code: str) -
         "You are a senior localization translator.",
         f"Translate from {src_lang_name} to {tgt_lang_name}.",
         "Preserve brand names and URLs verbatim.",
-        "Preserve placeholders/tokens EXACTLY (e.g., {name}, {0}, %d, %@, {{count}}, __PH0__).",
+        "Preserve placeholders/tokens EXACTLY (e.g., {name}, {0}, %d, %@, {{count}}, __PH0__, __TERM0__).",
         "Return ONLY valid JSON (no markdown, no extra text).",
         'JSON schema: {"items":[{"path":"...","text":"..."}]}',
         "Do not change any path value.",
@@ -332,6 +394,7 @@ def translate_tree(
         existing_obj: Optional[Any],
         cache: Dict[str, str],
         force_full: bool,
+        protected_terms: Optional[List[str]] = None,
         out_path: Optional[Path] = None,   # ✅ 边翻译边写
         log_translation: Optional[Callable[[str, str, str, str], None]] = None,
 ) -> Any:
@@ -341,10 +404,12 @@ def translate_tree(
 
     输出：永远是“平铺 JSON”（不分级），key 与源文件一致
     并发：MAX_WORKERS
-    进度：done/total 单调递增，不会“看起来错乱”
+    进度：completed/total 单调递增（并发不会“看起来错乱”）
     边翻译边写：每完成一条 atomic 写回 out_path
+    保护词：整句命中直接 copy；句子中出现会掩码，翻完还原
     """
     log_translation = log_translation or default_log_translation
+    protected_terms = protected_terms or []
 
     # ---- 中文同语系：OpenCC 直转（如果可用，非 GPT）----
     if is_zh(base_code) and is_zh(tgt_code):
@@ -371,7 +436,7 @@ def translate_tree(
     existing_map: Dict[str, Any] = {p: v for p, v in existing_pairs}
 
     # =========================
-    # ✅ 先搭出最终 out_dict（确保顺序稳定）
+    # ✅ 先搭出最终 out_dict（确保写出的 key 顺序稳定）
     # =========================
     out_dict: Dict[str, Any] = {}
 
@@ -382,50 +447,68 @@ def translate_tree(
             else:
                 out_dict[path] = val
     else:
+        # 先保留 existing 的顺序
         for p, v in existing_pairs:
             out_dict[p] = v
 
+        # 再补 base 中缺失的非字符串项
         for path, val in base_pairs:
             if path in out_dict:
                 continue
             if not isinstance(val, str):
                 out_dict[path] = val
 
+        # 再补 base 中缺失的字符串项占位（保证后续覆盖不改变顺序）
         for path, val in base_pairs:
             if path in out_dict:
                 continue
             if isinstance(val, str):
                 out_dict[path] = ""
 
-    # 先写一次“骨架文件”（能看到边翻译边增长）
-    if out_path:
-        atomic_write_json(out_path, out_dict)
-
     # =========================
-    # todo + masked_maps
+    # todo + 映射（占位符/保护词）
     # =========================
     todo: List[Tuple[int, str, str]] = []  # (seq, path, masked_src)
     masked_maps: Dict[str, Dict[str, str]] = {}
+    term_maps: Dict[str, Dict[str, str]] = {}
 
     seq = 0
     for path, val in base_pairs:
         if not isinstance(val, str):
             continue
 
+        # 增量：已有非空译文就跳过
         if not force_full:
             cur = existing_map.get(path, None)
             if isinstance(cur, str) and cur.strip() != "":
                 continue
 
+        # ✅ 例外：整句命中保护词 -> 直接 copy，不走翻译
+        if val.strip() in protected_terms:
+            out_dict[path] = val
+            ck = cache_key(src_lang_name, tgt_code, val)
+            cache[ck] = val
+            continue
+
+        # cache 命中 -> 直接填
         ck = cache_key(src_lang_name, tgt_code, val)
         if ck in cache:
             out_dict[path] = cache[ck]
             continue
 
-        masked, m = mask_placeholders(val)
-        masked_maps[path] = m
+        # ✅ 先占位符掩码，再保护词掩码
+        masked, ph_map = mask_placeholders(val)
+        masked, tm_map = mask_protected_terms(masked, protected_terms)
+
+        masked_maps[path] = ph_map
+        term_maps[path] = tm_map
+
         seq += 1
         todo.append((seq, path, masked))
+
+    # 先写一次骨架（含 cache/保护词直拷贝结果），方便你“边翻译边看到文件变化”
+    if out_path:
+        atomic_write_json(out_path, out_dict)
 
     total = len(todo)
     mode = "并发" if MAX_WORKERS > 1 else "单线程"
@@ -433,16 +516,22 @@ def translate_tree(
         print(f"🧩 [{tgt_code}] 待翻译 {total} 条（{mode}，每条完成即日志 + 写文件）", flush=True)
 
     lock = threading.Lock()
-    done = 0
+    completed = 0
+    succeeded = 0
 
     def postprocess(path: str, masked_tgt: str) -> Optional[str]:
         src_text = base_map.get(path)
         if not isinstance(src_text, str):
             return None
 
+        # 先还原占位符，再还原保护词
         unmasked = unmask_placeholders(masked_tgt, masked_maps.get(path, {}))
+        unmasked = unmask_protected_terms(unmasked, term_maps.get(path, {}))
+
+        # 非 CJK 目标语言去掉中文（保留你原逻辑）
         unmasked = ensure_no_cjk_when_forbidden(unmasked, tgt_code)
 
+        # 占位符一致性修复
         if extract_placeholders(src_text) and not placeholders_equal(src_text, unmasked):
             src_ph = extract_placeholders(src_text)
             it = iter(src_ph)
@@ -454,7 +543,7 @@ def translate_tree(
 
         return unmasked
 
-    # 线程内复用 client（每线程一个）
+    # 每线程复用一个 client
     _tl = threading.local()
 
     def get_client() -> OpenAI:
@@ -478,35 +567,40 @@ def translate_tree(
             return None
         return postprocess(path, out_map[path])
 
-    def apply_result(seq_no: int, path: str, final: str) -> None:
-        nonlocal done
+    def apply_success(seq_no: int, path: str, final: str) -> None:
+        nonlocal succeeded
         src_text = base_map.get(path)
 
         with lock:
             out_dict[path] = final
             if isinstance(src_text, str):
                 cache[cache_key(src_lang_name, tgt_code, src_text)] = final
-            done += 1
-            done_now = done
-
+            succeeded += 1
             if out_path:
                 atomic_write_json(out_path, out_dict)
 
-        # 进度用 done/total，单调递增，不会乱
-        print(f"✅ [{tgt_code}] done ({done_now}/{total})  {path}  (seq:{seq_no})", flush=True)
         log_translation(tgt_code, path, src_text if isinstance(src_text, str) else "", final)
+
+    def tick_complete(ok: bool, seq_no: int, path: str) -> None:
+        nonlocal completed
+        with lock:
+            completed += 1
+            c = completed
+        status = "✅" if ok else "⚠️"
+        print(f"{status} [{tgt_code}] ({c}/{total})  {path}  (seq:{seq_no})", flush=True)
 
     # =========================
     # 执行：单线程 or 并发
     # =========================
     if MAX_WORKERS <= 1:
         for seq_no, path, masked_src in todo:
-            print(f"⏳ [{tgt_code}] start ({seq_no}/{total})  {path}", flush=True)
+            print(f"⏳ [{tgt_code}] start (seq:{seq_no}/{total})  {path}", flush=True)
             final = translate_one(path, masked_src)
             if final is None:
-                print(f"⚠️ [{tgt_code}] fail  (seq:{seq_no}/{total})  {path}", flush=True)
+                tick_complete(False, seq_no, path)
                 continue
-            apply_result(seq_no, path, final)
+            apply_success(seq_no, path, final)
+            tick_complete(True, seq_no, path)
     else:
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -519,14 +613,18 @@ def translate_tree(
             for fut in as_completed(futures):
                 seq_no, path, final = fut.result()
                 if final is None:
-                    print(f"⚠️ [{tgt_code}] fail (seq:{seq_no}/{total})  {path}", flush=True)
+                    tick_complete(False, seq_no, path)
                     continue
-                apply_result(seq_no, path, final)
+                apply_success(seq_no, path, final)
+                tick_complete(True, seq_no, path)
 
-    # 最终保险落盘
+    # 最终保险落盘 + 缓存保存交给上层
     if out_path:
         with lock:
             atomic_write_json(out_path, out_dict)
+
+    if total > 0:
+        print(f"🏁 [{tgt_code}] 完成：成功 {succeeded}/{total}", flush=True)
 
     return out_dict
 
@@ -534,7 +632,7 @@ def translate_tree(
 # =========================
 # 第一阶段 / 第二阶段（支持增量追加 & 全量覆盖）
 # =========================
-def build_first_hop(locales_dir: Path, api_key: str, force_full: bool) -> None:
+def build_first_hop(locales_dir: Path, api_key: str, force_full: bool, protected_terms: List[str]) -> None:
     langs = load_languages()
     lang_by_code = {l.code.lower(): l for l in langs}
     cache = load_cache()
@@ -565,6 +663,7 @@ def build_first_hop(locales_dir: Path, api_key: str, force_full: bool) -> None:
             existing_obj=existing,
             cache=cache,
             force_full=force_full,
+            protected_terms=protected_terms,
             out_path=out_path,  # ✅ 边翻译边写
         )
 
@@ -575,7 +674,7 @@ def build_first_hop(locales_dir: Path, api_key: str, force_full: bool) -> None:
     print(f"💾 缓存已保存：{CACHE_FILE}", flush=True)
 
 
-def build_second_hop_from_en(locales_dir: Path, api_key: str, force_full: bool) -> None:
+def build_second_hop_from_en(locales_dir: Path, api_key: str, force_full: bool, protected_terms: List[str]) -> None:
     langs = load_languages()
     cache = load_cache()
 
@@ -627,6 +726,7 @@ def build_second_hop_from_en(locales_dir: Path, api_key: str, force_full: bool) 
             existing_obj=existing,
             cache=cache,
             force_full=force_full,
+            protected_terms=protected_terms,
             out_path=out_path,  # ✅ 边翻译边写
         )
 
@@ -741,12 +841,15 @@ def menu() -> None:
     locales_dir = pick_locales_dir()
 
     while True:
+        protected_terms = load_protected_terms()
+
         print("\n========== i18n 工具 ==========", flush=True)
         print(f"LANGS_FILE : {LANGS_FILE}", flush=True)
         print(f"locales_dir: {locales_dir}", flush=True)
         print(f"BASE       : {BASE} ({code_to_filename(BASE)})", flush=True)
         print(f"MODEL      : {MODEL}", flush=True)
         print(f"WORKERS    : {MAX_WORKERS}  (env: I18N_WORKERS)", flush=True)
+        print(f"PROTECTED  : {len(protected_terms)}  ({PROTECTED_TERMS_FILE} / env: I18N_PROTECTED_TERMS)", flush=True)
         print("--------------------------------", flush=True)
         print("1) 第一阶段（增量追加）：zh-hans → en / zh-hant / ja / ko", flush=True)
         print("2) 第一阶段（全量覆盖）：zh-hans → en / zh-hant / ja / ko", flush=True)
@@ -765,16 +868,16 @@ def menu() -> None:
                 continue
 
         if choice == "1":
-            build_first_hop(locales_dir, api_key=api_key, force_full=False)
+            build_first_hop(locales_dir, api_key=api_key, force_full=False, protected_terms=protected_terms)
 
         elif choice == "2":
-            build_first_hop(locales_dir, api_key=api_key, force_full=True)
+            build_first_hop(locales_dir, api_key=api_key, force_full=True, protected_terms=protected_terms)
 
         elif choice == "3":
-            build_second_hop_from_en(locales_dir, api_key=api_key, force_full=False)
+            build_second_hop_from_en(locales_dir, api_key=api_key, force_full=False, protected_terms=protected_terms)
 
         elif choice == "4":
-            build_second_hop_from_en(locales_dir, api_key=api_key, force_full=True)
+            build_second_hop_from_en(locales_dir, api_key=api_key, force_full=True, protected_terms=protected_terms)
 
         elif choice == "5":
             raw = input("输入要清理的 key（逗号分隔；支持前缀 home.* 或 home. 或 home*）：\n> ").strip()
