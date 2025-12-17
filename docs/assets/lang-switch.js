@@ -116,7 +116,7 @@
     const parts = location.pathname.split("/").filter(Boolean);
     const idx = parts.findIndex((p) => supported.has(norm(p)));
     if (idx >= 0) parts.splice(idx, 1);
-    return "/" + parts.join("/") + (location.pathname.endsWith("/") ? "/" : "");
+    return "/" + parts.join("/") + (location.pathname.endsWith("/") ? "" : "/");
   }
 
   function buildTarget(pathnameNoLang, lang, supported) {
