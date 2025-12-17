@@ -112,21 +112,36 @@
     return null;
   }
 
-  function stripLangFromPath(supported) {
-    const parts = location.pathname.split("/").filter(Boolean);
-    const idx = parts.findIndex((p) => supported.has(norm(p)));
-    if (idx >= 0) parts.splice(idx, 1);
-    return "/" + parts.join("/") + (location.pathname.endsWith("/") ? "" : "/");
-  }
+        function stripLangFromPath(supported) {
+          const hadTrailing = location.pathname.endsWith("/");
+          const parts = location.pathname.split("/").filter(Boolean);
 
-  function buildTarget(pathnameNoLang, lang, supported) {
-    const base = inferBasePrefix(supported);
-    const rest = pathnameNoLang.replace(/^\//, "");
-    const l = norm(lang);
+          const idx = parts.findIndex((p) => supported.has(norm(p)));
+          if (idx >= 0) parts.splice(idx, 1);
 
-    if (USE_ROOT_FOR_DEFAULT && l === DEFAULT_LANG) return base + rest;
-    return base + l + "/" + rest;
-  }
+          // 剩余路径
+          const joined = parts.join("/");
+          // 空路径就返回 "/"；非空才保留原来的尾斜杠语义
+          let out = joined ? ("/" + joined + (hadTrailing ? "/" : "")) : "/";
+
+          // 保险：压缩重复斜杠
+          out = out.replace(/\/{2,}/g, "/");
+          return out;
+        }
+
+
+function buildTarget(pathnameNoLang, lang, supported) {
+  const base = inferBasePrefix(supported);
+  const rest = pathnameNoLang.replace(/^\//, "");
+  const l = norm(lang);
+
+  let out;
+  if (USE_ROOT_FOR_DEFAULT && l === DEFAULT_LANG) out = base + rest;
+  else out = base + l + "/" + rest;
+
+  return out.replace(/\/{2,}/g, "/");
+}
+
 
   function setHtmlLang(lang) {
     // 可选：让 SEO/读屏/字体选择更正确
