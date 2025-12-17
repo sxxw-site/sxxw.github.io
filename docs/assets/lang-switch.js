@@ -106,12 +106,11 @@
     return null;
   }
 
-  // ✅ 更稳：优先读 <base href>；否则只在“路径里已出现语言段”时推断子路径；否则默认 "/"
+  // 更稳：优先读 <base href>；否则只在“路径里已出现语言段”时推断子路径；否则默认 "/"
   function inferBasePrefix(supported) {
     const baseEl = document.querySelector("base[href]");
     if (baseEl) {
       const href = baseEl.getAttribute("href") || "/";
-      // 确保形如 "/repo/" 或 "/"
       const u = new URL(href, location.origin);
       let p = u.pathname;
       if (!p.endsWith("/")) p += "/";
@@ -121,17 +120,15 @@
     const parts = location.pathname.split("/").filter(Boolean);
     const langIdx = parts.findIndex((p) => supported.has(norm(p)));
 
-    // 只有当路径里确实出现语言段，才认为前面是子路径（/repo/<lang>/...）
     if (langIdx >= 0) {
       const prefix = "/" + parts.slice(0, langIdx).join("/") + "/";
       return normalizeSlashes(prefix);
     }
 
-    // 否则就是普通站点根路径
     return "/";
   }
 
-  // ✅ 修复：永远不会返回 //，空路径就是 "/"
+  // 永远不会返回 //，空路径就是 "/"
   function stripLangFromPath(supported) {
     const hadTrailing = location.pathname.endsWith("/");
     const parts = location.pathname.split("/").filter(Boolean);
@@ -140,23 +137,22 @@
     if (idx >= 0) parts.splice(idx, 1);
 
     const joined = parts.join("/");
-    let out = joined ? ("/" + joined + (hadTrailing ? "/" : "")) : "/";
+    const out = joined ? ("/" + joined + (hadTrailing ? "/" : "")) : "/";
     return normalizeSlashes(out);
   }
 
   function buildTarget(pathnameNoLang, lang, supported) {
     const base = inferBasePrefix(supported);
-    const rest = (pathnameNoLang || "/").replace(/^\//, ""); // 去掉开头 /
+    const rest = (pathnameNoLang || "/").replace(/^\//, "");
     const l = norm(lang);
+    const def = norm(DEFAULT_LANG);
 
     let out;
-    if (USE_ROOT_FOR_DEFAULT && l === norm(DEFAULT_LANG)) {
-      // 默认语言走根目录
-      out = base + rest;
+    if (USE_ROOT_FOR_DEFAULT && l === def) {
+      out = base + rest; // 默认语言走根目录
     } else {
       out = base + l + (rest ? "/" + rest : "/");
     }
-
     return normalizeSlashes(out);
   }
 
@@ -168,7 +164,7 @@
     sel.innerHTML = "";
     for (const l of langs) {
       const opt = document.createElement("option");
-      opt.value = l.code;
+      opt.value = l.code; // 注意：这里用 norm 后的 code
       opt.textContent = l.name;
       if (l.code === current) opt.selected = true;
       sel.appendChild(opt);
@@ -185,25 +181,15 @@
 
     const supported = supportedSet();
 
-    // 1) 从 URL 推断当前语言
+    // ✅ 只从 URL 推断语言；URL 没有语言段 => 默认语言
     const fromPath = detectLangFromPath(supported);
-
-    // 2) 其次用本地记忆（用户上次选择）
-    const fromStore = norm(localStorage.getItem("site_lang"));
-
-    // 3) 兜底默认语言（无参数/无语言段 => 中文）
-    const current = supported.has(fromPath)
-      ? fromPath
-      : supported.has(fromStore)
-        ? fromStore
-        : norm(DEFAULT_LANG);
+    const current = supported.has(fromPath) ? fromPath : norm(DEFAULT_LANG);
 
     setHtmlLang(current);
     renderSelect(sel, langs, current);
 
     sel.addEventListener("change", () => {
       const next = norm(sel.value) || norm(DEFAULT_LANG);
-      localStorage.setItem("site_lang", next);
 
       const noLang = stripLangFromPath(supported);
       const target = buildTarget(noLang, next, supported);
