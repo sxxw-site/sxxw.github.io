@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-i18n-attr="lang:html.lang">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="color-scheme" content="dark light" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
 
-    <meta name="description"
-          content="上海树下小屋网络科技有限公司 - 专注自主研发与产品探索"
-          data-i18n-attr="content:meta.description" />
+  <meta name="description"
+        content="上海树下小屋网络科技有限公司 - 专注自主研发与产品探索"
+        data-i18n-attr="content:meta.description" />
 
-    <title data-i18n="meta.title">上海树下小屋网络科技有限公司</title>
+  <title data-i18n="meta.title">上海树下小屋网络科技有限公司</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- ✅ 关键：改成根路径，避免 /en/assets/style.css -->
+  <link rel="stylesheet" href="assets/style.css" />
 
-    <!-- ✅ 语言切换的样式（你也可以挪到 style.css） -->
-    <style>
-        .lang-wrap { position: relative; display: inline-flex; align-items: center; gap: 10px; }
-        .lang-select {
-          appearance: none;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          border: 1px solid rgba(148,255,207,.35);
-          background: rgba(15,23,42,.55);
-          color: inherit;
-          padding: 10px 36px 10px 12px;
-          border-radius: 12px;
-          font: inherit;
-          line-height: 1;
-          cursor: pointer;
-          outline: none;
-        }
-        .lang-select:focus { box-shadow: 0 0 0 3px rgba(148,255,207,.18); }
-        .lang-caret {
-          position: absolute;
-          right: 12px;
-          pointer-events: none;
-          opacity: .8;
-          font-size: 12px;
-          transform: translateY(1px);
-        }
-        @media (max-width: 880px) {
-          .lang-wrap { margin-left: auto; }
-          .nav-menu { gap: 10px; }
-          .lang-select { padding: 10px 34px 10px 10px; }
-        }
-    </style>
+  <!-- ✅ 语言切换的样式（你也可以挪到 style.css） -->
+  <style>
+    .lang-wrap { position: relative; display: inline-flex; align-items: center; gap: 10px; }
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 1px solid rgba(148,255,207,.35);
+      background: rgba(15,23,42,.55);
+      color: inherit;
+      padding: 10px 36px 10px 12px;
+      border-radius: 12px;
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+      outline: none;
+    }
+    .lang-select:focus { box-shadow: 0 0 0 3px rgba(148,255,207,.18); }
+    .lang-caret {
+      position: absolute;
+      right: 12px;
+      pointer-events: none;
+      opacity: .8;
+      font-size: 12px;
+      transform: translateY(1px);
+    }
+    @media (max-width: 880px) {
+      .lang-wrap { margin-left: auto; }
+      .nav-menu { gap: 10px; }
+      .lang-select { padding: 10px 34px 10px 10px; }
+    }
+  </style>
 </head>
 
 <body>
 <header class="navbar">
-    <div class="container nav-inner">
-        <a class="brand" href="#hero"
-           aria-label="上海树下小屋网络科技有限公司"
-           data-i18n-attr="aria-label:meta.title">
+  <div class="container nav-inner">
+    <a class="brand" href="#hero"
+       aria-label="上海树下小屋网络科技有限公司"
+       data-i18n-attr="aria-label:meta.title">
 
       <span class="brand-icon" aria-hidden="true">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" role="img">
@@ -63,7 +64,9 @@
           <path d="M14 19 L20 15 L26 19" fill="#1e293b" stroke="#94ffcf" stroke-width="1.5"></path>
           <rect x="18" y="21" width="4" height="6" fill="#0f172a" stroke="#94ffcf" stroke-width="1" rx="0.5"></rect>
           <defs>
-            <radialGradient id="gradTree" cx="0" cy="0" r="1" gradientTransform="translate(9 8) rotate(45) scale(10)" gradientUnits="userSpaceOnUse">
+            <radialGradient id="gradTree" cx="0" cy="0" r="1"
+                            gradientTransform="translate(9 8) rotate(45) scale(10)"
+                            gradientUnits="userSpaceOnUse">
               <stop stop-color="#34d399"></stop>
               <stop offset="1" stop-color="#065f46"></stop>
             </radialGradient>
@@ -71,310 +74,312 @@
         </svg>
       </span>
 
-            <span class="brand-text">
+      <span class="brand-text">
         <span class="cn" data-i18n="common.company">上海树下小屋网络科技有限公司</span>
         <span class="en" data-i18n="brand.en">TreeHouse Tech · Shanghai</span>
       </span>
-        </a>
+    </a>
 
-        <button class="nav-toggle"
-                aria-label="展开菜单"
-                aria-expanded="false"
-                data-i18n-attr="aria-label:nav.toggle">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-        </button>
+    <button class="nav-toggle"
+            aria-label="展开菜单"
+            aria-expanded="false"
+            data-i18n-attr="aria-label:nav.toggle">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
 
-        <nav class="nav-menu">
-            <a href="#hero" class="nav-link" data-i18n="nav.home">首页</a>
-            <a href="#about" class="nav-link" data-i18n="nav.about">关于我们</a>
-            <a href="#contact" class="nav-link cta-nav" data-i18n="nav.contact">联系我们</a>
+    <nav class="nav-menu">
+      <a href="#hero" class="nav-link" data-i18n="nav.home">首页</a>
+      <a href="#about" class="nav-link" data-i18n="nav.about">关于我们</a>
+      <a href="#contact" class="nav-link cta-nav" data-i18n="nav.contact">联系我们</a>
 
-            <!-- ✅ 多语言切换：运行时读 assets/languages.json 自动生成 option -->
-            <div class="lang-wrap" aria-label="Language switcher">
-                <select id="langSelect" class="lang-select" aria-label="Language"></select>
-                <span class="lang-caret">▾</span>
-            </div>
-        </nav>
-    </div>
+      <!-- ✅ 多语言切换：运行时读 /assets/languages.json 自动生成 option -->
+      <div class="lang-wrap" aria-label="Language switcher">
+        <select id="langSelect" class="lang-select" aria-label="Language"></select>
+        <span class="lang-caret">▾</span>
+      </div>
+    </nav>
+  </div>
 </header>
 
 <section id="hero" class="hero-section">
-    <div class="hero-bg"></div>
-    <div class="container hero-inner">
-        <div class="hero-copy reveal">
-            <h1 class="hero-title" data-i18n-html="hero.title">
-                专注<span class="accent">自主研发</span>与产品探索
-            </h1>
+  <div class="hero-bg"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy reveal">
+      <h1 class="hero-title" data-i18n-html="hero.title">
+        专注<span class="accent">自主研发</span>与产品探索
+      </h1>
 
-            <p class="hero-desc" data-i18n="hero.desc">
-                我们是一家以自研为核心的网络科技公司。
-                我们持续探索有价值的产品方向与技术实现路径，面向长期迭代与稳定交付。
-            </p>
+      <p class="hero-desc" data-i18n="hero.desc">
+        我们是一家以自研为核心的网络科技公司。
+        我们持续探索有价值的产品方向与技术实现路径，面向长期迭代与稳定交付。
+      </p>
 
-            <div class="hero-cta-row">
-                <a class="btn-primary" href="#contact" data-i18n="hero.cta.contact">联系方式</a>
-                <a class="btn-ghost" href="#about" data-i18n="hero.cta.about">了解我们 →</a>
-            </div>
+      <div class="hero-cta-row">
+        <a class="btn-primary" href="#contact" data-i18n="hero.cta.contact">联系方式</a>
+        <a class="btn-ghost" href="#about" data-i18n="hero.cta.about">了解我们 →</a>
+      </div>
 
-            <div class="hero-meta">
-                <div class="meta-item">
-                    <span class="meta-num" data-i18n="hero.meta.0.num">自研</span>
-                    <span class="meta-label" data-i18n="hero.meta.0.label">以产品与工程为中心</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-num" data-i18n="hero.meta.1.num">长期</span>
-                    <span class="meta-label" data-i18n="hero.meta.1.label">持续迭代与打磨</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-num" data-i18n="hero.meta.2.num">稳健</span>
-                    <span class="meta-label" data-i18n="hero.meta.2.label">重视质量与合规</span>
-                </div>
-            </div>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-num" data-i18n="hero.meta.0.num">自研</span>
+          <span class="meta-label" data-i18n="hero.meta.0.label">以产品与工程为中心</span>
         </div>
-
-        <div class="hero-card reveal">
-            <div class="mini-card">
-                <p class="mini-head" data-i18n="hero.mini.head">提示</p>
-                <p class="mini-main" data-i18n="hero.mini.main">业务方向持续探索中</p>
-
-                <ul class="mini-stats">
-                    <li><span data-i18n="hero.mini.stats.0.k">聚焦</span><b data-i18n="hero.mini.stats.0.v">自研产品</b></li>
-                    <li><span data-i18n="hero.mini.stats.1.k">形态</span><b data-i18n="hero.mini.stats.1.v">逐步明确</b></li>
-                    <li><span data-i18n="hero.mini.stats.2.k">节奏</span><b data-i18n="hero.mini.stats.2.v">迭代推进</b></li>
-                    <li><span data-i18n="hero.mini.stats.3.k">目标</span><b data-i18n="hero.mini.stats.3.v">可持续增长</b></li>
-                </ul>
-
-                <p class="mini-foot" data-i18n="hero.mini.foot">
-                    * 当前官网为基础介绍页，内容将随业务进展持续更新
-                </p>
-            </div>
-
-            <div class="glass-note" data-i18n-html="hero.glass">
-                方向探索 → 工程实现 → 产品打磨
-                <span class="dot"></span>
-                长期主义 / 稳健交付
-            </div>
+        <div class="meta-item">
+          <span class="meta-num" data-i18n="hero.meta.1.num">长期</span>
+          <span class="meta-label" data-i18n="hero.meta.1.label">持续迭代与打磨</span>
         </div>
+        <div class="meta-item">
+          <span class="meta-num" data-i18n="hero.meta.2.num">稳健</span>
+          <span class="meta-label" data-i18n="hero.meta.2.label">重视质量与合规</span>
+        </div>
+      </div>
     </div>
+
+    <div class="hero-card reveal">
+      <div class="mini-card">
+        <p class="mini-head" data-i18n="hero.mini.head">提示</p>
+        <p class="mini-main" data-i18n="hero.mini.main">业务方向持续探索中</p>
+
+        <ul class="mini-stats">
+          <li><span data-i18n="hero.mini.stats.0.k">聚焦</span><b data-i18n="hero.mini.stats.0.v">自研产品</b></li>
+          <li><span data-i18n="hero.mini.stats.1.k">形态</span><b data-i18n="hero.mini.stats.1.v">逐步明确</b></li>
+          <li><span data-i18n="hero.mini.stats.2.k">节奏</span><b data-i18n="hero.mini.stats.2.v">迭代推进</b></li>
+          <li><span data-i18n="hero.mini.stats.3.k">目标</span><b data-i18n="hero.mini.stats.3.v">可持续增长</b></li>
+        </ul>
+
+        <p class="mini-foot" data-i18n="hero.mini.foot">
+          * 当前官网为基础介绍页，内容将随业务进展持续更新
+        </p>
+      </div>
+
+      <div class="glass-note" data-i18n-html="hero.glass">
+        方向探索 → 工程实现 → 产品打磨
+        <span class="dot"></span>
+        长期主义 / 稳健交付
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="about" class="section about-section">
-    <div class="container about-inner">
-        <div class="about-copy reveal">
-            <h2 class="section-title" data-i18n="about.title">关于我们</h2>
+  <div class="container about-inner">
+    <div class="about-copy reveal">
+      <h2 class="section-title" data-i18n="about.title">关于我们</h2>
 
-            <p class="section-desc" data-i18n="about.desc.0">
-                我们是一家专注自研的网络科技公司…
-            </p>
+      <p class="section-desc" data-i18n="about.desc.0">
+        我们是一家专注自研的网络科技公司…
+      </p>
 
-            <p class="section-desc" data-i18n="about.desc.1">
-                目前业务范围仍在持续探索…
-            </p>
+      <p class="section-desc" data-i18n="about.desc.1">
+        目前业务范围仍在持续探索…
+      </p>
 
-            <div class="about-highlights">
-                <div class="hl-box">
-                    <div class="hl-num" data-i18n="about.hl.0.num">自研优先</div>
-                    <div class="hl-text" data-i18n="about.hl.0.text">围绕自身产品与业务持续投入</div>
-                </div>
-                <div class="hl-box">
-                    <div class="hl-num" data-i18n="about.hl.1.num">稳健迭代</div>
-                    <div class="hl-text" data-i18n="about.hl.1.text">重视工程质量、可维护性与可扩展</div>
-                </div>
-                <div class="hl-box">
-                    <div class="hl-num" data-i18n="about.hl.2.num">持续探索</div>
-                    <div class="hl-text" data-i18n="about.hl.2.text">业务方向动态演进，逐步形成清晰边界</div>
-                </div>
-            </div>
+      <div class="about-highlights">
+        <div class="hl-box">
+          <div class="hl-num" data-i18n="about.hl.0.num">自研优先</div>
+          <div class="hl-text" data-i18n="about.hl.0.text">围绕自身产品与业务持续投入</div>
         </div>
-
-        <div class="about-card reveal">
-            <div class="about-glass">
-                <p class="about-mini-title" data-i18n="about.card.title">我们正在做什么？</p>
-                <ul class="about-list">
-                    <li data-i18n="about.card.list.0">产品方向调研与验证（持续进行）</li>
-                    <li data-i18n="about.card.list.1">核心能力建设：工程体系 / 数据与服务能力 / 基础设施</li>
-                    <li data-i18n="about.card.list.2">原型设计与快速迭代：从想法到可用版本</li>
-                    <li data-i18n="about.card.list.3">合规与安全：重视数据安全与隐私保护</li>
-                </ul>
-                <p class="about-mini-note" data-i18n="about.card.note">
-                    由于业务范围仍在探索阶段…
-                </p>
-            </div>
+        <div class="hl-box">
+          <div class="hl-num" data-i18n="about.hl.1.num">稳健迭代</div>
+          <div class="hl-text" data-i18n="about.hl.1.text">重视工程质量、可维护性与可扩展</div>
         </div>
+        <div class="hl-box">
+          <div class="hl-num" data-i18n="about.hl.2.num">持续探索</div>
+          <div class="hl-text" data-i18n="about.hl.2.text">业务方向动态演进，逐步形成清晰边界</div>
+        </div>
+      </div>
     </div>
+
+    <div class="about-card reveal">
+      <div class="about-glass">
+        <p class="about-mini-title" data-i18n="about.card.title">我们正在做什么？</p>
+        <ul class="about-list">
+          <li data-i18n="about.card.list.0">产品方向调研与验证（持续进行）</li>
+          <li data-i18n="about.card.list.1">核心能力建设：工程体系 / 数据与服务能力 / 基础设施</li>
+          <li data-i18n="about.card.list.2">原型设计与快速迭代：从想法到可用版本</li>
+          <li data-i18n="about.card.list.3">合规与安全：重视数据安全与隐私保护</li>
+        </ul>
+        <p class="about-mini-note" data-i18n="about.card.note">
+          由于业务范围仍在探索阶段…
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="contact" class="section contact-section">
-    <div class="container contact-inner">
-        <div class="contact-left reveal" style="max-width: 720px;">
-            <h2 class="section-title" data-i18n="contact.title">联系方式</h2>
+  <div class="container contact-inner">
+    <div class="contact-left reveal" style="max-width: 720px;">
+      <h2 class="section-title" data-i18n="contact.title">联系方式</h2>
 
-            <div class="contact-card">
-                <div class="contact-row">
-                    <div class="contact-label" data-i18n="contact.label.company">公司名称</div>
-                    <div class="contact-value" data-i18n="common.company">上海树下小屋网络科技有限公司</div>
-                </div>
-
-                <div class="contact-row">
-                    <div class="contact-label" data-i18n="contact.label.email">邮箱</div>
-                    <div class="contact-value">
-                        <a class="linkish"
-                           href="mailto:house@sxxw.site"
-                           data-i18n="common.email"
-                           data-i18n-attr="href:common.email_mailto">house@sxxw.site</a>
-                    </div>
-                </div>
-
-                <div class="contact-row">
-                    <div class="contact-label" data-i18n="contact.label.city">所在城市</div>
-                    <div class="contact-value" data-i18n="common.city">上海 · SHANGHAI</div>
-                </div>
-            </div>
-
-            <p class="contact-hint" data-i18n="contact.hint">
-                如需联系，请通过邮箱沟通…
-            </p>
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="contact-label" data-i18n="contact.label.company">公司名称</div>
+          <div class="contact-value" data-i18n="common.company">上海树下小屋网络科技有限公司</div>
         </div>
+
+        <div class="contact-row">
+          <div class="contact-label" data-i18n="contact.label.email">邮箱</div>
+          <div class="contact-value">
+            <a class="linkish"
+               href="mailto:house@sxxw.site"
+               data-i18n="common.email"
+               data-i18n-attr="href:common.email_mailto">house@sxxw.site</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-label" data-i18n="contact.label.city">所在城市</div>
+          <div class="contact-value" data-i18n="common.city">上海 · SHANGHAI</div>
+        </div>
+      </div>
+
+      <p class="contact-hint" data-i18n="contact.hint">
+        如需联系，请通过邮箱沟通…
+      </p>
     </div>
+  </div>
 </section>
 
 <footer class="site-footer">
-    <div class="container footer-inner">
-        <div class="footer-left">
-            <div class="footer-brand" data-i18n="common.company">上海树下小屋网络科技有限公司</div>
-            <div class="footer-slogan" data-i18n="footer.slogan">专注自主研发 · 持续探索 · 稳健迭代</div>
-        </div>
-
-        <div class="footer-right">
-            <div class="footer-links">
-                <a href="#hero" data-i18n="footer.links.home">首页</a>
-                <a href="#about" data-i18n="footer.links.about">关于我们</a>
-                <a href="#contact" data-i18n="footer.links.contact">联系我们</a>
-            </div>
-
-            <div class="footer-legal">
-                <span data-i18n="footer.legal">© 2025 上海树下小屋网络科技有限公司</span>
-            </div>
-        </div>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <div class="footer-brand" data-i18n="common.company">上海树下小屋网络科技有限公司</div>
+      <div class="footer-slogan" data-i18n="footer.slogan">专注自主研发 · 持续探索 · 稳健迭代</div>
     </div>
+
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="#hero" data-i18n="footer.links.home">首页</a>
+        <a href="#about" data-i18n="footer.links.about">关于我们</a>
+        <a href="#contact" data-i18n="footer.links.contact">联系我们</a>
+      </div>
+
+      <div class="footer-legal">
+        <span data-i18n="footer.legal">© 2025 上海树下小屋网络科技有限公司</span>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <noscript data-i18n="noscript">
-    本站需要 JavaScript 以获得完整交互体验（导航菜单、滚动动效等）。
+  本站需要 JavaScript 以获得完整交互体验（导航菜单、滚动动效等）。
 </noscript>
 
+<!-- ✅ 关键：改成根路径，避免 /en/assets/main.js -->
 <script src="assets/main.js"></script>
 
-<!-- ✅ 多语言切换脚本：也可以单独放到 assets/lang-switch.js 再引用 -->
+<!-- ✅ 多语言切换脚本：修复 languages.json 路径为 /assets/languages.json -->
 <script>
-    (function () {
-      const DEFAULT_LANG = "zh-hans";
-      const LANG_JSON_URL = "assets/languages.json";
+(function () {
+  const DEFAULT_LANG = "zh-hans";
+  const LANG_JSON_URL = "assets/languages.json"; // ✅ 关键修复：根路径
 
-      function norm(code) {
-        return (code || "").trim().replace(/_/g, "-").toLowerCase();
+  function norm(code) {
+    return (code || "").trim().replace(/_/g, "-").toLowerCase();
+  }
+
+  function detectLangFromPath(pathname, supported) {
+    const parts = pathname.split("/").filter(Boolean);
+    for (let i = 0; i < Math.min(parts.length, 6); i++) {
+      const c = norm(parts[i]);
+      if (supported.has(c)) return c;
+    }
+    return null;
+  }
+
+  function stripLangFromPath(pathname, supported) {
+    const parts = pathname.split("/").filter(Boolean);
+    const idx = parts.findIndex(p => supported.has(norm(p)));
+    if (idx >= 0) parts.splice(idx, 1);
+    return "/" + parts.join("/") + (pathname.endsWith("/") ? "/" : "");
+  }
+
+  // 推断 GitHub Pages 仓库子路径（如果有）
+  function inferBasePrefix(supported) {
+    const curParts = location.pathname.split("/").filter(Boolean);
+    const langIdx = curParts.findIndex(p => supported.has(norm(p)));
+    if (langIdx >= 0) return "/" + curParts.slice(0, langIdx).join("/") + "/";
+    if (curParts.length >= 1) return "/" + curParts[0] + "/"; // repo 子路径
+    return "/";
+  }
+
+  function withLang(pathnameNoLang, lang, supported) {
+    const base = inferBasePrefix(supported);
+    const rest = pathnameNoLang.replace(/^\//, "");
+    if (lang === DEFAULT_LANG) return base + rest;
+    return base + lang + "/" + rest;
+  }
+
+  async function loadLanguages() {
+    const res = await fetch(LANG_JSON_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load /assets/languages.json");
+    const arr = await res.json();
+    return (arr || [])
+      .map(x => ({ code: norm(x.code), name: x.name || x.code }))
+      .filter(x => x.code);
+  }
+
+  // 只展示“真的构建出来”的语言，避免点了 404
+  async function filterBuilt(langs) {
+    const supportedAll = new Set(langs.map(x => x.code));
+    const base = inferBasePrefix(supportedAll);
+
+    const checks = await Promise.all(langs.map(async (l) => {
+      if (l.code === DEFAULT_LANG) return true;
+      const url = base + l.code + "/index.html";
+      try {
+        const r = await fetch(url, { method: "HEAD" });
+        return r.ok;
+      } catch {
+        return false;
       }
+    }));
+    return langs.filter((_, i) => checks[i]);
+  }
 
-      function detectLangFromPath(pathname, supported) {
-        const parts = pathname.split("/").filter(Boolean);
-        for (let i = 0; i < Math.min(parts.length, 4); i++) {
-          const c = norm(parts[i]);
-          if (supported.has(c)) return c;
-        }
-        return null;
-      }
+  function renderSelect(sel, langs, current) {
+    sel.innerHTML = "";
+    for (const l of langs) {
+      const opt = document.createElement("option");
+      opt.value = l.code;
+      opt.textContent = l.name;
+      if (l.code === current) opt.selected = true;
+      sel.appendChild(opt);
+    }
+  }
 
-      function stripLangFromPath(pathname, supported) {
-        const parts = pathname.split("/").filter(Boolean);
-        const idx = parts.findIndex(p => supported.has(norm(p)));
-        if (idx >= 0) parts.splice(idx, 1);
-        return "/" + parts.join("/") + (pathname.endsWith("/") ? "/" : "");
-      }
+  async function init() {
+    const sel = document.getElementById("langSelect");
+    if (!sel) return;
 
-      function inferBasePrefix(supported) {
-        const curParts = location.pathname.split("/").filter(Boolean);
-        const langIdx = curParts.findIndex(p => supported.has(norm(p)));
+    let langs = await loadLanguages();
+    langs = await filterBuilt(langs);
 
-        if (langIdx >= 0) return "/" + curParts.slice(0, langIdx).join("/") + "/";
-        if (curParts.length >= 1) return "/" + curParts[0] + "/"; // GitHub Pages repo 子路径
-        return "/";
-      }
+    const supported = new Set(langs.map(x => x.code));
 
-      function withLang(pathnameNoLang, lang, supported) {
-        const base = inferBasePrefix(supported);
-        const rest = pathnameNoLang.replace(/^\//, "");
-        if (lang === DEFAULT_LANG) return base + rest;
-        return base + lang + "/" + rest;
-      }
+    const current =
+      detectLangFromPath(location.pathname, supported) ||
+      norm(localStorage.getItem("site_lang")) ||
+      DEFAULT_LANG;
 
-      async function loadLanguages() {
-        const res = await fetch(LANG_JSON_URL, { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to load assets/languages.json");
-        const arr = await res.json();
-        return (arr || [])
-          .map(x => ({ code: norm(x.code), name: x.name || x.code }))
-          .filter(x => x.code);
-      }
+    const cur = supported.has(current) ? current : DEFAULT_LANG;
+    renderSelect(sel, langs, cur);
 
-      // 可选：只展示真的“有构建产物”的语言（否则列表太长 & 404）
-      async function filterBuilt(langs) {
-        const supportedAll = new Set(langs.map(x => x.code));
-        const base = inferBasePrefix(supportedAll);
+    sel.addEventListener("change", () => {
+      const next = norm(sel.value) || DEFAULT_LANG;
+      localStorage.setItem("site_lang", next);
 
-        const checks = await Promise.all(langs.map(async (l) => {
-          if (l.code === DEFAULT_LANG) return true;
-          const url = base + l.code + "/index.html";
-          try {
-            const r = await fetch(url, { method: "HEAD" });
-            return r.ok;
-          } catch {
-            return false;
-          }
-        }));
-        return langs.filter((_, i) => checks[i]);
-      }
+      const noLang = stripLangFromPath(location.pathname, supported);
+      const target = withLang(noLang, next, supported);
+      location.href = target + location.search + location.hash;
+    });
+  }
 
-      function renderSelect(sel, langs, current) {
-        sel.innerHTML = "";
-        for (const l of langs) {
-          const opt = document.createElement("option");
-          opt.value = l.code;
-          opt.textContent = l.name;
-          if (l.code === current) opt.selected = true;
-          sel.appendChild(opt);
-        }
-      }
-
-      async function init() {
-        const sel = document.getElementById("langSelect");
-        if (!sel) return;
-
-        let langs = await loadLanguages();
-        langs = await filterBuilt(langs); // ✅ 推荐开启：只显示已构建语言
-
-        const supported = new Set(langs.map(x => x.code));
-        const current =
-          detectLangFromPath(location.pathname, supported) ||
-          norm(localStorage.getItem("site_lang")) ||
-          DEFAULT_LANG;
-
-        const cur = supported.has(current) ? current : DEFAULT_LANG;
-        renderSelect(sel, langs, cur);
-
-        sel.addEventListener("change", () => {
-          const next = norm(sel.value) || DEFAULT_LANG;
-          localStorage.setItem("site_lang", next);
-
-          const noLang = stripLangFromPath(location.pathname, supported);
-          const target = withLang(noLang, next, supported);
-          location.href = target + location.search + location.hash;
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        init().catch(err => console.warn("[lang-switch] init failed:", err));
-      });
-    })();
+  document.addEventListener("DOMContentLoaded", () => {
+    init().catch(err => console.warn("[lang-switch] init failed:", err));
+  });
+})();
 </script>
 
 </body>
