@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<title>TimeTrails | Turn travel into a timeline that can be revisited</title>
+<meta content="TimeTrails is an app that records your mobile footprints: it automatically organizes daily tracks, stops, and mileage statistics, supporting local priority and controllable export." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="TimeTrails" property="og:title"/>
+<meta content="Turn your travels into a timeline that can be revisited: tracks, stop points, mileage statistics, local first." property="og:description"/>
+<link href="/assets/style.css" rel="stylesheet"/>
+<style>
+    :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185;--border:rgba(255,255,255,.10)}
+    @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1;--border:rgba(15,23,42,.10)}}
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+
+    .container{max-width:1040px;margin:0 auto;padding:40px 16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+
+    .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+    h1{font-size:clamp(28px,3.6vw,44px);margin:0 0 6px;letter-spacing:.2px}
+    .subtitle{color:var(--muted);line-height:1.6}
+
+    .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border:1px solid rgba(34,211,238,.35);
+      background:rgba(15,23,42,.55);
+      color:inherit;
+      padding:10px 36px 10px 12px;
+      border-radius:12px;
+      font:inherit;line-height:1;cursor:pointer;outline:none;
+    }
+    @media (prefers-color-scheme: light){ .lang-select{ background:rgba(148,163,184,.10); } }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:22px 0}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 880px){ .hero{ grid-template-columns:1fr; } }
+
+    .panel{border:1px solid var(--border);border-radius:16px;padding:16px;background:rgba(255,255,255,.02)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid var(--border)}
+    .chip.ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+    .chip.accent{background:rgba(34,211,238,.15);color:var(--accent);border-color:rgba(34,211,238,.35)}
+    .chip.warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(148,163,184,.10);
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{border-color:rgba(34,211,238,.35)}
+    .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
+    .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px}
+    .span4{grid-column:span 4}
+    .span6{grid-column:span 6}
+    .span12{grid-column:span 12}
+    @media (max-width: 880px){ .span4,.span6,.span12{grid-column:span 12} }
+
+    h2{font-size:clamp(18px,2.0vw,24px);margin:0 0 8px}
+    h3{margin:0 0 8px;font-size:16px}
+    p,li{line-height:1.75;color:var(--text)}
+    .muted{color:var(--muted);font-size:13px}
+
+    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .kpi .item{border:1px solid var(--border);border-radius:14px;padding:12px;background:rgba(148,163,184,.06)}
+    .kpi .num{font-size:18px;font-weight:750;color:var(--text)}
+    .kpi .lab{font-size:12px;color:var(--muted);margin-top:4px}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+    code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
+  </style>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"TimeTrails",
+  "description":"Turn travel into a timeline that can be revisited: tracks, stopovers, mileage statistics, local first.",
+  "inLanguage":["zh-Hans","en"],
+  "isPartOf":{
+    "@type":"WebSite",
+    "name":"TimeTrails",
+    "url":"https://sxxw.site/"
+  }
+}</script>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
+<h1>TimeTrails</h1>
+<div class="subtitle">Turn your phone's "where you've been, how long you've stayed, how far you've walked" into a personal timeline that you can revisit.</div>
+</div>
+</div>
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect">
+<option>Loading…</option>
+</select>
+<span class="lang-caret">▾</span>
+</div>
+</div>
+<div class="divider"></div>
+<div class="hero">
+<div class="panel">
+<h2>Your footprints should not just be a "passive cloud connection of points"</h2>
+<p>The value of recording daily trails is not about "having many points", but rather <strong> being able to review, organize, and analyze </strong>. <strong>TimeTrails</strong> turns your movements into a clear <strong> timeline </strong>: where you went today, how long you stayed, how far you walked, all easily understood at a glance. At the same time, we insist on <strong> local priority </strong> and <strong> minimizing collection </strong>—you record to understand yourself, not to be understood by the platform.</p>
+<div aria-label="highlights" class="chips">
+<span class="chip ok">Local Priority</span>
+<span class="chip ok">Permissions can be revoked</span>
+<span class="chip accent">Timeline + Map</span>
+<span class="chip accent">Staypoint Recognition</span>
+<span class="chip warn">Exportable</span>
+</div>
+<div class="btns" style="margin-top:14px">
+<a class="btn primary" href="./about.html">Learn about the product concept</a>
+<a class="btn" href="./feedback.html">Submit Feedback / Review</a>
+<a class="btn" href="./private.html">View Privacy Policy</a>
+</div>
+<p class="muted" style="margin-top:10px">By default, it is only saved on this device; whether to sync, export, or share with others is entirely up to you.</p>
+</div>
+<div class="panel">
+<h3>What will you use it for</h3>
+<ul>
+<li>Automatically generate 'Today's Trail' every day: route, mileage, and stop points at a glance.</li>
+<li>Review a trip: Browse your action timeline by day/location</li>
+<li>Personal review: long-term changes in commuting, exercise, and travel patterns</li>
+<li>Recall a certain day: quickly locate "that store", "that road", "that walk" on the timeline.</li>
+<li>Track your pace: trends in commuting/exercise/travel mileage, long-term comparisons are more intuitive.</li>
+</ul>
+<div aria-label="kpis" class="kpi">
+<div class="item">
+<div class="num">Track</div>
+<div class="lab">Route and Speed Changes</div>
+</div>
+<div class="item">
+<div class="num">Stay</div>
+<div class="lab">Location and Duration Statistics</div>
+</div>
+<div class="item">
+<div class="num">Mileage</div>
+<div class="lab">Daily/Weekly Trend</div>
+</div>
+<div class="item">
+<div class="num">Memory</div>
+<div class="lab">Turn walking into a story</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid">
+<div class="panel span4">
+<h3>Automatic Recording</h3>
+<p class="muted">Record the movement process into tracks and statistics with minimal disturbance; permissions can be revoked at any time.</p>
+</div>
+<div class="panel span4">
+<h3>Visual Organization</h3>
+<p class="muted">Timeline + Map Dual Perspective: Review by day, aggregate by location, recap by mileage.</p>
+</div>
+<div class="panel span4">
+<h3>Privacy First</h3>
+<p class="muted">By default, only saved locally. You can clear, export, or revoke permissions at any time; no unnecessary data collection.</p>
+</div>
+<!-- 新增：核心能力 -->
+<div class="panel span12">
+<h3>Core Competencies</h3>
+<p class="muted">No complex features piled up, just making the 'track recording' process smooth, clear, and controllable.</p>
+<div aria-label="features" class="chips">
+<span class="chip accent">Daily track automatic organization</span>
+<span class="chip accent">Stop points and duration statistics</span>
+<span class="chip accent">Map track playback</span>
+<span class="chip accent">Mileage Trends (Days/Weeks)</span>
+<span class="chip ok">Local Save</span>
+<span class="chip warn">Export/Backup</span>
+</div>
+</div>
+<div class="panel span12">
+<h3>Related Pages</h3>
+<p class="muted">Want to learn more? Here are the product philosophy, privacy statement, and your feedback entry.</p>
+<div class="btns">
+<a class="btn ok" href="./about.html">About TimeTrails</a>
+<a class="btn primary" href="./feedback.html">Feedback</a>
+<a class="btn" href="./private.html">Privacy Policy</a>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+</div>
+<footer>
+    © TimeTrails · 上海树下小屋网络科技有限公司。
+  </footer>
+</div>
+<script src="/assets/main.js"></script>
+<script src="/assets/lang-switch.js"></script>
+</body>
+</html>

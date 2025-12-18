@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<title>TimeTrails｜移動を振り返ることができるタイムラインに変える</title>
+<meta content="TimeTrailsは、スマートフォンの足跡を記録するためのアプリです：毎日の軌跡、滞在ポイント、距離統計を自動整理し、ローカル優先と制御可能なエクスポートをサポートします。" name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="時光軌跡（TimeTrails）" property="og:title"/>
+<meta content="移動を振り返ることができるタイムラインに変える：軌跡、滞在ポイント、距離統計、ローカル優先。" property="og:description"/>
+<link href="/assets/style.css" rel="stylesheet"/>
+<style>
+    :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185;--border:rgba(255,255,255,.10)}
+    @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1;--border:rgba(15,23,42,.10)}}
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+
+    .container{max-width:1040px;margin:0 auto;padding:40px 16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+
+    .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+    h1{font-size:clamp(28px,3.6vw,44px);margin:0 0 6px;letter-spacing:.2px}
+    .subtitle{color:var(--muted);line-height:1.6}
+
+    .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border:1px solid rgba(34,211,238,.35);
+      background:rgba(15,23,42,.55);
+      color:inherit;
+      padding:10px 36px 10px 12px;
+      border-radius:12px;
+      font:inherit;line-height:1;cursor:pointer;outline:none;
+    }
+    @media (prefers-color-scheme: light){ .lang-select{ background:rgba(148,163,184,.10); } }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:22px 0}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 880px){ .hero{ grid-template-columns:1fr; } }
+
+    .panel{border:1px solid var(--border);border-radius:16px;padding:16px;background:rgba(255,255,255,.02)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid var(--border)}
+    .chip.ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+    .chip.accent{background:rgba(34,211,238,.15);color:var(--accent);border-color:rgba(34,211,238,.35)}
+    .chip.warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(148,163,184,.10);
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{border-color:rgba(34,211,238,.35)}
+    .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
+    .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px}
+    .span4{grid-column:span 4}
+    .span6{grid-column:span 6}
+    .span12{grid-column:span 12}
+    @media (max-width: 880px){ .span4,.span6,.span12{grid-column:span 12} }
+
+    h2{font-size:clamp(18px,2.0vw,24px);margin:0 0 8px}
+    h3{margin:0 0 8px;font-size:16px}
+    p,li{line-height:1.75;color:var(--text)}
+    .muted{color:var(--muted);font-size:13px}
+
+    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .kpi .item{border:1px solid var(--border);border-radius:14px;padding:12px;background:rgba(148,163,184,.06)}
+    .kpi .num{font-size:18px;font-weight:750;color:var(--text)}
+    .kpi .lab{font-size:12px;color:var(--muted);margin-top:4px}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+    code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
+  </style>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"時光軌跡（TimeTrails）",
+  "description":"移動を振り返ることができるタイムラインに変える：軌跡、滞在ポイント、距離統計、ローカル優先。",
+  "inLanguage":["ja","en"],
+  "isPartOf":{
+    "@type":"WebSite",
+    "name":"TimeTrails",
+    "url":"https://sxxw.site/"
+  }
+}</script>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
+<h1>時光軌跡 TimeTrails</h1>
+<div class="subtitle">携帯電話の「どこに行ったか、どれくらい滞在したか、どれだけの距離を移動したか」を振り返ることができる個人的なタイムラインに変えます。</div>
+</div>
+</div>
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect">
+<option>Loading…</option>
+</select>
+<span class="lang-caret">▾</span>
+</div>
+</div>
+<div class="divider"></div>
+<div class="hero">
+<div class="panel">
+<h2>あなたの足跡は、「受動的にクラウドに上がる一連の点」だけではないはずです</h2>
+<p>日常の軌跡を記録する価値は、「たくさんのポイント」ではなく、<strong>振り返り、整理し、復習できる</strong>ことです。<strong>TimeTrails</strong>はあなたの移動を明確な<strong>タイムライン</strong>に変えます：今日はどこに行き、どれくらい滞在し、どれだけ歩いたのか、一目で理解できます。同時に、私たちは<strong>ローカルファースト</strong>と<strong>データ収集の最小化</strong>を貫いています——あなたが記録するのは、自分を理解するためであり、プラットフォームに理解されるためではありません。</p>
+<div aria-label="highlights" class="chips">
+<span class="chip ok">ローカル優先</span>
+<span class="chip ok">権限は取り消すことができます</span>
+<span class="chip accent">タイムライン + マップ</span>
+<span class="chip accent">滞在ポイントの識別</span>
+<span class="chip warn">エクスポート可能</span>
+</div>
+<div class="btns" style="margin-top:14px">
+<a class="btn primary" href="./about.html">製品の理念を理解する</a>
+<a class="btn" href="./feedback.html">フィードバックを送信 / 評価する</a>
+<a class="btn" href="./private.html">プライバシーポリシーを見る</a>
+</div>
+<p class="muted" style="margin-top:10px">デフォルトではローカルにのみ保存されます。同期、エクスポート、誰に見せるかはすべてあなたが決めます。</p>
+</div>
+<div class="panel">
+<h3>それを使って何をしますか</h3>
+<ul>
+<li>毎日自動生成される「今日のトレイル」：ルート、距離、滞在ポイントが一目でわかる</li>
+<li>過去の旅行を振り返る：日別/場所別にあなたのアクションタイムラインを閲覧する</li>
+<li>個人の振り返り：通勤、運動、移動パターンの長期的な変化</li>
+<li>ある日を思い出す：タイムラインで「その店」「その道」「その散歩」を素早く見つける</li>
+<li>あなたのペースを統計する：通勤/運動/旅行の距離のトレンド、長期的な比較がより直感的に</li>
+</ul>
+<div aria-label="kpis" class="kpi">
+<div class="item">
+<div class="num">トレイル</div>
+<div class="lab">ルートと速度の変化</div>
+</div>
+<div class="item">
+<div class="num">滞在</div>
+<div class="lab">場所と時間の統計</div>
+</div>
+<div class="item">
+<div class="num">マイル</div>
+<div class="lab">日次/週次トレンド</div>
+</div>
+<div class="item">
+<div class="num">思い出</div>
+<div class="lab">歩くことを物語に変える</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid">
+<div class="panel span4">
+<h3>自動記録</h3>
+<p class="muted">できるだけ少ない干渉で、移動プロセスを軌跡と統計として記録します；権限はいつでも撤回可能です。</p>
+</div>
+<div class="panel span4">
+<h3>ビジュアル整理</h3>
+<p class="muted">タイムライン + マップの二重視点：日ごとに振り返り、場所ごとに集約し、距離ごとに振り返る。</p>
+</div>
+<div class="panel span4">
+<h3>プライバシー優先</h3>
+<p class="muted">デフォルトではローカルにのみ保存されます。いつでもクリア、エクスポート、または権限をオフにできます；不必要なデータ収集は行いません。</p>
+</div>
+<!-- 新增：核心能力 -->
+<div class="panel span12">
+<h3>コアコンピタンス</h3>
+<p class="muted">複雑な機能を詰め込むのではなく、「トラッキング記録」ということを使いやすく、明確に、制御可能にすることに集中します。</p>
+<div aria-label="features" class="chips">
+<span class="chip accent">毎日のトレイルを自動整理</span>
+<span class="chip accent">滞在時間とポイントの統計</span>
+<span class="chip accent">マップトレイル再生</span>
+<span class="chip accent">マイルストーンのトレンド（日/週）</span>
+<span class="chip ok">ローカル保存</span>
+<span class="chip warn">エクスポート/バックアップ</span>
+</div>
+</div>
+<div class="panel span12">
+<h3>関連ページ</h3>
+<p class="muted">もっと詳しく知りたいですか？ここに製品の理念、プライバシーに関する説明、そしてあなたのフィードバックの入口があります。</p>
+<div class="btns">
+<a class="btn ok" href="./about.html">TimeTrailsについて</a>
+<a class="btn primary" href="./feedback.html">フィードバック</a>
+<a class="btn" href="./private.html">プライバシーポリシー</a>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+</div>
+<footer>
+    © TimeTrails · 上海树下小屋网络科技有限公司。
+  </footer>
+</div>
+<script src="/assets/main.js"></script>
+<script src="/assets/lang-switch.js"></script>
+</body>
+</html>
