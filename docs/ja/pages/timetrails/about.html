@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<title>TimeTrailsについて | About TimeTrails</title>
+<meta content="TimeTrailsについて：私たちが何をしているのか、なぜそれをしているのか、データとプライバシーの理念。" name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="TimeTrailsについて" property="og:title"/>
+<meta content="TimeTrailsについて：私たちが何をしているのか、なぜそれをしているのか、データとプライバシーの理念。" property="og:description"/>
+<meta content="https://sxxw.site/pages/timetrails/about" property="og:url"/>
+<meta content="https://sxxw.site/assets/og-image.png" property="og:image"/>
+<!-- ✅ 根目录 assets：最稳 -->
+<link href="/assets/style.css" rel="stylesheet"/>
+<style>
+        :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
+        @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1}}
+        *{box-sizing:border-box}
+        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+        .container{max-width:960px;margin:0 auto;padding:40px 16px}
+        .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+        h1{font-size:clamp(28px,3.6vw,40px);margin:0 0 12px;letter-spacing:.2px}
+        h2{font-size:clamp(20px,2.2vw,26px);margin:28px 0 10px}
+        h3{font-size:18px;margin:22px 0 8px}
+        p,li{line-height:1.75;color:var(--text)}
+        a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+        .muted{color:var(--muted)}
+        .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:24px 0}
+        .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px;background:rgba(34,211,238,.15);color:var(--accent);border:1px solid rgba(34,211,238,.35)}
+        .chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px;border:1px solid rgba(255,255,255,.16)}
+        .ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+        .warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+        .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+        .panel{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;background:rgba(255,255,255,.02)}
+        .span6{grid-column:span 6}
+        .span12{grid-column:span 12}
+        @media (max-width: 820px){.span6,.span12{grid-column:span 12}}
+        code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
+
+        /* 语言选择器（复用你站点的样式风格） */
+        .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+        .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+        .lang-select{
+          appearance:none;-webkit-appearance:none;-moz-appearance:none;
+          border:1px solid rgba(34,211,238,.35);
+          background:rgba(15,23,42,.55);
+          color:inherit;
+          padding:10px 36px 10px 12px;
+          border-radius:12px;
+          font:inherit;
+          line-height:1;
+          cursor:pointer;
+          outline:none;
+        }
+        .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+        .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+    </style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TimeTrailsについて",
+  "url": "https://sxxw.site/pages/timetrails/about",
+  "inLanguage": ["zh-Hans","en"],
+  "description": "TimeTrailsについて：私たちが何をしているのか、なぜそれをしているのか、データとプライバシーの理念。",
+  "isPartOf": {"@type":"WebSite","name":"TimeTrails","url":"https://sxxw.site/"}
+}</script>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<div>
+<h1>TimeTrailsについて</h1>
+<div class="muted">
+<span>より「ローカルファースト」のトラッキングとメモリ記録ツール</span>
+</div>
+</div>
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect">
+<option>読み込み中…</option>
+</select>
+<span class="lang-caret">▾</span>
+</div>
+</div>
+<div class="divider"></div>
+<p><strong>TimeTrails</strong> は、「どこに行ったか、どれくらい滞在したか、どれだけの距離を移動したか」といった情報を、振り返り可能で整理でき、エクスポート可能な個人のタイムラインに変えることを目的としています。私たちの基本的な哲学は：<span class="chip ok">ユーザーコントロール</span> <span class="chip ok">ローカル優先</span> <span class="chip ok">データ収集の最小化</span>。</p>
+<div class="grid">
+<div class="panel span6">
+<h3>私たちがすること</h3>
+<ul>
+<li>自動/半自動でのトラッキング、滞在ポイントと距離の統計</li>
+<li>日常の移動をタイムラインと地図で視覚化する</li>
+<li>エクスポートをサポート（GPX/CSVなど、あなたが有効にした場合やバージョンがサポートしている場合）</li>
+</ul>
+</div>
+<div class="panel span6">
+<h3>私たちがする理由</h3>
+<p>ほとんどの「生活を記録する」製品は、過度にクラウド化されていたり、過度にソーシャル化されています。TimeTrailsは、あなたの個人的な航海日誌のようなものです：記録は振り返り、自分を整理し、理解するためのものであり、アルゴリズムに餌を与えるためのものではありません。</p>
+</div>
+<div class="panel span12">
+<h3>プライバシーとデータの理念</h3>
+<ul>
+<li><strong>ローカル優先：</strong>デフォルトでは、データはあなたのデバイスに保存されます。</li>
+<li><strong>同期オプション：</strong>あなたが自らオンにした場合のみ、iCloud または自前のサービスが同期されます。</li>
+<li><strong>の権限は取り消すことができます：</strong>いつでもシステム設定で位置情報、運動、写真などの権限を取り消すことができます。</li>
+<li><strong>データを販売しません：</strong>私たちはあなたの個人データを第三者に販売することはありません。</li>
+</ul>
+<p class="muted">詳細な条項については、<a href="/pages/timetrails/private">プライバシーポリシー</a>をご覧ください。</p>
+</div>
+<div class="panel span6">
+<h3>要求される可能性のある権限</h3>
+<ul>
+<li><strong>の位置：</strong>はトラッキングと滞在ポイントに使用されます。</li>
+<li><strong>スポーツとフィットネス：</strong>より正確な移動認識のために。</li>
+<li><strong>写真：</strong>は、あなたが写真をインポート/関連付けする時にのみ使用されます。</li>
+<li><strong>通知：</strong>は、リマインダーと同期状態のヒント（オプション）に使用されます。</li>
+</ul>
+</div>
+<div class="panel span6">
+<h3>お問い合わせ</h3>
+<p>ご質問、ご提案、またはプライバシーに関するリクエストがある場合は、メールでご連絡ください：<a href="mailto:house@sxxw.site">house@sxxw.site</a></p>
+<p class="muted">開発主体：上海树下小屋网络科技有限公司</p>
+</div>
+</div>
+<div class="divider"></div>
+<p class="muted">注：本ページは製品の説明と理念の概要です。機能や文言はバージョンの更新に伴い調整される可能性があります。</p>
+</div>
+</div>
+<!-- ✅ 根目录 assets：最稳 -->
+<script src="/assets/main.js"></script>
+<script src="/assets/lang-switch.js"></script>
+</body>
+</html>
