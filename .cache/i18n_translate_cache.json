@@ -10985,5 +10985,17 @@
   "Chinese (Simplified)|||ko|||时光轨迹（TimeTrails）隐私权政策与数据说明。": "타임트레일즈(TimeTrails) 개인정보 보호정책 및 데이터 설명.",
   "Chinese (Simplified)|||ko|||本应用使用若干开源组件。下方按许可证类型分组展示，便于查阅与合规核对。": "이 애플리케이션은 여러 오픈 소스 구성 요소를 사용합니다. 아래는 라이선스 유형별로 그룹화되어 있어 참조 및 준수 확인에 용이합니다.",
   "Chinese (Simplified)|||ko|||WebUploader 作为子模块通常与 GCDWebServer 采用相同许可证；如发行包内包含独立许可证文本，应以其为准。": "WebUploader는 일반적으로 GCDWebServer와 동일한 라이센스를 사용합니다. 배포 패키지에 독립적인 라이센스 텍스트가 포함되어 있는 경우, 해당 텍스트가 우선합니다.",
-  "Chinese (Simplified)|||ko|||本页面展示本应用集成的第三方组件及其许可证文本。许可证内容以 <code>Pods/&lt;PodName&gt;/LICENSE*</code> 为准。": "이 페이지는 본 애플리케이션에 통합된 서드파티 구성 요소 및 해당 라이센스 텍스트를 보여줍니다. 라이센스 내용은 <code>Pods/&lt;PodName&gt;/LICENSE*</code>에 따릅니다."
+  "Chinese (Simplified)|||ko|||本页面展示本应用集成的第三方组件及其许可证文本。许可证内容以 <code>Pods/&lt;PodName&gt;/LICENSE*</code> 为准。": "이 페이지는 본 애플리케이션에 통합된 서드파티 구성 요소 및 해당 라이센스 텍스트를 보여줍니다. 라이센스 내용은 <code>Pods/&lt;PodName&gt;/LICENSE*</code>에 따릅니다.",
+  "Chinese (Simplified)|||en|||查看 GitHub 仓库": "View GitHub repository",
+  "Chinese (Simplified)|||en|||以下许可证文本摘自组件发布包；完整原始文件可在 GitHub 官方仓库中查看。": "The following license text is excerpted from the component release package; the complete original file can be viewed in the official GitHub repository.",
+  "Chinese (Simplified)|||en|||每个组件均提供 GitHub 仓库与 LICENSE 原始文件链接，便于核对来源。": "Each component provides links to the GitHub repository and the original LICENSE file for easy verification of the source.",
+  "Chinese (Simplified)|||en|||查看 GitHub LICENSE": "View GitHub LICENSE",
+  "Chinese (Simplified)|||ja|||查看 GitHub LICENSE": "GitHub LICENSE を表示",
+  "Chinese (Simplified)|||ja|||查看 GitHub 仓库": "GitHub リポジトリを表示",
+  "Chinese (Simplified)|||ja|||以下许可证文本摘自组件发布包；完整原始文件可在 GitHub 官方仓库中查看。": "以下のライセンス文はコンポーネントのリリースパッケージからの抜粋です。完全な原本は GitHub の公式リポジトリで確認できます。",
+  "Chinese (Simplified)|||ja|||每个组件均提供 GitHub 仓库与 LICENSE 原始文件链接，便于核对来源。": "各コンポーネントには、出所を確認するための GitHub リポジトリと LICENSE 原本ファイルへのリンクが提供されています。",
+  "Chinese (Simplified)|||ko|||查看 GitHub LICENSE": "GitHub LICENSE 보기",
+  "Chinese (Simplified)|||ko|||每个组件均提供 GitHub 仓库与 LICENSE 原始文件链接，便于核对来源。": "각 구성 요소는 출처 확인을 용이하게 하기 위해 GitHub 저장소 및 LICENSE 원본 파일 링크를 제공합니다.",
+  "Chinese (Simplified)|||ko|||查看 GitHub 仓库": "GitHub 저장소 보기",
+  "Chinese (Simplified)|||ko|||以下许可证文本摘自组件发布包；完整原始文件可在 GitHub 官方仓库中查看。": "다음 라이선스 텍스트는 구성 요소 릴리스 패키지에서 발췌한 것입니다; 전체 원본 파일은 GitHub 공식 저장소에서 확인할 수 있습니다."
 }
