@@ -79,14 +79,15 @@
     { code: "be", name: "Беларуская" },
   ];
 
-  // 默认语言是否走根目录：/index.html（true） vs /zh-hans/index.html（false）
+  // 默认语言是否走根目录：/index.html（true） vs /zh-Hans/index.html（false）
   const USE_ROOT_FOR_DEFAULT = true;
 
   const SELECT_ID = "langSelect";
 
   // ===== utils =====
-  function norm(code) {
-    return (code || "").trim().replace(/_/g, "-").toLowerCase();
+  // ✅ 不做大小写转换/不替换 '_'：只 trim
+  function canon(code) {
+    return (code || "").trim();
   }
 
   function normalizeSlashes(path) {
@@ -94,19 +95,19 @@
   }
 
   function supportedSet() {
-    return new Set(LANGS.map((x) => norm(x.code)));
+    return new Set(LANGS.map((x) => canon(x.code)).filter(Boolean));
   }
 
   function detectLangFromPath(supported) {
     const parts = location.pathname.split("/").filter(Boolean);
-    for (let i = 0; i < Math.min(parts.length, 6); i++) {
-      const c = norm(parts[i]);
-      if (supported.has(c)) return c;
+    for (let i = 0; i < Math.min(parts.length, 10); i++) {
+      const seg = canon(parts[i]);
+      if (supported.has(seg)) return seg;
     }
     return null;
   }
 
-  // 更稳：优先读 <base href>；否则只在“路径里已出现语言段”时推断子路径；否则默认 "/"
+  // ✅ 更稳：优先读 <base href>；否则只在“路径里已出现语言段”时推断子路径；否则默认 "/"
   function inferBasePrefix(supported) {
     const baseEl = document.querySelector("base[href]");
     if (baseEl) {
@@ -118,8 +119,9 @@
     }
 
     const parts = location.pathname.split("/").filter(Boolean);
-    const langIdx = parts.findIndex((p) => supported.has(norm(p)));
+    const langIdx = parts.findIndex((p) => supported.has(canon(p)));
 
+    // 只有当路径里确实出现语言段，才认为前面是子路径（/repo/<lang>/...）
     if (langIdx >= 0) {
       const prefix = "/" + parts.slice(0, langIdx).join("/") + "/";
       return normalizeSlashes(prefix);
@@ -128,12 +130,12 @@
     return "/";
   }
 
-  // 永远不会返回 //，空路径就是 "/"
+  // ✅ 永远不会返回 //，空路径就是 "/"
   function stripLangFromPath(supported) {
     const hadTrailing = location.pathname.endsWith("/");
     const parts = location.pathname.split("/").filter(Boolean);
 
-    const idx = parts.findIndex((p) => supported.has(norm(p)));
+    const idx = parts.findIndex((p) => supported.has(canon(p)));
     if (idx >= 0) parts.splice(idx, 1);
 
     const joined = parts.join("/");
@@ -143,13 +145,14 @@
 
   function buildTarget(pathnameNoLang, lang, supported) {
     const base = inferBasePrefix(supported);
-    const rest = (pathnameNoLang || "/").replace(/^\//, "");
-    const l = norm(lang);
-    const def = norm(DEFAULT_LANG);
+    const rest = (pathnameNoLang || "/").replace(/^\//, ""); // 去掉开头 /
+    const l = canon(lang);
+    const def = canon(DEFAULT_LANG);
 
     let out;
     if (USE_ROOT_FOR_DEFAULT && l === def) {
-      out = base + rest; // 默认语言走根目录
+      // 默认语言走根目录
+      out = base + rest;
     } else {
       out = base + l + (rest ? "/" + rest : "/");
     }
@@ -164,7 +167,7 @@
     sel.innerHTML = "";
     for (const l of langs) {
       const opt = document.createElement("option");
-      opt.value = l.code; // 注意：这里用 norm 后的 code
+      opt.value = l.code;      // ✅ 原样 code
       opt.textContent = l.name;
       if (l.code === current) opt.selected = true;
       sel.appendChild(opt);
@@ -175,21 +178,21 @@
     const sel = document.getElementById(SELECT_ID);
     if (!sel) return;
 
-    const langs = LANGS.map((x) => ({ code: norm(x.code), name: x.name || x.code })).filter(
-      (x) => x.code
-    );
+    // ✅ 只用原样 code
+    const langs = LANGS.map((x) => ({ code: canon(x.code), name: x.name || x.code }))
+      .filter((x) => x.code);
 
     const supported = supportedSet();
 
     // ✅ 只从 URL 推断语言；URL 没有语言段 => 默认语言
     const fromPath = detectLangFromPath(supported);
-    const current = supported.has(fromPath) ? fromPath : norm(DEFAULT_LANG);
+    const current = supported.has(fromPath) ? fromPath : canon(DEFAULT_LANG);
 
     setHtmlLang(current);
     renderSelect(sel, langs, current);
 
     sel.addEventListener("change", () => {
-      const next = norm(sel.value) || norm(DEFAULT_LANG);
+      const next = canon(sel.value) || canon(DEFAULT_LANG);
 
       const noLang = stripLangFromPath(supported);
       const target = buildTarget(noLang, next, supported);
