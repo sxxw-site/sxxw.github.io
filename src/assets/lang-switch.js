@@ -3,7 +3,7 @@
   "use strict";
 
   // ===== 你只需要维护“支持的语言列表” =====
-  const DEFAULT_LANG = "zh-hans";
+  const DEFAULT_LANG = "zh-Hans";
   const LANGS = [
     { code: "en", name: "English" },
     { code: "en-GB", name: "English (UK)" },
