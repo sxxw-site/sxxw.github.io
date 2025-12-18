@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title></title>
+<title>Comentarios (TimeTrails)</title>
 <base href="/pages/timetrails/"/>
 <link href="../../assets/style.css" rel="stylesheet"/>
 <style>
@@ -143,7 +143,7 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1></h1>
+<h1>Comentarios de TimeTrails</h1>
 <div class="muted">
 <!--                        <span class="chip ok" data-i18n="feedback.chips.static">静态页</span>-->
 <!--                        <span class="chip ok" data-i18n="feedback.chips.i18n">多语言</span>-->
@@ -157,39 +157,39 @@
 <select aria-label="Language" class="lang-select" id="langSelect"></select>
 <span class="lang-caret">▾</span>
 </div>
-<a class="btn" id="ghLink" rel="noopener" target="_blank"></a>
+<a class="btn" id="ghLink" rel="noopener" target="_blank">Inicio del Repositorio</a>
 </div>
 </div>
 <div class="divider"></div>
-<nav aria-label="" class="tabs" role="tablist">
-<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0"></div>
-<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1"></div>
-<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1"></div>
+<nav aria-label="Navegación de Comentarios" class="tabs" role="tablist">
+<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">Califica en la tienda</div>
+<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">Enviar Comentarios</div>
+<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">Únete al grupo de la comunidad</div>
 </nav>
 <div class="divider"></div>
 <!-- 提交反馈 -->
 <section aria-hidden="true" aria-labelledby="tab-feedback" hidden="" id="panel-feedback" role="tabpanel">
-<h2></h2>
+<h2>Enviar Comentarios</h2>
 <div class="row">
-<label for="fb-title"></label>
-<input id="fb-title" placeholder="" type="text"/>
+<label for="fb-title">Título</label>
+<input id="fb-title" placeholder="Describa brevemente su problema o sugerencia" type="text"/>
 </div>
 <div class="row">
-<label for="fb-type"></label>
+<label for="fb-type">Tipo</label>
 <select id="fb-type">
-<option value="bug"></option>
-<option value="feature"></option>
-<option value="uiux"></option>
-<option value="other"></option>
+<option value="bug">Error/Bug</option>
+<option value="feature">Sugerencia de Función</option>
+<option value="uiux">Interacción/Experiencia</option>
+<option value="other">Otro</option>
 </select>
 </div>
 <div class="row">
-<label for="fb-content"></label>
-<textarea id="fb-content" placeholder=""></textarea>
+<label for="fb-content">Descripción detallada</label>
+<textarea id="fb-content" placeholder="Pasos de reproducción / Comportamiento esperado / Resultados reales / Enlace de captura de pantalla ..."></textarea>
 </div>
 <div class="row">
-<label></label>
-<div aria-label="" class="stars" id="stars" role="radiogroup">
+<label>Calificación de Experiencia</label>
+<div aria-label="Calificación de Experiencia" class="stars" id="stars" role="radiogroup">
 <div aria-checked="false" class="star" data-v="1" role="radio" tabindex="0">1</div>
 <div aria-checked="false" class="star" data-v="2" role="radio" tabindex="-1">2</div>
 <div aria-checked="false" class="star" data-v="3" role="radio" tabindex="-1">3</div>
@@ -198,79 +198,79 @@
 </div>
 </div>
 <div class="row">
-<label for="contact"></label>
-<input id="contact" placeholder="" type="text"/>
+<label for="contact">Método de contacto opcional</label>
+<input id="contact" placeholder="Correo electrónico / QQ / Otro" type="text"/>
 </div>
 <div class="row">
 <label></label>
 <label class="muted">
 <input checked="" id="sysinfo" type="checkbox"/>
-<span></span>
+<span>Incluye información del navegador y del sistema (para solucionar problemas)</span>
 </label>
 </div>
 <div class="btns">
-<a class="btn primary" id="btn-issue" rel="noopener" target="_blank"></a>
-<a class="btn" id="btn-mail"></a>
-<button id="btn-copy-template"></button>
+<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">Enviar a través de GitHub Issue</a>
+<a class="btn" id="btn-mail">Enviar por correo electrónico</a>
+<button id="btn-copy-template">Copiar plantilla</button>
 </div>
-<p class="muted" style="margin-top:10px"></p>
+<p class="muted" style="margin-top:10px">Consejo: Si GitHub requiere inicio de sesión, también puedes enviar comentarios por correo electrónico.</p>
 </section>
 <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
 <section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
-<h2></h2>
+<h2>Únete al grupo de discusión</h2>
 <!-- JS 会往这里塞卡片 -->
 <div aria-label="QQ groups" class="grid" id="qqGrid"></div>
 </section>
 <!-- App Store -->
 <section aria-hidden="false" aria-labelledby="tab-appstore" id="panel-appstore" role="tabpanel">
-<h2></h2>
+<h2>Califica en la tienda</h2>
 <div class="row">
-<label></label>
+<label>App Store</label>
 <div>
 <div class="btns">
-<a class="btn warn" id="btn-appstore-review"></a>
-<a class="btn" id="btn-appstore-copy"></a>
-<a class="btn" id="btn-appstore-open"></a>
-<a class="btn" id="btn-appstore-copy-detail"></a>
+<a class="btn warn" id="btn-appstore-review">Ve a la App Store para dejar una reseña</a>
+<a class="btn" id="btn-appstore-copy">Copiar enlace de reseña</a>
+<a class="btn" id="btn-appstore-open">Abrir página de detalles de la aplicación</a>
+<a class="btn" id="btn-appstore-copy-detail">Copiar enlace de la página de detalles</a>
 </div>
-<p class="muted" style="margin-top:10px"></p>
+<p class="muted" style="margin-top:10px">En iPhone/iPad, intentará abrir directamente la App Store; otras plataformas abrirán la versión web (región automática).</p>
 </div>
 </div>
 </section>
 <div class="divider"></div>
-<footer></footer>
+<footer>Esta página es estática y no recopila ningún dato sensible. El contenido enviado será redirigido al problema/correo electrónico que configuraste para su procesamiento.</footer>
 </div>
 </div>
 <!-- ✅ i18n messages（脚本会读这些 span 的 textContent；它们会被你的 i18n 系统翻译） -->
 <div hidden="" id="i18n-msg">
-<span id="msg-copy-ok"></span>
-<span id="msg-copy-fail"></span>
-<span id="msg-need-config"></span>
-<span id="msg-qq-invite-missing"></span>
-<span id="msg-qq-number-missing"></span>
-<span id="msg-appid-missing"></span>
-<span id="md-title-fallback"></span>
-<span id="md-section-desc"></span>
-<span id="md-section-type"></span>
-<span id="md-section-rating"></span>
-<span id="md-section-contact"></span>
-<span id="md-section-sysinfo"></span>
-<span id="md-desc-fallback"></span>
-<span id="md-rating-none"></span>
-<span id="md-contact-none"></span>
-<span id="mail-subject-prefix"></span>
-<span id="sys-ua"></span>
-<span id="sys-platform"></span>
-<span id="sys-lang"></span>
-<span id="sys-screen"></span>
-<span id="qq-full-title"></span>
-<span id="qq-invite-missing-title"></span>
+<span id="msg-copy-ok">Copiado al portapapeles</span>
+<span id="msg-copy-fail">La copia falló, por favor copia manualmente.</span>
+<span id="msg-need-config">Por favor, configura los parámetros necesarios en el código primero.</span>
+<span id="msg-qq-invite-missing">El enlace de invitación al grupo no está configurado</span>
+<span id="msg-qq-number-missing">Número de grupo no configurado</span>
+<span id="msg-appid-missing">ID de la aplicación no configurada</span>
+<span id="md-title-fallback">(Título por agregar)</span>
+<span id="md-section-desc">### Descripción</span>
+<span id="md-section-type">### Tipo</span>
+<span id="md-section-rating">### Calificación</span>
+<span id="md-section-contact">### Información de Contacto</span>
+<span id="md-section-sysinfo">### Información del sistema</span>
+<span id="md-desc-fallback">(Descripción detallada/pasos de reproducción/comportamiento esperado...)</span>
+<span id="md-rating-none">No calificado</span>
+<span id="md-contact-none">No proporcionado</span>
+<span id="mail-subject-prefix">[Comentarios]</span>
+<span id="sys-ua">UA</span>
+<span id="sys-platform">Plataforma</span>
+<span id="sys-lang">Idioma</span>
+<span id="sys-screen">Pantalla</span>
+<span id="qq-full-title">El grupo está lleno.</span>
+<span id="qq-invite-missing-title">Falta el enlace de invitación al grupo</span>
 <!-- ✅ N 群标题模板：默认 “QQ 群 {n}” -->
-<span id="qq-title-prefix"></span>
-<span id="qq-btn-join"></span>
-<span id="qq-btn-copy-number"></span>
-<span id="qq-btn-copy-invite"></span>
-<span id="qq-badge-full"></span>
+<span id="qq-title-prefix">Grupo QQ</span>
+<span id="qq-btn-join">Únete al grupo con un clic</span>
+<span id="qq-btn-copy-number">Copiar número de grupo</span>
+<span id="qq-btn-copy-invite">Copiar enlace del grupo</span>
+<span id="qq-badge-full">Completo</span>
 </div>
 <div aria-live="polite" class="toast" id="toast"></div>
 <script src="../../assets/main.js"></script>

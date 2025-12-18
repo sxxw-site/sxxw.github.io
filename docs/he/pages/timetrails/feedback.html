@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>意见反馈（TimeTrails）</title>
+<title>משוב (TimeTrails)</title>
 <base href="/pages/timetrails/"/>
 <link href="../../assets/style.css" rel="stylesheet"/>
 <style>
@@ -143,7 +143,7 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>TimeTrails 意见反馈</h1>
+<h1>משוב על TimeTrails</h1>
 <div class="muted">
 <!--                        <span class="chip ok" data-i18n="feedback.chips.static">静态页</span>-->
 <!--                        <span class="chip ok" data-i18n="feedback.chips.i18n">多语言</span>-->
@@ -157,39 +157,39 @@
 <select aria-label="Language" class="lang-select" id="langSelect"></select>
 <span class="lang-caret">▾</span>
 </div>
-<a class="btn" id="ghLink" rel="noopener" target="_blank">仓库主页</a>
+<a class="btn" id="ghLink" rel="noopener" target="_blank">בית מאגר</a>
 </div>
 </div>
 <div class="divider"></div>
-<nav aria-label="反馈导航" class="tabs" role="tablist">
-<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">去商店评价</div>
-<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">提交反馈</div>
-<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">加入交流群</div>
+<nav aria-label="ניווט משוב" class="tabs" role="tablist">
+<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">דרגו בחנות</div>
+<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">שלח משוב</div>
+<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">הצטרף לקבוצת הקהילה</div>
 </nav>
 <div class="divider"></div>
 <!-- 提交反馈 -->
 <section aria-hidden="true" aria-labelledby="tab-feedback" hidden="" id="panel-feedback" role="tabpanel">
-<h2>提交反馈</h2>
+<h2>שלח משוב</h2>
 <div class="row">
-<label for="fb-title">标题</label>
-<input id="fb-title" placeholder="简要描述你的问题或建议" type="text"/>
+<label for="fb-title">כותרת</label>
+<input id="fb-title" placeholder="תאר בקצרה את הבעיה או ההצעה שלך" type="text"/>
 </div>
 <div class="row">
-<label for="fb-type">类型</label>
+<label for="fb-type">סוג</label>
 <select id="fb-type">
-<option value="bug">缺陷/报错</option>
-<option value="feature">功能建议</option>
-<option value="uiux">交互/体验</option>
-<option value="other">其他</option>
+<option value="bug">באג/שגיאה</option>
+<option value="feature">הצעת תכונה</option>
+<option value="uiux">אינטראקציה/חווייה</option>
+<option value="other">אחר</option>
 </select>
 </div>
 <div class="row">
-<label for="fb-content">详细描述</label>
-<textarea id="fb-content" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
+<label for="fb-content">תיאור מפורט</label>
+<textarea id="fb-content" placeholder="צעדים לשכפול / התנהגות צפויה / תוצאות בפועל / קישור למסך ..."></textarea>
 </div>
 <div class="row">
-<label>体验评分</label>
-<div aria-label="体验评分" class="stars" id="stars" role="radiogroup">
+<label>דירוג חוויה</label>
+<div aria-label="דירוג חוויה" class="stars" id="stars" role="radiogroup">
 <div aria-checked="false" class="star" data-v="1" role="radio" tabindex="0">1</div>
 <div aria-checked="false" class="star" data-v="2" role="radio" tabindex="-1">2</div>
 <div aria-checked="false" class="star" data-v="3" role="radio" tabindex="-1">3</div>
@@ -198,79 +198,79 @@
 </div>
 </div>
 <div class="row">
-<label for="contact">可选联系方式</label>
-<input id="contact" placeholder="邮箱 / QQ / 其他" type="text"/>
+<label for="contact">שיטת קשר אופציונלית</label>
+<input id="contact" placeholder="אימייל / QQ / אחר" type="text"/>
 </div>
 <div class="row">
 <label></label>
 <label class="muted">
 <input checked="" id="sysinfo" type="checkbox"/>
-<span>附带浏览器与系统信息（便于排查）</span>
+<span>כלול מידע על דפדפן ומערכת (לצורך פתרון בעיות)</span>
 </label>
 </div>
 <div class="btns">
-<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">通过 GitHub Issue 提交</a>
-<a class="btn" id="btn-mail">通过邮件提交</a>
-<button id="btn-copy-template">复制模板</button>
+<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">שלח דרך בעיית GitHub</a>
+<a class="btn" id="btn-mail">שלח בדוא"ל</a>
+<button id="btn-copy-template">העתק תבנית</button>
 </div>
-<p class="muted" style="margin-top:10px">提示：若 GitHub 需要登录，你也可以通过邮件反馈。</p>
+<p class="muted" style="margin-top:10px">טיפ: אם GitHub דורש התחברות, אתה יכול גם לספק משוב באמצעות דוא"ל.</p>
 </section>
 <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
 <section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
-<h2>加入交流群</h2>
+<h2>הצטרף לקבוצת הדיון</h2>
 <!-- JS 会往这里塞卡片 -->
 <div aria-label="QQ groups" class="grid" id="qqGrid"></div>
 </section>
 <!-- App Store -->
 <section aria-hidden="false" aria-labelledby="tab-appstore" id="panel-appstore" role="tabpanel">
-<h2>去商店评价</h2>
+<h2>דרגו בחנות</h2>
 <div class="row">
-<label>App Store</label>
+<label>חנות האפליקציות</label>
 <div>
 <div class="btns">
-<a class="btn warn" id="btn-appstore-review">去 App Store 评价</a>
-<a class="btn" id="btn-appstore-copy">复制评价链接</a>
-<a class="btn" id="btn-appstore-open">打开 App 详情页</a>
-<a class="btn" id="btn-appstore-copy-detail">复制详情页链接</a>
+<a class="btn warn" id="btn-appstore-review">עבור לחנות האפליקציות כדי לכתוב ביקורת</a>
+<a class="btn" id="btn-appstore-copy">העתק קישור לביקורת</a>
+<a class="btn" id="btn-appstore-open">פתח את עמוד פרטי האפליקציה</a>
+<a class="btn" id="btn-appstore-copy-detail">העתק קישור לדף הפרטים</a>
 </div>
-<p class="muted" style="margin-top:10px">在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。</p>
+<p class="muted" style="margin-top:10px">ב-iPhone/iPad, זה ינסה לפתוח ישירות את חנות האפליקציות; פלטפורמות אחרות יפתחו את הגרסה האינטרנטית (אזור אוטומטי).</p>
 </div>
 </div>
 </section>
 <div class="divider"></div>
-<footer>本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。</footer>
+<footer>דף זה הוא סטטי ואינו אוסף נתונים רגישים. התוכן שהוגש יופנה לבעיה/דוא"ל שהגדרת לעיבוד.</footer>
 </div>
 </div>
 <!-- ✅ i18n messages（脚本会读这些 span 的 textContent；它们会被你的 i18n 系统翻译） -->
 <div hidden="" id="i18n-msg">
-<span id="msg-copy-ok">已复制到剪贴板</span>
-<span id="msg-copy-fail">复制失败，请手动复制</span>
-<span id="msg-need-config">请先在代码里配置必要参数</span>
-<span id="msg-qq-invite-missing">未配置加群链接</span>
-<span id="msg-qq-number-missing">未配置群号</span>
-<span id="msg-appid-missing">未配置 App ID</span>
-<span id="md-title-fallback">（待补充标题）</span>
-<span id="md-section-desc">### 描述</span>
-<span id="md-section-type">### 类型</span>
-<span id="md-section-rating">### 评分</span>
-<span id="md-section-contact">### 联系方式</span>
-<span id="md-section-sysinfo">### 系统信息</span>
-<span id="md-desc-fallback">（详细描述/复现步骤/期望行为...）</span>
-<span id="md-rating-none">未评分</span>
-<span id="md-contact-none">未提供</span>
-<span id="mail-subject-prefix">[反馈]</span>
+<span id="msg-copy-ok">הועתק ללוח</span>
+<span id="msg-copy-fail">ההעתקה נכשלה, אנא העתק ידנית.</span>
+<span id="msg-need-config">אנא הגדר את הפרמטרים הנדרשים בקוד קודם.</span>
+<span id="msg-qq-invite-missing">קישור הזמנה לקבוצה לא מוגדר</span>
+<span id="msg-qq-number-missing">מספר הקבוצה לא מוגדר</span>
+<span id="msg-appid-missing">מזהה האפליקציה לא מוגדר</span>
+<span id="md-title-fallback">(כותרת להוסיף)</span>
+<span id="md-section-desc">### תיאור</span>
+<span id="md-section-type">### סוג</span>
+<span id="md-section-rating">### דירוג</span>
+<span id="md-section-contact">### מידע ליצירת קשר</span>
+<span id="md-section-sysinfo">### מידע מערכת</span>
+<span id="md-desc-fallback">(תיאור מפורט/שלבי שיחזור/התנהגות צפויה...)</span>
+<span id="md-rating-none">לא דורג</span>
+<span id="md-contact-none">לא סופק</span>
+<span id="mail-subject-prefix">[משוב]</span>
 <span id="sys-ua">UA</span>
-<span id="sys-platform">平台</span>
-<span id="sys-lang">语言</span>
-<span id="sys-screen">屏幕</span>
-<span id="qq-full-title">该群已满</span>
-<span id="qq-invite-missing-title">缺少加群链接</span>
+<span id="sys-platform">פלטפורמה</span>
+<span id="sys-lang">שפה</span>
+<span id="sys-screen">מסך</span>
+<span id="qq-full-title">הקבוצה מלאה.</span>
+<span id="qq-invite-missing-title">קישור הזמנה לקבוצה חסר</span>
 <!-- ✅ N 群标题模板：默认 “QQ 群 {n}” -->
-<span id="qq-title-prefix">QQ 群</span>
-<span id="qq-btn-join">一键加群</span>
-<span id="qq-btn-copy-number">复制群号</span>
-<span id="qq-btn-copy-invite">复制加群链接</span>
-<span id="qq-badge-full">已满</span>
+<span id="qq-title-prefix">קבוצת QQ</span>
+<span id="qq-btn-join">הצטרף לקבוצה בלחיצה אחת</span>
+<span id="qq-btn-copy-number">העתק מספר קבוצה</span>
+<span id="qq-btn-copy-invite">העתק קישור לקבוצה</span>
+<span id="qq-badge-full">מלא</span>
 </div>
 <div aria-live="polite" class="toast" id="toast"></div>
 <script src="../../assets/main.js"></script>

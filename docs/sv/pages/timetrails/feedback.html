@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>意见反馈（TimeTrails）</title>
+<title>Feedback (TimeTrails)</title>
 <base href="/pages/timetrails/"/>
 <link href="../../assets/style.css" rel="stylesheet"/>
 <style>
@@ -143,7 +143,7 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>TimeTrails 意见反馈</h1>
+<h1>TimeTrails Feedback</h1>
 <div class="muted">
 <!--                        <span class="chip ok" data-i18n="feedback.chips.static">静态页</span>-->
 <!--                        <span class="chip ok" data-i18n="feedback.chips.i18n">多语言</span>-->
@@ -157,39 +157,39 @@
 <select aria-label="Language" class="lang-select" id="langSelect"></select>
 <span class="lang-caret">▾</span>
 </div>
-<a class="btn" id="ghLink" rel="noopener" target="_blank">仓库主页</a>
+<a class="btn" id="ghLink" rel="noopener" target="_blank">Repository Hem</a>
 </div>
 </div>
 <div class="divider"></div>
-<nav aria-label="反馈导航" class="tabs" role="tablist">
-<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">去商店评价</div>
-<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">提交反馈</div>
-<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">加入交流群</div>
+<nav aria-label="Feedback-navigering" class="tabs" role="tablist">
+<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">Betygsätt i butiken</div>
+<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">Skicka feedback</div>
+<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">Gå med i gemenskapsgruppen</div>
 </nav>
 <div class="divider"></div>
 <!-- 提交反馈 -->
 <section aria-hidden="true" aria-labelledby="tab-feedback" hidden="" id="panel-feedback" role="tabpanel">
-<h2>提交反馈</h2>
+<h2>Skicka feedback</h2>
 <div class="row">
-<label for="fb-title">标题</label>
-<input id="fb-title" placeholder="简要描述你的问题或建议" type="text"/>
+<label for="fb-title">Titel</label>
+<input id="fb-title" placeholder="Beskriv kort ditt problem eller förslag" type="text"/>
 </div>
 <div class="row">
-<label for="fb-type">类型</label>
+<label for="fb-type">Typ</label>
 <select id="fb-type">
-<option value="bug">缺陷/报错</option>
-<option value="feature">功能建议</option>
-<option value="uiux">交互/体验</option>
-<option value="other">其他</option>
+<option value="bug">Fel/bugg</option>
+<option value="feature">Funktionförslag</option>
+<option value="uiux">Interaktion/Upplevelse</option>
+<option value="other">Annat</option>
 </select>
 </div>
 <div class="row">
-<label for="fb-content">详细描述</label>
-<textarea id="fb-content" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
+<label for="fb-content">Detaljerad beskrivning</label>
+<textarea id="fb-content" placeholder="Reproduktionssteg / Förväntat beteende / Faktiska resultat / Länk till skärmdump ..."></textarea>
 </div>
 <div class="row">
-<label>体验评分</label>
-<div aria-label="体验评分" class="stars" id="stars" role="radiogroup">
+<label>Upplevelsebetyg</label>
+<div aria-label="Upplevelsebetyg" class="stars" id="stars" role="radiogroup">
 <div aria-checked="false" class="star" data-v="1" role="radio" tabindex="0">1</div>
 <div aria-checked="false" class="star" data-v="2" role="radio" tabindex="-1">2</div>
 <div aria-checked="false" class="star" data-v="3" role="radio" tabindex="-1">3</div>
@@ -198,79 +198,79 @@
 </div>
 </div>
 <div class="row">
-<label for="contact">可选联系方式</label>
-<input id="contact" placeholder="邮箱 / QQ / 其他" type="text"/>
+<label for="contact">Valfri kontaktmetod</label>
+<input id="contact" placeholder="E-post / QQ / Annat" type="text"/>
 </div>
 <div class="row">
 <label></label>
 <label class="muted">
 <input checked="" id="sysinfo" type="checkbox"/>
-<span>附带浏览器与系统信息（便于排查）</span>
+<span>Inkludera webbläsare och systeminformation (för felsökning)</span>
 </label>
 </div>
 <div class="btns">
-<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">通过 GitHub Issue 提交</a>
-<a class="btn" id="btn-mail">通过邮件提交</a>
-<button id="btn-copy-template">复制模板</button>
+<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">Skicka via GitHub Issue</a>
+<a class="btn" id="btn-mail">Skicka via e-post</a>
+<button id="btn-copy-template">Kopiera mall</button>
 </div>
-<p class="muted" style="margin-top:10px">提示：若 GitHub 需要登录，你也可以通过邮件反馈。</p>
+<p class="muted" style="margin-top:10px">Tips: Om GitHub kräver inloggning kan du också ge feedback via e-post.</p>
 </section>
 <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
 <section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
-<h2>加入交流群</h2>
+<h2>Gå med i diskussionsgruppen</h2>
 <!-- JS 会往这里塞卡片 -->
 <div aria-label="QQ groups" class="grid" id="qqGrid"></div>
 </section>
 <!-- App Store -->
 <section aria-hidden="false" aria-labelledby="tab-appstore" id="panel-appstore" role="tabpanel">
-<h2>去商店评价</h2>
+<h2>Betygsätt i butiken</h2>
 <div class="row">
 <label>App Store</label>
 <div>
 <div class="btns">
-<a class="btn warn" id="btn-appstore-review">去 App Store 评价</a>
-<a class="btn" id="btn-appstore-copy">复制评价链接</a>
-<a class="btn" id="btn-appstore-open">打开 App 详情页</a>
-<a class="btn" id="btn-appstore-copy-detail">复制详情页链接</a>
+<a class="btn warn" id="btn-appstore-review">Gå till App Store för att recensera</a>
+<a class="btn" id="btn-appstore-copy">Kopiera recensionslänk</a>
+<a class="btn" id="btn-appstore-open">Öppna appens detaljsida</a>
+<a class="btn" id="btn-appstore-copy-detail">Kopiera detaljsidan länk</a>
 </div>
-<p class="muted" style="margin-top:10px">在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。</p>
+<p class="muted" style="margin-top:10px">På iPhone/iPad kommer den att försöka öppna App Store direkt; andra plattformar kommer att öppna webversionen (automatisk region).</p>
 </div>
 </div>
 </section>
 <div class="divider"></div>
-<footer>本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。</footer>
+<footer>Denna sida är statisk och samlar inte in någon känslig information. Inskickat innehåll kommer att omdirigeras till den fråga/e-post som du har konfigurerat för bearbetning.</footer>
 </div>
 </div>
 <!-- ✅ i18n messages（脚本会读这些 span 的 textContent；它们会被你的 i18n 系统翻译） -->
 <div hidden="" id="i18n-msg">
-<span id="msg-copy-ok">已复制到剪贴板</span>
-<span id="msg-copy-fail">复制失败，请手动复制</span>
-<span id="msg-need-config">请先在代码里配置必要参数</span>
-<span id="msg-qq-invite-missing">未配置加群链接</span>
-<span id="msg-qq-number-missing">未配置群号</span>
-<span id="msg-appid-missing">未配置 App ID</span>
-<span id="md-title-fallback">（待补充标题）</span>
-<span id="md-section-desc">### 描述</span>
-<span id="md-section-type">### 类型</span>
-<span id="md-section-rating">### 评分</span>
-<span id="md-section-contact">### 联系方式</span>
-<span id="md-section-sysinfo">### 系统信息</span>
-<span id="md-desc-fallback">（详细描述/复现步骤/期望行为...）</span>
-<span id="md-rating-none">未评分</span>
-<span id="md-contact-none">未提供</span>
-<span id="mail-subject-prefix">[反馈]</span>
+<span id="msg-copy-ok">Kopierad till urklipp</span>
+<span id="msg-copy-fail">Kopiering misslyckades, vänligen kopiera manuellt.</span>
+<span id="msg-need-config">Vänligen konfigurera de nödvändiga parametrarna i koden först.</span>
+<span id="msg-qq-invite-missing">Gruppinbjudningslänk är inte konfigurerad</span>
+<span id="msg-qq-number-missing">Gruppnummer är inte konfigurerat</span>
+<span id="msg-appid-missing">App ID är inte konfigurerad</span>
+<span id="md-title-fallback">(Titel som ska läggas till)</span>
+<span id="md-section-desc">### Beskrivning</span>
+<span id="md-section-type">### Typ</span>
+<span id="md-section-rating">### Betyg</span>
+<span id="md-section-contact">### Kontaktinformation</span>
+<span id="md-section-sysinfo">### Systeminformation</span>
+<span id="md-desc-fallback">(Detaljerad beskrivning/återgivningssteg/förväntat beteende...)</span>
+<span id="md-rating-none">Ej betygsatt</span>
+<span id="md-contact-none">Ej angivet</span>
+<span id="mail-subject-prefix">[Feedback]</span>
 <span id="sys-ua">UA</span>
-<span id="sys-platform">平台</span>
-<span id="sys-lang">语言</span>
-<span id="sys-screen">屏幕</span>
-<span id="qq-full-title">该群已满</span>
-<span id="qq-invite-missing-title">缺少加群链接</span>
+<span id="sys-platform">Plattform</span>
+<span id="sys-lang">Språk</span>
+<span id="sys-screen">Skärm</span>
+<span id="qq-full-title">Gruppen är full.</span>
+<span id="qq-invite-missing-title">Saknas gruppinbjudningslänk</span>
 <!-- ✅ N 群标题模板：默认 “QQ 群 {n}” -->
-<span id="qq-title-prefix">QQ 群</span>
-<span id="qq-btn-join">一键加群</span>
-<span id="qq-btn-copy-number">复制群号</span>
-<span id="qq-btn-copy-invite">复制加群链接</span>
-<span id="qq-badge-full">已满</span>
+<span id="qq-title-prefix">QQ Grupp</span>
+<span id="qq-btn-join">Gå med i gruppen med ett klick</span>
+<span id="qq-btn-copy-number">Kopiera gruppnummer</span>
+<span id="qq-btn-copy-invite">Kopiera gruppens länk</span>
+<span id="qq-badge-full">Full</span>
 </div>
 <div aria-live="polite" class="toast" id="toast"></div>
 <script src="../../assets/main.js"></script>
