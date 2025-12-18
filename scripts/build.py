@@ -36,6 +36,11 @@ EXEMPT_LITERALS = set(
 DEFAULT_COMPANY = os.getenv("I18N_COMPANY", "上海树下小屋网络科技有限公司")
 DEFAULT_YEAR = os.getenv("I18N_YEAR", str(datetime.now().year))
 
+# ✅ 全站防暗色首帧“闪白”注入（可用 env 关闭/改色）
+INJECT_CRITICAL_HEAD = os.getenv("I18N_INJECT_CRITICAL_HEAD", "1") == "1"
+CRITICAL_DARK_BG = os.getenv("I18N_CRITICAL_DARK_BG", "#0b1020")
+CRITICAL_LIGHT_BG = os.getenv("I18N_CRITICAL_LIGHT_BG", "#f8fafc")
+
 try:
     from bs4 import BeautifulSoup  # type: ignore
 except Exception:
@@ -49,6 +54,7 @@ def norm_code(code: str) -> str:
     """用于比较/读取 locale：统一小写、统一 '-'"""
     return (code or "").strip().replace("_", "-").lower()
 
+
 def default_html_lang_for_code(code: str) -> str:
     c = norm_code(code)
     if c in {"zh-hans", "zh-cn"}:
@@ -61,6 +67,7 @@ def default_html_lang_for_code(code: str) -> str:
         a, b = code.split("-", 1)
         return f"{a.lower()}-{b.upper()}"
     return c
+
 
 def normalize_slashes(path: str) -> str:
     return (path or "").replace("\\", "/")
@@ -76,6 +83,7 @@ class LangSpec:
     fallbacks: List[str]
     rtl: bool
     html_lang: str
+
 
 def load_languages() -> List[LangSpec]:
     raw = json.loads(LANGS_FILE.read_text(encoding="utf-8"))
@@ -106,12 +114,15 @@ def load_languages() -> List[LangSpec]:
 # =========================
 JsonObj = Union[Dict[str, Any], List[Any], str, int, float, bool, None]
 
+
 def read_json(path: Path) -> JsonObj:
     return json.loads(path.read_text(encoding="utf-8"))
+
 
 def locale_file_for(code: str) -> Path:
     # ✅ locale 文件统一按 norm 名称：en-GB -> en-gb.json
     return LOCALES_DIR / f"{norm_code(code)}.json"
+
 
 def deep_get(obj: Any, key: str) -> Optional[Any]:
     if obj is None:
@@ -138,8 +149,10 @@ def deep_get(obj: Any, key: str) -> Optional[Any]:
             return None
     return cur
 
+
 def merge_locales_prefer_first(dicts: List[JsonObj]) -> Dict[str, Any]:
     return {"__layers__": dicts}
+
 
 def locale_lookup(merged: Dict[str, Any], key: str) -> Optional[Any]:
     layers = merged.get("__layers__") or []
@@ -148,6 +161,7 @@ def locale_lookup(merged: Dict[str, Any], key: str) -> Optional[Any]:
         if v is not None:
             return v
     return None
+
 
 def load_locale_with_fallbacks(code: str, fallbacks: List[str], base_code: str) -> Dict[str, Any]:
     layers: List[JsonObj] = []
@@ -177,6 +191,7 @@ def load_locale_with_fallbacks(code: str, fallbacks: List[str], base_code: str) 
 # =========================
 _VAR_RE = re.compile(r"\{([a-zA-Z_][a-zA-Z0-9_]*)\}")
 
+
 def format_vars(text: str, vars_map: Dict[str, str]) -> str:
     if not text:
         return text
@@ -188,6 +203,53 @@ def format_vars(text: str, vars_map: Dict[str, str]) -> str:
         return vars_map.get(k, m.group(0))
 
     return _VAR_RE.sub(repl, text)
+
+
+# =========================
+# ✅ 防暗色首帧闪白：注入 critical head
+# =========================
+def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> None:
+    head = soup.find("head")
+    if not head:
+        return
+
+    # 防重复注入（marker）
+    if head.find("meta", attrs={"name": "i18n-critical-head"}):
+        return
+
+    marker = soup.new_tag("meta")
+    marker["name"] = "i18n-critical-head"
+    marker["content"] = "1"
+
+    # 提前声明配色能力（首帧更稳）
+    cs = soup.new_tag("meta")
+    cs["name"] = "color-scheme"
+    cs["content"] = "dark light"
+
+    # 首帧兜底背景（关键：CSS 未加载前也不白）
+    style = soup.new_tag("style")
+    style.string = (
+        f"html,body{{background:{dark_bg};}}"
+        f"@media (prefers-color-scheme: light){{html,body{{background:{light_bg};}}}}"
+    )
+
+    # 顶栏颜色（可选但建议）
+    theme_dark = soup.new_tag("meta")
+    theme_dark["name"] = "theme-color"
+    theme_dark["media"] = "(prefers-color-scheme: dark)"
+    theme_dark["content"] = dark_bg
+
+    theme_light = soup.new_tag("meta")
+    theme_light["name"] = "theme-color"
+    theme_light["media"] = "(prefers-color-scheme: light)"
+    theme_light["content"] = light_bg
+
+    # 插到 head 最前（越早越好）
+    head.insert(0, theme_light)
+    head.insert(0, theme_dark)
+    head.insert(0, style)
+    head.insert(0, cs)
+    head.insert(0, marker)
 
 
 # =========================
@@ -208,6 +270,7 @@ def parse_i18n_attr_rules(raw: str) -> List[Tuple[str, str]]:
             out.append((a, k))
     return out
 
+
 def rewrite_asset_url(url: str, depth: int) -> str:
     """
     将 "assets/..." 重写为 "../"*depth + "assets/..."
@@ -224,14 +287,19 @@ def rewrite_asset_url(url: str, depth: int) -> str:
         return normalize_slashes("../" * depth + u)
     return url
 
+
 def apply_i18n_to_html(
-        html_text: str,
-        merged_locale: Dict[str, Any],
-        lang_spec: LangSpec,
-        out_depth: int,
-        vars_map: Dict[str, str],
+    html_text: str,
+    merged_locale: Dict[str, Any],
+    lang_spec: LangSpec,
+    out_depth: int,
+    vars_map: Dict[str, str],
 ) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
+
+    # ✅ 全局注入防闪白（每个输出 HTML 都会带上）
+    if INJECT_CRITICAL_HEAD:
+        ensure_critical_head(soup, CRITICAL_DARK_BG, CRITICAL_LIGHT_BG)
 
     html_tag = soup.find("html")
     if html_tag:
@@ -299,16 +367,19 @@ def iter_html_files(src_root: Path) -> List[Path]:
         out.append(p)
     return out
 
+
 def copy_assets() -> None:
     if not ASSETS_DIR.exists():
         return
     ASSETS_OUT_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copytree(ASSETS_DIR, ASSETS_OUT_DIR, dirs_exist_ok=True)
 
+
 def ensure_clean_docs() -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     # 如需每次清空 docs：取消注释
     # shutil.rmtree(DOCS_DIR); DOCS_DIR.mkdir(parents=True, exist_ok=True)
+
 
 def write_file(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -385,6 +456,10 @@ def build() -> None:
     print("\n✅ build 完成")
     print(f"   输出目录：{DOCS_DIR}")
     print("   base 语言：同时输出到 docs/ 与 docs/<base_code>/（目录名统一小写）")
+    if INJECT_CRITICAL_HEAD:
+        print(f"   ✅ 已注入 critical head：dark={CRITICAL_DARK_BG} light={CRITICAL_LIGHT_BG}")
+    else:
+        print("   ⛔ 未注入 critical head（I18N_INJECT_CRITICAL_HEAD=0）")
 
 
 if __name__ == "__main__":
