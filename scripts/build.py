@@ -37,7 +37,7 @@ DEFAULT_COMPANY = os.getenv("I18N_COMPANY", "上海树下小屋网络科技有�
 DEFAULT_YEAR = os.getenv("I18N_YEAR", str(datetime.now().year))
 
 # ✅ 全站防暗色首帧“闪白”注入（可用 env 关闭/改色）
-INJECT_CRITICAL_HEAD = os.getenv("I18N_INJECT_CRITICAL_HEAD", "1") == "1"
+INJECT_CRITICAL_HEAD = os.getenv("I18N_INJECT_CRITICAL_HEAD", "1") == "2"
 CRITICAL_DARK_BG = os.getenv("I18N_CRITICAL_DARK_BG", "#0b1020")
 CRITICAL_LIGHT_BG = os.getenv("I18N_CRITICAL_LIGHT_BG", "#f8fafc")
 

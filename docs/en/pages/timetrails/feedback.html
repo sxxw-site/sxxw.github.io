@@ -1,139 +1,155 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>html,body{background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/>
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- ✅ 让 UA 知道页面同时支持深/浅色（系统自动切换） -->
 <meta content="dark light" name="color-scheme"/>
-<meta content="#0ea5e9" name="theme-color"/>
+<!-- ✅ 让地址栏/状态栏颜色也跟随系统主题（别写死一个颜色） -->
+<meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/>
+<!-- （可选）iOS 主屏幕/PWA 更稳 -->
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <title>Feedback (TimeTrails)</title>
-<link href="/assets/style.css" rel="stylesheet"/>
+<!-- ✅ 关键：把“首屏底色”放在任何外链 CSS 之前，防止移动端先白一帧 -->
 <style>
-        :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
-        @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1}}
-        *{box-sizing:border-box}
-        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
-        .container{max-width:960px;margin:0 auto;padding:40px 16px}
-        .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-        h1{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;letter-spacing:.2px}
-        h2{font-size:clamp(18px,2.0vw,22px);margin:22px 0 10px}
-        h3{margin:0 0 10px;font-size:16px}
-        p,li{line-height:1.7;color:var(--text)}
-        a{color:var(--link);text-decoration:none}
-        a:hover{text-decoration:underline}
-        .muted{color:var(--muted);font-size:13px}
-        .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:18px 0}
-        .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px;background:rgba(34,211,238,.15);color:var(--accent);border:1px solid rgba(34,211,238,.35)}
-        .chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px;border:1px solid rgba(255,255,255,.16)}
-        .ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
-        .warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
-        .bad{background:rgba(251,113,133,.15);color:var(--bad);border-color:rgba(251,113,133,.35)}
+    :root{ color-scheme: dark light; }
+    html,body{ margin:0; min-height:100vh; background:#0b1020; }
+    @media (prefers-color-scheme: light){
+      html,body{ background:#f8fafc; }
+    }
+  </style>
+<!-- 外链 CSS 放在关键底色之后 -->
+<link href="/assets/style.css" rel="stylesheet"/>
+<!-- 页面主体样式（保留你原来的） -->
+<style>
+    :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
+    @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1}}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+    .container{max-width:960px;margin:0 auto;padding:40px 16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    h1{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;letter-spacing:.2px}
+    h2{font-size:clamp(18px,2.0vw,22px);margin:22px 0 10px}
+    h3{margin:0 0 10px;font-size:16px}
+    p,li{line-height:1.7;color:var(--text)}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .muted{color:var(--muted);font-size:13px}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:18px 0}
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px;background:rgba(34,211,238,.15);color:var(--accent);border:1px solid rgba(34,211,238,.35)}
+    .chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px;border:1px solid rgba(255,255,255,.16)}
+    .ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+    .warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+    .bad{background:rgba(251,113,133,.15);color:var(--bad);border-color:rgba(251,113,133,.35)}
 
-        .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
-        .brand{display:flex;align-items:center;gap:12px}
-        .logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
-        .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+    .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-        .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
-        .lang-select{
-          appearance:none;-webkit-appearance:none;-moz-appearance:none;
-          border:1px solid rgba(34,211,238,.35);
-          background:rgba(15,23,42,.55);
-          color:inherit;
-          padding:10px 36px 10px 12px;
-          border-radius:12px;
-          font:inherit;line-height:1;cursor:pointer;outline:none;
-        }
-        .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
-        .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+    .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border:1px solid rgba(34,211,238,.35);
+      background:rgba(15,23,42,.55);
+      color:inherit;
+      padding:10px 36px 10px 12px;
+      border-radius:12px;
+      font:inherit;line-height:1;cursor:pointer;outline:none;
+    }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
 
-        .tabs{display:flex;gap:8px;flex-wrap:wrap}
-        .tab{
-          flex:1;min-width:160px;
-          padding:10px 12px;border-radius:12px;
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(148,163,184,.10);
-          cursor:pointer;user-select:none;text-align:center;
-        }
-        .tab[aria-selected="true"]{
-          background:rgba(34,211,238,.15);
-          border-color:rgba(34,211,238,.35);
-          color:var(--accent);
-          font-weight:650;
-        }
-        .tab:focus-visible{outline:2px solid rgba(34,211,238,.55);outline-offset:2px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{
+      flex:1;min-width:160px;
+      padding:10px 12px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(148,163,184,.10);
+      cursor:pointer;user-select:none;text-align:center;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(34,211,238,.15);
+      border-color:rgba(34,211,238,.35);
+      color:var(--accent);
+      font-weight:650;
+    }
+    .tab:focus-visible{outline:2px solid rgba(34,211,238,.55);outline-offset:2px}
 
-        label{color:var(--muted);font-size:14px}
-        .row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;margin:12px 0}
-        input[type="text"], select, textarea{
-          width:100%;
-          padding:10px 12px;
-          border-radius:12px;
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(148,163,184,.10);
-          color:var(--text);
-          outline:none;
-        }
-        textarea{min-height:120px;resize:vertical}
-        input:focus, select:focus, textarea:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18);border-color:rgba(34,211,238,.35)}
+    label{color:var(--muted);font-size:14px}
+    .row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;margin:12px 0}
+    input[type="text"], select, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(148,163,184,.10);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    input:focus, select:focus, textarea:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18);border-color:rgba(34,211,238,.35)}
 
-        .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-        .btn, button{
-          display:inline-flex;align-items:center;gap:8px;
-          padding:10px 14px;border-radius:12px;
-          border:1px solid rgba(255,255,255,.14);
-          background:rgba(148,163,184,.10);
-          color:var(--text);
-          cursor:pointer;
-          text-decoration:none;
-        }
-        .btn:hover, button:hover{border-color:rgba(34,211,238,.35)}
-        .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
-        .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
-        .btn.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn);font-weight:650}
-        .btn.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn, button{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(148,163,184,.10);
+      color:var(--text);
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .btn:hover, button:hover{border-color:rgba(34,211,238,.35)}
+    .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
+    .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
+    .btn.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn);font-weight:650}
+    .btn.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
 
-        .stars{display:flex;gap:8px;align-items:center}
-        .star{
-          width:30px;height:30px;border-radius:999px;
-          display:grid;place-items:center;
-          border:1px solid rgba(255,255,255,.14);
-          background:rgba(148,163,184,.10);
-          cursor:pointer;
-          font-size:12px;
-          color:var(--text);
-        }
-        .star[aria-checked="true"]{
-          background:rgba(251,191,36,.18);
-          border-color:rgba(251,191,36,.45);
-          color:var(--warn);
-          font-weight:700;
-        }
+    .stars{display:flex;gap:8px;align-items:center}
+    .star{
+      width:30px;height:30px;border-radius:999px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(148,163,184,.10);
+      cursor:pointer;
+      font-size:12px;
+      color:var(--text);
+    }
+    .star[aria-checked="true"]{
+      background:rgba(251,191,36,.18);
+      border-color:rgba(251,191,36,.45);
+      color:var(--warn);
+      font-weight:700;
+    }
 
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-        .kvs{display:grid;grid-template-columns:1fr auto;gap:8px}
-        .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .kvs{display:grid;grid-template-columns:1fr auto;gap:8px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
 
-        .toast{
-          position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
-          background:rgba(15,23,42,.92);
-          color:var(--text);
-          border:1px solid rgba(255,255,255,.14);
-          padding:10px 14px;border-radius:999px;
-          box-shadow:0 10px 30px rgba(0,0,0,.25);
-          opacity:0;pointer-events:none;transition:opacity .18s ease;
-          max-width:min(92vw,680px);
-          white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-        }
-        .toast.show{opacity:1}
+    .toast{
+      position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+      background:rgba(15,23,42,.92);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.14);
+      padding:10px 14px;border-radius:999px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      opacity:0;pointer-events:none;transition:opacity .18s ease;
+      max-width:min(92vw,680px);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .toast.show{opacity:1}
 
-        footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
 
-        @media (max-width:640px){
-          .row{grid-template-columns:1fr}
-          .tab{min-width:unset}
-        }
-    </style>
+    @media (max-width:640px){
+      .row{grid-template-columns:1fr}
+      .tab{min-width:unset}
+    }
+  </style>
 </head>
 <body>
 <div class="container">
@@ -143,12 +159,7 @@
 <div aria-hidden="true" class="logo"></div>
 <div>
 <h1>TimeTrails Feedback</h1>
-<div class="muted">
-<!--                        <span class="chip ok" data-i18n="feedback.chips.static">静态页</span>-->
-<!--                        <span class="chip ok" data-i18n="feedback.chips.i18n">多语言</span>-->
-<!--                        <span class="chip ok" data-i18n="feedback.chips.userControl">用户可控</span>-->
-<!--                        <span style="margin-left:6px" data-i18n="feedback.sub">提交会跳转到 GitHub Issue 或邮件处理</span>-->
-</div>
+<div class="muted"></div>
 </div>
 </div>
 <div class="right">
@@ -217,7 +228,6 @@
 <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
 <section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
 <h2>Join the discussion group</h2>
-<!-- JS 会往这里塞卡片 -->
 <div aria-label="QQ groups" class="grid" id="qqGrid"></div>
 </section>
 <!-- App Store -->
@@ -240,7 +250,7 @@
 <footer>This page is static and does not collect any sensitive data. Submitted content will be redirected to the Issue/email you configured for processing.</footer>
 </div>
 </div>
-<!-- ✅ i18n messages（脚本会读这些 span 的 textContent；它们会被你的 i18n 系统翻译） -->
+<!-- ✅ i18n messages（脚本会读这些 span 的 textContent） -->
 <div hidden="" id="i18n-msg">
 <span id="msg-copy-ok">Copied to clipboard</span>
 <span id="msg-copy-fail">Copy failed, please copy manually.</span>
@@ -264,7 +274,6 @@
 <span id="sys-screen">Screen</span>
 <span id="qq-full-title">The group is full.</span>
 <span id="qq-invite-missing-title">Missing group invite link</span>
-<!-- ✅ N 群标题模板：默认 “QQ 群 {n}” -->
 <span id="qq-title-prefix">QQ Group</span>
 <span id="qq-btn-join">Join group with one click</span>
 <span id="qq-btn-copy-number">Copy group number</span>
@@ -280,16 +289,11 @@
       GH_OWNER: "sxxw-site",
       GH_REPO:  "sxxw.github.io",
       GH_HOMEPAGE: "https://github.com/sxxw-site/sxxw.github.io",
-
       MAIL_TO:  "house@sxxw.site",
-
-      // ✅ 这里就是 N 个群
       QQ_GROUPS: [
         { number: "574966492", inviteUrl: "https://qm.qq.com/q/WmKwcZcZW", isFull: false },
         { number: "185198503", inviteUrl: "https://qm.qq.com/q/J1eYFA7i4m", isFull: true  }
-        // { number:"xxxx", inviteUrl:"https://qm.qq.com/q/xxxx", isFull:false, title:"可选自定义标题" }
       ],
-
       IOS_APP_ID: "6752662508"
     };
 
@@ -493,7 +497,7 @@
     function escapeHtml(s){
       return String(s ?? "")
         .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;").replaceAll("'","&#39;");
+        .replaceAll('"',"quot;").replaceAll("'","&#39;");
     }
 
     function renderQQGroups(){
@@ -537,7 +541,6 @@
         const copyNumBtn = card.querySelector("[data-qq-copy-number]");
         const copyInviteBtn = card.querySelector("[data-qq-copy-invite]");
 
-        // join 状态
         if(isFull || !inviteUrl || !number){
           joinEl.classList.add("disabled");
           joinEl.setAttribute("aria-disabled","true");
@@ -555,13 +558,11 @@
           joinEl.title = "";
         }
 
-        // copy number
         copyNumBtn.onclick = () => {
           if(!number){ showToast(t("msg-qq-number-missing","Missing group number")); return; }
           copyText(number);
         };
 
-        // copy invite
         copyInviteBtn.onclick = (e) => {
           e.preventDefault();
           if(!inviteUrl){ showToast(t("msg-qq-invite-missing","Missing invite url")); return; }
@@ -573,7 +574,6 @@
     // ======== 初始化链接/按钮 ========
     $('#ghLink').href = CONFIG.GH_HOMEPAGE || "#";
 
-    // App Store
     (function initAppStore(){
       const appId = (CONFIG.IOS_APP_ID || "").trim();
       if(!appId){ showToast(t("msg-appid-missing","Missing App ID")); return; }
@@ -611,16 +611,12 @@
       copyText(`# ${title}\n\n${body}`);
     });
 
-    // ✅ 语言切换后：重新渲染 N 群按钮文案/标题/提示
-    function refreshDynamic(){
-      renderQQGroups();
-    }
+    function refreshDynamic(){ renderQQGroups(); }
     window.addEventListener("langchange", refreshDynamic);
     document.getElementById("langSelect")?.addEventListener("change", ()=> setTimeout(refreshDynamic, 0));
 
-    // boot
     setStars(0);
     renderQQGroups();
-</script>
+  </script>
 </body>
 </html>

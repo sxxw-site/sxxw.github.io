@@ -1,277 +1,289 @@
 <!doctype html>
 <html lang="zh-Hans" data-i18n-attr="lang:html.lang">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#0ea5e9" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title data-i18n="feedback.meta.title">意见反馈（TimeTrails）</title>
+  <!-- ✅ 让 UA 知道页面同时支持深/浅色（系统自动切换） -->
+  <meta name="color-scheme" content="dark light" />
 
+  <!-- ✅ 让地址栏/状态栏颜色也跟随系统主题（别写死一个颜色） -->
+  <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
 
-    <link rel="stylesheet" href="/assets/style.css" />
+  <!-- （可选）iOS 主屏幕/PWA 更稳 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <style>
-        :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
-        @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1}}
-        *{box-sizing:border-box}
-        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
-        .container{max-width:960px;margin:0 auto;padding:40px 16px}
-        .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-        h1{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;letter-spacing:.2px}
-        h2{font-size:clamp(18px,2.0vw,22px);margin:22px 0 10px}
-        h3{margin:0 0 10px;font-size:16px}
-        p,li{line-height:1.7;color:var(--text)}
-        a{color:var(--link);text-decoration:none}
-        a:hover{text-decoration:underline}
-        .muted{color:var(--muted);font-size:13px}
-        .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:18px 0}
-        .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px;background:rgba(34,211,238,.15);color:var(--accent);border:1px solid rgba(34,211,238,.35)}
-        .chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px;border:1px solid rgba(255,255,255,.16)}
-        .ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
-        .warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
-        .bad{background:rgba(251,113,133,.15);color:var(--bad);border-color:rgba(251,113,133,.35)}
+  <title data-i18n="feedback.meta.title">意见反馈（TimeTrails）</title>
 
-        .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
-        .brand{display:flex;align-items:center;gap:12px}
-        .logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
-        .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  <!-- ✅ 关键：把“首屏底色”放在任何外链 CSS 之前，防止移动端先白一帧 -->
+  <style>
+    :root{ color-scheme: dark light; }
+    html,body{ margin:0; min-height:100vh; background:#0b1020; }
+    @media (prefers-color-scheme: light){
+      html,body{ background:#f8fafc; }
+    }
+  </style>
 
-        .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
-        .lang-select{
-          appearance:none;-webkit-appearance:none;-moz-appearance:none;
-          border:1px solid rgba(34,211,238,.35);
-          background:rgba(15,23,42,.55);
-          color:inherit;
-          padding:10px 36px 10px 12px;
-          border-radius:12px;
-          font:inherit;line-height:1;cursor:pointer;outline:none;
-        }
-        .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
-        .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+  <!-- 外链 CSS 放在关键底色之后 -->
+  <link rel="stylesheet" href="/assets/style.css" />
 
-        .tabs{display:flex;gap:8px;flex-wrap:wrap}
-        .tab{
-          flex:1;min-width:160px;
-          padding:10px 12px;border-radius:12px;
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(148,163,184,.10);
-          cursor:pointer;user-select:none;text-align:center;
-        }
-        .tab[aria-selected="true"]{
-          background:rgba(34,211,238,.15);
-          border-color:rgba(34,211,238,.35);
-          color:var(--accent);
-          font-weight:650;
-        }
-        .tab:focus-visible{outline:2px solid rgba(34,211,238,.55);outline-offset:2px}
+  <!-- 页面主体样式（保留你原来的） -->
+  <style>
+    :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
+    @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1}}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+    .container{max-width:960px;margin:0 auto;padding:40px 16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    h1{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;letter-spacing:.2px}
+    h2{font-size:clamp(18px,2.0vw,22px);margin:22px 0 10px}
+    h3{margin:0 0 10px;font-size:16px}
+    p,li{line-height:1.7;color:var(--text)}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .muted{color:var(--muted);font-size:13px}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:18px 0}
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px;background:rgba(34,211,238,.15);color:var(--accent);border:1px solid rgba(34,211,238,.35)}
+    .chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px;border:1px solid rgba(255,255,255,.16)}
+    .ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+    .warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+    .bad{background:rgba(251,113,133,.15);color:var(--bad);border-color:rgba(251,113,133,.35)}
 
-        label{color:var(--muted);font-size:14px}
-        .row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;margin:12px 0}
-        input[type="text"], select, textarea{
-          width:100%;
-          padding:10px 12px;
-          border-radius:12px;
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(148,163,184,.10);
-          color:var(--text);
-          outline:none;
-        }
-        textarea{min-height:120px;resize:vertical}
-        input:focus, select:focus, textarea:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18);border-color:rgba(34,211,238,.35)}
+    .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+    .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-        .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-        .btn, button{
-          display:inline-flex;align-items:center;gap:8px;
-          padding:10px 14px;border-radius:12px;
-          border:1px solid rgba(255,255,255,.14);
-          background:rgba(148,163,184,.10);
-          color:var(--text);
-          cursor:pointer;
-          text-decoration:none;
-        }
-        .btn:hover, button:hover{border-color:rgba(34,211,238,.35)}
-        .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
-        .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
-        .btn.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn);font-weight:650}
-        .btn.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
+    .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border:1px solid rgba(34,211,238,.35);
+      background:rgba(15,23,42,.55);
+      color:inherit;
+      padding:10px 36px 10px 12px;
+      border-radius:12px;
+      font:inherit;line-height:1;cursor:pointer;outline:none;
+    }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
 
-        .stars{display:flex;gap:8px;align-items:center}
-        .star{
-          width:30px;height:30px;border-radius:999px;
-          display:grid;place-items:center;
-          border:1px solid rgba(255,255,255,.14);
-          background:rgba(148,163,184,.10);
-          cursor:pointer;
-          font-size:12px;
-          color:var(--text);
-        }
-        .star[aria-checked="true"]{
-          background:rgba(251,191,36,.18);
-          border-color:rgba(251,191,36,.45);
-          color:var(--warn);
-          font-weight:700;
-        }
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{
+      flex:1;min-width:160px;
+      padding:10px 12px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(148,163,184,.10);
+      cursor:pointer;user-select:none;text-align:center;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(34,211,238,.15);
+      border-color:rgba(34,211,238,.35);
+      color:var(--accent);
+      font-weight:650;
+    }
+    .tab:focus-visible{outline:2px solid rgba(34,211,238,.55);outline-offset:2px}
 
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-        .kvs{display:grid;grid-template-columns:1fr auto;gap:8px}
-        .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    label{color:var(--muted);font-size:14px}
+    .row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;margin:12px 0}
+    input[type="text"], select, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(148,163,184,.10);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    input:focus, select:focus, textarea:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18);border-color:rgba(34,211,238,.35)}
 
-        .toast{
-          position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
-          background:rgba(15,23,42,.92);
-          color:var(--text);
-          border:1px solid rgba(255,255,255,.14);
-          padding:10px 14px;border-radius:999px;
-          box-shadow:0 10px 30px rgba(0,0,0,.25);
-          opacity:0;pointer-events:none;transition:opacity .18s ease;
-          max-width:min(92vw,680px);
-          white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-        }
-        .toast.show{opacity:1}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn, button{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(148,163,184,.10);
+      color:var(--text);
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .btn:hover, button:hover{border-color:rgba(34,211,238,.35)}
+    .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
+    .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
+    .btn.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn);font-weight:650}
+    .btn.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
 
-        footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+    .stars{display:flex;gap:8px;align-items:center}
+    .star{
+      width:30px;height:30px;border-radius:999px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(148,163,184,.10);
+      cursor:pointer;
+      font-size:12px;
+      color:var(--text);
+    }
+    .star[aria-checked="true"]{
+      background:rgba(251,191,36,.18);
+      border-color:rgba(251,191,36,.45);
+      color:var(--warn);
+      font-weight:700;
+    }
 
-        @media (max-width:640px){
-          .row{grid-template-columns:1fr}
-          .tab{min-width:unset}
-        }
-    </style>
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .kvs{display:grid;grid-template-columns:1fr auto;gap:8px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+
+    .toast{
+      position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+      background:rgba(15,23,42,.92);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.14);
+      padding:10px 14px;border-radius:999px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      opacity:0;pointer-events:none;transition:opacity .18s ease;
+      max-width:min(92vw,680px);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .toast.show{opacity:1}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+
+    @media (max-width:640px){
+      .row{grid-template-columns:1fr}
+      .tab{min-width:unset}
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <div class="container">
     <div class="card">
-        <div class="topbar">
-            <div class="brand">
-                <div class="logo" aria-hidden="true"></div>
-                <div>
-                    <h1 data-i18n="feedback.h1">TimeTrails 意见反馈</h1>
-                    <div class="muted">
-<!--                        <span class="chip ok" data-i18n="feedback.chips.static">静态页</span>-->
-<!--                        <span class="chip ok" data-i18n="feedback.chips.i18n">多语言</span>-->
-<!--                        <span class="chip ok" data-i18n="feedback.chips.userControl">用户可控</span>-->
-<!--                        <span style="margin-left:6px" data-i18n="feedback.sub">提交会跳转到 GitHub Issue 或邮件处理</span>-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="right">
-                <div class="lang-wrap" aria-label="Language switcher">
-                    <select id="langSelect" class="lang-select" aria-label="Language"></select>
-                    <span class="lang-caret">▾</span>
-                </div>
-                <a class="btn" id="ghLink" target="_blank" rel="noopener" data-i18n="feedback.repo">仓库主页</a>
-            </div>
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1 data-i18n="feedback.h1">TimeTrails 意见反馈</h1>
+            <div class="muted"></div>
+          </div>
         </div>
 
-        <div class="divider"></div>
+        <div class="right">
+          <div class="lang-wrap" aria-label="Language switcher">
+            <select id="langSelect" class="lang-select" aria-label="Language"></select>
+            <span class="lang-caret">▾</span>
+          </div>
+          <a class="btn" id="ghLink" target="_blank" rel="noopener" data-i18n="feedback.repo">仓库主页</a>
+        </div>
+      </div>
 
-        <nav class="tabs" role="tablist" data-i18n-attr="aria-label:feedback.tabs.ariaLabel">
-            <div class="tab" role="tab" id="tab-appstore" aria-controls="panel-appstore" aria-selected="true" tabindex="0" data-tab="appstore" data-i18n="feedback.tabs.appstore">去商店评价</div>
-            <div class="tab" role="tab" id="tab-feedback" aria-controls="panel-feedback" aria-selected="false" tabindex="-1" data-tab="feedback" data-i18n="feedback.tabs.feedback">提交反馈</div>
-            <div class="tab" role="tab" id="tab-community" aria-controls="panel-community" aria-selected="false" tabindex="-1" data-tab="community" data-i18n="feedback.tabs.community">加入交流群</div>
-        </nav>
+      <div class="divider"></div>
 
-        <div class="divider"></div>
+      <nav class="tabs" role="tablist" data-i18n-attr="aria-label:feedback.tabs.ariaLabel">
+        <div class="tab" role="tab" id="tab-appstore" aria-controls="panel-appstore" aria-selected="true" tabindex="0" data-tab="appstore" data-i18n="feedback.tabs.appstore">去商店评价</div>
+        <div class="tab" role="tab" id="tab-feedback" aria-controls="panel-feedback" aria-selected="false" tabindex="-1" data-tab="feedback" data-i18n="feedback.tabs.feedback">提交反馈</div>
+        <div class="tab" role="tab" id="tab-community" aria-controls="panel-community" aria-selected="false" tabindex="-1" data-tab="community" data-i18n="feedback.tabs.community">加入交流群</div>
+      </nav>
 
-        <!-- 提交反馈 -->
-        <section id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" aria-hidden="true" hidden>
-            <h2 data-i18n="feedback.section.form.title">提交反馈</h2>
+      <div class="divider"></div>
 
-            <div class="row">
-                <label for="fb-title" data-i18n="feedback.form.title.label">标题</label>
-                <input id="fb-title" type="text" data-i18n-attr="placeholder:feedback.form.title.placeholder" placeholder="简要描述你的问题或建议">
-            </div>
+      <!-- 提交反馈 -->
+      <section id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" aria-hidden="true" hidden>
+        <h2 data-i18n="feedback.section.form.title">提交反馈</h2>
 
-            <div class="row">
-                <label for="fb-type" data-i18n="feedback.form.type.label">类型</label>
-                <select id="fb-type">
-                    <option value="bug" data-i18n="feedback.form.type.options.bug">缺陷/报错</option>
-                    <option value="feature" data-i18n="feedback.form.type.options.feature">功能建议</option>
-                    <option value="uiux" data-i18n="feedback.form.type.options.uiux">交互/体验</option>
-                    <option value="other" data-i18n="feedback.form.type.options.other">其他</option>
-                </select>
-            </div>
+        <div class="row">
+          <label for="fb-title" data-i18n="feedback.form.title.label">标题</label>
+          <input id="fb-title" type="text" data-i18n-attr="placeholder:feedback.form.title.placeholder" placeholder="简要描述你的问题或建议">
+        </div>
 
-            <div class="row">
-                <label for="fb-content" data-i18n="feedback.form.desc.label">详细描述</label>
-                <textarea id="fb-content" data-i18n-attr="placeholder:feedback.form.desc.placeholder" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
-            </div>
+        <div class="row">
+          <label for="fb-type" data-i18n="feedback.form.type.label">类型</label>
+          <select id="fb-type">
+            <option value="bug" data-i18n="feedback.form.type.options.bug">缺陷/报错</option>
+            <option value="feature" data-i18n="feedback.form.type.options.feature">功能建议</option>
+            <option value="uiux" data-i18n="feedback.form.type.options.uiux">交互/体验</option>
+            <option value="other" data-i18n="feedback.form.type.options.other">其他</option>
+          </select>
+        </div>
 
-            <div class="row">
-                <label data-i18n="feedback.form.rating.label">体验评分</label>
-                <div class="stars" id="stars" role="radiogroup" data-i18n-attr="aria-label:feedback.form.rating.ariaLabel">
-                    <div class="star" role="radio" aria-checked="false" tabindex="0" data-v="1">1</div>
-                    <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="2">2</div>
-                    <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="3">3</div>
-                    <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="4">4</div>
-                    <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="5">5</div>
-                </div>
-            </div>
+        <div class="row">
+          <label for="fb-content" data-i18n="feedback.form.desc.label">详细描述</label>
+          <textarea id="fb-content" data-i18n-attr="placeholder:feedback.form.desc.placeholder" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
+        </div>
 
-            <div class="row">
-                <label for="contact" data-i18n="feedback.form.contact.label">可选联系方式</label>
-                <input id="contact" type="text" data-i18n-attr="placeholder:feedback.form.contact.placeholder" placeholder="邮箱 / QQ / 其他">
-            </div>
+        <div class="row">
+          <label data-i18n="feedback.form.rating.label">体验评分</label>
+          <div class="stars" id="stars" role="radiogroup" data-i18n-attr="aria-label:feedback.form.rating.ariaLabel">
+            <div class="star" role="radio" aria-checked="false" tabindex="0" data-v="1">1</div>
+            <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="2">2</div>
+            <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="3">3</div>
+            <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="4">4</div>
+            <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="5">5</div>
+          </div>
+        </div>
 
-            <div class="row">
-                <label></label>
-                <label class="muted">
-                    <input id="sysinfo" type="checkbox" checked>
-                    <span data-i18n="feedback.form.sysinfo">附带浏览器与系统信息（便于排查）</span>
-                </label>
-            </div>
+        <div class="row">
+          <label for="contact" data-i18n="feedback.form.contact.label">可选联系方式</label>
+          <input id="contact" type="text" data-i18n-attr="placeholder:feedback.form.contact.placeholder" placeholder="邮箱 / QQ / 其他">
+        </div>
 
+        <div class="row">
+          <label></label>
+          <label class="muted">
+            <input id="sysinfo" type="checkbox" checked>
+            <span data-i18n="feedback.form.sysinfo">附带浏览器与系统信息（便于排查）</span>
+          </label>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" id="btn-issue" target="_blank" rel="noopener" data-i18n="feedback.actions.issue">通过 GitHub Issue 提交</a>
+          <a class="btn" id="btn-mail" data-i18n="feedback.actions.mail">通过邮件提交</a>
+          <button id="btn-copy-template" data-i18n="feedback.actions.copy">复制模板</button>
+        </div>
+
+        <p class="muted" style="margin-top:10px" data-i18n="feedback.hint">
+          提示：若 GitHub 需要登录，你也可以通过邮件反馈。
+        </p>
+      </section>
+
+      <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
+      <section id="panel-community" role="tabpanel" aria-labelledby="tab-community" aria-hidden="true" hidden>
+        <h2 data-i18n="feedback.section.community.title">加入交流群</h2>
+        <div class="grid" id="qqGrid" aria-label="QQ groups"></div>
+      </section>
+
+      <!-- App Store -->
+      <section id="panel-appstore" role="tabpanel" aria-labelledby="tab-appstore" aria-hidden="false">
+        <h2 data-i18n="feedback.section.appstore.title">去商店评价</h2>
+
+        <div class="row">
+          <label data-i18n="feedback.appstore.label">App Store</label>
+          <div>
             <div class="btns">
-                <a class="btn primary" id="btn-issue" target="_blank" rel="noopener" data-i18n="feedback.actions.issue">通过 GitHub Issue 提交</a>
-                <a class="btn" id="btn-mail" data-i18n="feedback.actions.mail">通过邮件提交</a>
-                <button id="btn-copy-template" data-i18n="feedback.actions.copy">复制模板</button>
+              <a class="btn warn" id="btn-appstore-review" data-i18n="feedback.appstore.review">去 App Store 评价</a>
+              <a class="btn" id="btn-appstore-copy" data-i18n="feedback.appstore.copyReview">复制评价链接</a>
+              <a class="btn" id="btn-appstore-open" data-i18n="feedback.appstore.openDetail">打开 App 详情页</a>
+              <a class="btn" id="btn-appstore-copy-detail" data-i18n="feedback.appstore.copyDetail">复制详情页链接</a>
             </div>
-
-            <p class="muted" style="margin-top:10px" data-i18n="feedback.hint">
-                提示：若 GitHub 需要登录，你也可以通过邮件反馈。
+            <p class="muted" style="margin-top:10px" data-i18n="feedback.appstore.hint">
+              在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。
             </p>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
-        <section id="panel-community" role="tabpanel" aria-labelledby="tab-community" aria-hidden="true" hidden>
-            <h2 data-i18n="feedback.section.community.title">加入交流群</h2>
+      <div class="divider"></div>
 
-            <!-- JS 会往这里塞卡片 -->
-            <div class="grid" id="qqGrid" aria-label="QQ groups"></div>
-        </section>
-
-        <!-- App Store -->
-        <section id="panel-appstore" role="tabpanel" aria-labelledby="tab-appstore" aria-hidden="false">
-            <h2 data-i18n="feedback.section.appstore.title">去商店评价</h2>
-
-            <div class="row">
-                <label data-i18n="feedback.appstore.label">App Store</label>
-                <div>
-                    <div class="btns">
-                        <a class="btn warn" id="btn-appstore-review" data-i18n="feedback.appstore.review">去 App Store 评价</a>
-                        <a class="btn" id="btn-appstore-copy" data-i18n="feedback.appstore.copyReview">复制评价链接</a>
-                        <a class="btn" id="btn-appstore-open" data-i18n="feedback.appstore.openDetail">打开 App 详情页</a>
-                        <a class="btn" id="btn-appstore-copy-detail" data-i18n="feedback.appstore.copyDetail">复制详情页链接</a>
-                    </div>
-                    <p class="muted" style="margin-top:10px" data-i18n="feedback.appstore.hint">
-                        在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <footer data-i18n="feedback.footer">
-            本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。
-        </footer>
+      <footer data-i18n="feedback.footer">
+        本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。
+      </footer>
     </div>
-</div>
+  </div>
 
-<!-- ✅ i18n messages（脚本会读这些 span 的 textContent；它们会被你的 i18n 系统翻译） -->
-<div id="i18n-msg" hidden>
+  <!-- ✅ i18n messages（脚本会读这些 span 的 textContent） -->
+  <div id="i18n-msg" hidden>
     <span id="msg-copy-ok" data-i18n="feedback.msg.copyOk">已复制到剪贴板</span>
     <span id="msg-copy-fail" data-i18n="feedback.msg.copyFail">复制失败，请手动复制</span>
     <span id="msg-need-config" data-i18n="feedback.msg.needConfig">请先在代码里配置必要参数</span>
@@ -299,35 +311,29 @@
     <span id="qq-full-title" data-i18n="feedback.community.fullTitle">该群已满</span>
     <span id="qq-invite-missing-title" data-i18n="feedback.community.inviteMissingTitle">缺少加群链接</span>
 
-    <!-- ✅ N 群标题模板：默认 “QQ 群 {n}” -->
     <span id="qq-title-prefix" data-i18n="feedback.community.qqTitlePrefix">QQ 群</span>
     <span id="qq-btn-join" data-i18n="feedback.community.join">一键加群</span>
     <span id="qq-btn-copy-number" data-i18n="feedback.community.copyNumber">复制群号</span>
     <span id="qq-btn-copy-invite" data-i18n="feedback.community.copyInvite">复制加群链接</span>
     <span id="qq-badge-full" data-i18n="feedback.community.full">已满</span>
-</div>
+  </div>
 
-<div class="toast" id="toast" aria-live="polite"></div>
+  <div class="toast" id="toast" aria-live="polite"></div>
 
-<script src="/assets/main.js"></script>
-<script src="/assets/lang-switch.js"></script>
+  <script src="/assets/main.js"></script>
+  <script src="/assets/lang-switch.js"></script>
 
-<script>
+  <script>
     // ======== 配置（按需修改）========
     const CONFIG = {
       GH_OWNER: "sxxw-site",
       GH_REPO:  "sxxw.github.io",
       GH_HOMEPAGE: "https://github.com/sxxw-site/sxxw.github.io",
-
       MAIL_TO:  "house@sxxw.site",
-
-      // ✅ 这里就是 N 个群
       QQ_GROUPS: [
         { number: "574966492", inviteUrl: "https://qm.qq.com/q/WmKwcZcZW", isFull: false },
         { number: "185198503", inviteUrl: "https://qm.qq.com/q/J1eYFA7i4m", isFull: true  }
-        // { number:"xxxx", inviteUrl:"https://qm.qq.com/q/xxxx", isFull:false, title:"可选自定义标题" }
       ],
-
       IOS_APP_ID: "6752662508"
     };
 
@@ -531,7 +537,7 @@
     function escapeHtml(s){
       return String(s ?? "")
         .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;").replaceAll("'","&#39;");
+        .replaceAll('"',"quot;").replaceAll("'","&#39;");
     }
 
     function renderQQGroups(){
@@ -575,7 +581,6 @@
         const copyNumBtn = card.querySelector("[data-qq-copy-number]");
         const copyInviteBtn = card.querySelector("[data-qq-copy-invite]");
 
-        // join 状态
         if(isFull || !inviteUrl || !number){
           joinEl.classList.add("disabled");
           joinEl.setAttribute("aria-disabled","true");
@@ -593,13 +598,11 @@
           joinEl.title = "";
         }
 
-        // copy number
         copyNumBtn.onclick = () => {
           if(!number){ showToast(t("msg-qq-number-missing","Missing group number")); return; }
           copyText(number);
         };
 
-        // copy invite
         copyInviteBtn.onclick = (e) => {
           e.preventDefault();
           if(!inviteUrl){ showToast(t("msg-qq-invite-missing","Missing invite url")); return; }
@@ -611,7 +614,6 @@
     // ======== 初始化链接/按钮 ========
     $('#ghLink').href = CONFIG.GH_HOMEPAGE || "#";
 
-    // App Store
     (function initAppStore(){
       const appId = (CONFIG.IOS_APP_ID || "").trim();
       if(!appId){ showToast(t("msg-appid-missing","Missing App ID")); return; }
@@ -649,16 +651,12 @@
       copyText(`# ${title}\n\n${body}`);
     });
 
-    // ✅ 语言切换后：重新渲染 N 群按钮文案/标题/提示
-    function refreshDynamic(){
-      renderQQGroups();
-    }
+    function refreshDynamic(){ renderQQGroups(); }
     window.addEventListener("langchange", refreshDynamic);
     document.getElementById("langSelect")?.addEventListener("change", ()=> setTimeout(refreshDynamic, 0));
 
-    // boot
     setStars(0);
     renderQQGroups();
-</script>
+  </script>
 </body>
 </html>
