@@ -65,6 +65,7 @@ def default_html_lang_for_code(code: str) -> str:
 def normalize_slashes(path: str) -> str:
     return (path or "").replace("\\", "/")
 
+
 # =========================
 # 语言配置
 # =========================
@@ -340,13 +341,14 @@ def build() -> None:
     base_n = norm_code(BASE)
 
     for lang in langs:
-        raw_code = (lang.code or "").strip()   # ✅ 目录名严格按这个
-        code_n = norm_code(raw_code)           # ✅ 逻辑/locale 读取用这个
+        raw_code = (lang.code or "").strip()   # 原始 code（仅用于展示/日志）
+        code_n = norm_code(raw_code)           # ✅ 逻辑/locale 读取用这个（小写）
+        out_dir_name = code_n                  # ✅ 输出目录统一小写
 
         merged = load_locale_with_fallbacks(code_n, lang.fallbacks, base_n)
 
-        # ✅ 必输出：docs/<raw_code>/
-        out_roots: List[Tuple[Path, str]] = [(DOCS_DIR / raw_code, f"dir:{raw_code}")]
+        # ✅ 必输出：docs/<code_n>/  (目录名小写)
+        out_roots: List[Tuple[Path, str]] = [(DOCS_DIR / out_dir_name, f"dir:{out_dir_name}")]
 
         # ✅ base 另外输出一份到 docs/ 根目录
         if BASE_ALSO_AT_ROOT and (code_n == base_n):
@@ -356,7 +358,7 @@ def build() -> None:
         if code_n.startswith("en"):
             vars_map["company"] = os.getenv("I18N_COMPANY_EN", vars_map["company"])
 
-        print(f"\n=== build: {raw_code}  (html.lang={lang.html_lang}, rtl={lang.rtl})")
+        print(f"\n=== build: {raw_code} -> {out_dir_name}  (html.lang={lang.html_lang}, rtl={lang.rtl})")
         for out_root, tag in out_roots:
             print(f" -> output [{tag}]: {out_root}")
 
@@ -382,7 +384,7 @@ def build() -> None:
 
     print("\n✅ build 完成")
     print(f"   输出目录：{DOCS_DIR}")
-    print("   base 语言：同时输出到 docs/ 与 docs/<base_code>/（按 languages.json 保持大小写）")
+    print("   base 语言：同时输出到 docs/ 与 docs/<base_code>/（目录名统一小写）")
 
 
 if __name__ == "__main__":
