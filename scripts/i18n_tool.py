@@ -24,7 +24,7 @@ DEFAULT_LOCALES_DIR_CANDIDATES = [Path("src/locales"), Path("locales")]
 
 # 你的基础文件实际是：src/locales/zh-hans.json
 BASE = "zh-hans"
-FIRST_HOP = ["en", "zh-hant", "ja", "ko"]
+FIRST_HOP = ["en", "zh-hant", "zh-hk","ja", "ko"]
 
 MODEL = "gpt-4o-mini"
 
@@ -900,10 +900,10 @@ def menu() -> None:
         print(f"WORKERS    : {MAX_WORKERS}  (env: I18N_WORKERS)", flush=True)
         print(f"PROTECTED  : {len(protected_terms)}  ({PROTECTED_TERMS_FILE} / env: I18N_PROTECTED_TERMS)", flush=True)
         print("--------------------------------", flush=True)
-        print("1) 第一阶段（增量追加）：zh-hans → en / zh-hant / ja / ko", flush=True)
-        print("2) 第一阶段（全量覆盖）：zh-hans → en / zh-hant / ja / ko", flush=True)
-        print("3) 第二阶段（增量追加）：en → 其它语言（排除 en/zh-hant/ja/ko）", flush=True)
-        print("4) 第二阶段（全量覆盖）：en → 其它语言（排除 en/zh-hant/ja/ko）", flush=True)
+        print("1) 第一阶段（增量追加）：zh-hans → en / zh-hant / zh-hk  / ja / ko", flush=True)
+        print("2) 第一阶段（全量覆盖）：zh-hans → en / zh-hant / zh-hk / ja / ko", flush=True)
+        print("3) 第二阶段（增量追加）：en → 其它语言（排除 en/zh-hant/zh-hk/ja/ko）", flush=True)
+        print("4) 第二阶段（全量覆盖）：en → 其它语言（排除 en/zh-hant/zh-hk/ja/ko）", flush=True)
         print("5) 根据 key 清理翻译字段（不动 base，不排序）", flush=True)
         print("6) 排序翻译文件（仅此选项才排序）", flush=True)
         print("7) 删除其它语言中 base 不存在的多余 key（不动 base，不排序）", flush=True)

@@ -14,7 +14,7 @@
 <!-- （可选）iOS 主屏幕/PWA 更稳 -->
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<title>Feedback (TimeTrails)</title>
+<title>意见反馈（TimeTrails）</title>
 <!-- ✅ 关键：把“首屏底色”放在任何外链 CSS 之前，防止移动端先白一帧 -->
 <style>
     :root{ color-scheme: dark light; }
@@ -214,7 +214,7 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>TimeTrails Feedback</h1>
+<h1>TimeTrails 意见反馈</h1>
 <div class="muted"></div>
 </div>
 </div>
@@ -223,39 +223,39 @@
 <select aria-label="Language" class="lang-select" id="langSelect"></select>
 <span class="lang-caret">▾</span>
 </div>
-<a class="btn" id="ghLink" rel="noopener" target="_blank">Repository Thuis</a>
+<a class="btn" id="ghLink" rel="noopener" target="_blank">仓库主页</a>
 </div>
 </div>
 <div class="divider"></div>
-<nav aria-label="Feedback Navigatie" class="tabs" role="tablist">
-<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">Beoordeel in de winkel</div>
-<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">Feedback indienen</div>
-<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">Sluit je aan bij de communitygroep</div>
+<nav aria-label="反馈入口" class="tabs" role="tablist">
+<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">去商店评价</div>
+<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">提交反馈</div>
+<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">加入交流群</div>
 </nav>
 <div class="divider"></div>
 <!-- 提交反馈 -->
 <section aria-hidden="true" aria-labelledby="tab-feedback" hidden="" id="panel-feedback" role="tabpanel">
-<h2>Feedback Indienen</h2>
+<h2>提交反馈</h2>
 <div class="row">
-<label for="fb-title">Titel</label>
-<input id="fb-title" placeholder="Beschrijf kort uw probleem of suggestie" type="text"/>
+<label for="fb-title">标题</label>
+<input id="fb-title" placeholder="简要描述你的问题或建议" type="text"/>
 </div>
 <div class="row">
-<label for="fb-type">Type</label>
+<label for="fb-type">类型</label>
 <select id="fb-type">
-<option value="bug">Fout/Verkeerd</option>
-<option value="feature">Functiesuggestie</option>
-<option value="uiux">Interactie/Ervaring</option>
-<option value="other">Overige</option>
+<option value="bug">缺陷/报错</option>
+<option value="feature">功能建议</option>
+<option value="uiux">交互/体验</option>
+<option value="other">其他</option>
 </select>
 </div>
 <div class="row">
-<label for="fb-content">Gedetailleerde beschrijving</label>
-<textarea id="fb-content" placeholder="Reproductiestappen / Verwacht gedrag / Werkelijke resultaten / Screenshotlink ..."></textarea>
+<label for="fb-content">详细描述</label>
+<textarea id="fb-content" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
 </div>
 <div class="row">
-<label>Ervaringsbeoordeling</label>
-<div aria-label="Ervaringsbeoordeling" class="stars" id="stars" role="radiogroup">
+<label>体验评分</label>
+<div aria-label="评分" class="stars" id="stars" role="radiogroup">
 <div aria-checked="false" class="star" data-v="1" role="radio" tabindex="0">1</div>
 <div aria-checked="false" class="star" data-v="2" role="radio" tabindex="-1">2</div>
 <div aria-checked="false" class="star" data-v="3" role="radio" tabindex="-1">3</div>
@@ -264,77 +264,77 @@
 </div>
 </div>
 <div class="row">
-<label for="contact">Optionele contactmethode</label>
-<input id="contact" placeholder="E-mail / QQ / Anders" type="text"/>
+<label for="contact">可选联系方式</label>
+<input id="contact" placeholder="邮箱 / QQ / 其他" type="text"/>
 </div>
 <div class="row">
 <label></label>
 <label class="muted">
 <input checked="" id="sysinfo" type="checkbox"/>
-<span>Voeg browser- en systeeminformatie toe (voor probleemoplossing)</span>
+<span>附带浏览器与系统信息（便于排查）</span>
 </label>
 </div>
 <div class="btns">
-<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">Indienen via GitHub Issue</a>
-<a class="btn" id="btn-mail">Indienen via e-mail</a>
-<button id="btn-copy-template">Kopieer Sjabloon</button>
+<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">通过 GitHub Issue 提交</a>
+<a class="btn" id="btn-mail">通过邮件提交</a>
+<button id="btn-copy-template">复制模板</button>
 </div>
-<p class="muted" style="margin-top:10px">Tip: Als GitHub om inloggen vraagt, kun je ook feedback geven via e-mail.</p>
+<p class="muted" style="margin-top:10px">提示：若 GitHub 需要登录，你也可以通过邮件反馈。</p>
 </section>
 <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
 <section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
-<h2>Sluit je aan bij de discussie groep</h2>
-<div aria-label="QQ groups" class="grid" id="qqGrid"></div>
+<h2>加入交流群</h2>
+<div class="grid" id="qqGrid"></div>
 </section>
 <!-- App Store -->
 <section aria-hidden="false" aria-labelledby="tab-appstore" id="panel-appstore" role="tabpanel">
-<h2>Beoordeel in de winkel</h2>
+<h2>去商店评价</h2>
 <div class="row">
 <label>App Store</label>
 <div>
 <div class="btns">
-<a class="btn warn" id="btn-appstore-review">Ga naar de App Store om een beoordeling achter te laten</a>
-<a class="btn" id="btn-appstore-copy">Kopieer beoordelingslink</a>
-<a class="btn" id="btn-appstore-open">Open App Detail Pagina</a>
-<a class="btn" id="btn-appstore-copy-detail">Kopieer link naar detailpagina</a>
+<a class="btn warn" id="btn-appstore-review">去 App Store 评价</a>
+<a class="btn" id="btn-appstore-copy">复制评价链接</a>
+<a class="btn" id="btn-appstore-open">打开 App 详情页</a>
+<a class="btn" id="btn-appstore-copy-detail">复制详情页链接</a>
 </div>
-<p class="muted" style="margin-top:10px">Op iPhone/iPad zal het proberen om de App Store direct te openen; andere platforms zullen de webversie openen (automatische regio).</p>
+<p class="muted" style="margin-top:10px">在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。</p>
 </div>
 </div>
 </section>
 <div class="divider"></div>
-<footer>Deze pagina is statisch en verzamelt geen gevoelige gegevens. Ingediende inhoud wordt omgeleid naar het probleem/e-mail dat je hebt geconfigureerd voor verwerking.</footer>
+<footer>本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。</footer>
 </div>
 </div>
 <!-- ✅ i18n messages（脚本会读这些 span 的 textContent） -->
 <div hidden="" id="i18n-msg">
-<span id="msg-copy-ok">Gekopieerd naar het klembord</span>
-<span id="msg-copy-fail">Kopiëren is mislukt, kopieer alstublieft handmatig.</span>
-<span id="msg-need-config">Gelieve eerst de nodige parameters in de code te configureren.</span>
-<span id="msg-qq-invite-missing">Groep uitnodigingslink niet geconfigureerd</span>
-<span id="msg-qq-number-missing">Groepsnummer niet geconfigureerd</span>
-<span id="msg-appid-missing">App ID niet geconfigureerd</span>
-<span id="md-title-fallback">(Titel toe te voegen)</span>
-<span id="md-section-desc">### Beschrijving</span>
-<span id="md-section-type">### Type</span>
-<span id="md-section-rating">### Beoordeling</span>
-<span id="md-section-contact">### Contactinformatie</span>
-<span id="md-section-sysinfo">### Systeeminformatie</span>
-<span id="md-desc-fallback">(Gedetailleerde beschrijving/reproductiestappen/verwacht gedrag...)</span>
-<span id="md-rating-none">Niet beoordeeld</span>
-<span id="md-contact-none">Niet opgegeven</span>
-<span id="mail-subject-prefix">[Feedback]</span>
+<span id="msg-copy-ok">已复制到剪贴板</span>
+<span id="msg-copy-fail">复制失败，请手动复制</span>
+<span id="msg-need-config">请先在代码里配置必要参数</span>
+<span id="msg-qq-invite-missing">未配置加群链接</span>
+<span id="msg-qq-number-missing">未配置群号</span>
+<span id="msg-appid-missing">未配置 App ID</span>
+<span id="md-title-fallback">（待补充标题）</span>
+<span id="md-section-desc">### 描述</span>
+<span id="md-section-type">### 类型</span>
+<span id="md-section-rating">### 评分</span>
+<span id="md-section-contact">### 联系方式</span>
+<span id="md-section-sysinfo">### 系统信息</span>
+<span id="md-desc-fallback">（详细描述/复现步骤/期望行为...）</span>
+<span id="md-rating-none">未评分</span>
+<span id="md-contact-none">未提供</span>
+<span id="mail-subject-prefix">【反馈】</span>
 <span id="sys-ua">UA</span>
-<span id="sys-platform">Platform</span>
-<span id="sys-lang">Taal</span>
-<span id="sys-screen">Scherm</span>
-<span id="qq-full-title">De groep is vol.</span>
-<span id="qq-invite-missing-title">Ontbrekende groepsuitnodigingslink</span>
-<span id="qq-title-prefix">QQ Groep</span>
-<span id="qq-btn-join">Sluit je met één klik aan bij de groep</span>
-<span id="qq-btn-copy-number">Kopieer groepsnummer</span>
-<span id="qq-btn-copy-invite">Kopieer groepslink</span>
-<span id="qq-badge-full">Volledig</span>
+<span id="sys-platform">平台</span>
+<span id="sys-lang">语言</span>
+<span id="sys-screen">屏幕</span>
+<span id="qq-full-title">该群已满</span>
+<span id="qq-invite-missing-title">缺少加群链接</span>
+<span id="qq-title-prefix">QQ 群</span>
+<span id="qq-btn-join">一键加群</span>
+<span id="qq-btn-copy-number">复制群号</span>
+<span id="qq-btn-copy-invite">复制加群链接</span>
+<span id="qq-badge-full">已满</span>
 </div>
 <div aria-live="polite" class="toast" id="toast"></div>
 <script src="/assets/main.js"></script>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="en-IN">
+<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<title>Open Source Licenses</title>
+<meta content="Third-party open source components and license information used by this application." name="description"/>
+<meta content="noindex,nofollow" name="robots"/>
+<style>
+        :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185;--border:rgba(255,255,255,.10)}
+        @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1;--border:rgba(15,23,42,.10)}}
+
+        *{box-sizing:border-box}
+        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+        a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+
+        .container{max-width:1040px;margin:0 auto;padding:40px 16px}
+        .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+
+        .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+        h1{font-size:clamp(24px,3.2vw,40px);margin:0 0 6px;letter-spacing:.2px}
+        .subtitle{color:var(--muted);line-height:1.6}
+
+        .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:22px 0}
+
+        .hero{display:grid;grid-template-columns: 1.15fr .85fr;gap:18px;align-items:stretch;}
+        @media (max-width: 880px){ .hero{ grid-template-columns:1fr; } }
+
+        .panel{border:1px solid var(--border);border-radius:16px;padding:16px;background:rgba(255,255,255,.02)}
+        .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+        .chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid var(--border)}
+        .chip.ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+        .chip.accent{background:rgba(34,211,238,.15);color:var(--accent);border-color:rgba(34,211,238,.35)}
+        .chip.warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+
+        .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+        .btn{
+            display:inline-flex;align-items:center;gap:8px;
+            padding:10px 14px;border-radius:12px;
+            border:1px solid var(--border);
+            background:rgba(148,163,184,.10);
+            color:var(--text);
+            text-decoration:none;
+            cursor:pointer;
+        }
+        .btn:hover{border-color:rgba(34,211,238,.35)}
+        .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
+        .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
+
+        .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px}
+        .span12{grid-column:span 12}
+        @media (max-width: 880px){ .span12{grid-column:span 12} }
+
+        h2{font-size:clamp(18px,2.0vw,24px);margin:0 0 8px}
+        h3{margin:0 0 8px;font-size:16px}
+        p,li{line-height:1.75;color:var(--text)}
+        .muted{color:var(--muted);font-size:13px}
+
+        code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
+        pre{
+            white-space:pre-wrap;word-break:break-word;
+            padding:14px;border-radius:14px;margin:10px 0 0;
+            border:1px solid var(--border);
+            background:rgba(148,163,184,.06);
+            font-size:12.5px;line-height:1.6;
+            overflow:auto;
+        }
+
+        details{border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.02)}
+        details + details{margin-top:12px}
+        summary{
+            list-style:none;cursor:pointer;
+            padding:14px 14px;
+            display:flex;align-items:center;justify-content:space-between;gap:12px;
+            user-select:none;
+        }
+        summary::-webkit-details-marker{display:none}
+        .sum-left{display:flex;flex-direction:column;gap:2px}
+        .sum-title{font-weight:750}
+        .sum-sub{font-size:12px;color:var(--muted)}
+        .caret{opacity:.85}
+        details[open] .caret{transform:rotate(180deg)}
+        .detail-body{padding:0 14px 14px}
+        footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
+<h1>Open Source Licenses</h1>
+<div class="subtitle">This page displays the third-party components integrated into this application and their license texts. The license content is subject to <code>Pods/&lt;PodName&gt;/LICENSE*</code>.</div>
+</div>
+</div>
+<div class="btns" style="margin-top:0">
+<a class="btn primary" href="#toc">Jump to Table of Contents</a>
+<a class="btn" href="#mit">MIT</a>
+<a class="btn" href="#bsd">BSD 3-Clause</a>
+</div>
+</div>
+<div class="divider"></div>
+<div class="hero">
+<div class="panel">
+<h2>Overview</h2>
+<p class="muted">This application uses several open source components. Below is a grouped display by license type for easy reference and compliance verification.</p>
+<div aria-label="highlights" class="chips">
+<span class="chip ok">MIT</span>
+<span class="chip warn">BSD 3-Clause</span>
+<span class="chip accent">Foldable Reading</span>
+<span class="chip accent">
+            更新：<time datetime="2025-12-19" id="licenseUpdatedAt">2025-12-19</time>
+</span>
+</div>
+<div class="btns">
+<a class="btn ok" href="#licenses">View All Licenses</a>
+<a class="btn" href="#note">Note</a>
+</div>
+</div>
+<div class="panel" id="toc">
+<h3>Table of Contents</h3>
+<ul>
+<li><a href="#mit">MIT License</a>
+<ul>
+<li><a href="#URLNavigator">URLNavigator 2.5.1</a></li>
+<li><a href="#GRDB">GRDB.swift 6.24.1</a></li>
+<li><a href="#Pulsator">Pulsator 0.6.0</a></li>
+<li><a href="#FTPopOverMenu_Swift">FTPopOverMenu_Swift 0.4.5</a></li>
+</ul>
+</li>
+<li><a href="#bsd">BSD 3-Clause License</a>
+<ul>
+<li><a href="#GCDWebServer">GCDWebServer 3.5.4</a></li>
+<li><a href="#GCDWebUploader">GCDWebServer/WebUploader 3.5.4</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="divider"></div>
+<div class="grid" id="licenses">
+<!-- MIT -->
+<div class="panel span12" id="mit">
+<h2>MIT License</h2>
+<p class="muted">The following components are licensed under the MIT License.</p>
+</div>
+<div class="span12" id="URLNavigator">
+<details>
+<summary>
+<div class="sum-left">
+<div class="sum-title">
+                                URLNavigator <span class="chip ok" style="margin-left:8px">MIT</span>
+</div>
+<div class="sum-sub">Version: 2.5.1 · Source: GitHub / CocoaPods</div>
+</div>
+<div class="caret">▾</div>
+</summary>
+<div class="detail-body">
+<pre><code>MIT License
+
+Copyright (c) &lt;YEAR&gt; &lt;COPYRIGHT HOLDER&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
+</div>
+</details>
+</div>
+<div class="span12" id="GRDB">
+<details>
+<summary>
+<div class="sum-left">
+<div class="sum-title">
+                                GRDB.swift <span class="chip ok" style="margin-left:8px">MIT</span>
+</div>
+<div class="sum-sub">Version: 6.24.1 · Source: GitHub / CocoaPods</div>
+</div>
+<div class="caret">▾</div>
+</summary>
+<div class="detail-body">
+<pre><code>MIT License
+
+Copyright (c) &lt;YEAR&gt; &lt;COPYRIGHT HOLDER&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
+</div>
+</details>
+</div>
+<div class="span12" id="Pulsator">
+<details>
+<summary>
+<div class="sum-left">
+<div class="sum-title">
+                                Pulsator <span class="chip ok" style="margin-left:8px">MIT</span>
+</div>
+<div class="sum-sub">Version: 0.6.0 · Source: GitHub / CocoaPods</div>
+</div>
+<div class="caret">▾</div>
+</summary>
+<div class="detail-body">
+<pre><code>MIT License
+
+Copyright (c) &lt;YEAR&gt; &lt;COPYRIGHT HOLDER&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
+</div>
+</details>
+</div>
+<div class="span12" id="FTPopOverMenu_Swift">
+<details>
+<summary>
+<div class="sum-left">
+<div class="sum-title">
+                                FTPopOverMenu_Swift <span class="chip ok" style="margin-left:8px">MIT</span>
+</div>
+<div class="sum-sub">Version: 0.4.5 · Source: GitHub / CocoaPods</div>
+</div>
+<div class="caret">▾</div>
+</summary>
+<div class="detail-body">
+<pre><code>MIT License
+
+Copyright (c) &lt;YEAR&gt; &lt;COPYRIGHT HOLDER&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
+</div>
+</details>
+</div>
+<!-- BSD -->
+<div class="panel span12" id="bsd">
+<h2>BSD 3-Clause License</h2>
+<p class="muted">The following components are licensed under the BSD 3-Clause (New BSD) License.</p>
+</div>
+<div class="span12" id="GCDWebServer">
+<details>
+<summary>
+<div class="sum-left">
+<div class="sum-title">
+                                GCDWebServer <span class="chip warn" style="margin-left:8px">BSD 3-Clause</span>
+</div>
+<div class="sum-sub">Version: 3.5.4 · Source: GitHub / CocoaPods</div>
+</div>
+<div class="caret">▾</div>
+</summary>
+<div class="detail-body">
+<pre><code>BSD 3-Clause License
+
+Copyright (c) &lt;YEAR&gt;, &lt;COPYRIGHT HOLDER&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</code></pre>
+</div>
+</details>
+</div>
+<div class="span12" id="GCDWebUploader">
+<details>
+<summary>
+<div class="sum-left">
+<div class="sum-title">
+                                GCDWebServer/WebUploader <span class="chip warn" style="margin-left:8px">BSD 3-Clause</span>
+</div>
+<div class="sum-sub">Version: 3.5.4 · Source: GitHub / CocoaPods</div>
+</div>
+<div class="caret">▾</div>
+</summary>
+<div class="detail-body">
+<p class="muted" style="margin:0 0 10px">WebUploader as a submodule typically adopts the same license as GCDWebServer; if the distribution package includes a separate license text, it shall prevail.</p>
+<pre><code>BSD 3-Clause License
+
+(此处可与 GCDWebServer 相同，或替换为发行包内提供的独立许可证文本。)</code></pre>
+</div>
+</details>
+</div>
+<div class="panel span12" id="note">
+<h3>Note</h3>
+<ul>
+<li>The license text should remain consistent with the component release package (e.g., <code>Pods/&lt;PodName&gt;/LICENSE*</code>).</li>
+<li>In case of any discrepancies between this page and the actual license text, the license accompanying the component shall prevail.</li>
+</ul>
+<div class="btns">
+<a class="btn primary" href="#toc">Back to Directory</a>
+<a class="btn ok" href="#licenses">Back to Licenses</a>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+<p class="muted" style="margin:0">This page is for displaying open source licenses.</p>
+</div>
+<footer>Open Source Licenses</footer>
+</div>
+</body>
+</html>
