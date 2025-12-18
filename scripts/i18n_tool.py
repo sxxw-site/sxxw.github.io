@@ -803,6 +803,55 @@ def clean_translations_by_key(locales_dir: Path, key_patterns_raw: str) -> None:
 
 
 # =========================
+# ✅ 新增：删除 BASE 中没有、但其它语言文件中有的多余 key（不动 BASE）
+# - 不排序，仅删除；保留原顺序
+# =========================
+def remove_keys_not_in_base(locales_dir: Path) -> None:
+    base_path = locale_path(locales_dir, BASE)
+    if not base_path.exists():
+        raise FileNotFoundError(f"找不到基础语言文件：{base_path}")
+
+    base_obj = json.loads(base_path.read_text(encoding="utf-8"))
+    base_pairs = flatten_json(base_obj)
+    base_key_set = {p for p, _ in base_pairs}
+
+    base_name = code_to_filename(BASE)
+    files = [p for p in locales_dir.glob("*.json") if p.name != base_name]
+    if not files:
+        print("没有可清理的翻译文件（除 base 外）。", flush=True)
+        return
+
+    total_removed = 0
+    total_files_changed = 0
+
+    for fp in files:
+        obj = json.loads(fp.read_text(encoding="utf-8"))
+        flat = flatten_json(obj)
+
+        kept: List[Tuple[str, Any]] = []
+        removed = 0
+        for path, val in flat:
+            if path not in base_key_set:
+                removed += 1
+                continue
+            kept.append((path, val))
+
+        if removed > 0:
+            total_removed += removed
+            total_files_changed += 1
+            new_obj = pairs_to_flat_dict(kept)
+            write_json_preserve_order(fp, new_obj)
+            print(f"🧹 {fp.name}: 删除 {removed} 个“base 不存在”的 key", flush=True)
+        else:
+            print(f"🧼 {fp.name}: 无多余 key，跳过", flush=True)
+
+    print(
+        f"✅ 清理完成：共处理 {len(files)} 个文件，变更 {total_files_changed} 个，共删除 {total_removed} 项（不影响 {base_name}）",
+        flush=True,
+    )
+
+
+# =========================
 # 排序：只有运行此选项才排序
 # - 输出仍然是平铺 JSON（不分级）
 # =========================
@@ -857,9 +906,10 @@ def menu() -> None:
         print("4) 第二阶段（全量覆盖）：en → 其它语言（排除 en/zh-hant/ja/ko）", flush=True)
         print("5) 根据 key 清理翻译字段（不动 base，不排序）", flush=True)
         print("6) 排序翻译文件（仅此选项才排序）", flush=True)
-        print("7) 退出", flush=True)
+        print("7) 删除其它语言中 base 不存在的多余 key（不动 base，不排序）", flush=True)
+        print("8) 退出", flush=True)
 
-        choice = input("选择操作 (1/2/3/4/5/6/7): ").strip()
+        choice = input("选择操作 (1/2/3/4/5/6/7/8): ").strip()
 
         if choice in {"1", "2", "3", "4"}:
             api_key = read_api_key()
@@ -888,6 +938,9 @@ def menu() -> None:
             sort_locales(locales_dir, include_base=inc_base)
 
         elif choice == "7":
+            remove_keys_not_in_base(locales_dir)
+
+        elif choice == "8":
             print("Bye.", flush=True)
             return
 
