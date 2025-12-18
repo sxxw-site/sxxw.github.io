@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "צור והצג מסלולים, סטטיסטיקות, וויזואליזציות של מפות באופן מקומי על המכשיר.",
   "timetrails.privacy.section.use.items.1": "(אופציונלי) משמש לשמירה על עקביות הנתונים בין המכשירים שלך כאשר אתה מפעיל סנכרון עם iCloud/שרת פרטי.",
   "timetrails.privacy.section.use.items.2": "שיפור ביצועי האפליקציה, יציבות וחוויית המשתמש (למשל, תיקונים המבוססים על יומני קריסה אנונימיים).",
-  "timetrails.privacy.section.use.title": "איך אנחנו משתמשים במידע"
+  "timetrails.privacy.section.use.title": "איך אנחנו משתמשים במידע",
+  "timetrails.licenses.item.sourceNote": "טקסט הרישוי הבא נלקח מחבילת שחרור הרכיב; ניתן לצפות בקובץ המקורי המלא במאגר GitHub הרשמי.",
+  "timetrails.licenses.item.viewLicense": "צפה ברשיון GitHub",
+  "timetrails.licenses.item.viewRepo": "צפה במאגר GitHub",
+  "timetrails.licenses.note.li2": "כל רכיב מספק קישורים למאגר GitHub ולקובץ LICENSE המקורי כדי לאפשר אימות קל של המקור."
 }

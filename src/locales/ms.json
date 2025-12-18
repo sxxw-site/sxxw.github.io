@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "Hasilkan dan paparkan trek, statistik, dan visualisasi peta secara tempatan pada peranti.",
   "timetrails.privacy.section.use.items.1": "(Pilihan) Digunakan untuk memastikan data konsisten antara peranti anda apabila anda mengaktifkan penyegerakan iCloud/pelayan peribadi.",
   "timetrails.privacy.section.use.items.2": "Meningkatkan prestasi aplikasi, kestabilan, dan pengalaman pengguna (contohnya, pembetulan berdasarkan log kemalangan tanpa nama).",
-  "timetrails.privacy.section.use.title": "Bagaimana Kami Menggunakan Maklumat"
+  "timetrails.privacy.section.use.title": "Bagaimana Kami Menggunakan Maklumat",
+  "timetrails.licenses.item.sourceNote": "Teks lesen berikut dipetik dari pakej pelepasan komponen; fail asal lengkap boleh dilihat di repositori rasmi GitHub.",
+  "timetrails.licenses.item.viewLicense": "Lihat LICENSE GitHub",
+  "timetrails.licenses.item.viewRepo": "Lihat repositori GitHub",
+  "timetrails.licenses.note.li2": "Setiap komponen menyediakan pautan ke repositori GitHub dan fail LICENSE asal untuk pengesahan sumber yang mudah."
 }

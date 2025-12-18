@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "डिव्हाइसवर स्थानिकरित्या ट्रॅक्स, आकडेवारी, आणि नकाशा दृश्ये तयार करा आणि सादर करा.",
   "timetrails.privacy.section.use.items.1": "(ऐच्छिक) जेव्हा आपण iCloud/खाजगी सर्व्हर समन्वय सक्षम करता तेव्हा आपल्या उपकरणांमधील डेटा सुसंगत ठेवण्यासाठी वापरले जाते.",
   "timetrails.privacy.section.use.items.2": "अर्जाची कार्यक्षमता, स्थिरता आणि वापरकर्ता अनुभव सुधारित करा (उदाहरणार्थ, गुप्त क्रॅश लॉगवर आधारित दुरुस्त्या).",
-  "timetrails.privacy.section.use.title": "आम्ही माहिती कशी वापरतो"
+  "timetrails.privacy.section.use.title": "आम्ही माहिती कशी वापरतो",
+  "timetrails.licenses.item.sourceNote": "खालील परवाना मजकूर घटक रिलीझ पॅकेजमधून घेतलेला आहे; संपूर्ण मूळ फाइल अधिकृत GitHub संग्रहात पाहता येईल.",
+  "timetrails.licenses.item.viewLicense": "GitHub LICENSE पहा",
+  "timetrails.licenses.item.viewRepo": "GitHub रेपॉजिटरी पहा",
+  "timetrails.licenses.note.li2": "प्रत्येक घटक GitHub रेपॉजिटरी आणि मूळ LICENSE फाइलसाठी स्रोताची सोपी पडताळणी करण्यासाठी दुवे प्रदान करतो."
 }

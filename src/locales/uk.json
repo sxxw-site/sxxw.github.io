@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "Генерувати та відображати треки, статистику та візуалізації карт локально на пристрої.",
   "timetrails.privacy.section.use.items.1": "(Необов'язково) Використовується для підтримки узгодженості даних між вашими пристроями, коли ви активуєте синхронізацію iCloud/приватного сервера.",
   "timetrails.privacy.section.use.items.2": "Покращення продуктивності програми, стабільності та користувацького досвіду (наприклад, виправлення на основі анонімних звітів про збої).",
-  "timetrails.privacy.section.use.title": "Як ми використовуємо інформацію"
+  "timetrails.privacy.section.use.title": "Як ми використовуємо інформацію",
+  "timetrails.licenses.item.sourceNote": "Наступний текст ліцензії витягнуто з пакету випуску компонента; повний оригінальний файл можна переглянути в офіційному репозиторії GitHub.",
+  "timetrails.licenses.item.viewLicense": "Переглянути GitHub LICENSE",
+  "timetrails.licenses.item.viewRepo": "Переглянути репозиторій GitHub",
+  "timetrails.licenses.note.li2": "Кожен компонент надає посилання на репозиторій GitHub та оригінальний файл LICENSE для зручної перевірки джерела."
 }

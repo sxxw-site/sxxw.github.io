@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "Gerar e apresentar faixas, estatísticas e visualizações de mapas localmente no dispositivo.",
   "timetrails.privacy.section.use.items.1": "(Opcional) Usado para manter os dados consistentes entre seus dispositivos quando você ativa a sincronização do iCloud/servidor privado.",
   "timetrails.privacy.section.use.items.2": "Melhorar o desempenho, a estabilidade e a experiência do usuário do aplicativo (por exemplo, correções baseadas em logs de falhas anônimos).",
-  "timetrails.privacy.section.use.title": "Como Usamos as Informações"
+  "timetrails.privacy.section.use.title": "Como Usamos as Informações",
+  "timetrails.licenses.item.sourceNote": "O seguinte texto de licença é extraído do pacote de lançamento do componente; o arquivo original completo pode ser visualizado no repositório oficial do GitHub.",
+  "timetrails.licenses.item.viewLicense": "Ver LICENÇA do GitHub",
+  "timetrails.licenses.item.viewRepo": "Ver repositório do GitHub",
+  "timetrails.licenses.note.li2": "Cada componente fornece links para o repositório do GitHub e o arquivo LICENSE original para fácil verificação da fonte."
 }

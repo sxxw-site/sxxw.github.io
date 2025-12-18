@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "Tạo và trình bày các bản nhạc, thống kê và hình ảnh bản đồ tại chỗ trên thiết bị.",
   "timetrails.privacy.section.use.items.1": "(Tùy chọn) Được sử dụng để giữ cho dữ liệu nhất quán giữa các thiết bị của bạn khi bạn bật đồng bộ hóa iCloud/máy chủ riêng.",
   "timetrails.privacy.section.use.items.2": "Cải thiện hiệu suất ứng dụng, độ ổn định và trải nghiệm người dùng (ví dụ: sửa lỗi dựa trên nhật ký sự cố ẩn danh).",
-  "timetrails.privacy.section.use.title": "Chúng Tôi Sử Dụng Thông Tin Như Thế Nào"
+  "timetrails.privacy.section.use.title": "Chúng Tôi Sử Dụng Thông Tin Như Thế Nào",
+  "timetrails.licenses.item.sourceNote": "Văn bản giấy phép sau đây được trích từ gói phát hành thành phần; tệp gốc hoàn chỉnh có thể được xem trong kho GitHub chính thức.",
+  "timetrails.licenses.item.viewLicense": "Xem GIẤY PHÉP GitHub",
+  "timetrails.licenses.item.viewRepo": "Xem kho lưu trữ GitHub",
+  "timetrails.licenses.note.li2": "Mỗi thành phần cung cấp liên kết đến kho GitHub và tệp LICENSE gốc để dễ dàng xác minh nguồn gốc."
 }

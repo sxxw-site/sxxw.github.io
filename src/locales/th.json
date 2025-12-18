@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "สร้างและนำเสนอแทร็ก สถิติ และการแสดงผลแผนที่ในเครื่องในอุปกรณ์",
   "timetrails.privacy.section.use.items.1": "(ไม่บังคับ) ใช้เพื่อรักษาความสอดคล้องของข้อมูลระหว่างอุปกรณ์ของคุณเมื่อคุณเปิดใช้งานการซิงโครไนซ์ iCloud/เซิร์ฟเวอร์ส่วนตัว.",
   "timetrails.privacy.section.use.items.2": "ปรับปรุงประสิทธิภาพของแอปพลิเคชัน ความเสถียร และประสบการณ์ของผู้ใช้ (เช่น การแก้ไขตามบันทึกการชนแบบไม่ระบุชื่อ).",
-  "timetrails.privacy.section.use.title": "เราจะใช้ข้อมูลอย่างไร"
+  "timetrails.privacy.section.use.title": "เราจะใช้ข้อมูลอย่างไร",
+  "timetrails.licenses.item.sourceNote": "ข้อความใบอนุญาตต่อไปนี้ถูกคัดลอกจากแพ็คเกจการปล่อยส่วนประกอบ; ไฟล์ต้นฉบับทั้งหมดสามารถดูได้ในที่เก็บ GitHub อย่างเป็นทางการ.",
+  "timetrails.licenses.item.viewLicense": "ดู LICENSE ของ GitHub",
+  "timetrails.licenses.item.viewRepo": "ดูที่เก็บ GitHub",
+  "timetrails.licenses.note.li2": "แต่ละส่วนประกอบจะมีลิงก์ไปยังที่เก็บ GitHub และไฟล์ LICENSE ดั้งเดิมเพื่อการตรวจสอบแหล่งที่มาที่ง่าย"
 }

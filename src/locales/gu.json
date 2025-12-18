@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "ડિવાઇસ પર સ્થાનિક રીતે ટ્રેક, આંકડાકીય માહિતી અને નકશો દૃશ્યીકરણો બનાવો અને રજૂ કરો.",
   "timetrails.privacy.section.use.items.1": "(વૈકલ્પિક) જ્યારે તમે iCloud/ખાસ સર્વર સમન્વય સક્રિય કરો છો ત્યારે તમારા ઉપકરણો વચ્ચે ડેટાને સંગ્રહિત રાખવા માટે ઉપયોગમાં લેવાય છે.",
   "timetrails.privacy.section.use.items.2": "અરજીઓની કાર્યક્ષમતા, સ્થિરતા અને વપરાશકર્તા અનુભવ સુધારવો (ઉદાહરણ તરીકે, અજાણ્યા ક્રેશ લોગ્સના આધારે સુધારાઓ).",
-  "timetrails.privacy.section.use.title": "અમે માહિતી કેવી રીતે ઉપયોગ કરીએ છીએ"
+  "timetrails.privacy.section.use.title": "અમે માહિતી કેવી રીતે ઉપયોગ કરીએ છીએ",
+  "timetrails.licenses.item.sourceNote": "નીચે આપેલ લાઇસન્સ ટેક્સ્ટ ઘટક રિલીઝ પેકેજમાંથી ઉધાર લેવામાં આવ્યો છે; સંપૂર્ણ મૂળ ફાઇલ અધિકૃત GitHub રિપોઝિટરીમાં જોવામાં આવી શકે છે.",
+  "timetrails.licenses.item.viewLicense": "GitHub LICENSE જુઓ",
+  "timetrails.licenses.item.viewRepo": "GitHub રિપોઝિટરી જુઓ",
+  "timetrails.licenses.note.li2": "દરેક ઘટક GitHub રિપોઝિટરી અને મૂળ LICENSE ફાઇલ માટે સરળ ચકાસણી માટે લિંક્સ પ્રદાન કરે છે."
 }

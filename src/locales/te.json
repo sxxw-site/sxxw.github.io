@@ -228,5 +228,9 @@
   "timetrails.privacy.section.use.items.0": "ఉపకరణంపై స్థానికంగా ట్రాక్స్, గణాంకాలు మరియు మ్యాప్ విజువలైజేషన్లను రూపొందించండి మరియు ప్రదర్శించండి.",
   "timetrails.privacy.section.use.items.1": "(ఐచిక) మీరు iCloud/ప్రైవేట్ సర్వర్ సమకాలీకరణను ప్రారంభించినప్పుడు మీ పరికరాల మధ్య డేటాను సుసంగతంగా ఉంచడానికి ఉపయోగించబడుతుంది.",
   "timetrails.privacy.section.use.items.2": "అనామిక క్రాష్ లాగ్‌ల ఆధారంగా ఫిక్స్‌లు వంటి వాటితో అప్లికేషన్ పనితీరు, స్థిరత్వం మరియు వినియోగదారు అనుభవాన్ని మెరుగుపరచండి.",
-  "timetrails.privacy.section.use.title": "మేము సమాచారాన్ని ఎలా ఉపయోగిస్తాము"
+  "timetrails.privacy.section.use.title": "మేము సమాచారాన్ని ఎలా ఉపయోగిస్తాము",
+  "timetrails.licenses.item.sourceNote": "క్రింది లైసెన్స్ పాఠ్యం భాగం విడుదల ప్యాకేజీ నుండి తీసుకోబడింది; పూర్తి అసలు ఫైల్ అధికారిక GitHub నిల్వలో చూడవచ్చు.",
+  "timetrails.licenses.item.viewLicense": "GitHub LICENSEని చూడండి",
+  "timetrails.licenses.item.viewRepo": "GitHub గిట్టుబాటు చూడండి",
+  "timetrails.licenses.note.li2": "ప్రతి భాగం స్రోతాన్ని సులభంగా నిర్ధారించడానికి GitHub నిల్వ మరియు అసలు LICENSE ఫైల్‌కు లింకులను అందిస్తుంది."
 }
