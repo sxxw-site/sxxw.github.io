@@ -23,7 +23,6 @@ LANGS_FILE = Path(os.getenv("I18N_LANGS_FILE", SRC_DIR / "assets" / "languages.j
 LOCALES_DIR = Path(os.getenv("I18N_LOCALES_DIR", SRC_DIR / "locales"))
 
 BASE = os.getenv("I18N_BASE", "zh-hans")  # 默认语言（用于判断 base）
-# ✅ 你的要求：根目录也要放一份 + zh-Hans 也要
 BASE_ALSO_AT_ROOT = os.getenv("I18N_BASE_ALSO_AT_ROOT", "1") == "1"
 
 ASSETS_DIR = SRC_DIR / "assets"
@@ -37,7 +36,8 @@ DEFAULT_COMPANY = os.getenv("I18N_COMPANY", "上海树下小屋网络科技有�
 DEFAULT_YEAR = os.getenv("I18N_YEAR", str(datetime.now().year))
 
 # ✅ 全站防暗色首帧“闪白”注入（可用 env 关闭/改色）
-INJECT_CRITICAL_HEAD = os.getenv("I18N_INJECT_CRITICAL_HEAD", "1") == "2"
+# 修复：默认 "1" 就启用；你原来写成 == "2" 基本等于永远不启用
+INJECT_CRITICAL_HEAD = os.getenv("I18N_INJECT_CRITICAL_HEAD", "1") == "1"
 CRITICAL_DARK_BG = os.getenv("I18N_CRITICAL_DARK_BG", "#0b1020")
 CRITICAL_LIGHT_BG = os.getenv("I18N_CRITICAL_LIGHT_BG", "#f8fafc")
 
@@ -78,7 +78,7 @@ def normalize_slashes(path: str) -> str:
 # =========================
 @dataclass(frozen=True)
 class LangSpec:
-    code: str           # 原始 code（严格按 languages.json）
+    code: str
     name: str
     fallbacks: List[str]
     rtl: bool
@@ -99,7 +99,7 @@ def load_languages() -> List[LangSpec]:
 
         out.append(
             LangSpec(
-                code=code,  # ✅ 保留原样（大小写不动）
+                code=code,  # 保留原样（大小写不动）
                 name=(x.get("name") or code),
                 fallbacks=list(x.get("fallbacks") or []),
                 rtl=rtl,
@@ -120,7 +120,6 @@ def read_json(path: Path) -> JsonObj:
 
 
 def locale_file_for(code: str) -> Path:
-    # ✅ locale 文件统一按 norm 名称：en-GB -> en-gb.json
     return LOCALES_DIR / f"{norm_code(code)}.json"
 
 
@@ -206,7 +205,7 @@ def format_vars(text: str, vars_map: Dict[str, str]) -> str:
 
 
 # =========================
-# ✅ 防暗色首帧闪白：注入 critical head
+# ✅ 防暗色首帧闪白 + ✅ 地址栏 theme-color 自适应兜底
 # =========================
 def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> None:
     head = soup.find("head")
@@ -221,19 +220,20 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
     marker["name"] = "i18n-critical-head"
     marker["content"] = "1"
 
-    # 提前声明配色能力（首帧更稳）
+    # 让 UA 知道支持 dark/light（首帧更稳）
     cs = soup.new_tag("meta")
     cs["name"] = "color-scheme"
     cs["content"] = "dark light"
 
-    # 首帧兜底背景（关键：CSS 未加载前也不白）
+    # 首帧兜底背景：CSS 未加载前也不白
     style = soup.new_tag("style")
     style.string = (
-        f"html,body{{background:{dark_bg};}}"
+        f":root{{color-scheme:dark light;}}"
+        f"html,body{{margin:0;min-height:100vh;background:{dark_bg};}}"
         f"@media (prefers-color-scheme: light){{html,body{{background:{light_bg};}}}}"
     )
 
-    # 顶栏颜色（可选但建议）
+    # 支持 media 的浏览器
     theme_dark = soup.new_tag("meta")
     theme_dark["name"] = "theme-color"
     theme_dark["media"] = "(prefers-color-scheme: dark)"
@@ -244,7 +244,30 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
     theme_light["media"] = "(prefers-color-scheme: light)"
     theme_light["content"] = light_bg
 
+    # ✅ 兜底：不带 media（iOS/部分 WebView 会只认这个）
+    theme_fallback = soup.new_tag("meta")
+    theme_fallback["name"] = "theme-color"
+    theme_fallback["content"] = dark_bg
+    theme_fallback["id"] = "themeColorFallback"
+
+    # ✅ JS：监听系统主题变化，动态改 fallback meta 的 content
+    js = soup.new_tag("script")
+    js.string = (
+        "(function(){"
+        "var el=document.getElementById('themeColorFallback');"
+        "if(!el||!window.matchMedia) return;"
+        f"var dark='{dark_bg}', light='{light_bg}';"
+        "var mq=window.matchMedia('(prefers-color-scheme: dark)');"
+        "function apply(){ el.setAttribute('content', mq.matches?dark:light); }"
+        "apply();"
+        "if(mq.addEventListener) mq.addEventListener('change', apply);"
+        "else if(mq.addListener) mq.addListener(apply);"
+        "})();"
+    )
+
     # 插到 head 最前（越早越好）
+    head.insert(0, js)
+    head.insert(0, theme_fallback)
     head.insert(0, theme_light)
     head.insert(0, theme_dark)
     head.insert(0, style)
@@ -272,10 +295,6 @@ def parse_i18n_attr_rules(raw: str) -> List[Tuple[str, str]]:
 
 
 def rewrite_asset_url(url: str, depth: int) -> str:
-    """
-    将 "assets/..." 重写为 "../"*depth + "assets/..."
-    depth 按页面层级动态计算
-    """
     if not url:
         return url
     u = url.strip()
@@ -297,7 +316,6 @@ def apply_i18n_to_html(
 ) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
 
-    # ✅ 全局注入防闪白（每个输出 HTML 都会带上）
     if INJECT_CRITICAL_HEAD:
         ensure_critical_head(soup, CRITICAL_DARK_BG, CRITICAL_LIGHT_BG)
 
@@ -412,16 +430,14 @@ def build() -> None:
     base_n = norm_code(BASE)
 
     for lang in langs:
-        raw_code = (lang.code or "").strip()   # 原始 code（仅用于展示/日志）
-        code_n = norm_code(raw_code)           # ✅ 逻辑/locale 读取用这个（小写）
-        out_dir_name = code_n                  # ✅ 输出目录统一小写
+        raw_code = (lang.code or "").strip()
+        code_n = norm_code(raw_code)
+        out_dir_name = code_n  # 输出目录统一小写
 
         merged = load_locale_with_fallbacks(code_n, lang.fallbacks, base_n)
 
-        # ✅ 必输出：docs/<code_n>/  (目录名小写)
         out_roots: List[Tuple[Path, str]] = [(DOCS_DIR / out_dir_name, f"dir:{out_dir_name}")]
 
-        # ✅ base 另外输出一份到 docs/ 根目录
         if BASE_ALSO_AT_ROOT and (code_n == base_n):
             out_roots.append((DOCS_DIR, "root"))
 
@@ -436,8 +452,6 @@ def build() -> None:
             for src_html in html_files:
                 rel = src_html.relative_to(SRC_DIR)
                 out_path = out_root / rel
-
-                # ✅ depth 动态：pages/timetrails/private.html => depth=2
                 depth = max(0, len(rel.parents) - 1)
 
                 html_text = src_html.read_text(encoding="utf-8")
@@ -458,6 +472,7 @@ def build() -> None:
     print("   base 语言：同时输出到 docs/ 与 docs/<base_code>/（目录名统一小写）")
     if INJECT_CRITICAL_HEAD:
         print(f"   ✅ 已注入 critical head：dark={CRITICAL_DARK_BG} light={CRITICAL_LIGHT_BG}")
+        print("   ✅ 已注入 theme-color fallback + JS 监听（修复 iOS/部分 WebView 不跟随问题）")
     else:
         print("   ⛔ 未注入 critical head（I18N_INJECT_CRITICAL_HEAD=0）")
 
