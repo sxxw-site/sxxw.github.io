@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hans" data-i18n-attr="lang:html.lang">
+<html lang="zh-Hans" data-i18n-attr="lang:timetrails.html.lang">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +18,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <title data-i18n="feedback.meta.title">意见反馈（TimeTrails）</title>
+  <title data-i18n="timetrails.feedback.meta.title">意见反馈（TimeTrails）</title>
 
   <!-- ✅ 关键：把“首屏底色”放在任何外链 CSS 之前，防止移动端先白一帧 -->
   <style>
@@ -222,7 +222,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1 data-i18n="feedback.h1">TimeTrails 意见反馈</h1>
+          <h1 data-i18n="timetrails.feedback.h1">TimeTrails 意见反馈</h1>
           <div class="muted"></div>
         </div>
       </div>
@@ -232,47 +232,47 @@
           <select id="langSelect" class="lang-select" aria-label="Language"></select>
           <span class="lang-caret">▾</span>
         </div>
-        <a class="btn" id="ghLink" target="_blank" rel="noopener" data-i18n="feedback.repo">仓库主页</a>
+        <a class="btn" id="ghLink" target="_blank" rel="noopener" data-i18n="timetrails.feedback.repo">仓库主页</a>
       </div>
     </div>
 
     <div class="divider"></div>
 
-    <nav class="tabs" role="tablist" data-i18n-attr="aria-label:feedback.tabs.ariaLabel">
-      <div class="tab" role="tab" id="tab-appstore" aria-controls="panel-appstore" aria-selected="true" tabindex="0" data-tab="appstore" data-i18n="feedback.tabs.appstore">去商店评价</div>
-      <div class="tab" role="tab" id="tab-feedback" aria-controls="panel-feedback" aria-selected="false" tabindex="-1" data-tab="feedback" data-i18n="feedback.tabs.feedback">提交反馈</div>
-      <div class="tab" role="tab" id="tab-community" aria-controls="panel-community" aria-selected="false" tabindex="-1" data-tab="community" data-i18n="feedback.tabs.community">加入交流群</div>
+    <nav class="tabs" role="tablist" data-i18n-attr="aria-label:timetrails.feedback.tabs.ariaLabel">
+      <div class="tab" role="tab" id="tab-appstore" aria-controls="panel-appstore" aria-selected="true" tabindex="0" data-tab="appstore" data-i18n="timetrails.feedback.tabs.appstore">去商店评价</div>
+      <div class="tab" role="tab" id="tab-feedback" aria-controls="panel-feedback" aria-selected="false" tabindex="-1" data-tab="feedback" data-i18n="timetrails.feedback.tabs.feedback">提交反馈</div>
+      <div class="tab" role="tab" id="tab-community" aria-controls="panel-community" aria-selected="false" tabindex="-1" data-tab="community" data-i18n="timetrails.feedback.tabs.community">加入交流群</div>
     </nav>
 
     <div class="divider"></div>
 
     <!-- 提交反馈 -->
     <section id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" aria-hidden="true" hidden>
-      <h2 data-i18n="feedback.section.form.title">提交反馈</h2>
+      <h2 data-i18n="timetrails.feedback.section.form.title">提交反馈</h2>
 
       <div class="row">
-        <label for="fb-title" data-i18n="feedback.form.title.label">标题</label>
-        <input id="fb-title" type="text" data-i18n-attr="placeholder:feedback.form.title.placeholder" placeholder="简要描述你的问题或建议">
+        <label for="fb-title" data-i18n="timetrails.feedback.form.title.label">标题</label>
+        <input id="fb-title" type="text" data-i18n-attr="placeholder:timetrails.feedback.form.title.placeholder" placeholder="简要描述你的问题或建议">
       </div>
 
       <div class="row">
-        <label for="fb-type" data-i18n="feedback.form.type.label">类型</label>
+        <label for="fb-type" data-i18n="timetrails.feedback.form.type.label">类型</label>
         <select id="fb-type">
-          <option value="bug" data-i18n="feedback.form.type.options.bug">缺陷/报错</option>
-          <option value="feature" data-i18n="feedback.form.type.options.feature">功能建议</option>
-          <option value="uiux" data-i18n="feedback.form.type.options.uiux">交互/体验</option>
-          <option value="other" data-i18n="feedback.form.type.options.other">其他</option>
+          <option value="bug" data-i18n="timetrails.feedback.form.type.options.bug">缺陷/报错</option>
+          <option value="feature" data-i18n="timetrails.feedback.form.type.options.feature">功能建议</option>
+          <option value="uiux" data-i18n="timetrails.feedback.form.type.options.uiux">交互/体验</option>
+          <option value="other" data-i18n="timetrails.feedback.form.type.options.other">其他</option>
         </select>
       </div>
 
       <div class="row">
-        <label for="fb-content" data-i18n="feedback.form.desc.label">详细描述</label>
-        <textarea id="fb-content" data-i18n-attr="placeholder:feedback.form.desc.placeholder" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
+        <label for="fb-content" data-i18n="timetrails.feedback.form.desc.label">详细描述</label>
+        <textarea id="fb-content" data-i18n-attr="placeholder:timetrails.feedback.form.desc.placeholder" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
       </div>
 
       <div class="row">
-        <label data-i18n="feedback.form.rating.label">体验评分</label>
-        <div class="stars" id="stars" role="radiogroup" data-i18n-attr="aria-label:feedback.form.rating.ariaLabel">
+        <label data-i18n="timetrails.feedback.form.rating.label">体验评分</label>
+        <div class="stars" id="stars" role="radiogroup" data-i18n-attr="aria-label:timetrails.feedback.form.rating.ariaLabel">
           <div class="star" role="radio" aria-checked="false" tabindex="0" data-v="1">1</div>
           <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="2">2</div>
           <div class="star" role="radio" aria-checked="false" tabindex="-1" data-v="3">3</div>
@@ -282,49 +282,49 @@
       </div>
 
       <div class="row">
-        <label for="contact" data-i18n="feedback.form.contact.label">可选联系方式</label>
-        <input id="contact" type="text" data-i18n-attr="placeholder:feedback.form.contact.placeholder" placeholder="邮箱 / QQ / 其他">
+        <label for="contact" data-i18n="timetrails.feedback.form.contact.label">可选联系方式</label>
+        <input id="contact" type="text" data-i18n-attr="placeholder:timetrails.feedback.form.contact.placeholder" placeholder="邮箱 / QQ / 其他">
       </div>
 
       <div class="row">
         <label></label>
         <label class="muted">
           <input id="sysinfo" type="checkbox" checked>
-          <span data-i18n="feedback.form.sysinfo">附带浏览器与系统信息（便于排查）</span>
+          <span data-i18n="timetrails.feedback.form.sysinfo">附带浏览器与系统信息（便于排查）</span>
         </label>
       </div>
 
       <div class="btns">
-        <a class="btn primary" id="btn-issue" target="_blank" rel="noopener" data-i18n="feedback.actions.issue">通过 GitHub Issue 提交</a>
-        <a class="btn" id="btn-mail" data-i18n="feedback.actions.mail">通过邮件提交</a>
-        <button id="btn-copy-template" data-i18n="feedback.actions.copy">复制模板</button>
+        <a class="btn primary" id="btn-issue" target="_blank" rel="noopener" data-i18n="timetrails.feedback.actions.issue">通过 GitHub Issue 提交</a>
+        <a class="btn" id="btn-mail" data-i18n="timetrails.feedback.actions.mail">通过邮件提交</a>
+        <button id="btn-copy-template" data-i18n="timetrails.feedback.actions.copy">复制模板</button>
       </div>
 
-      <p class="muted" style="margin-top:10px" data-i18n="feedback.hint">
+      <p class="muted" style="margin-top:10px" data-i18n="timetrails.feedback.hint">
         提示：若 GitHub 需要登录，你也可以通过邮件反馈。
       </p>
     </section>
 
     <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
     <section id="panel-community" role="tabpanel" aria-labelledby="tab-community" aria-hidden="true" hidden>
-      <h2 data-i18n="feedback.section.community.title">加入交流群</h2>
-      <div class="grid" id="qqGrid" aria-label="QQ groups"></div>
+      <h2 data-i18n="timetrails.feedback.section.community.title">加入交流群</h2>
+      <div class="grid" id="qqGrid" data-i18n-attr="aria-label:timetrails.feedback.section.community.ariaLabel"></div>
     </section>
 
     <!-- App Store -->
     <section id="panel-appstore" role="tabpanel" aria-labelledby="tab-appstore" aria-hidden="false">
-      <h2 data-i18n="feedback.section.appstore.title">去商店评价</h2>
+      <h2 data-i18n="timetrails.feedback.section.appstore.title">去商店评价</h2>
 
       <div class="row">
-        <label data-i18n="feedback.appstore.label">App Store</label>
+        <label data-i18n="timetrails.feedback.appstore.label">App Store</label>
         <div>
           <div class="btns">
-            <a class="btn warn" id="btn-appstore-review" data-i18n="feedback.appstore.review">去 App Store 评价</a>
-            <a class="btn" id="btn-appstore-copy" data-i18n="feedback.appstore.copyReview">复制评价链接</a>
-            <a class="btn" id="btn-appstore-open" data-i18n="feedback.appstore.openDetail">打开 App 详情页</a>
-            <a class="btn" id="btn-appstore-copy-detail" data-i18n="feedback.appstore.copyDetail">复制详情页链接</a>
+            <a class="btn warn" id="btn-appstore-review" data-i18n="timetrails.feedback.appstore.review">去 App Store 评价</a>
+            <a class="btn" id="btn-appstore-copy" data-i18n="timetrails.feedback.appstore.copyReview">复制评价链接</a>
+            <a class="btn" id="btn-appstore-open" data-i18n="timetrails.feedback.appstore.openDetail">打开 App 详情页</a>
+            <a class="btn" id="btn-appstore-copy-detail" data-i18n="timetrails.feedback.appstore.copyDetail">复制详情页链接</a>
           </div>
-          <p class="muted" style="margin-top:10px" data-i18n="feedback.appstore.hint">
+          <p class="muted" style="margin-top:10px" data-i18n="timetrails.feedback.appstore.hint">
             在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。
           </p>
         </div>
@@ -333,7 +333,7 @@
 
     <div class="divider"></div>
 
-    <footer data-i18n="feedback.footer">
+    <footer data-i18n="timetrails.feedback.footer">
       本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。
     </footer>
   </div>
@@ -341,38 +341,38 @@
 
 <!-- ✅ i18n messages（脚本会读这些 span 的 textContent） -->
 <div id="i18n-msg" hidden>
-  <span id="msg-copy-ok" data-i18n="feedback.msg.copyOk">已复制到剪贴板</span>
-  <span id="msg-copy-fail" data-i18n="feedback.msg.copyFail">复制失败，请手动复制</span>
-  <span id="msg-need-config" data-i18n="feedback.msg.needConfig">请先在代码里配置必要参数</span>
-  <span id="msg-qq-invite-missing" data-i18n="feedback.msg.qqInviteMissing">未配置加群链接</span>
-  <span id="msg-qq-number-missing" data-i18n="feedback.msg.qqNumberMissing">未配置群号</span>
-  <span id="msg-appid-missing" data-i18n="feedback.msg.appIdMissing">未配置 App ID</span>
+  <span id="msg-copy-ok" data-i18n="timetrails.feedback.msg.copyOk">已复制到剪贴板</span>
+  <span id="msg-copy-fail" data-i18n="timetrails.feedback.msg.copyFail">复制失败，请手动复制</span>
+  <span id="msg-need-config" data-i18n="timetrails.feedback.msg.needConfig">请先在代码里配置必要参数</span>
+  <span id="msg-qq-invite-missing" data-i18n="timetrails.feedback.msg.qqInviteMissing">未配置加群链接</span>
+  <span id="msg-qq-number-missing" data-i18n="timetrails.feedback.msg.qqNumberMissing">未配置群号</span>
+  <span id="msg-appid-missing" data-i18n="timetrails.feedback.msg.appIdMissing">未配置 App ID</span>
 
-  <span id="md-title-fallback" data-i18n="feedback.md.titleFallback">(待补充标题)</span>
-  <span id="md-section-desc" data-i18n="feedback.md.section.desc">### 描述</span>
-  <span id="md-section-type" data-i18n="feedback.md.section.type">### 类型</span>
-  <span id="md-section-rating" data-i18n="feedback.md.section.rating">### 评分</span>
-  <span id="md-section-contact" data-i18n="feedback.md.section.contact">### 联系方式</span>
-  <span id="md-section-sysinfo" data-i18n="feedback.md.section.sysinfo">### 系统信息</span>
-  <span id="md-desc-fallback" data-i18n="feedback.md.descFallback">(详细描述/复现步骤/期望行为...)</span>
-  <span id="md-rating-none" data-i18n="feedback.md.ratingNone">未评分</span>
-  <span id="md-contact-none" data-i18n="feedback.md.contactNone">未提供</span>
+  <span id="md-title-fallback" data-i18n="timetrails.feedback.md.titleFallback">(待补充标题)</span>
+  <span id="md-section-desc" data-i18n="timetrails.feedback.md.section.desc">### 描述</span>
+  <span id="md-section-type" data-i18n="timetrails.feedback.md.section.type">### 类型</span>
+  <span id="md-section-rating" data-i18n="timetrails.feedback.md.section.rating">### 评分</span>
+  <span id="md-section-contact" data-i18n="timetrails.feedback.md.section.contact">### 联系方式</span>
+  <span id="md-section-sysinfo" data-i18n="timetrails.feedback.md.section.sysinfo">### 系统信息</span>
+  <span id="md-desc-fallback" data-i18n="timetrails.feedback.md.descFallback">(详细描述/复现步骤/期望行为...)</span>
+  <span id="md-rating-none" data-i18n="timetrails.feedback.md.ratingNone">未评分</span>
+  <span id="md-contact-none" data-i18n="timetrails.feedback.md.contactNone">未提供</span>
 
-  <span id="mail-subject-prefix" data-i18n="feedback.mail.subjectPrefix">[反馈]</span>
+  <span id="mail-subject-prefix" data-i18n="timetrails.feedback.mail.subjectPrefix">[反馈]</span>
 
-  <span id="sys-ua" data-i18n="feedback.sys.ua">UA</span>
-  <span id="sys-platform" data-i18n="feedback.sys.platform">平台</span>
-  <span id="sys-lang" data-i18n="feedback.sys.lang">语言</span>
-  <span id="sys-screen" data-i18n="feedback.sys.screen">屏幕</span>
+  <span id="sys-ua" data-i18n="timetrails.feedback.sys.ua">UA</span>
+  <span id="sys-platform" data-i18n="timetrails.feedback.sys.platform">平台</span>
+  <span id="sys-lang" data-i18n="timetrails.feedback.sys.lang">语言</span>
+  <span id="sys-screen" data-i18n="timetrails.feedback.sys.screen">屏幕</span>
 
-  <span id="qq-full-title" data-i18n="feedback.community.fullTitle">该群已满</span>
-  <span id="qq-invite-missing-title" data-i18n="feedback.community.inviteMissingTitle">缺少加群链接</span>
+  <span id="qq-full-title" data-i18n="timetrails.feedback.community.fullTitle">该群已满</span>
+  <span id="qq-invite-missing-title" data-i18n="timetrails.feedback.community.inviteMissingTitle">缺少加群链接</span>
 
-  <span id="qq-title-prefix" data-i18n="feedback.community.qqTitlePrefix">QQ 群</span>
-  <span id="qq-btn-join" data-i18n="feedback.community.join">一键加群</span>
-  <span id="qq-btn-copy-number" data-i18n="feedback.community.copyNumber">复制群号</span>
-  <span id="qq-btn-copy-invite" data-i18n="feedback.community.copyInvite">复制加群链接</span>
-  <span id="qq-badge-full" data-i18n="feedback.community.full">已满</span>
+  <span id="qq-title-prefix" data-i18n="timetrails.feedback.community.qqTitlePrefix">QQ 群</span>
+  <span id="qq-btn-join" data-i18n="timetrails.feedback.community.join">一键加群</span>
+  <span id="qq-btn-copy-number" data-i18n="timetrails.feedback.community.copyNumber">复制群号</span>
+  <span id="qq-btn-copy-invite" data-i18n="timetrails.feedback.community.copyInvite">复制加群链接</span>
+  <span id="qq-badge-full" data-i18n="timetrails.feedback.community.full">已满</span>
 </div>
 
 <div class="toast" id="toast" aria-live="polite"></div>
