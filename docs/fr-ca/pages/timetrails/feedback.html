@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>意见反馈（TimeTrails）</title>
+<title>Commentaires (TimeTrails)</title>
 <base href="/pages/timetrails/"/>
 <link href="../../assets/style.css" rel="stylesheet"/>
 <style>
@@ -143,12 +143,12 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>TimeTrails 意见反馈</h1>
+<h1>Commentaires sur TimeTrails</h1>
 <div class="muted">
-<span class="chip ok">静态页</span>
-<span class="chip ok">多语言</span>
-<span class="chip ok">用户可控</span>
-<span style="margin-left:6px">提交会跳转到 GitHub Issue 或邮件处理</span>
+<!--                        <span class="chip ok" data-i18n="feedback.chips.static">静态页</span>-->
+<!--                        <span class="chip ok" data-i18n="feedback.chips.i18n">多语言</span>-->
+<!--                        <span class="chip ok" data-i18n="feedback.chips.userControl">用户可控</span>-->
+<!--                        <span style="margin-left:6px" data-i18n="feedback.sub">提交会跳转到 GitHub Issue 或邮件处理</span>-->
 </div>
 </div>
 </div>
@@ -157,39 +157,39 @@
 <select aria-label="Language" class="lang-select" id="langSelect"></select>
 <span class="lang-caret">▾</span>
 </div>
-<a class="btn" id="ghLink" rel="noopener" target="_blank">仓库主页</a>
+<a class="btn" id="ghLink" rel="noopener" target="_blank">Accueil du dépôt</a>
 </div>
 </div>
 <div class="divider"></div>
-<nav aria-label="反馈导航" class="tabs" role="tablist">
-<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">去商店评价</div>
-<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">提交反馈</div>
-<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">加入交流群</div>
+<nav aria-label="Navigation des commentaires" class="tabs" role="tablist">
+<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">Évaluez dans le magasin</div>
+<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">Soumettre des commentaires</div>
+<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">Rejoignez le groupe communautaire</div>
 </nav>
 <div class="divider"></div>
 <!-- 提交反馈 -->
 <section aria-hidden="true" aria-labelledby="tab-feedback" hidden="" id="panel-feedback" role="tabpanel">
-<h2>提交反馈</h2>
+<h2>Soumettre des commentaires</h2>
 <div class="row">
-<label for="fb-title">标题</label>
-<input id="fb-title" placeholder="简要描述你的问题或建议" type="text"/>
+<label for="fb-title">Titre</label>
+<input id="fb-title" placeholder="Décrivez brièvement votre problème ou suggestion" type="text"/>
 </div>
 <div class="row">
-<label for="fb-type">类型</label>
+<label for="fb-type">Type</label>
 <select id="fb-type">
-<option value="bug">缺陷/报错</option>
-<option value="feature">功能建议</option>
-<option value="uiux">交互/体验</option>
-<option value="other">其他</option>
+<option value="bug">Erreur/Bogue</option>
+<option value="feature">Suggestion de fonctionnalité</option>
+<option value="uiux">Interaction/Expérience</option>
+<option value="other">Autre</option>
 </select>
 </div>
 <div class="row">
-<label for="fb-content">详细描述</label>
-<textarea id="fb-content" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
+<label for="fb-content">Description détaillée</label>
+<textarea id="fb-content" placeholder="Étapes de reproduction / Comportement attendu / Résultats réels / Lien vers la capture d'écran ..."></textarea>
 </div>
 <div class="row">
-<label>体验评分</label>
-<div aria-label="体验评分" class="stars" id="stars" role="radiogroup">
+<label>Évaluation de l'expérience</label>
+<div aria-label="Évaluation de l'expérience" class="stars" id="stars" role="radiogroup">
 <div aria-checked="false" class="star" data-v="1" role="radio" tabindex="0">1</div>
 <div aria-checked="false" class="star" data-v="2" role="radio" tabindex="-1">2</div>
 <div aria-checked="false" class="star" data-v="3" role="radio" tabindex="-1">3</div>
@@ -198,79 +198,79 @@
 </div>
 </div>
 <div class="row">
-<label for="contact">可选联系方式</label>
-<input id="contact" placeholder="邮箱 / QQ / 其他" type="text"/>
+<label for="contact">Méthode de contact facultative</label>
+<input id="contact" placeholder="Courriel / QQ / Autre" type="text"/>
 </div>
 <div class="row">
 <label></label>
 <label class="muted">
 <input checked="" id="sysinfo" type="checkbox"/>
-<span>附带浏览器与系统信息（便于排查）</span>
+<span>Inclure les informations sur le navigateur et le système (pour le dépannage)</span>
 </label>
 </div>
 <div class="btns">
-<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">通过 GitHub Issue 提交</a>
-<a class="btn" id="btn-mail">通过邮件提交</a>
-<button id="btn-copy-template">复制模板</button>
+<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">Soumettre via GitHub Issue</a>
+<a class="btn" id="btn-mail">Soumettre par courriel</a>
+<button id="btn-copy-template">Copier le modèle</button>
 </div>
-<p class="muted" style="margin-top:10px">提示：若 GitHub 需要登录，你也可以通过邮件反馈。</p>
+<p class="muted" style="margin-top:10px">Conseil : Si GitHub nécessite une connexion, vous pouvez également fournir des commentaires par courriel.</p>
 </section>
 <!-- 加入交流群（QQ，✅ N 个群动态渲染） -->
 <section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
-<h2>加入交流群</h2>
+<h2>Joignez le groupe de discussion</h2>
 <!-- JS 会往这里塞卡片 -->
 <div aria-label="QQ groups" class="grid" id="qqGrid"></div>
 </section>
 <!-- App Store -->
 <section aria-hidden="false" aria-labelledby="tab-appstore" id="panel-appstore" role="tabpanel">
-<h2>去商店评价</h2>
+<h2>Évaluez dans le magasin</h2>
 <div class="row">
 <label>App Store</label>
 <div>
 <div class="btns">
-<a class="btn warn" id="btn-appstore-review">去 App Store 评价</a>
-<a class="btn" id="btn-appstore-copy">复制评价链接</a>
-<a class="btn" id="btn-appstore-open">打开 App 详情页</a>
-<a class="btn" id="btn-appstore-copy-detail">复制详情页链接</a>
+<a class="btn warn" id="btn-appstore-review">Allez sur l'App Store pour laisser un avis</a>
+<a class="btn" id="btn-appstore-copy">Copier le lien d'évaluation</a>
+<a class="btn" id="btn-appstore-open">Ouvrir la page de détails de l'application</a>
+<a class="btn" id="btn-appstore-copy-detail">Copier le lien de la page de détails</a>
 </div>
-<p class="muted" style="margin-top:10px">在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。</p>
+<p class="muted" style="margin-top:10px">Sur iPhone/iPad, il tentera d'ouvrir directement l'App Store; d'autres plateformes ouvriront la version web (région automatique).</p>
 </div>
 </div>
 </section>
 <div class="divider"></div>
-<footer>本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。</footer>
+<footer>Cette page est statique et ne collecte aucune donnée sensible. Le contenu soumis sera redirigé vers le problème/l'e-mail que vous avez configuré pour le traitement.</footer>
 </div>
 </div>
 <!-- ✅ i18n messages（脚本会读这些 span 的 textContent；它们会被你的 i18n 系统翻译） -->
 <div hidden="" id="i18n-msg">
-<span id="msg-copy-ok">已复制到剪贴板</span>
-<span id="msg-copy-fail">复制失败，请手动复制</span>
-<span id="msg-need-config">请先在代码里配置必要参数</span>
-<span id="msg-qq-invite-missing">未配置加群链接</span>
-<span id="msg-qq-number-missing">未配置群号</span>
-<span id="msg-appid-missing">未配置 App ID</span>
-<span id="md-title-fallback">（待补充标题）</span>
-<span id="md-section-desc">### 描述</span>
-<span id="md-section-type">### 类型</span>
-<span id="md-section-rating">### 评分</span>
-<span id="md-section-contact">### 联系方式</span>
-<span id="md-section-sysinfo">### 系统信息</span>
-<span id="md-desc-fallback">（详细描述/复现步骤/期望行为...）</span>
-<span id="md-rating-none">未评分</span>
-<span id="md-contact-none">未提供</span>
-<span id="mail-subject-prefix">[反馈]</span>
+<span id="msg-copy-ok">Copié dans le presse-papiers</span>
+<span id="msg-copy-fail">Échec de la copie, veuillez copier manuellement.</span>
+<span id="msg-need-config">Veuillez d'abord configurer les paramètres nécessaires dans le code.</span>
+<span id="msg-qq-invite-missing">Lien d'invitation au groupe non configuré</span>
+<span id="msg-qq-number-missing">Numéro de groupe non configuré</span>
+<span id="msg-appid-missing">ID d'application non configurée</span>
+<span id="md-title-fallback">(Titre à ajouter)</span>
+<span id="md-section-desc">### Description</span>
+<span id="md-section-type">### Type</span>
+<span id="md-section-rating">### Évaluation</span>
+<span id="md-section-contact">### Informations de contact</span>
+<span id="md-section-sysinfo">### Informations sur le système</span>
+<span id="md-desc-fallback">(Description détaillée/étapes de reproduction/comportement attendu...)</span>
+<span id="md-rating-none">Non évalué</span>
+<span id="md-contact-none">Non fourni</span>
+<span id="mail-subject-prefix">[Retour d'information]</span>
 <span id="sys-ua">UA</span>
-<span id="sys-platform">平台</span>
-<span id="sys-lang">语言</span>
-<span id="sys-screen">屏幕</span>
-<span id="qq-full-title">该群已满</span>
-<span id="qq-invite-missing-title">缺少加群链接</span>
+<span id="sys-platform">Plateforme</span>
+<span id="sys-lang">Langue</span>
+<span id="sys-screen">Écran</span>
+<span id="qq-full-title">Le groupe est complet.</span>
+<span id="qq-invite-missing-title">Lien d'invitation de groupe manquant</span>
 <!-- ✅ N 群标题模板：默认 “QQ 群 {n}” -->
-<span id="qq-title-prefix">QQ 群</span>
-<span id="qq-btn-join">一键加群</span>
-<span id="qq-btn-copy-number">复制群号</span>
-<span id="qq-btn-copy-invite">复制加群链接</span>
-<span id="qq-badge-full">已满</span>
+<span id="qq-title-prefix">Groupe QQ</span>
+<span id="qq-btn-join">Rejoindre le groupe en un clic</span>
+<span id="qq-btn-copy-number">Copier le numéro de groupe</span>
+<span id="qq-btn-copy-invite">Copier le lien du groupe</span>
+<span id="qq-badge-full">Complet</span>
 </div>
 <div aria-live="polite" class="toast" id="toast"></div>
 <script src="../../assets/main.js"></script>
