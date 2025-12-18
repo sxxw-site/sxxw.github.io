@@ -79,15 +79,14 @@
     { code: "be", name: "Беларуская" },
   ];
 
-  // 默认语言是否走根目录：/index.html（true） vs /zh-Hans/index.html（false）
+  // 默认语言是否走根目录：/index.html（true） vs /zh-hans/index.html（false）
   const USE_ROOT_FOR_DEFAULT = true;
-
   const SELECT_ID = "langSelect";
 
   // ===== utils =====
-  // ✅ 不做大小写转换/不替换 '_'：只 trim
+  // ✅ 统一小写 + '_'->'-'，用于：URL/匹配/跳转
   function canon(code) {
-    return (code || "").trim();
+    return (code || "").trim().replace(/_/g, "-").toLowerCase();
   }
 
   function normalizeSlashes(path) {
@@ -107,7 +106,7 @@
     return null;
   }
 
-  // ✅ 更稳：优先读 <base href>；否则只在“路径里已出现语言段”时推断子路径；否则默认 "/"
+  // ✅ 优先读 <base href>；否则只在路径里出现语言段时推断子路径；否则默认 "/"
   function inferBasePrefix(supported) {
     const baseEl = document.querySelector("base[href]");
     if (baseEl) {
@@ -121,16 +120,13 @@
     const parts = location.pathname.split("/").filter(Boolean);
     const langIdx = parts.findIndex((p) => supported.has(canon(p)));
 
-    // 只有当路径里确实出现语言段，才认为前面是子路径（/repo/<lang>/...）
     if (langIdx >= 0) {
       const prefix = "/" + parts.slice(0, langIdx).join("/") + "/";
       return normalizeSlashes(prefix);
     }
-
     return "/";
   }
 
-  // ✅ 永远不会返回 //，空路径就是 "/"
   function stripLangFromPath(supported) {
     const hadTrailing = location.pathname.endsWith("/");
     const parts = location.pathname.split("/").filter(Boolean);
@@ -145,13 +141,12 @@
 
   function buildTarget(pathnameNoLang, lang, supported) {
     const base = inferBasePrefix(supported);
-    const rest = (pathnameNoLang || "/").replace(/^\//, ""); // 去掉开头 /
+    const rest = (pathnameNoLang || "/").replace(/^\//, "");
     const l = canon(lang);
     const def = canon(DEFAULT_LANG);
 
     let out;
     if (USE_ROOT_FOR_DEFAULT && l === def) {
-      // 默认语言走根目录
       out = base + rest;
     } else {
       out = base + l + (rest ? "/" + rest : "/");
@@ -160,6 +155,8 @@
   }
 
   function setHtmlLang(lang) {
+    // 注意：这里设成小写了；如果你希望 html lang 维持 BCP47 大小写（zh-Hans），
+    // 可以在这里做映射表；但你当前诉求是 code 小写，我就按小写写。
     document.documentElement.setAttribute("lang", lang);
   }
 
@@ -167,8 +164,8 @@
     sel.innerHTML = "";
     for (const l of langs) {
       const opt = document.createElement("option");
-      opt.value = l.code;      // ✅ 原样 code
-      opt.textContent = l.name;
+      opt.value = l.code;         // ✅ value 用小写 code
+      opt.textContent = l.name;   // 名称照旧
       if (l.code === current) opt.selected = true;
       sel.appendChild(opt);
     }
@@ -178,13 +175,12 @@
     const sel = document.getElementById(SELECT_ID);
     if (!sel) return;
 
-    // ✅ 只用原样 code
     const langs = LANGS.map((x) => ({ code: canon(x.code), name: x.name || x.code }))
       .filter((x) => x.code);
 
     const supported = supportedSet();
 
-    // ✅ 只从 URL 推断语言；URL 没有语言段 => 默认语言
+    // ✅ 只从 URL 推断；没有语言段 => 默认语言（小写）
     const fromPath = detectLangFromPath(supported);
     const current = supported.has(fromPath) ? fromPath : canon(DEFAULT_LANG);
 
@@ -193,10 +189,8 @@
 
     sel.addEventListener("change", () => {
       const next = canon(sel.value) || canon(DEFAULT_LANG);
-
       const noLang = stripLangFromPath(supported);
       const target = buildTarget(noLang, next, supported);
-
       location.href = target + location.search + location.hash;
     });
   }
