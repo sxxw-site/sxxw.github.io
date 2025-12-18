@@ -2,6 +2,7 @@
 (function () {
   "use strict";
 
+  // ===== 你只需要维护“支持的语言列表” =====
   const DEFAULT_LANG = "zh-Hans";
   const LANGS = [
     { code: "en", name: "English" },
@@ -78,7 +79,7 @@
     { code: "be", name: "Беларуская" },
   ];
 
-  // 默认语言是否走根目录（不带 /{lang}/ 前缀）
+  // 默认语言是否走不带 /{lang}/ 的路径
   const USE_ROOT_FOR_DEFAULT = true;
   const SELECT_ID = "langSelect";
 
@@ -95,8 +96,7 @@
     return new Set(LANGS.map((x) => canon(x.code)).filter(Boolean));
   }
 
-  // 你的“应用基路径”（不含语言段），这里用 <base href> 来推断
-  // 对于你站点：应当是 "/pages/timetrails/"
+  // 你的应用真实基路径：来自 <base href="/pages/timetrails/">
   function inferAppBase() {
     const baseEl = document.querySelector("base[href]");
     if (baseEl) {
@@ -106,11 +106,10 @@
       if (!p.endsWith("/")) p += "/";
       return normalizeSlashes(p);
     }
-    // 没有 <base> 就退化为 "/"
-    return "/";
+    return "/"; // 没有 base 就退化
   }
 
-  // 从根路径第一段检测语言： /zh-hant/xxx
+  // 语言段只允许在根第一段：/en/xxx
   function detectLangFromRoot(supported) {
     const parts = location.pathname.split("/").filter(Boolean);
     if (!parts.length) return null;
@@ -118,24 +117,20 @@
     return supported.has(first) ? first : null;
   }
 
-  // 去掉根路径第一段语言（如果存在）
-  // /zh-hant/pages/timetrails/feedback  -> /pages/timetrails/feedback
+  // 去掉根第一段语言（如果存在）
   function stripLangFromRoot(supported) {
     const hadTrailing = location.pathname.endsWith("/");
     const parts = location.pathname.split("/").filter(Boolean);
 
-    if (parts.length && supported.has(canon(parts[0]))) {
-      parts.shift();
-    }
+    if (parts.length && supported.has(canon(parts[0]))) parts.shift();
 
     const joined = parts.join("/");
     const out = joined ? ("/" + joined + (hadTrailing ? "/" : "")) : "/";
     return normalizeSlashes(out);
   }
 
-  // 把“无语言的绝对路径”转换成“应用内部相对路径”
-  // 例如：noLangAbs="/pages/timetrails/feedback"
-  // appBase="/pages/timetrails/" => 返回 "/feedback"
+  // 把无语言的绝对路径转换成“相对于 appBase 的路径”
+  // 例：noLangAbs="/pages/timetrails/feedback", base="/pages/timetrails/" => "/feedback"
   function toAppRelative(noLangAbs, appBase) {
     const base = appBase.endsWith("/") ? appBase : appBase + "/";
     let p = noLangAbs || "/";
@@ -151,10 +146,9 @@
   // 默认语言:  /pages/timetrails/{rest}
   // 非默认:    /{lang}/pages/timetrails/{rest}
   function buildTarget(restRel, lang, appBase) {
-    const rest = (restRel || "/").replace(/^\//, ""); // "feedback"
+    const rest = (restRel || "/").replace(/^\//, "");
     const l = canon(lang);
     const def = canon(DEFAULT_LANG);
-
     const base = appBase.endsWith("/") ? appBase : appBase + "/";
 
     let out;
@@ -174,7 +168,7 @@
     sel.innerHTML = "";
     for (const l of langs) {
       const opt = document.createElement("option");
-      opt.value = l.code;
+      opt.value = l.code;        // value 用小写 code
       opt.textContent = l.name;
       if (l.code === current) opt.selected = true;
       sel.appendChild(opt);
@@ -190,9 +184,9 @@
       .filter((x) => x.code);
 
     const supported = supportedSet();
-    const appBase = inferAppBase(); // e.g. "/pages/timetrails/"
+    const appBase = inferAppBase(); // "/pages/timetrails/"
 
-    // ✅ 语言段只看根第一段：/zh-hant/...
+    // 当前语言只从根第一段判断
     const fromRoot = detectLangFromRoot(supported);
     const current = supported.has(fromRoot) ? fromRoot : canon(DEFAULT_LANG);
 
@@ -202,13 +196,13 @@
     sel.addEventListener("change", () => {
       const next = canon(sel.value) || canon(DEFAULT_LANG);
 
-      // ✅ 先把当前 URL 去掉根语言段，得到 noLangAbs（绝对路径）
+      // 先去掉根语言段（如果有）：得到 noLangAbs="/pages/timetrails/feedback"
       const noLangAbs = stripLangFromRoot(supported);
 
-      // ✅ 再把 noLangAbs 转成“应用内部相对路径” /feedback
+      // 再把它变成 app 内部相对路径："/feedback"
       const restRel = toAppRelative(noLangAbs, appBase);
 
-      // ✅ 最后按你的规则拼：/{lang}/pages/timetrails/feedback
+      // 最后按规则拼出来
       const target = buildTarget(restRel, next, appBase);
 
       location.href = target + location.search + location.hash;
