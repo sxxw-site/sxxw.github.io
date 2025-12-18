@@ -244,10 +244,10 @@
   "timetrails.index.og.description": "將你的旅行轉化為可重溫的時間線：路徑、停留點、里程統計、本地優先。",
   "timetrails.index.og.title": "TimeTrails",
   "timetrails.index.quick.li0": "自動生成「今日的路線」：路線、里程和停靠點一目了然。",
-  "timetrails.index.quick.li1": "",
-  "timetrails.index.quick.li2": "",
-  "timetrails.index.quick.li3": "",
-  "timetrails.index.quick.li4": "",
-  "timetrails.index.quick.title": "",
-  "timetrails.index.subtitle": ""
+  "timetrails.index.quick.li1": "檢視行程：按日/地點瀏覽你的行動時間線",
+  "timetrails.index.quick.li2": "個人回顧：通勤、運動和旅行模式的長期變化",
+  "timetrails.index.quick.li3": "回想某一天：在時間線上快速找到「那間商店」、「那條路」、「那段步行」。",
+  "timetrails.index.quick.li4": "追蹤你的步伐：通勤/運動/旅行的里程趨勢，長期比較更直觀。",
+  "timetrails.index.quick.title": "你會用它來做什麼",
+  "timetrails.index.subtitle": "將你手機的「你去過哪裡、停留多久、走了多遠」轉化為一個你可以重溫的個人時間線。"
 }
