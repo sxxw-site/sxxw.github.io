@@ -40,7 +40,7 @@
         .logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
         .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-        /* 语言选择器（复用 private 的样式） */
+        /* 语言选择器 */
         .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
         .lang-select{
           appearance:none;-webkit-appearance:none;-moz-appearance:none;
@@ -54,7 +54,7 @@
         .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
         .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
 
-        /* Tabs：做成“private 风”而不是黑面板 */
+        /* Tabs */
         .tabs{display:flex;gap:8px;flex-wrap:wrap}
         .tab{
           flex:1;min-width:160px;
@@ -140,6 +140,9 @@
         .toast.show{opacity:1}
 
         footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+
+        /* ✅ 兜底：hidden 一定不显示 */
+        .badge[hidden]{ display:none !important; }
 
         @media (max-width:640px){
           .row{grid-template-columns:1fr}
@@ -243,38 +246,10 @@
             </p>
         </section>
 
-        <!-- 加入交流群 -->
+        <!-- 加入交流群（动态渲染） -->
         <section id="panel-community" role="tabpanel" aria-labelledby="tab-community" aria-hidden="true" hidden>
             <h2 data-i18n="feedback.section.community.title">加入交流群</h2>
-
-            <div class="grid">
-                <div>
-                    <h3 data-i18n="feedback.community.qq1.title">QQ 群 1</h3>
-                    <div class="kvs">
-                        <input id="qq1-number" class="mono" type="text" readonly>
-                        <button data-copy="#qq1-number" data-i18n="feedback.community.copyNumber">复制群号</button>
-                    </div>
-                    <div class="btns" style="margin-top:10px">
-                        <a class="btn ok" id="btn-qq1-join" target="_blank" rel="noopener" data-i18n="feedback.community.join">一键加群</a>
-                        <a class="btn" id="btn-qq1-url-copy" data-i18n="feedback.community.copyInvite">复制加群链接</a>
-                    </div>
-                </div>
-
-                <div>
-                    <h3>
-                        <span data-i18n="feedback.community.qq2.title">QQ 群 2</span>
-                        <span class="badge" id="qq2-full" hidden data-i18n="feedback.community.full">已满</span>
-                    </h3>
-                    <div class="kvs">
-                        <input id="qq2-number" class="mono" type="text" readonly>
-                        <button data-copy="#qq2-number" data-i18n="feedback.community.copyNumber">复制群号</button>
-                    </div>
-                    <div class="btns" style="margin-top:10px">
-                        <a class="btn ok" id="btn-qq2-join" target="_blank" rel="noopener" data-i18n="feedback.community.join2">一键加群</a>
-                        <a class="btn" id="btn-qq2-url-copy" data-i18n="feedback.community.copyInvite">复制加群链接</a>
-                    </div>
-                </div>
-            </div>
+            <div class="grid" id="qqGroups"></div>
         </section>
 
         <!-- App Store -->
@@ -312,31 +287,30 @@
     <span id="msg-need-config" data-i18n="feedback.msg.needConfig">请先在代码里配置必要参数</span>
     <span id="msg-qq-invite-missing" data-i18n="feedback.msg.qqInviteMissing">未配置加群链接</span>
     <span id="msg-appid-missing" data-i18n="feedback.msg.appIdMissing">未配置 App ID</span>
+    <span id="msg-qq-number-missing" data-i18n="feedback.msg.qqNumberMissing">未配置群号</span>
 </div>
 
 <div class="toast" id="toast" aria-live="polite"></div>
 
-<!-- 复用你的站点脚本 -->
 <script src="assets/main.js"></script>
 <script src="assets/lang-switch.js"></script>
 
 <script>
     // ======== 配置（按需修改）========
-const CONFIG = {
-  GH_OWNER: "sxxw-site",
-  GH_REPO:  "sxxw.github.io",
-  GH_HOMEPAGE: "https://github.com/sxxw-site/sxxw.github.io",
+    const CONFIG = {
+      GH_OWNER: "sxxw-site",
+      GH_REPO:  "sxxw.github.io",
+      GH_HOMEPAGE: "https://github.com/sxxw-site/sxxw.github.io",
 
-  MAIL_TO:  "house@sxxw.site",
+      MAIL_TO:  "house@sxxw.site",
 
-  QQ1_NUMBER: "574966492",
-  QQ1_INVITE_URL: "https://qm.qq.com/q/WmKwcZcZW",
-  QQ2_NUMBER: "185198503",
-  QQ2_INVITE_URL: "https://qm.qq.com/q/J1eYFA7i4m",
-  QQ2_IS_FULL: true,
+      QQ_GROUPS: [
+        { id: "qq1", titleKey: "feedback.community.qq1.title", fallbackTitle: "QQ 群 1", number: "574966492", inviteUrl: "https://qm.qq.com/q/WmKwcZcZW", isFull: false },
+        { id: "qq2", titleKey: "feedback.community.qq2.title", fallbackTitle: "QQ 群 2", number: "185198503", inviteUrl: "https://qm.qq.com/q/J1eYFA7i4m", isFull: true  }
+      ],
 
-  IOS_APP_ID: "6752662508"
-};
+      IOS_APP_ID: "6752662508"
+    };
 
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
@@ -521,38 +495,122 @@ const CONFIG = {
       return `mailto:${CONFIG.MAIL_TO}?subject=${encodeURIComponent("[反馈] " + title)}&body=${encodeURIComponent(body)}`;
     }
 
+    // ======== QQ 群渲染（可配置 + isFull 修复）========
+    function escapeHtml(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    function renderQQGroups(){
+      const wrap = $("#qqGroups");
+      if(!wrap) return;
+
+      const groups = Array.isArray(CONFIG.QQ_GROUPS) ? CONFIG.QQ_GROUPS : [];
+      wrap.innerHTML = "";
+
+      groups.forEach((g, idx) => {
+        const id = g.id || `qq${idx+1}`;
+        const titleKey = g.titleKey || "";
+        const titleText = g.fallbackTitle || `QQ 群 ${idx+1}`;
+
+        const html = `
+          <div class="qq-card" data-qq-id="${escapeHtml(id)}">
+            <h3>
+              <span ${titleKey ? `data-i18n="${escapeHtml(titleKey)}"` : ""}>${escapeHtml(titleText)}</span>
+              <span class="badge" data-role="full-badge" hidden data-i18n="feedback.community.full">已满</span>
+            </h3>
+
+            <div class="kvs">
+              <input class="mono" type="text" readonly data-role="qq-number" value="">
+              <button type="button" data-role="copy-number" data-i18n="feedback.community.copyNumber">复制群号</button>
+            </div>
+
+            <div class="btns" style="margin-top:10px">
+              <a class="btn ok" data-role="join" target="_blank" rel="noopener" data-i18n="feedback.community.join">一键加群</a>
+              <a class="btn" data-role="copy-invite" data-i18n="feedback.community.copyInvite">复制加群链接</a>
+            </div>
+          </div>
+        `;
+        wrap.insertAdjacentHTML("beforeend", html);
+      });
+    }
+
+    function initQQGroups(){
+      const wrap = $("#qqGroups");
+      if(!wrap) return;
+
+      const groups = Array.isArray(CONFIG.QQ_GROUPS) ? CONFIG.QQ_GROUPS : [];
+
+      groups.forEach((g, idx) => {
+        const id = g.id || `qq${idx+1}`;
+        const card = wrap.querySelector(`[data-qq-id="${CSS.escape(id)}"]`);
+        if(!card) return;
+
+        const numEl = card.querySelector('[data-role="qq-number"]');
+        const badgeEl = card.querySelector('[data-role="full-badge"]');
+        const joinEl = card.querySelector('[data-role="join"]');
+        const copyNumBtn = card.querySelector('[data-role="copy-number"]');
+        const copyInviteBtn = card.querySelector('[data-role="copy-invite"]');
+
+        const number = (g.number || "").trim();
+        const inviteUrl = (g.inviteUrl || "").trim();
+        const isFull = !!g.isFull;
+
+        if(numEl) numEl.value = number;
+
+        if (badgeEl) {
+          badgeEl.hidden = true;
+          badgeEl.style.display = "none";
+          if (isFull) {
+            badgeEl.hidden = false;
+            badgeEl.style.display = "inline-block";
+          }
+        }
+
+        if (joinEl) {
+          joinEl.classList.remove("disabled");
+          joinEl.removeAttribute("aria-disabled");
+          joinEl.removeAttribute("title");
+          joinEl.tabIndex = 0;
+
+          if (isFull || !inviteUrl) {
+            joinEl.classList.add("disabled");
+            joinEl.setAttribute("aria-disabled", "true");
+            joinEl.removeAttribute("href");
+            joinEl.tabIndex = -1;
+            joinEl.title = isFull ? (badgeEl?.textContent || "已满") : (msg("msg-qq-invite-missing") || "missing invite url");
+          } else {
+            joinEl.href = inviteUrl;
+          }
+        }
+
+        if (copyNumBtn) {
+          copyNumBtn.addEventListener("click", () => {
+            if (!number) { showToast(msg("msg-qq-number-missing")); return; }
+            copyText(number);
+          });
+        }
+
+        if (copyInviteBtn) {
+          copyInviteBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (!inviteUrl) { showToast(msg("msg-qq-invite-missing")); return; }
+            copyText(inviteUrl);
+          });
+        }
+      });
+    }
+
     // ======== 初始化链接/按钮 ========
     $('#ghLink').href = CONFIG.GH_HOMEPAGE || "#";
 
-    $$('button[data-copy]').forEach(btn=>{
-      btn.addEventListener('click', ()=> copyTextFrom(btn.getAttribute('data-copy')));
-    });
-
-    $('#qq1-number').value = CONFIG.QQ1_NUMBER || "";
-    $('#btn-qq1-join').href = CONFIG.QQ1_INVITE_URL || "#";
-    $('#btn-qq1-url-copy').addEventListener('click', ()=>{
-      if(!CONFIG.QQ1_INVITE_URL){ showToast(msg("msg-qq-invite-missing")); return; }
-      copyText(CONFIG.QQ1_INVITE_URL);
-    });
-
-    $('#qq2-number').value = CONFIG.QQ2_NUMBER || "";
-    const join2 = $('#btn-qq2-join');
-    const full2 = $('#qq2-full');
-
-    if(CONFIG.QQ2_IS_FULL){
-      full2.hidden = false;
-      join2.classList.add('disabled');
-      join2.setAttribute('aria-disabled','true');
-      join2.removeAttribute('href');
-      join2.tabIndex = -1;
-    }else{
-      join2.href = CONFIG.QQ2_INVITE_URL || "#";
-    }
-
-    $('#btn-qq2-url-copy').addEventListener('click', ()=>{
-      if(!CONFIG.QQ2_INVITE_URL){ showToast(msg("msg-qq-invite-missing")); return; }
-      copyText(CONFIG.QQ2_INVITE_URL);
-    });
+    // 先渲染群，再初始化（避免找不到节点）
+    renderQQGroups();
+    initQQGroups();
 
     // App Store
     (function initAppStore(){
