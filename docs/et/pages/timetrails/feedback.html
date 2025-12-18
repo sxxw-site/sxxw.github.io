@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="et">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<title>意见反馈（TimeTrails）</title>
+<!-- 你部署在 /pages/timetrails/ 下就保留；否则删掉或改成正确路径 -->
+<base href="/pages/timetrails/"/>
+<link href="../../assets/style.css" rel="stylesheet"/>
+<style>
+        :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
+        @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1}}
+        *{box-sizing:border-box}
+        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,Noto Sans CJK SC,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+        .container{max-width:960px;margin:0 auto;padding:40px 16px}
+        .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+        h1{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;letter-spacing:.2px}
+        h2{font-size:clamp(18px,2.0vw,22px);margin:22px 0 10px}
+        h3{margin:0 0 10px;font-size:16px}
+        p,li{line-height:1.7;color:var(--text)}
+        a{color:var(--link);text-decoration:none}
+        a:hover{text-decoration:underline}
+        .muted{color:var(--muted);font-size:13px}
+        .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:18px 0}
+        .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px;background:rgba(34,211,238,.15);color:var(--accent);border:1px solid rgba(34,211,238,.35)}
+        .chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px;border:1px solid rgba(255,255,255,.16)}
+        .ok{background:rgba(52,211,153,.15);color:var(--ok);border-color:rgba(52,211,153,.35)}
+        .warn{background:rgba(251,191,36,.15);color:var(--warn);border-color:rgba(251,191,36,.35)}
+        .bad{background:rgba(251,113,133,.15);color:var(--bad);border-color:rgba(251,113,133,.35)}
+
+        /* 顶栏风格同 private */
+        .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9d7dff);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+        .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+        /* 语言选择器（复用 private 的样式） */
+        .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+        .lang-select{
+          appearance:none;-webkit-appearance:none;-moz-appearance:none;
+          border:1px solid rgba(34,211,238,.35);
+          background:rgba(15,23,42,.55);
+          color:inherit;
+          padding:10px 36px 10px 12px;
+          border-radius:12px;
+          font:inherit;line-height:1;cursor:pointer;outline:none;
+        }
+        .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+        .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+
+        /* Tabs：做成“private 风”而不是黑面板 */
+        .tabs{display:flex;gap:8px;flex-wrap:wrap}
+        .tab{
+          flex:1;min-width:160px;
+          padding:10px 12px;border-radius:12px;
+          border:1px solid rgba(255,255,255,.12);
+          background:rgba(148,163,184,.10);
+          cursor:pointer;user-select:none;text-align:center;
+        }
+        .tab[aria-selected="true"]{
+          background:rgba(34,211,238,.15);
+          border-color:rgba(34,211,238,.35);
+          color:var(--accent);
+          font-weight:650;
+        }
+        .tab:focus-visible{outline:2px solid rgba(34,211,238,.55);outline-offset:2px}
+
+        /* 表单控件 */
+        label{color:var(--muted);font-size:14px}
+        .row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;margin:12px 0}
+        input[type="text"], select, textarea{
+          width:100%;
+          padding:10px 12px;
+          border-radius:12px;
+          border:1px solid rgba(255,255,255,.12);
+          background:rgba(148,163,184,.10);
+          color:var(--text);
+          outline:none;
+        }
+        textarea{min-height:120px;resize:vertical}
+        input:focus, select:focus, textarea:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18);border-color:rgba(34,211,238,.35)}
+
+        /* 按钮 */
+        .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+        .btn, button{
+          display:inline-flex;align-items:center;gap:8px;
+          padding:10px 14px;border-radius:12px;
+          border:1px solid rgba(255,255,255,.14);
+          background:rgba(148,163,184,.10);
+          color:var(--text);
+          cursor:pointer;
+          text-decoration:none;
+        }
+        .btn:hover, button:hover{border-color:rgba(34,211,238,.35)}
+        .btn.primary{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.35);color:var(--accent);font-weight:650}
+        .btn.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok);font-weight:650}
+        .btn.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn);font-weight:650}
+        .btn.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
+
+        /* 评分 */
+        .stars{display:flex;gap:8px;align-items:center}
+        .star{
+          width:30px;height:30px;border-radius:999px;
+          display:grid;place-items:center;
+          border:1px solid rgba(255,255,255,.14);
+          background:rgba(148,163,184,.10);
+          cursor:pointer;
+          font-size:12px;
+          color:var(--text);
+        }
+        .star[aria-checked="true"]{
+          background:rgba(251,191,36,.18);
+          border-color:rgba(251,191,36,.45);
+          color:var(--warn);
+          font-weight:700;
+        }
+
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+        .kvs{display:grid;grid-template-columns:1fr auto;gap:8px}
+        .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+
+        /* toast */
+        .toast{
+          position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+          background:rgba(15,23,42,.92);
+          color:var(--text);
+          border:1px solid rgba(255,255,255,.14);
+          padding:10px 14px;border-radius:999px;
+          box-shadow:0 10px 30px rgba(0,0,0,.25);
+          opacity:0;pointer-events:none;transition:opacity .18s ease;
+          max-width:min(92vw,680px);
+          white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+        }
+        .toast.show{opacity:1}
+
+        footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+
+        @media (max-width:640px){
+          .row{grid-template-columns:1fr}
+          .tab{min-width:unset}
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
+<h1>TimeTrails 意见反馈</h1>
+<div class="muted">
+<span class="chip ok">静态页</span>
+<span class="chip ok">多语言</span>
+<span class="chip ok">用户可控</span>
+<span style="margin-left:6px">提交会跳转到 GitHub Issue 或邮件处理</span>
+</div>
+</div>
+</div>
+<div class="right">
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect"></select>
+<span class="lang-caret">▾</span>
+</div>
+<a class="btn" id="ghLink" rel="noopener" target="_blank">仓库主页</a>
+</div>
+</div>
+<div class="divider"></div>
+<nav class="tabs" role="tablist">
+<div aria-controls="panel-appstore" aria-selected="true" class="tab" data-tab="appstore" id="tab-appstore" role="tab" tabindex="0">去商店评价</div>
+<div aria-controls="panel-feedback" aria-selected="false" class="tab" data-tab="feedback" id="tab-feedback" role="tab" tabindex="-1">提交反馈</div>
+<div aria-controls="panel-community" aria-selected="false" class="tab" data-tab="community" id="tab-community" role="tab" tabindex="-1">加入交流群</div>
+</nav>
+<div class="divider"></div>
+<!-- 提交反馈 -->
+<section aria-hidden="true" aria-labelledby="tab-feedback" hidden="" id="panel-feedback" role="tabpanel">
+<h2>提交反馈</h2>
+<div class="row">
+<label for="fb-title">标题</label>
+<input id="fb-title" placeholder="简要描述你的问题或建议" type="text"/>
+</div>
+<div class="row">
+<label for="fb-type">类型</label>
+<select id="fb-type">
+<option value="bug">缺陷/报错</option>
+<option value="feature">功能建议</option>
+<option value="uiux">交互/体验</option>
+<option value="other">其他</option>
+</select>
+</div>
+<div class="row">
+<label for="fb-content">详细描述</label>
+<textarea id="fb-content" placeholder="复现步骤 / 期望行为 / 实际结果 / 截图链接 …"></textarea>
+</div>
+<div class="row">
+<label>体验评分</label>
+<div class="stars" id="stars" role="radiogroup">
+<div aria-checked="false" class="star" data-v="1" role="radio" tabindex="0">1</div>
+<div aria-checked="false" class="star" data-v="2" role="radio" tabindex="-1">2</div>
+<div aria-checked="false" class="star" data-v="3" role="radio" tabindex="-1">3</div>
+<div aria-checked="false" class="star" data-v="4" role="radio" tabindex="-1">4</div>
+<div aria-checked="false" class="star" data-v="5" role="radio" tabindex="-1">5</div>
+</div>
+</div>
+<div class="row">
+<label for="contact">可选联系方式</label>
+<input id="contact" placeholder="邮箱 / QQ / 其他" type="text"/>
+</div>
+<div class="row">
+<label></label>
+<label class="muted">
+<input checked="" id="sysinfo" type="checkbox"/>
+<span>附带浏览器与系统信息（便于排查）</span>
+</label>
+</div>
+<div class="btns">
+<a class="btn primary" id="btn-issue" rel="noopener" target="_blank">通过 GitHub Issue 提交</a>
+<a class="btn" id="btn-mail">通过邮件提交</a>
+<button id="btn-copy-template">复制模板</button>
+</div>
+<p class="muted" style="margin-top:10px">
+                提示：若 GitHub 需要登录，你也可以通过邮件反馈。
+            </p>
+</section>
+<!-- 加入交流群 -->
+<section aria-hidden="true" aria-labelledby="tab-community" hidden="" id="panel-community" role="tabpanel">
+<h2>加入交流群</h2>
+<div class="grid">
+<div>
+<h3>QQ 群 1</h3>
+<div class="kvs">
+<input class="mono" id="qq1-number" readonly="" type="text"/>
+<button data-copy="#qq1-number">复制群号</button>
+</div>
+<div class="btns" style="margin-top:10px">
+<a class="btn ok" id="btn-qq1-join" rel="noopener" target="_blank">一键加群</a>
+<a class="btn" id="btn-qq1-url-copy">复制加群链接</a>
+</div>
+</div>
+<div>
+<h3>
+<span>QQ 群 2</span>
+<span class="badge" hidden="" id="qq2-full">已满</span>
+</h3>
+<div class="kvs">
+<input class="mono" id="qq2-number" readonly="" type="text"/>
+<button data-copy="#qq2-number">复制群号</button>
+</div>
+<div class="btns" style="margin-top:10px">
+<a class="btn ok" id="btn-qq2-join" rel="noopener" target="_blank">一键加群</a>
+<a class="btn" id="btn-qq2-url-copy">复制加群链接</a>
+</div>
+</div>
+</div>
+</section>
+<!-- App Store -->
+<section aria-hidden="false" aria-labelledby="tab-appstore" id="panel-appstore" role="tabpanel">
+<h2>去商店评价</h2>
+<div class="row">
+<label>App Store</label>
+<div>
+<div class="btns">
+<a class="btn warn" id="btn-appstore-review">去 App Store 评价</a>
+<a class="btn" id="btn-appstore-copy">复制评价链接</a>
+<a class="btn" id="btn-appstore-open">打开 App 详情页</a>
+<a class="btn" id="btn-appstore-copy-detail">复制详情页链接</a>
+</div>
+<p class="muted" style="margin-top:10px">
+                        在 iPhone/iPad 上会尝试直接拉起 App Store；其他平台将打开网页版（自动地区）。
+                    </p>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<footer>
+            本页为静态页面，不收集任何敏感数据。提交内容将跳转到你配置的 Issue/邮箱处理。
+        </footer>
+</div>
+</div>
+<!-- i18n messages（JS 读 textContent） -->
+<div hidden="" id="i18n-msg">
+<span id="msg-copy-ok">已复制到剪贴板</span>
+<span id="msg-copy-fail">复制失败，请手动复制</span>
+<span id="msg-need-config">请先在代码里配置必要参数</span>
+<span id="msg-qq-invite-missing">未配置加群链接</span>
+<span id="msg-appid-missing">未配置 App ID</span>
+</div>
+<div aria-live="polite" class="toast" id="toast"></div>
+<!-- 复用你的站点脚本 -->
+<script src="../../assets/main.js"></script>
+<script src="../../assets/lang-switch.js"></script>
+<script>
+    // ======== 配置（按需修改）========
+const CONFIG = {
+  GH_OWNER: "sxxw-site",
+  GH_REPO:  "sxxw.github.io",
+  GH_HOMEPAGE: "https://github.com/sxxw-site/sxxw.github.io",
+
+  MAIL_TO:  "house@sxxw.site",
+
+  QQ1_NUMBER: "574966492",
+  QQ1_INVITE_URL: "https://qm.qq.com/q/WmKwcZcZW",
+  QQ2_NUMBER: "185198503",
+  QQ2_INVITE_URL: "https://qm.qq.com/q/J1eYFA7i4m",
+  QQ2_IS_FULL: true,
+
+  IOS_APP_ID: "6752662508"
+};
+
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function msg(id){ return (document.getElementById(id)?.textContent || "").trim(); }
+
+    function showToast(text){
+      const t = $("#toast");
+      if(!t) return;
+      t.textContent = text;
+      t.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(()=> t.classList.remove("show"), 1600);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast(msg("msg-copy-ok") || "Copied");
+      }catch{
+        showToast(msg("msg-copy-fail") || "Copy failed");
+      }
+    }
+
+    function copyTextFrom(selector){
+      const el = $(selector);
+      if(!el) return;
+      copyText(el.value || el.textContent || "");
+    }
+
+    function getSystemInfo(){
+      return [
+        `UA: ${navigator.userAgent}`,
+        `platform: ${navigator.platform}`,
+        `lang: ${navigator.language}`,
+        `screen: ${window.screen.width}x${window.screen.height} @${window.devicePixelRatio}`
+      ].join("\n");
+    }
+
+    // ✅ 不需要 country：iOS 交给系统店铺；Web 用不带国家的链接自动重定向
+    function getAppStoreURLs(appId){
+      if(!appId) return { review:{web:"#",ios:"#"}, detail:{web:"#",ios:"#"} };
+
+      const iosDetail = `itms-apps://itunes.apple.com/app/id${encodeURIComponent(appId)}`;
+      const iosReview = `${iosDetail}?action=write-review`;
+
+      const webDetail = `https://apps.apple.com/app/id${encodeURIComponent(appId)}`;
+      const webReview = `${webDetail}?action=write-review`;
+
+      return { review:{ web:webReview, ios:iosReview }, detail:{ web:webDetail, ios:iosDetail } };
+    }
+
+    function isIOSDevice(){
+      const ua = navigator.userAgent || navigator.vendor || window.opera || "";
+      return /iPad|iPhone|iPod/.test(ua) || (navigator.platform && /iP(hone|od|ad)/.test(navigator.platform));
+    }
+
+    // ======== Tabs（无障碍 + URL 同步）========
+    const tablist = document.querySelector('.tabs[role="tablist"]');
+    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+
+    function setSelected(index, { focus = false } = {}) {
+      tabs.forEach((t, i) => {
+        const selected = i === index;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+        panels[i].hidden = !selected;
+        panels[i].setAttribute('aria-hidden', String(!selected));
+      });
+      if (focus) tabs[index].focus();
+      const key = tabs[index].dataset.tab;
+      try{
+        const url = new URL(location.href);
+        url.searchParams.set('tab', key);
+        history.replaceState(null, '', url.toString());
+      }catch{}
+    }
+
+    function selectByKey(key, opts){
+      const idx = tabs.findIndex(t => t.dataset.tab === key);
+      setSelected(idx >= 0 ? idx : 0, opts);
+    }
+
+    tabs.forEach((t, i) => t.addEventListener('click', () => setSelected(i, { focus:true })));
+
+    tablist.addEventListener('keydown', (e) => {
+      const current = tabs.findIndex(t => t === document.activeElement);
+      if (current < 0) return;
+      let next = null;
+      switch (e.key) {
+        case 'ArrowRight': next = (current + 1) % tabs.length; break;
+        case 'ArrowLeft':  next = (current - 1 + tabs.length) % tabs.length; break;
+        case 'Home':       next = 0; break;
+        case 'End':        next = tabs.length - 1; break;
+        case 'Enter':
+        case ' ':
+          setSelected(current, { focus:true });
+          e.preventDefault();
+          return;
+        default: return;
+      }
+      tabs[next].focus();
+      e.preventDefault();
+    });
+
+    (function initTabs(){
+      const url = new URL(location.href);
+      const q = (url.searchParams.get('tab') || '').toLowerCase();
+      const key = (q === 'community' || q === 'appstore' || q === 'feedback') ? q : 'appstore';
+      selectByKey(key, { focus:false });
+    })();
+
+    // ======== 反馈表单 ========
+    const titleEl = $('#fb-title');
+    const typeEl = $('#fb-type');
+    const contentEl = $('#fb-content');
+    const contactEl = $('#contact');
+    const sysinfoEl = $('#sysinfo');
+
+    let starsValue = 0;
+    const starEls = $$('#stars .star');
+
+    function setStars(v){
+      starsValue = v;
+      starEls.forEach((x, idx) => {
+        const on = (idx + 1) <= starsValue;
+        x.setAttribute('aria-checked', String(on));
+        x.tabIndex = (idx + 1) === starsValue ? 0 : -1;
+      });
+      if(starsValue === 0){
+        starEls.forEach((x, idx)=> x.tabIndex = idx === 0 ? 0 : -1);
+      }
+    }
+
+    starEls.forEach(s=>{
+      s.addEventListener('click', ()=> setStars(Number(s.dataset.v)));
+      s.addEventListener('keydown', (e)=>{
+        const cur = Number(s.dataset.v);
+        if(e.key === "ArrowRight") { setStars(Math.min(5, cur+1)); e.preventDefault(); }
+        if(e.key === "ArrowLeft")  { setStars(Math.max(0, cur-1)); e.preventDefault(); }
+        if(e.key === "Enter" || e.key === " ") { setStars(cur); e.preventDefault(); }
+      });
+    });
+
+    function buildMarkdown(){
+      const t = (titleEl.value || "").trim() || "(待补充标题)";
+      const lines = [];
+      lines.push("### 描述");
+      lines.push((contentEl.value || "").trim() || "(详细描述/复现步骤/期望行为...)");
+      lines.push("\n### 类型");
+      lines.push(typeEl.value);
+      lines.push("\n### 评分");
+      lines.push(starsValue ? `${"★".repeat(starsValue)} (${starsValue}/5)` : "未评分");
+      lines.push("\n### 联系方式");
+      lines.push((contactEl.value || "").trim() || "未提供");
+      if(sysinfoEl.checked){
+        lines.push("\n### 系统信息");
+        lines.push("```");
+        lines.push(getSystemInfo());
+        lines.push("```");
+      }
+      return { title: t, body: lines.join("\n") };
+    }
+
+    function buildIssueURL(){
+      if(!CONFIG.GH_OWNER || !CONFIG.GH_REPO){
+        showToast(msg("msg-need-config"));
+        return "#";
+      }
+      const { title, body } = buildMarkdown();
+      const base = `https://github.com/${CONFIG.GH_OWNER}/${CONFIG.GH_REPO}/issues/new`;
+      return `${base}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function buildMailto(){
+      if(!CONFIG.MAIL_TO){
+        showToast(msg("msg-need-config"));
+        return "#";
+      }
+      const { title, body } = buildMarkdown();
+      return `mailto:${CONFIG.MAIL_TO}?subject=${encodeURIComponent("[反馈] " + title)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // ======== 初始化链接/按钮 ========
+    $('#ghLink').href = CONFIG.GH_HOMEPAGE || "#";
+
+    $$('button[data-copy]').forEach(btn=>{
+      btn.addEventListener('click', ()=> copyTextFrom(btn.getAttribute('data-copy')));
+    });
+
+    $('#qq1-number').value = CONFIG.QQ1_NUMBER || "";
+    $('#btn-qq1-join').href = CONFIG.QQ1_INVITE_URL || "#";
+    $('#btn-qq1-url-copy').addEventListener('click', ()=>{
+      if(!CONFIG.QQ1_INVITE_URL){ showToast(msg("msg-qq-invite-missing")); return; }
+      copyText(CONFIG.QQ1_INVITE_URL);
+    });
+
+    $('#qq2-number').value = CONFIG.QQ2_NUMBER || "";
+    const join2 = $('#btn-qq2-join');
+    const full2 = $('#qq2-full');
+
+    if(CONFIG.QQ2_IS_FULL){
+      full2.hidden = false;
+      join2.classList.add('disabled');
+      join2.setAttribute('aria-disabled','true');
+      join2.removeAttribute('href');
+      join2.tabIndex = -1;
+    }else{
+      join2.href = CONFIG.QQ2_INVITE_URL || "#";
+    }
+
+    $('#btn-qq2-url-copy').addEventListener('click', ()=>{
+      if(!CONFIG.QQ2_INVITE_URL){ showToast(msg("msg-qq-invite-missing")); return; }
+      copyText(CONFIG.QQ2_INVITE_URL);
+    });
+
+    // App Store
+    (function initAppStore(){
+      const appId = (CONFIG.IOS_APP_ID || "").trim();
+      if(!appId){ showToast(msg("msg-appid-missing")); return; }
+      const urls = getAppStoreURLs(appId);
+
+      $('#btn-appstore-review').addEventListener('click', (e)=>{
+        e.preventDefault();
+        window.location.href = isIOSDevice() ? urls.review.ios : urls.review.web;
+      });
+      $('#btn-appstore-copy').addEventListener('click', (e)=>{
+        e.preventDefault();
+        copyText(urls.review.web);
+      });
+      $('#btn-appstore-open').addEventListener('click', (e)=>{
+        e.preventDefault();
+        window.location.href = isIOSDevice() ? urls.detail.ios : urls.detail.web;
+      });
+      $('#btn-appstore-copy-detail').addEventListener('click', (e)=>{
+        e.preventDefault();
+        copyText(urls.detail.web);
+      });
+    })();
+
+    $('#btn-issue').addEventListener('click', (e)=>{
+      e.currentTarget.href = buildIssueURL();
+    });
+
+    $('#btn-mail').addEventListener('click', (e)=>{
+      e.preventDefault();
+      window.location.href = buildMailto();
+    });
+
+    $('#btn-copy-template').addEventListener('click', ()=>{
+      const { title, body } = buildMarkdown();
+      copyText(`# ${title}\n\n${body}`);
+    });
+
+    setStars(0);
+</script>
+</body>
+</html>
