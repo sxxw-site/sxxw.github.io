@@ -232,5 +232,5 @@
   "timetrails.licenses.item.sourceNote": "Poniższy tekst licencji jest wyciągiem z pakietu wydania komponentu; pełny oryginalny plik można zobaczyć w oficjalnym repozytorium GitHub.",
   "timetrails.licenses.item.viewLicense": "Zobacz LICENCJĘ GitHub",
   "timetrails.licenses.item.viewRepo": "Zobacz repozytorium GitHub",
-  "timetrails.licenses.note.li2": ""
+  "timetrails.licenses.note.li2": "Każdy komponent zawiera linki do repozytorium GitHub oraz oryginalnego pliku LICENSE, co ułatwia weryfikację źródła."
 }
