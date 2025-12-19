@@ -25,9 +25,6 @@ LOCALES_DIR = Path(os.getenv("I18N_LOCALES_DIR", SRC_DIR / "locales"))
 BASE = os.getenv("I18N_BASE", "zh-hans")  # 默认语言（用于判断 base）
 BASE_ALSO_AT_ROOT = os.getenv("I18N_BASE_ALSO_AT_ROOT", "1") == "1"
 
-ASSETS_DIR = SRC_DIR / "assets"
-ASSETS_OUT_DIR = DOCS_DIR / "assets"
-
 EXEMPT_LITERALS = set(
     x.strip() for x in os.getenv("I18N_EXEMPT_LITERALS", "").split(",") if x.strip()
 )
@@ -36,10 +33,19 @@ DEFAULT_COMPANY = os.getenv("I18N_COMPANY", "上海树下小屋网络科技有�
 DEFAULT_YEAR = os.getenv("I18N_YEAR", str(datetime.now().year))
 
 # ✅ 全站防暗色首帧“闪白”注入（可用 env 关闭/改色）
-# 修复：默认 "1" 就启用；你原来写成 == "2" 基本等于永远不启用
 INJECT_CRITICAL_HEAD = os.getenv("I18N_INJECT_CRITICAL_HEAD", "1") == "1"
 CRITICAL_DARK_BG = os.getenv("I18N_CRITICAL_DARK_BG", "#0b1020")
 CRITICAL_LIGHT_BG = os.getenv("I18N_CRITICAL_LIGHT_BG", "#f8fafc")
+
+# ✅ 根目录需要保留的文件（根目录目录不会被删除；例如 assets/、<lang>/ 会保留）
+ROOT_ALLOWLIST_FILES = {"index.html", "CNAME"}
+
+# ✅ 语言目录不复制的文件（CNAME 只留根目录）
+EXCLUDE_FILENAMES_IN_LANG_DIRS = {"CNAME"}
+
+# ✅ 根目录 assets 输出位置
+ASSETS_DIR = SRC_DIR / "assets"
+ASSETS_OUT_DIR = DOCS_DIR / "assets"
 
 try:
     from bs4 import BeautifulSoup  # type: ignore
@@ -67,10 +73,6 @@ def default_html_lang_for_code(code: str) -> str:
         a, b = code.split("-", 1)
         return f"{a.lower()}-{b.upper()}"
     return c
-
-
-def normalize_slashes(path: str) -> str:
-    return (path or "").replace("\\", "/")
 
 
 # =========================
@@ -212,7 +214,6 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
     if not head:
         return
 
-    # 防重复注入（marker）
     if head.find("meta", attrs={"name": "i18n-critical-head"}):
         return
 
@@ -220,12 +221,10 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
     marker["name"] = "i18n-critical-head"
     marker["content"] = "1"
 
-    # 让 UA 知道支持 dark/light（首帧更稳）
     cs = soup.new_tag("meta")
     cs["name"] = "color-scheme"
     cs["content"] = "dark light"
 
-    # 首帧兜底背景：CSS 未加载前也不白
     style = soup.new_tag("style")
     style.string = (
         f":root{{color-scheme:dark light;}}"
@@ -233,7 +232,6 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
         f"@media (prefers-color-scheme: light){{html,body{{background:{light_bg};}}}}"
     )
 
-    # 支持 media 的浏览器
     theme_dark = soup.new_tag("meta")
     theme_dark["name"] = "theme-color"
     theme_dark["media"] = "(prefers-color-scheme: dark)"
@@ -244,13 +242,11 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
     theme_light["media"] = "(prefers-color-scheme: light)"
     theme_light["content"] = light_bg
 
-    # ✅ 兜底：不带 media（iOS/部分 WebView 会只认这个）
     theme_fallback = soup.new_tag("meta")
     theme_fallback["name"] = "theme-color"
     theme_fallback["content"] = dark_bg
     theme_fallback["id"] = "themeColorFallback"
 
-    # ✅ JS：监听系统主题变化，动态改 fallback meta 的 content
     js = soup.new_tag("script")
     js.string = (
         "(function(){"
@@ -265,7 +261,6 @@ def ensure_critical_head(soup: BeautifulSoup, dark_bg: str, light_bg: str) -> No
         "})();"
     )
 
-    # 插到 head 最前（越早越好）
     head.insert(0, js)
     head.insert(0, theme_fallback)
     head.insert(0, theme_light)
@@ -294,25 +289,11 @@ def parse_i18n_attr_rules(raw: str) -> List[Tuple[str, str]]:
     return out
 
 
-def rewrite_asset_url(url: str, depth: int) -> str:
-    if not url:
-        return url
-    u = url.strip()
-    if u.startswith(("http://", "https://", "//", "mailto:", "#", "data:")):
-        return url
-    if u.startswith("/"):
-        return url
-    if u.startswith("assets/") and depth > 0:
-        return normalize_slashes("../" * depth + u)
-    return url
-
-
 def apply_i18n_to_html(
-    html_text: str,
-    merged_locale: Dict[str, Any],
-    lang_spec: LangSpec,
-    out_depth: int,
-    vars_map: Dict[str, str],
+        html_text: str,
+        merged_locale: Dict[str, Any],
+        lang_spec: LangSpec,
+        vars_map: Dict[str, str],
 ) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
 
@@ -362,14 +343,7 @@ def apply_i18n_to_html(
                 el[attr_name] = format_vars(str(val), vars_map)
         el.attrs.pop("data-i18n-attr", None)
 
-    for el in soup.find_all(["link", "script", "img"]):
-        if el.name == "link" and el.get("href"):
-            el["href"] = rewrite_asset_url(el["href"], out_depth)
-        if el.name == "script" and el.get("src"):
-            el["src"] = rewrite_asset_url(el["src"], out_depth)
-        if el.name == "img" and el.get("src"):
-            el["src"] = rewrite_asset_url(el["src"], out_depth)
-
+    # ✅ 注意：此脚本不重写资源路径。资源引用问题在开发阶段发现/约束即可。
     return str(soup)
 
 
@@ -377,26 +351,51 @@ def apply_i18n_to_html(
 # 文件遍历 & 拷贝
 # =========================
 def iter_html_files(src_root: Path) -> List[Path]:
+    """收集 src 下所有 html（排除 locales/）"""
     out: List[Path] = []
     for p in src_root.rglob("*.html"):
         rel = p.relative_to(src_root)
-        if rel.parts and rel.parts[0] in {"locales", "assets"}:
+        if rel.parts and rel.parts[0] == "locales":
             continue
         out.append(p)
     return out
 
 
-def copy_assets() -> None:
-    if not ASSETS_DIR.exists():
-        return
-    ASSETS_OUT_DIR.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(ASSETS_DIR, ASSETS_OUT_DIR, dirs_exist_ok=True)
+def iter_static_files(src_root: Path) -> List[Path]:
+    """
+    复制到 docs/<lang>/ 的静态文件：
+    - src 下所有非 html 文件
+    - 排除 locales/
+    - 排除 CNAME（只在根目录）
+    """
+    out: List[Path] = []
+    for p in src_root.rglob("*"):
+        if not p.is_file():
+            continue
+        rel = p.relative_to(src_root)
+        if rel.parts and rel.parts[0] == "locales":
+            continue
+        if p.name in EXCLUDE_FILENAMES_IN_LANG_DIRS:
+            continue
+        if p.suffix.lower() == ".html":
+            continue
+        out.append(p)
+    return out
+
+
+def copy_static_files_to(out_root: Path, static_files: List[Path], src_root: Path) -> None:
+    for p in static_files:
+        rel = p.relative_to(src_root)
+        dst = out_root / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(p, dst)
 
 
 def ensure_clean_docs() -> None:
+    # ✅ 每次重建：清空 docs（避免旧文件残留造成“幽灵 404”）
+    if DOCS_DIR.exists():
+        shutil.rmtree(DOCS_DIR)
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    # 如需每次清空 docs：取消注释
-    # shutil.rmtree(DOCS_DIR); DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def write_file(path: Path, content: str) -> None:
@@ -404,8 +403,31 @@ def write_file(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 
+def copy_cname_to_root() -> None:
+    src_cname = SRC_DIR / "CNAME"
+    if src_cname.exists():
+        shutil.copy2(src_cname, DOCS_DIR / "CNAME")
+        return
+    root_cname = PROJECT_ROOT / "CNAME"
+    if root_cname.exists():
+        shutil.copy2(root_cname, DOCS_DIR / "CNAME")
+
+
+def copy_assets_to_root() -> None:
+    """
+    ✅ 根目录也需要迁移 assets：
+    src/assets -> docs/assets
+    """
+    if not ASSETS_DIR.exists():
+        return
+    ASSETS_OUT_DIR.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(ASSETS_DIR, ASSETS_OUT_DIR, dirs_exist_ok=True)
+
+
 # =========================
-# 主构建：语言目录 + base 根目录再放一份
+# 主构建：
+# - docs 根目录：base 的 index.html + CNAME + assets/
+# - docs/<lang>/：迁移 src 除 locales 外的一切（静态文件 + 所有 html 渲染，包含 assets）
 # =========================
 def build() -> None:
     if not LANGS_FILE.exists():
@@ -420,14 +442,20 @@ def build() -> None:
         raise SystemExit("languages.json 里没有可用语言配置")
 
     ensure_clean_docs()
-    copy_assets()
+
+    # ✅ 根目录迁移 assets（满足你最新要求）
+    copy_assets_to_root()
 
     html_files = iter_html_files(SRC_DIR)
     if not html_files:
         raise SystemExit("src 下没有发现 html 文件")
 
+    static_files = iter_static_files(SRC_DIR)
+
     vars_map_base = {"company": DEFAULT_COMPANY, "year": DEFAULT_YEAR}
     base_n = norm_code(BASE)
+
+    wrote_root_index = False
 
     for lang in langs:
         raw_code = (lang.code or "").strip()
@@ -435,41 +463,75 @@ def build() -> None:
         out_dir_name = code_n  # 输出目录统一小写
 
         merged = load_locale_with_fallbacks(code_n, lang.fallbacks, base_n)
-
-        out_roots: List[Tuple[Path, str]] = [(DOCS_DIR / out_dir_name, f"dir:{out_dir_name}")]
-
-        if BASE_ALSO_AT_ROOT and (code_n == base_n):
-            out_roots.append((DOCS_DIR, "root"))
+        out_root = DOCS_DIR / out_dir_name
 
         vars_map = dict(vars_map_base)
         if code_n.startswith("en"):
             vars_map["company"] = os.getenv("I18N_COMPANY_EN", vars_map["company"])
 
         print(f"\n=== build: {raw_code} -> {out_dir_name}  (html.lang={lang.html_lang}, rtl={lang.rtl})")
-        for out_root, tag in out_roots:
-            print(f" -> output [{tag}]: {out_root}")
+        print(f" -> output [lang-dir]: {out_root}")
 
-            for src_html in html_files:
-                rel = src_html.relative_to(SRC_DIR)
-                out_path = out_root / rel
-                depth = max(0, len(rel.parents) - 1)
+        # ✅ 1) 静态文件：src 除 locales 外全部按结构复制到 docs/<lang>/
+        if static_files:
+            copy_static_files_to(out_root, static_files, SRC_DIR)
+            print(f"   ✅ copied {len(static_files)} static files (exclude: {sorted(EXCLUDE_FILENAMES_IN_LANG_DIRS)})")
+        else:
+            print("   ℹ️ no static files to copy")
 
-                html_text = src_html.read_text(encoding="utf-8")
-                rendered = apply_i18n_to_html(
-                    html_text=html_text,
-                    merged_locale=merged,
-                    lang_spec=lang,
-                    out_depth=depth,
-                    vars_map=vars_map,
-                )
+        # ✅ 2) HTML：src 除 locales 外全部渲染到 docs/<lang>/
+        for src_html in html_files:
+            rel = src_html.relative_to(SRC_DIR)
+            out_path = out_root / rel
 
-                write_file(out_path, rendered)
+            html_text = src_html.read_text(encoding="utf-8")
+            rendered = apply_i18n_to_html(
+                html_text=html_text,
+                merged_locale=merged,
+                lang_spec=lang,
+                vars_map=vars_map,
+            )
+            write_file(out_path, rendered)
 
-            print(f"   ✅ wrote {len(html_files)} html files")
+        print(f"   ✅ wrote {len(html_files)} html files")
+
+        # ✅ 3) 根目录：只写 base 的 index.html（只写一次）
+        if BASE_ALSO_AT_ROOT and (code_n == base_n) and not wrote_root_index:
+            src_index = SRC_DIR / "index.html"
+            if not src_index.exists():
+                raise SystemExit("你要求根目录保留默认 index.html，但 src/index.html 不存在")
+
+            root_index_out = DOCS_DIR / "index.html"
+            html_text = src_index.read_text(encoding="utf-8")
+            rendered = apply_i18n_to_html(
+                html_text=html_text,
+                merged_locale=merged,
+                lang_spec=lang,
+                vars_map=vars_map,
+            )
+            write_file(root_index_out, rendered)
+            wrote_root_index = True
+            print("   ✅ wrote ROOT docs/index.html (base only)")
+
+    # ✅ 根目录复制 CNAME（只在根目录）
+    copy_cname_to_root()
+    if (DOCS_DIR / "CNAME").exists():
+        print("   ✅ copied ROOT docs/CNAME")
+
+    # ✅ 根目录文件清理保险：只清理“根目录文件”，不动根目录目录（assets/、<lang>/ 都保留）
+    for p in DOCS_DIR.iterdir():
+        if p.is_dir():
+            continue
+        if p.name not in ROOT_ALLOWLIST_FILES:
+            try:
+                p.unlink()
+            except Exception:
+                pass
 
     print("\n✅ build 完成")
     print(f"   输出目录：{DOCS_DIR}")
-    print("   base 语言：同时输出到 docs/ 与 docs/<base_code>/（目录名统一小写）")
+    print(f"   根目录文件保留：{sorted(ROOT_ALLOWLIST_FILES)} + assets/")
+    print("   语言目录结构：docs/<lang>/...（迁移 src 除 locales 外的一切，并渲染 html）")
     if INJECT_CRITICAL_HEAD:
         print(f"   ✅ 已注入 critical head：dark={CRITICAL_DARK_BG} light={CRITICAL_LIGHT_BG}")
         print("   ✅ 已注入 theme-color fallback + JS 监听（修复 iOS/部分 WebView 不跟随问题）")
