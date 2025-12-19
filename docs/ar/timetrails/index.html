@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
+<meta charset="utf-8"/>
+<noscript>
+<style>
+      #container { display: none; }
+    </style>
+</noscript>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="light dark" name="color-scheme"/>
+<!-- 可选：把 meta 也做成 i18n（lang-switch.js 里会顺便更新 document.title） -->
+<meta content="把手机“去过哪里、停留多久、走了多远”变成一条可回看的个人时间线。" name="description"/>
+<title>时光轨迹 TimeTrails</title>
+<!-- 你的样式文件：沿用原项目 -->
+<link href="./assets/style.css" rel="stylesheet"/>
+</head>
+<body>
+<script data-template-id="country-code">window.__cf_country = "TW"</script>
+<div id="container">
+<div class="">
+<div class="">
+<div class="tailwind css-myl2ny css-exq74d">
+<div class="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white">
+<!-- 背景光斑 -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+</div>
+<div class="relative max-w-7xl mx-auto px-4 py-8 md:py-16">
+<!-- Header -->
+<header class="mb-12">
+<div class="flex justify-between items-start gap-6 flex-wrap mb-8">
+<!-- 品牌区 -->
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 shadow-2xl shadow-cyan-500/30 flex items-center justify-center">
+<svg aria-hidden="true" class="lucide lucide-navigation w-8 h-8 md:w-10 md:h-10 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+</svg>
+</div>
+<div>
+<h1 class="text-white mb-2">
+                      时光轨迹 TimeTrails
+                    </h1>
+<p class="text-cyan-200/80 max-w-2xl">
+                      把手机"去过哪里、停留多久、走了多远"变成一条可回看的个人时间线。
+                    </p>
+</div>
+</div>
+<!-- ✅ 语言切换模块（示例风格） -->
+<div aria-label="Language switcher" class="flex items-center gap-3">
+<svg aria-hidden="true" class="lucide lucide-globe w-5 h-5 text-cyan-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+<path d="M2 12h20"></path>
+</svg>
+<select aria-label="Language" class="bg-slate-800/50 border border-cyan-500/30 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-cyan-500/50 cursor-pointer" id="langSelect">
+<!-- options 会由 lang-switch.js 根据 languages.json 自动生成 -->
+</select>
+</div>
+</div>
+<div class="h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+</header>
+<!-- 主内容：两列 -->
+<div class="grid lg:grid-cols-5 gap-6 mb-8">
+<!-- 左：理念与 CTA -->
+<div class="lg:col-span-3 bg-gradient-to-br from-slate-900/90 to-slate-800/50 backdrop-blur-xl rounded-3xl p-8 border border-cyan-500/20 shadow-2xl">
+<div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-2 mb-6">
+<svg aria-hidden="true" class="lucide lucide-sparkles w-4 h-4 text-cyan-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+<path d="M20 2v4"></path>
+<path d="M22 4h-4"></path>
+<circle cx="4" cy="20" r="2"></circle>
+</svg>
+<span class="text-sm text-cyan-400">
+                    本地优先 · 隐私可控
+                  </span>
+</div>
+<h2 class="text-white mb-4">
+                  你的足迹，不该只是"被动上云的一串点"
+                </h2>
+<p class="text-slate-300 leading-relaxed mb-6">
+                  记录日常轨迹的价值，不是"点很多"，而是<strong class="text-cyan-400">能回看、能整理、能复盘</strong>。
+                  <strong class="text-white"> TimeTrails</strong> 把你的移动变成一条清晰的<strong class="text-cyan-400">时间线</strong>：今天去了哪、停留多久、走了多远，一眼看懂。
+                  同时我们坚持<strong class="text-cyan-400">本地优先</strong>与<strong class="text-cyan-400">最小化收集</strong>——你记录，是为了理解自己，而不是为了被平台理解。
+                </p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1.5 rounded-full text-sm border bg-emerald-500/10 text-emerald-400 border-emerald-500/30">本地优先</span>
+<span class="px-3 py-1.5 rounded-full text-sm border bg-emerald-500/10 text-emerald-400 border-emerald-500/30">权限可撤回</span>
+<span class="px-3 py-1.5 rounded-full text-sm border bg-cyan-500/10 text-cyan-400 border-cyan-500/30">时间线 + 地图</span>
+<span class="px-3 py-1.5 rounded-full text-sm border bg-cyan-500/10 text-cyan-400 border-cyan-500/30">停留点识别</span>
+<span class="px-3 py-1.5 rounded-full text-sm border bg-amber-500/10 text-amber-400 border-amber-500/30">可导出</span>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/40">
+<svg aria-hidden="true" class="lucide lucide-eye w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>
+                    了解产品理念
+                    <svg aria-hidden="true" class="lucide lucide-chevron-right w-4 h-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+</button>
+<button class="flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-600/50 px-6 py-3 rounded-xl transition-all">
+                    提交反馈 / 评价
+                  </button>
+</div>
+<p class="text-slate-400 text-sm mt-6">
+                  默认本地保存与处理；是否开启同步、是否导出、导出给谁——由你控制。
+                </p>
+</div>
+<!-- 右：使用场景 + 四卡 -->
+<div class="lg:col-span-2 bg-gradient-to-br from-blue-900/40 to-purple-900/40 backdrop-blur-xl rounded-3xl p-8 border border-blue-500/20 shadow-2xl">
+<h3 class="text-white mb-6 flex items-center gap-2">
+<svg aria-hidden="true" class="lucide lucide-sparkles w-5 h-5 text-blue-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+<path d="M20 2v4"></path>
+<path d="M22 4h-4"></path>
+<circle cx="4" cy="20" r="2"></circle>
+</svg>
+<span>你会用它做什么</span>
+</h3>
+<ul class="space-y-3 mb-8">
+<li class="flex items-start gap-3 text-slate-300 text-sm">
+<svg aria-hidden="true" class="lucide lucide-chevron-right w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+<span>
+                      每天自动生成"今日轨迹"：路线、里程、停留点一眼看懂
+                    </span>
+</li>
+<li class="flex items-start gap-3 text-slate-300 text-sm">
+<svg aria-hidden="true" class="lucide lucide-chevron-right w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+<span>
+                      回看某次旅行：按天/按地点翻阅你的行动时间线
+                    </span>
+</li>
+<li class="flex items-start gap-3 text-slate-300 text-sm">
+<svg aria-hidden="true" class="lucide lucide-chevron-right w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+<span>
+                      做个人复盘：通勤、运动、出行模式的长期变化
+                    </span>
+</li>
+<li class="flex items-start gap-3 text-slate-300 text-sm">
+<svg aria-hidden="true" class="lucide lucide-chevron-right w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+<span>
+                      回忆某一天：按时间轴快速定位"那家店""那段路""那次散步"
+                    </span>
+</li>
+<li class="flex items-start gap-3 text-slate-300 text-sm">
+<svg aria-hidden="true" class="lucide lucide-chevron-right w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m9 18 6-6-6-6"></path>
+</svg>
+<span>
+                      统计你的节奏：通勤/运动/旅行里程趋势，长期对比更直观
+                    </span>
+</li>
+</ul>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-cyan-500/20 text-cyan-400 border-cyan-500/30 border rounded-xl p-4 backdrop-blur-sm">
+<div class="flex items-center gap-2 mb-2">
+<svg aria-hidden="true" class="lucide lucide-map-pin w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+<span class="font-semibold">轨迹</span>
+</div>
+<p class="text-xs opacity-80">路线与速度变化</p>
+</div>
+<div class="bg-blue-500/20 text-blue-400 border-blue-500/30 border rounded-xl p-4 backdrop-blur-sm">
+<div class="flex items-center gap-2 mb-2">
+<svg aria-hidden="true" class="lucide lucide-clock w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 6v6l4 2"></path>
+<circle cx="12" cy="12" r="10"></circle>
+</svg>
+<span class="font-semibold">停留</span>
+</div>
+<p class="text-xs opacity-80">地点与时长统计</p>
+</div>
+<div class="bg-purple-500/20 text-purple-400 border-purple-500/30 border rounded-xl p-4 backdrop-blur-sm">
+<div class="flex items-center gap-2 mb-2">
+<svg aria-hidden="true" class="lucide lucide-trending-up w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 7h6v6"></path>
+<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+</svg>
+<span class="font-semibold">里程</span>
+</div>
+<p class="text-xs opacity-80">每日/每周趋势</p>
+</div>
+<div class="bg-pink-500/20 text-pink-400 border-pink-500/30 border rounded-xl p-4 backdrop-blur-sm">
+<div class="flex items-center gap-2 mb-2">
+<svg aria-hidden="true" class="lucide lucide-sparkles w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+<path d="M20 2v4"></path>
+<path d="M22 4h-4"></path>
+<circle cx="4" cy="20" r="2"></circle>
+</svg>
+<span class="font-semibold">回忆</span>
+</div>
+<p class="text-xs opacity-80">把行走变成故事</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 三卡：功能特点 -->
+<div class="grid md:grid-cols-3 gap-6 mb-8">
+<div class="group bg-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-cyan-500/50 transition-all hover:shadow-xl hover:shadow-cyan-500/10">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<svg aria-hidden="true" class="lucide lucide-route w-6 h-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="6" cy="19" r="3"></circle>
+<path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path>
+<circle cx="18" cy="5" r="3"></circle>
+</svg>
+</div>
+<h3 class="text-white mb-2">自动记录</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                  以尽量少的打扰，把移动过程记录成轨迹与统计；权限随时可撤回。
+                </p>
+</div>
+<div class="group bg-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-cyan-500/50 transition-all hover:shadow-xl hover:shadow-cyan-500/10">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<svg aria-hidden="true" class="lucide lucide-chart-column w-6 h-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+<path d="M18 17V9"></path>
+<path d="M13 17V5"></path>
+<path d="M8 17v-3"></path>
+</svg>
+</div>
+<h3 class="text-white mb-2">可视化整理</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                  时间线 + 地图双视角：按天回看、按地点聚合、按里程复盘。
+                </p>
+</div>
+<div class="group bg-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-cyan-500/50 transition-all hover:shadow-xl hover:shadow-cyan-500/10">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<svg aria-hidden="true" class="lucide lucide-shield w-6 h-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+</svg>
+</div>
+<h3 class="text-white mb-2">隐私优先</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                  仅集成少量必要的开源组件，默认本地存储与处理；不集成第三方数据分析/广告 SDK。
+                </p>
+</div>
+</div>
+<!-- 核心能力 -->
+<div class="bg-gradient-to-br from-slate-900/80 to-slate-800/40 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 mb-8">
+<h3 class="text-white mb-3 flex items-center gap-2">
+<svg aria-hidden="true" class="lucide lucide-chart-column w-6 h-6 text-cyan-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+<path d="M18 17V9"></path>
+<path d="M13 17V5"></path>
+<path d="M8 17v-3"></path>
+</svg>
+<span>核心能力</span>
+</h3>
+<p class="text-slate-400 mb-6">
+                不堆砌复杂功能，只把"轨迹记录"这件事做到顺手、清晰、可控。
+              </p>
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-300 hover:bg-cyan-500/20 transition-colors cursor-default">每日轨迹自动整理</span>
+<span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-300 hover:bg-cyan-500/20 transition-colors cursor-default">停留点与时长统计</span>
+<span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-300 hover:bg-cyan-500/20 transition-colors cursor-default">地图轨迹回放</span>
+<span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-300 hover:bg-cyan-500/20 transition-colors cursor-default">里程趋势（天/周）</span>
+<span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-300 hover:bg-cyan-500/20 transition-colors cursor-default">本地保存</span>
+<span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-300 hover:bg-cyan-500/20 transition-colors cursor-default">导出/备份</span>
+</div>
+</div>
+<!-- 相关页面 -->
+<div class="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20">
+<h3 class="text-white mb-3">相关页面</h3>
+<p class="text-slate-400 mb-6">
+                想更深入了解？这里有产品理念、隐私说明，以及你的反馈入口。
+              </p>
+<div class="flex flex-wrap gap-3">
+<button class="flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 px-5 py-2.5 rounded-xl hover:bg-emerald-500/30 transition-all">
+                  关于 TimeTrails
+                </button>
+<button class="flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 px-5 py-2.5 rounded-xl hover:bg-cyan-500/30 transition-all">
+                  意见反馈
+                </button>
+<button class="flex items-center gap-2 bg-slate-700/50 border border-slate-600/50 text-slate-300 px-5 py-2.5 rounded-xl hover:bg-slate-600/50 transition-all">
+                  隐私政策
+                </button>
+<button class="flex items-center gap-2 bg-slate-700/50 border border-slate-600/50 text-slate-300 px-5 py-2.5 rounded-xl hover:bg-slate-600/50 transition-all">
+                  开源许可
+                </button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 pt-8 border-t border-slate-700/30 text-center text-slate-500 text-sm">
+<p>
+                © TimeTrails · 上海树下小屋网络科技有限公司
+              </p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<noscript data-nosnippet="">
+<main style="height: 100vh; width: 100vw; background-color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+<h1 style="font-size: 24px; padding: 8px; color: black">This site requires JavaScript</h1>
+<p style="font-size: 16px; padding: 8px; color: #00000080">To view this website, enable JavaScript in your browser settings and reload the page.</p>
+<form action="" style="margin-top: 12px;">
+<button style="font-size: 14px; color: black; border: 1px solid #0000001a; border-radius: 5px; width: 256px; height: 32px;" type="submit">
+        Reload page
+      </button>
+</form>
+</main>
+</noscript>
+<!-- ✅ 多语言切换脚本 -->
+<script src="./assets/lang-switch.js"></script>
+</body>
+</html>
