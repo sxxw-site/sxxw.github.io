@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html data-i18n-lang="zh-CN" data-i18n-prefix="timetrails.guide" lang="it">
+<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="light dark" name="color-scheme"/>
+<title>Progettazione della pagina di importazione dati</title>
+<style>
+    :root{
+      --bg1:#eff6ff; --bg2:#ffffff; --bg3:#f5f3ff;
+      --text:#111827; --muted:#6b7280; --border:#e5e7eb;
+      --card:#ffffff; --shadow: 0 1px 2px rgba(0,0,0,.05);
+      --r20:20px; --r16:16px; --r12:12px;
+      --blue:#2563eb; --purple:#7c3aed; --green:#16a34a; --amber:#d97706;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 20% 10%, var(--bg1), transparent 60%),
+      radial-gradient(900px 600px at 90% 20%, var(--bg3), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+      min-height: 100vh;
+    }
+
+    .wrap{
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 56px;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom: 28px;
+    }
+
+    .badge{
+      width:64px; height:64px;
+      margin: 0 auto 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #3b82f6, #7c3aed);
+      box-shadow: 0 10px 20px rgba(0,0,0,.10);
+      display:flex; align-items:center; justify-content:center;
+      color:#fff;
+    }
+
+    h1{
+      font-size: 28px;
+      margin: 0 0 6px;
+      letter-spacing: .2px;
+    }
+
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r20);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .lead p{
+      margin: 0;
+      color: #374151;
+      line-height: 1.75;
+    }
+    .lead p + p{ margin-top: 10px; }
+
+    .hl{
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .section{
+      padding: 18px;
+    }
+
+    .sec-head{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom: 12px;
+    }
+
+    .sec-icon{
+      width:48px; height:48px;
+      border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(124,58,237,.12));
+      color: var(--blue);
+      flex: 0 0 auto;
+    }
+
+    h2{
+      margin:0;
+      font-size: 18px;
+    }
+
+    .rows{ margin-top: 4px; }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+      color:#1f2937;
+    }
+    .row svg{ flex: 0 0 auto; margin-top: 3px; }
+
+    .muted{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: #f3f4f6;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .code-blue{ color: var(--blue); font-weight:600; }
+    .code-green{ color: var(--green); font-weight:600; }
+
+    ol{
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+    }
+    .num{
+      width: 24px; height: 24px;
+      border-radius: 999px;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 12px;
+      color: #1d4ed8;
+      background: rgba(59,130,246,.12);
+      flex: 0 0 auto;
+    }
+    .num.purple{
+      color:#6d28d9;
+      background: rgba(124,58,237,.12);
+    }
+    .step .text{ padding-top: 2px; color:#1f2937; }
+
+    .pill{
+      margin-top: 10px;
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.25);
+      padding: 10px 12px;
+      border-radius: 12px;
+      color:#166534;
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 820px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .section{ padding: 22px; }
+      h1{ font-size: 32px; }
+    }
+
+    .mini-card{
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 14px;
+      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(59,130,246,.18));
+    }
+    .mini-card.green{
+      background: linear-gradient(135deg, rgba(34,197,94,.10), rgba(34,197,94,.18));
+    }
+    .mini-head{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      margin-bottom: 10px;
+    }
+    .mini-ico{
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.06);
+      color: var(--blue);
+      flex: 0 0 auto;
+    }
+    .mini-card.green .mini-ico{ color: var(--green); }
+
+    .mini-title{
+      margin:0;
+      font-size: 14px;
+      color:#111827;
+    }
+    .mini-sub{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color:#4b5563;
+    }
+
+    .mini-steps .s{
+      display:flex; gap:8px;
+      margin: 8px 0;
+      font-size: 13px;
+      color:#374151;
+    }
+    .dot{
+      width: 18px; height: 18px;
+      border-radius: 999px;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 11px;
+      color: #fff;
+      background: var(--blue);
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+    .mini-card.green .dot{ background: var(--green); }
+
+    .alert{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(245,158,11,.30);
+      background: rgba(245,158,11,.12);
+      color: #92400e;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .tips .tip{
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(245,158,11,.30);
+      background: rgba(245,158,11,.12);
+      margin: 10px 0;
+    }
+    .tips .tip.blue{
+      border: 1px solid rgba(59,130,246,.25);
+      background: rgba(59,130,246,.10);
+    }
+    .tip-title{
+      font-weight: 700;
+      margin: 0 0 4px;
+      font-size: 14px;
+    }
+    .tip-text{
+      margin:0;
+      font-size: 13px;
+      color: #374151;
+      opacity: .95;
+      line-height: 1.6;
+    }
+
+    .suggest{
+      border-radius: 16px;
+      border: 1px solid rgba(124,58,237,.18);
+      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(124,58,237,.10));
+      padding: 14px;
+    }
+    .suggest .line{
+      display:flex; gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+      color:#1f2937;
+      font-size: 14px;
+    }
+    .bullet{
+      width: 18px;
+      color: var(--blue);
+      font-weight: 900;
+      line-height: 1.2;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    footer{
+      margin-top: 24px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+<!-- ✅ 默认语言配置：以当前 <html lang> 为准 -->
+<script>
+    window.TimeTrailsI18N = window.TimeTrailsI18N || {};
+    window.TimeTrailsI18N.prefix = document.documentElement.dataset.i18nPrefix || "timetrails.guide";
+    window.TimeTrailsI18N.lang = document.documentElement.dataset.i18nLang || document.documentElement.lang || "zh-CN";
+  </script>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+<div aria-hidden="true" class="badge">
+<!-- 文件导入 icon（内联 SVG） -->
+<svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28">
+<path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"></path>
+<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+<path d="M2 15h10"></path>
+<path d="m9 18 3-3-3-3"></path>
+</svg>
+</div>
+<h1>Guida all'Importazione dei Dati</h1>
+<p class="subtitle">Versione Utente</p>
+</header>
+<section class="card lead">
+<p>Puoi importare file di dati dal tuo computer in TimeTrails tramite la rete locale.</p>
+<p>
+<span>L'intero processo</span>
+<span class="hl">Nessun cavo dati necessario</span>
+<span>, anche</span>
+<span class="hl">Nessun accesso all'account richiesto</span>
+<span>.</span>
+</p>
+</section>
+<section class="card section">
+<div class="sec-head">
+<div aria-hidden="true" class="sec-icon">
+<!-- check icon -->
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+<path d="m9 11 3 3L22 4"></path>
+</svg>
+</div>
+<h2>1. Lavoro di Preparazione</h2>
+</div>
+<div class="rows">
+<div class="row">
+<!-- wifi -->
+<svg fill="none" height="20" stroke="#2563eb" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M12 20h.01"></path>
+<path d="M2 8.82a15 15 0 0 1 20 0"></path>
+<path d="M5 12.859a10 10 0 0 1 14 0"></path>
+<path d="M8.5 16.429a5 5 0 0 1 7 0"></path>
+</svg>
+<div>
+<div>Assicurati che &lt;b&gt; mobile e computer siano connessi alla stessa rete Wi-Fi &lt;/b&gt;.</div>
+</div>
+</div>
+<div class="row">
+<!-- upload -->
+<svg fill="none" height="20" stroke="#2563eb" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" x2="12" y1="3" y2="15"></line>
+</svg>
+<div>
+<div>Prepara il file da importare</div>
+<div class="muted">Supporta il file del database &lt;code class="code-blue"&gt;.db&lt;/code&gt; e il file del tracciato &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
+</div>
+</div>
+</div>
+</section>
+<section class="card section">
+<div class="sec-head">
+<div aria-hidden="true" class="sec-icon">
+<!-- download -->
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" x2="12" y1="15" y2="3"></line>
+</svg>
+</div>
+<h2>2. Abilita il Servizio di Importazione su Mobile</h2>
+</div>
+<ol>
+<li class="step"><span class="num">1</span><span class="text">Apri TimeTrails</span></li>
+<li class="step"><span class="num">2</span><span class="text">Accedi alla pagina 'Importazione Dati / Trasferimento Dati'</span></li>
+<li class="step"><span class="num">3</span><span class="text">Clicca su 'Inizia Servizio'</span></li>
+<li class="step">
+<span class="num">4</span>
+<div class="text">
+<span>Dopo il successo, un URL (indirizzo di rete locale) verrà visualizzato sulla pagina.</span>
+<div class="pill">Ad esempio: http://192.168.1.100:9527</div>
+</div>
+</li>
+</ol>
+</section>
+<section class="card section">
+<div class="sec-head">
+<div aria-hidden="true" class="sec-icon">
+<!-- upload -->
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" x2="12" y1="3" y2="15"></line>
+</svg>
+</div>
+<h2>3. Caricamento di file sul computer</h2>
+</div>
+<ol>
+<li class="step"><span class="num purple">1</span><span class="text">Nel browser del tuo computer, inserisci l'URL visualizzato sul tuo telefono.</span></li>
+<li class="step"><span class="num purple">2</span><span class="text">Aprilo, quindi seleziona e carica il tuo file.</span></li>
+<li class="step"><span class="num purple">3</span><span class="text">Dopo che il caricamento è completato, il file apparirà automaticamente nell'elenco dei file sul tuo telefono.</span></li>
+</ol>
+</section>
+<section class="card section">
+<div class="sec-head">
+<div aria-hidden="true" class="sec-icon">
+<!-- database -->
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+<path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+<path d="M3 12A9 3 0 0 0 21 12"></path>
+</svg>
+</div>
+<h2>4. Importa Dati</h2>
+</div>
+<p class="muted" style="margin:0 0 6px;">Nell'elenco dei file sul tuo telefono:</p>
+<div class="grid">
+<div class="mini-card">
+<div class="mini-head">
+<div aria-hidden="true" class="mini-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+<path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+<path d="M3 12A9 3 0 0 0 21 12"></path>
+</svg>
+</div>
+<div>
+<p class="mini-title">file del database &lt;code class="code-blue"&gt;.db&lt;/code&gt;</p>
+<p class="mini-sub">Utilizzato per ripristinare o migrare l'intero database di TimeTrails</p>
+</div>
+</div>
+<div class="mini-steps">
+<div class="s"><span class="dot">1</span><span>Fai clic sul file .db</span></div>
+<div class="s"><span class="dot">2</span><span>Seleziona 'Importa'</span></div>
+<div class="s"><span class="dot">3</span><span>Un messaggio di successo verrà visualizzato al termine.</span></div>
+</div>
+</div>
+<div class="mini-card green">
+<div class="mini-head">
+<div aria-hidden="true" class="mini-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+</div>
+<div>
+<p class="mini-title">file di tracciamento &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</p>
+<p class="mini-sub">Visualizzato sulla mappa per data dopo il completamento dell'importazione.</p>
+</div>
+</div>
+<div class="mini-steps">
+<div class="s"><span class="dot">1</span><span>Clicca sul file .gpx</span></div>
+<div class="s"><span class="dot">2</span><span>Il sistema analizzerà e importerà automaticamente il tracciato.</span></div>
+<div class="s"><span class="dot">3</span><span>Controlla la mappa dopo il completamento</span></div>
+</div>
+</div>
+</div>
+<div class="alert">
+<span aria-hidden="true">⚠️</span>
+<span>Si prega di mantenere l'App in primo piano durante il processo di importazione e vedrai un messaggio di successo una volta completato.</span>
+</div>
+</section>
+<section class="card section">
+<div class="sec-head">
+<div aria-hidden="true" class="sec-icon">
+<!-- alert -->
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" x2="12" y1="8" y2="12"></line>
+<line x1="12" x2="12.01" y1="16" y2="16"></line>
+</svg>
+</div>
+<h2>5. Suggerimenti e spiegazioni comuni</h2>
+</div>
+<div class="tips">
+<div class="tip">
+<p class="tip-title">Impossibile avviare il servizio</p>
+<p class="tip-text">Si prega di assicurarsi di essere connessi a Wi-Fi, non alla rete cellulare.</p>
+</div>
+<div class="tip blue">
+<p class="tip-title">Importazione non riuscita o alcuni dati sono stati saltati</p>
+<p class="tip-text">Alcuni punti del tracciato mancano di informazioni temporali e il sistema li ignorerà automaticamente.</p>
+</div>
+<div class="tip blue">
+<p class="tip-title">File non trovato</p>
+<p class="tip-text">Aggiorna l'elenco a discesa per riscanalizzare.</p>
+</div>
+</div>
+</section>
+<section class="card section">
+<div class="sec-head">
+<div aria-hidden="true" class="sec-icon">
+</div></div></section></main></body></html>

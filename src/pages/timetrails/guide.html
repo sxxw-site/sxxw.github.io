@@ -3,45 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0ea5e9" />
 
   <title data-i18n="timetrails.guide.meta.title">数据导入页面设计</title>
-  <meta name="description" content="通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。" data-i18n-attr="content" data-i18n="timetrails.guide.meta.description" />
-  <meta name="robots" content="noindex" />
 
-  <!-- OpenGraph / Twitter（按需保留/删减） -->
-  <meta property="og:title" content="数据导入页面设计" data-i18n-attr="content" data-i18n="timetrails.guide.meta.ogTitle" />
-  <meta property="og:description" content="通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。" data-i18n-attr="content" data-i18n="timetrails.guide.meta.ogDescription" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="数据导入页面设计" data-i18n-attr="content" data-i18n="timetrails.guide.meta.twitterTitle" />
-  <meta name="twitter:description" content="通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。" data-i18n-attr="content" data-i18n="timetrails.guide.meta.twitterDescription" />
+  <!-- 如果你站点有统一样式，可保留（与示例一致） -->
+  <!-- <link rel="stylesheet" href="./assets/style.css" /> -->
 
   <style>
+    /* ====== 参考 about.html 的暗/亮主题变量（不改变布局，只换皮） ====== */
     :root{
-      --bg1:#eff6ff; --bg2:#ffffff; --bg3:#f5f3ff;
-      --text:#111827; --muted:#6b7280; --border:#e5e7eb;
-      --card:#ffffff; --shadow: 0 1px 2px rgba(0,0,0,.05);
+      --bg:#0b1020;
+      --card:#121a2a;
+      --muted:#9fb0c6;
+      --text:#e6eef9;
+      --accent:#22d3ee;
+      --link:#7dd3fc;
+
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+
+      --blue:#60a5fa;
+      --purple:#a78bfa;
+      --green:#34d399;
+      --amber:#fbbf24;
+
       --r20:20px; --r16:16px; --r12:12px;
-      --blue:#2563eb; --purple:#7c3aed; --green:#16a34a; --amber:#d97706;
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f8fafc;
+        --card:#ffffff;
+        --muted:#4b5563;
+        --text:#0f172a;
+        --accent:#0ea5e9;
+        --link:#0369a1;
+
+        --border: rgba(2,6,23,.10);
+        --shadow: 0 10px 26px rgba(2,6,23,.10);
+
+        --blue:#2563eb;
+        --purple:#7c3aed;
+        --green:#16a34a;
+        --amber:#d97706;
+      }
     }
 
     *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
     body{
-      margin:0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 700px at 20% 10%, var(--bg1), transparent 60%),
-      radial-gradient(900px 600px at 90% 20%, var(--bg3), transparent 55%),
-      linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+      background: var(--bg);
       min-height: 100vh;
     }
 
+    /* ====== 保持原布局容器不变 ====== */
     .wrap{
       max-width: 960px;
       margin: 0 auto;
       padding: 32px 16px 56px;
+      position: relative;
     }
 
     .hero{
@@ -53,10 +78,13 @@
       width:64px; height:64px;
       margin: 0 auto 16px;
       border-radius: 18px;
-      background: linear-gradient(135deg, #3b82f6, #7c3aed);
-      box-shadow: 0 10px 20px rgba(0,0,0,.10);
+      background: linear-gradient(135deg, rgba(34,211,238,.85), rgba(167,139,250,.85));
+      box-shadow: 0 12px 24px rgba(0,0,0,.30);
       display:flex; align-items:center; justify-content:center;
-      color:#fff;
+      color:#001018;
+    }
+    @media (prefers-color-scheme: light){
+      .badge{ color:#fff; }
     }
 
     h1{
@@ -80,21 +108,26 @@
       margin: 14px 0;
     }
 
+    /* 分割线：参考示例的 divider 风格 */
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin: 18px 0;
+    }
+    @media (prefers-color-scheme: light){
+      .divider{ background: linear-gradient(90deg, transparent, rgba(2,6,23,.14), transparent); }
+    }
+
     .lead p{
       margin: 0;
-      color: #374151;
+      color: color-mix(in srgb, var(--text) 85%, transparent);
       line-height: 1.75;
     }
     .lead p + p{ margin-top: 10px; }
 
-    .hl{
-      color: var(--blue);
-      font-weight: 600;
-    }
+    .hl{ color: var(--accent); font-weight: 700; }
 
-    .section{
-      padding: 18px;
-    }
+    .section{ padding: 18px; }
 
     .sec-head{
       display:flex;
@@ -107,15 +140,13 @@
       width:48px; height:48px;
       border-radius: 14px;
       display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(124,58,237,.12));
-      color: var(--blue);
+      background: linear-gradient(135deg, rgba(34,211,238,.14), rgba(167,139,250,.14));
+      color: var(--accent);
       flex: 0 0 auto;
+      border: 1px solid rgba(34,211,238,.18);
     }
 
-    h2{
-      margin:0;
-      font-size: 18px;
-    }
+    h2{ margin:0; font-size: 18px; }
 
     .rows{ margin-top: 4px; }
     .row{
@@ -123,7 +154,7 @@
       gap:10px;
       align-items:flex-start;
       margin: 10px 0;
-      color:#1f2937;
+      color: color-mix(in srgb, var(--text) 92%, transparent);
     }
     .row svg{ flex: 0 0 auto; margin-top: 3px; }
 
@@ -136,47 +167,50 @@
 
     code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      background: #f3f4f6;
+      background: rgba(148,163,184,.18);
       padding: 2px 8px;
       border-radius: 8px;
       font-size: 12px;
+      border: 1px solid rgba(255,255,255,.10);
     }
-    .code-blue{ color: var(--blue); font-weight:600; }
-    .code-green{ color: var(--green); font-weight:600; }
+    @media (prefers-color-scheme: light){
+      code{ background: rgba(148,163,184,.20); border-color: rgba(2,6,23,.08); }
+    }
+    .code-blue{ color: var(--blue); font-weight:700; }
+    .code-green{ color: var(--green); font-weight:700; }
 
-    ol{
-      margin: 0;
-      padding-left: 0;
-      list-style: none;
-    }
+    ol{ margin: 0; padding-left: 0; list-style: none; }
     .step{
       display:flex;
       gap:10px;
       align-items:flex-start;
       margin: 10px 0;
     }
+
     .num{
       width: 24px; height: 24px;
       border-radius: 999px;
       display:flex; align-items:center; justify-content:center;
       font-size: 12px;
-      color: #1d4ed8;
-      background: rgba(59,130,246,.12);
+      color: color-mix(in srgb, var(--accent) 85%, #fff);
+      background: rgba(34,211,238,.14);
+      border: 1px solid rgba(34,211,238,.22);
       flex: 0 0 auto;
     }
     .num.purple{
-      color:#6d28d9;
-      background: rgba(124,58,237,.12);
+      color: color-mix(in srgb, var(--purple) 85%, #fff);
+      background: rgba(167,139,250,.14);
+      border-color: rgba(167,139,250,.24);
     }
-    .step .text{ padding-top: 2px; color:#1f2937; }
+    .step .text{ padding-top: 2px; color: color-mix(in srgb, var(--text) 92%, transparent); }
 
     .pill{
       margin-top: 10px;
-      background: rgba(34,197,94,.10);
-      border: 1px solid rgba(34,197,94,.25);
+      background: rgba(52,211,153,.12);
+      border: 1px solid rgba(52,211,153,.28);
       padding: 10px 12px;
       border-radius: 12px;
-      color:#166534;
+      color: color-mix(in srgb, var(--green) 85%, var(--text));
       font-size: 13px;
     }
 
@@ -196,56 +230,54 @@
       border-radius: 16px;
       border: 1px solid var(--border);
       padding: 14px;
-      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(59,130,246,.18));
+      background: linear-gradient(135deg, rgba(34,211,238,.08), rgba(34,211,238,.14));
     }
     .mini-card.green{
-      background: linear-gradient(135deg, rgba(34,197,94,.10), rgba(34,197,94,.18));
+      background: linear-gradient(135deg, rgba(52,211,153,.08), rgba(52,211,153,.14));
     }
+
     .mini-head{
       display:flex;
       gap: 10px;
       align-items:center;
       margin-bottom: 10px;
     }
+
     .mini-ico{
       width: 44px; height: 44px;
       border-radius: 12px;
       display:flex; align-items:center; justify-content:center;
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(0,0,0,.06);
-      color: var(--blue);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--accent);
       flex: 0 0 auto;
     }
     .mini-card.green .mini-ico{ color: var(--green); }
 
-    .mini-title{
-      margin:0;
-      font-size: 14px;
-      color:#111827;
-    }
-    .mini-sub{
-      margin: 2px 0 0;
-      font-size: 12px;
-      color:#4b5563;
-    }
+    .mini-title{ margin:0; font-size: 14px; color: var(--text); }
+    .mini-sub{ margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
     .mini-steps .s{
       display:flex; gap:8px;
       margin: 8px 0;
       font-size: 13px;
-      color:#374151;
+      color: color-mix(in srgb, var(--text) 88%, transparent);
     }
+
     .dot{
       width: 18px; height: 18px;
       border-radius: 999px;
       display:flex; align-items:center; justify-content:center;
       font-size: 11px;
-      color: #fff;
-      background: var(--blue);
+      color: #001018;
+      background: rgba(34,211,238,.9);
       flex: 0 0 auto;
       margin-top: 1px;
     }
-    .mini-card.green .dot{ background: var(--green); }
+    .mini-card.green .dot{
+      background: rgba(52,211,153,.9);
+      color:#062312;
+    }
 
     .alert{
       display:flex;
@@ -253,9 +285,9 @@
       align-items:flex-start;
       border-radius: 14px;
       padding: 12px 14px;
-      border: 1px solid rgba(245,158,11,.30);
-      background: rgba(245,158,11,.12);
-      color: #92400e;
+      border: 1px solid rgba(251,191,36,.30);
+      background: rgba(251,191,36,.12);
+      color: color-mix(in srgb, var(--amber) 55%, var(--text));
       font-size: 13px;
       line-height: 1.6;
       margin-top: 12px;
@@ -264,43 +296,42 @@
     .tips .tip{
       border-radius: 14px;
       padding: 12px 14px;
-      border: 1px solid rgba(245,158,11,.30);
-      background: rgba(245,158,11,.12);
+      border: 1px solid rgba(251,191,36,.30);
+      background: rgba(251,191,36,.12);
       margin: 10px 0;
     }
     .tips .tip.blue{
-      border: 1px solid rgba(59,130,246,.25);
-      background: rgba(59,130,246,.10);
+      border: 1px solid rgba(34,211,238,.22);
+      background: rgba(34,211,238,.10);
     }
     .tip-title{
-      font-weight: 700;
+      font-weight: 800;
       margin: 0 0 4px;
       font-size: 14px;
     }
     .tip-text{
       margin:0;
       font-size: 13px;
-      color: #374151;
-      opacity: .95;
+      color: color-mix(in srgb, var(--text) 90%, transparent);
       line-height: 1.6;
     }
 
     .suggest{
       border-radius: 16px;
-      border: 1px solid rgba(124,58,237,.18);
-      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(124,58,237,.10));
+      border: 1px solid rgba(34,211,238,.18);
+      background: linear-gradient(135deg, rgba(34,211,238,.10), rgba(167,139,250,.10));
       padding: 14px;
     }
     .suggest .line{
       display:flex; gap:10px;
       align-items:flex-start;
       margin: 10px 0;
-      color:#1f2937;
+      color: color-mix(in srgb, var(--text) 92%, transparent);
       font-size: 14px;
     }
     .bullet{
       width: 18px;
-      color: var(--blue);
+      color: var(--accent);
       font-weight: 900;
       line-height: 1.2;
       flex: 0 0 auto;
@@ -313,6 +344,60 @@
       color: var(--muted);
       font-size: 12px;
     }
+
+    /* ====== 语言选择器：参考示例 about.html 的样式（悬浮，不破坏布局） ====== */
+    .lang-float{
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 50;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px;
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--card) 75%, transparent);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .lang-wrap{position:relative;display:inline-flex;align-items:center}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border: 1px solid rgba(34,211,238,.35);
+      background: rgba(15,23,42,.55);
+      color: inherit;
+      padding: 10px 36px 10px 12px;
+      border-radius: 12px;
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+      outline: none;
+      min-width: 140px;
+    }
+    @media (prefers-color-scheme: light){
+      .lang-select{
+        background: rgba(255,255,255,.75);
+      }
+    }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{
+      position:absolute;
+      right:12px;
+      pointer-events:none;
+      opacity:.85;
+      font-size:12px;
+      transform:translateY(1px)
+    }
+
+    .lang-label{
+      font-size: 12px;
+      color: var(--muted);
+      user-select:none;
+      white-space: nowrap;
+    }
   </style>
 
   <!-- ✅ 默认语言配置：以当前 <html lang> 为准 -->
@@ -324,6 +409,18 @@
 </head>
 
 <body>
+
+<!-- ✅ 语言切换（悬浮，不改布局） -->
+<div class="lang-float" aria-label="Language switcher">
+  <span class="lang-label" data-i18n="timetrails.guide.lang.label">语言</span>
+  <div class="lang-wrap" aria-label="Language switcher">
+    <select id="langSelect" class="lang-select" aria-label="Language">
+      <option data-i18n="timetrails.about.lang.loading">Loading…</option>
+    </select>
+    <span class="lang-caret">▾</span>
+  </div>
+</div>
+
 <main class="wrap">
   <header class="hero">
     <div class="badge" aria-hidden="true">
@@ -350,6 +447,8 @@
     </p>
   </section>
 
+  <div class="divider"></div>
+
   <section class="card section">
     <div class="sec-head">
       <div class="sec-icon" aria-hidden="true">
@@ -365,7 +464,7 @@
     <div class="rows">
       <div class="row">
         <!-- wifi -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 20h.01"></path>
           <path d="M2 8.82a15 15 0 0 1 20 0"></path>
           <path d="M5 12.859a10 10 0 0 1 14 0"></path>
@@ -378,7 +477,7 @@
 
       <div class="row">
         <!-- upload -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="17 8 12 3 7 8"></polyline>
           <line x1="12" x2="12" y1="3" y2="15"></line>
@@ -540,3 +639,24 @@
   <section class="card section">
     <div class="sec-head">
       <div class="sec-icon" aria-hidden="true">
+        <!-- check -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+          <path d="m9 11 3 3L22 4"></path>
+        </svg>
+      </div>
+      <h2 data-i18n="timetrails.guide.section6.title">六、小建议</h2>
+    </div>
+
+    <div class="suggest">
+      <div class="line"><span class="bullet">•</span><span data-i18n="timetrails.guide.section6.s1">导入前，建议先备份当前数据</span></div>
+      <div class="line"><span class="bullet">•</span><span data-i18n="timetrails.guide.section6.s2"><code class="code-blue">.db</code> 文件通常用于完整迁移</span></div>
+      <div class="line"><span class="bullet">•</span><span data-i18n="timetrails.guide.section6.s3"><code class="code-green">.gpx</code> 更适合导入单次或多段轨迹记录</span></div>
+    </div>
+  </section>
+
+  <footer data-i18n="timetrails.guide.footer">TimeTrails 数据导入使用指南</footer>
+</main>
+<script src="./assets/lang-switch.js"></script>
+</body>
+</html>
