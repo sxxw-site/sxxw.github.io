@@ -14751,5 +14751,17 @@
   "English|||lv|||Data Import Guide": "Datu importēšanas ceļvedis",
   "English|||lt|||Data Import Guide": "Duomenų importavimo vadovas",
   "English|||kk|||Data Import Guide": "Деректерді импорттау нұсқаулығы",
-  "English|||be|||Data Import Guide": "Кіраўніцтва па імпарту даных"
+  "English|||be|||Data Import Guide": "Кіраўніцтва па імпарту даных",
+  "Chinese (Simplified)|||en|||© TimeTrails · 上海树下小屋网络科技有限公司。": "© TimeTrails · 上海树下小屋网络科技有限公司.",
+  "Chinese (Simplified)|||en|||Loading…": "Loading…",
+  "Chinese (Simplified)|||en|||仅集成少量必要的开源组件，默认本地存储与处理；不集成第三方数据分析/广告 SDK。你可以随时清除、导出或撤回权限。": "Only a small number of necessary open-source components are integrated, with default local storage and processing; no third-party data analysis/ad SDK is integrated. You can clear, export, or revoke permissions at any time.",
+  "Chinese (Simplified)|||en|||{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"时光轨迹（TimeTrails）\",\n  \"description\":\"把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。\",\n  \"inLanguage\":[\"zh-Hans\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}": "{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"TimeTrails\",\n  \"description\":\"Transform travel into a retrievable timeline: tracks, stopovers, mileage statistics, local first.\",\n  \"inLanguage\":[\"zh-Hans\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}",
+  "Chinese (Simplified)|||ja|||© TimeTrails · 上海树下小屋网络科技有限公司。": "© TimeTrails · 上海树下小屋网络科技有限公司。",
+  "Chinese (Simplified)|||ja|||Loading…": "読み込み中…",
+  "Chinese (Simplified)|||ja|||{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"时光轨迹（TimeTrails）\",\n  \"description\":\"把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。\",\n  \"inLanguage\":[\"zh-Hans\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}": "{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"TimeTrails\",\n  \"description\":\"移動を振り返ることができるタイムラインに変える：軌跡、滞在ポイント、距離統計、ローカル優先。\",\n  \"inLanguage\":[\"ja\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}",
+  "Chinese (Simplified)|||ja|||仅集成少量必要的开源组件，默认本地存储与处理；不集成第三方数据分析/广告 SDK。你可以随时清除、导出或撤回权限。": "必要なオープンソースコンポーネントを最小限に統合し、デフォルトでローカルストレージと処理を行います。サードパーティのデータ分析/広告SDKは統合されていません。いつでも権限をクリア、エクスポート、または取り消すことができます。",
+  "Chinese (Simplified)|||ko|||Loading…": "로딩 중…",
+  "Chinese (Simplified)|||ko|||© TimeTrails · 上海树下小屋网络科技有限公司。": "© TimeTrails · 上海树下小屋网络科技有限公司.",
+  "Chinese (Simplified)|||ko|||仅集成少量必要的开源组件，默认本地存储与处理；不集成第三方数据分析/广告 SDK。你可以随时清除、导出或撤回权限。": "필요한 오픈 소스 구성 요소만 소량 통합하며, 기본적으로 로컬 저장 및 처리를 수행합니다; 서드파티 데이터 분석/광고 SDK는 통합하지 않습니다. 언제든지 권한을 삭제, 내보내기 또는 철회할 수 있습니다.",
+  "Chinese (Simplified)|||ko|||{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"时光轨迹（TimeTrails）\",\n  \"description\":\"把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。\",\n  \"inLanguage\":[\"zh-Hans\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}": "{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"TimeTrails\",\n  \"description\":\"여행을 되돌아볼 수 있는 시간선으로 변환: 경로, 정차 지점, 거리 통계, 지역 우선.\",\n  \"inLanguage\":[\"ko\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}"
 }
