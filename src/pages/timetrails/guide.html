@@ -9,10 +9,8 @@
 
   <title data-i18n="timetrails.guide.meta.title">数据导入使用指南</title>
 
-  <!-- 与 index.html 同步：如果你项目统一用它，就保留 -->
   <link rel="stylesheet" href="./assets/style.css" />
 
-  <!-- 只保留必要的“页面差异”样式；基础风格对齐 index.html -->
   <style>
     :root{
       --bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;
@@ -30,7 +28,6 @@
     }
     a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
 
-    /* === index.html 同款容器/card === */
     .container{max-width:1040px;margin:0 auto;padding:40px 16px}
     .card{
       background:var(--card);
@@ -41,7 +38,6 @@
     }
     .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:22px 0}
 
-    /* 顶部栏：对齐 index 的 topbar + brand + lang */
     .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{
@@ -58,7 +54,6 @@
     .muted{color:var(--muted);font-size:13px;line-height:1.7}
     p,li{line-height:1.75;margin:0}
 
-    /* 语言选择器：复用 index 的样式 */
     .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
     .lang-select{
       appearance:none;-webkit-appearance:none;-moz-appearance:none;
@@ -73,7 +68,6 @@
     .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
     .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
 
-    /* 内容区：用 panel 做分块（index 的 panel） */
     .panel{
       border:1px solid var(--border);
       border-radius:16px;
@@ -82,7 +76,6 @@
     }
     .stack{display:grid;gap:14px}
 
-    /* 简化版“步骤列表”与“提示块” */
     ol{margin:0;padding:0;list-style:none}
     .step{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
     .num{
@@ -107,9 +100,20 @@
       line-height:1.6;
     }
 
-    code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
+    /* 基础 code 样式 */
+    code{
+      background:rgba(148,163,184,.15);
+      padding:2px 6px;
+      border-radius:6px
+    }
 
-    /* 双列区块：用于 db/gpx 两块说明（可响应式降为单列） */
+    /* ✅ 你提到的 code-blue：补齐 */
+    code.code-blue{
+      color: var(--link);
+      border: 1px solid rgba(125,211,252,.35);
+      background: rgba(125,211,252,.12);
+    }
+
     .grid{display:grid;grid-template-columns:1fr;gap:14px}
     @media (min-width: 880px){ .grid{grid-template-columns:1fr 1fr} }
     footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
@@ -120,7 +124,6 @@
 <div class="container">
   <div class="card">
 
-    <!-- 顶部：对齐 index 的 topbar -->
     <div class="topbar">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
@@ -140,7 +143,6 @@
 
     <div class="divider"></div>
 
-    <!-- 引导说明 -->
     <div class="panel">
       <p data-i18n="timetrails.guide.lead.p1">你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
       <p style="margin-top:10px">
@@ -156,7 +158,6 @@
 
     <div class="stack">
 
-      <!-- 一、准备工作 -->
       <section class="panel">
         <h2 data-i18n="timetrails.guide.section1.title">一、准备工作</h2>
 
@@ -172,13 +173,12 @@
           <div>
             <div data-i18n="timetrails.guide.section1.row2.title">准备好要导入的文件</div>
             <div class="muted" data-i18n="timetrails.guide.section1.row2.note">
-              支持数据库文件 <code>.db</code>，以及轨迹文件 <code>.gpx</code>
+              支持数据库文件 <code class="code-blue">.db</code>，以及轨迹文件 <code class="code-blue">.gpx</code>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 二、手机开启导入服务 -->
       <section class="panel">
         <h2 data-i18n="timetrails.guide.section2.title">二、在手机上开启导入服务</h2>
         <ol>
@@ -195,7 +195,6 @@
         </ol>
       </section>
 
-      <!-- 三、电脑上传文件 -->
       <section class="panel">
         <h2 data-i18n="timetrails.guide.section3.title">三、在电脑上上传文件</h2>
         <ol>
@@ -205,14 +204,17 @@
         </ol>
       </section>
 
-      <!-- 四、导入数据 -->
       <section class="panel">
         <h2 data-i18n="timetrails.guide.section4.title">四、导入数据</h2>
         <p class="muted" data-i18n="timetrails.guide.section4.lead">在手机的文件列表中：</p>
 
         <div class="grid" style="margin-top:10px">
           <div class="panel">
-            <h3 data-i18n="timetrails.guide.section4.db.title"><code>.db</code> 数据库文件</h3>
+            <!-- ✅ 关键修复：不要把 <code> 放进 i18n 文案里 -->
+            <h3>
+              <code class="code-blue">.db</code>
+              <span data-i18n="timetrails.guide.section4.db.titleText">数据库文件</span>
+            </h3>
             <p class="muted" data-i18n="timetrails.guide.section4.db.subtitle">用于恢复或迁移整个 TimeTrails 数据</p>
             <ol style="margin-top:10px">
               <li class="step"><span class="num">1</span><div data-i18n="timetrails.guide.section4.db.step1">点击 .db 文件</div></li>
@@ -222,7 +224,10 @@
           </div>
 
           <div class="panel">
-            <h3 data-i18n="timetrails.guide.section4.gpx.title"><code>.gpx</code> 轨迹文件</h3>
+            <h3>
+              <code class="code-blue">.gpx</code>
+              <span data-i18n="timetrails.guide.section4.gpx.titleText">轨迹文件</span>
+            </h3>
             <p class="muted" data-i18n="timetrails.guide.section4.gpx.subtitle">导入完成后按日期显示在地图中</p>
             <ol style="margin-top:10px">
               <li class="step"><span class="num">1</span><div data-i18n="timetrails.guide.section4.gpx.step1">点击 .gpx 文件</div></li>
@@ -238,7 +243,6 @@
         </div>
       </section>
 
-      <!-- 五、常见提示说明 -->
       <section class="panel">
         <h2 data-i18n="timetrails.guide.section5.title">五、常见提示说明</h2>
 
@@ -267,7 +271,6 @@
         </div>
       </section>
 
-      <!-- 六、小建议 -->
       <section class="panel">
         <h2 data-i18n="timetrails.guide.section6.title">六、小建议</h2>
 
@@ -278,12 +281,12 @@
 
         <div class="step">
           <span class="num ok">✓</span>
-          <div data-i18n="timetrails.guide.section6.s2"><code>.db</code> 文件通常用于完整迁移</div>
+          <div><code class="code-blue">.db</code> <span data-i18n="timetrails.guide.section6.s2Text">文件通常用于完整迁移</span></div>
         </div>
 
         <div class="step">
           <span class="num ok">✓</span>
-          <div data-i18n="timetrails.guide.section6.s3"><code>.gpx</code> 更适合导入单次或多段轨迹记录</div>
+          <div><code class="code-blue">.gpx</code> <span data-i18n="timetrails.guide.section6.s3Text">更适合导入单次或多段轨迹记录</span></div>
         </div>
       </section>
 
@@ -295,7 +298,6 @@
   <footer data-i18n="timetrails.guide.footer">TimeTrails 数据导入使用指南</footer>
 </div>
 
-<!-- 多语言切换：按你的要求只用这个 -->
 <script src="./assets/lang-switch.js"></script>
 </body>
 </html>
