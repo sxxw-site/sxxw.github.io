@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="zh-CN" data-i18n-lang="zh-CN" data-i18n-prefix="timetrails.guide">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+
+  <title data-i18n="timetrails.guide.meta.title">数据导入页面设计</title>
+  <meta name="description" content="通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。" data-i18n-attr="content" data-i18n="timetrails.guide.meta.description" />
+  <meta name="robots" content="noindex" />
+
+  <!-- OpenGraph / Twitter（按需保留/删减） -->
+  <meta property="og:title" content="数据导入页面设计" data-i18n-attr="content" data-i18n="timetrails.guide.meta.ogTitle" />
+  <meta property="og:description" content="通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。" data-i18n-attr="content" data-i18n="timetrails.guide.meta.ogDescription" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="数据导入页面设计" data-i18n-attr="content" data-i18n="timetrails.guide.meta.twitterTitle" />
+  <meta name="twitter:description" content="通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。" data-i18n-attr="content" data-i18n="timetrails.guide.meta.twitterDescription" />
+
+  <style>
+    :root{
+      --bg1:#eff6ff; --bg2:#ffffff; --bg3:#f5f3ff;
+      --text:#111827; --muted:#6b7280; --border:#e5e7eb;
+      --card:#ffffff; --shadow: 0 1px 2px rgba(0,0,0,.05);
+      --r20:20px; --r16:16px; --r12:12px;
+      --blue:#2563eb; --purple:#7c3aed; --green:#16a34a; --amber:#d97706;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 20% 10%, var(--bg1), transparent 60%),
+      radial-gradient(900px 600px at 90% 20%, var(--bg3), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+      min-height: 100vh;
+    }
+
+    .wrap{
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 56px;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom: 28px;
+    }
+
+    .badge{
+      width:64px; height:64px;
+      margin: 0 auto 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #3b82f6, #7c3aed);
+      box-shadow: 0 10px 20px rgba(0,0,0,.10);
+      display:flex; align-items:center; justify-content:center;
+      color:#fff;
+    }
+
+    h1{
+      font-size: 28px;
+      margin: 0 0 6px;
+      letter-spacing: .2px;
+    }
+
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r20);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .lead p{
+      margin: 0;
+      color: #374151;
+      line-height: 1.75;
+    }
+    .lead p + p{ margin-top: 10px; }
+
+    .hl{
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .section{
+      padding: 18px;
+    }
+
+    .sec-head{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom: 12px;
+    }
+
+    .sec-icon{
+      width:48px; height:48px;
+      border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(124,58,237,.12));
+      color: var(--blue);
+      flex: 0 0 auto;
+    }
+
+    h2{
+      margin:0;
+      font-size: 18px;
+    }
+
+    .rows{ margin-top: 4px; }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+      color:#1f2937;
+    }
+    .row svg{ flex: 0 0 auto; margin-top: 3px; }
+
+    .muted{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: #f3f4f6;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .code-blue{ color: var(--blue); font-weight:600; }
+    .code-green{ color: var(--green); font-weight:600; }
+
+    ol{
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+    }
+    .num{
+      width: 24px; height: 24px;
+      border-radius: 999px;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 12px;
+      color: #1d4ed8;
+      background: rgba(59,130,246,.12);
+      flex: 0 0 auto;
+    }
+    .num.purple{
+      color:#6d28d9;
+      background: rgba(124,58,237,.12);
+    }
+    .step .text{ padding-top: 2px; color:#1f2937; }
+
+    .pill{
+      margin-top: 10px;
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.25);
+      padding: 10px 12px;
+      border-radius: 12px;
+      color:#166534;
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 820px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .section{ padding: 22px; }
+      h1{ font-size: 32px; }
+    }
+
+    .mini-card{
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 14px;
+      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(59,130,246,.18));
+    }
+    .mini-card.green{
+      background: linear-gradient(135deg, rgba(34,197,94,.10), rgba(34,197,94,.18));
+    }
+    .mini-head{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      margin-bottom: 10px;
+    }
+    .mini-ico{
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.06);
+      color: var(--blue);
+      flex: 0 0 auto;
+    }
+    .mini-card.green .mini-ico{ color: var(--green); }
+
+    .mini-title{
+      margin:0;
+      font-size: 14px;
+      color:#111827;
+    }
+    .mini-sub{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color:#4b5563;
+    }
+
+    .mini-steps .s{
+      display:flex; gap:8px;
+      margin: 8px 0;
+      font-size: 13px;
+      color:#374151;
+    }
+    .dot{
+      width: 18px; height: 18px;
+      border-radius: 999px;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 11px;
+      color: #fff;
+      background: var(--blue);
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+    .mini-card.green .dot{ background: var(--green); }
+
+    .alert{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(245,158,11,.30);
+      background: rgba(245,158,11,.12);
+      color: #92400e;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .tips .tip{
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(245,158,11,.30);
+      background: rgba(245,158,11,.12);
+      margin: 10px 0;
+    }
+    .tips .tip.blue{
+      border: 1px solid rgba(59,130,246,.25);
+      background: rgba(59,130,246,.10);
+    }
+    .tip-title{
+      font-weight: 700;
+      margin: 0 0 4px;
+      font-size: 14px;
+    }
+    .tip-text{
+      margin:0;
+      font-size: 13px;
+      color: #374151;
+      opacity: .95;
+      line-height: 1.6;
+    }
+
+    .suggest{
+      border-radius: 16px;
+      border: 1px solid rgba(124,58,237,.18);
+      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(124,58,237,.10));
+      padding: 14px;
+    }
+    .suggest .line{
+      display:flex; gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+      color:#1f2937;
+      font-size: 14px;
+    }
+    .bullet{
+      width: 18px;
+      color: var(--blue);
+      font-weight: 900;
+      line-height: 1.2;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    footer{
+      margin-top: 24px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+
+  <!-- ✅ 默认语言配置：以当前 <html lang> 为准 -->
+  <script>
+    window.TimeTrailsI18N = window.TimeTrailsI18N || {};
+    window.TimeTrailsI18N.prefix = document.documentElement.dataset.i18nPrefix || "timetrails.guide";
+    window.TimeTrailsI18N.lang = document.documentElement.dataset.i18nLang || document.documentElement.lang || "zh-CN";
+  </script>
+</head>
+
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="badge" aria-hidden="true">
+      <!-- 文件导入 icon（内联 SVG） -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"></path>
+        <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+        <path d="M2 15h10"></path>
+        <path d="m9 18 3-3-3-3"></path>
+      </svg>
+    </div>
+    <h1 data-i18n="timetrails.guide.hero.title">数据导入使用指南</h1>
+    <p class="subtitle" data-i18n="timetrails.guide.hero.subtitle">用户版</p>
+  </header>
+
+  <section class="card lead">
+    <p data-i18n="timetrails.guide.lead.p1">你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
+    <p>
+      <span data-i18n="timetrails.guide.lead.p2.before">整个过程 </span>
+      <span class="hl" data-i18n="timetrails.guide.lead.p2.hl1">不需要数据线</span>
+      <span data-i18n="timetrails.guide.lead.p2.middle">，也 </span>
+      <span class="hl" data-i18n="timetrails.guide.lead.p2.hl2">不需要登录账号</span>
+      <span data-i18n="timetrails.guide.lead.p2.after">。</span>
+    </p>
+  </section>
+
+  <section class="card section">
+    <div class="sec-head">
+      <div class="sec-icon" aria-hidden="true">
+        <!-- check icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+          <path d="m9 11 3 3L22 4"></path>
+        </svg>
+      </div>
+      <h2 data-i18n="timetrails.guide.section1.title">一、准备工作</h2>
+    </div>
+
+    <div class="rows">
+      <div class="row">
+        <!-- wifi -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+          <path d="M12 20h.01"></path>
+          <path d="M2 8.82a15 15 0 0 1 20 0"></path>
+          <path d="M5 12.859a10 10 0 0 1 14 0"></path>
+          <path d="M8.5 16.429a5 5 0 0 1 7 0"></path>
+        </svg>
+        <div>
+          <div data-i18n="timetrails.guide.section1.row1">确保 <b>手机和电脑连接在同一个 Wi-Fi</b></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- upload -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" x2="12" y1="3" y2="15"></line>
+        </svg>
+        <div>
+          <div data-i18n="timetrails.guide.section1.row2.title">准备好要导入的文件</div>
+          <div class="muted" data-i18n="timetrails.guide.section1.row2.note">
+            支持数据库文件 <code class="code-blue">.db</code>，以及轨迹文件 <code class="code-green">.gpx</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="sec-head">
+      <div class="sec-icon" aria-hidden="true">
+        <!-- download -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" x2="12" y1="15" y2="3"></line>
+        </svg>
+      </div>
+      <h2 data-i18n="timetrails.guide.section2.title">二、在手机上开启导入服务</h2>
+    </div>
+
+    <ol>
+      <li class="step"><span class="num">1</span><span class="text" data-i18n="timetrails.guide.section2.step1">打开 TimeTrails</span></li>
+      <li class="step"><span class="num">2</span><span class="text" data-i18n="timetrails.guide.section2.step2">进入「数据导入 / 数据传输」页面</span></li>
+      <li class="step"><span class="num">3</span><span class="text" data-i18n="timetrails.guide.section2.step3">点击「启动服务」</span></li>
+      <li class="step">
+        <span class="num">4</span>
+        <div class="text">
+          <span data-i18n="timetrails.guide.section2.step4.text">成功后，页面上会显示一个网址（局域网地址）。</span>
+          <div class="pill" data-i18n="timetrails.guide.section2.step4.example">例如：http://192.168.1.100:9527</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card section">
+    <div class="sec-head">
+      <div class="sec-icon" aria-hidden="true">
+        <!-- upload -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" x2="12" y1="3" y2="15"></line>
+        </svg>
+      </div>
+      <h2 data-i18n="timetrails.guide.section3.title">三、在电脑上上传文件</h2>
+    </div>
+
+    <ol>
+      <li class="step"><span class="num purple">1</span><span class="text" data-i18n="timetrails.guide.section3.step1">在电脑浏览器中，输入手机上显示的那个网址</span></li>
+      <li class="step"><span class="num purple">2</span><span class="text" data-i18n="timetrails.guide.section3.step2">打开后，选择并上传你的文件</span></li>
+      <li class="step"><span class="num purple">3</span><span class="text" data-i18n="timetrails.guide.section3.step3">上传完成后，文件会自动出现在手机的文件列表中</span></li>
+    </ol>
+  </section>
+
+  <section class="card section">
+    <div class="sec-head">
+      <div class="sec-icon" aria-hidden="true">
+        <!-- database -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+          <path d="M3 12A9 3 0 0 0 21 12"></path>
+        </svg>
+      </div>
+      <h2 data-i18n="timetrails.guide.section4.title">四、导入数据</h2>
+    </div>
+
+    <p class="muted" style="margin:0 0 6px;" data-i18n="timetrails.guide.section4.lead">在手机的文件列表中：</p>
+
+    <div class="grid">
+      <div class="mini-card">
+        <div class="mini-head">
+          <div class="mini-ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+              <path d="M3 12A9 3 0 0 0 21 12"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="mini-title" data-i18n="timetrails.guide.section4.db.title"><code class="code-blue">.db</code> 数据库文件</p>
+            <p class="mini-sub" data-i18n="timetrails.guide.section4.db.subtitle">用于恢复或迁移整个 TimeTrails 数据</p>
+          </div>
+        </div>
+
+        <div class="mini-steps">
+          <div class="s"><span class="dot">1</span><span data-i18n="timetrails.guide.section4.db.step1">点击 .db 文件</span></div>
+          <div class="s"><span class="dot">2</span><span data-i18n="timetrails.guide.section4.db.step2">选择「导入」</span></div>
+          <div class="s"><span class="dot">3</span><span data-i18n="timetrails.guide.section4.db.step3">完成后会提示成功</span></div>
+        </div>
+      </div>
+
+      <div class="mini-card green">
+        <div class="mini-head">
+          <div class="mini-ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div>
+            <p class="mini-title" data-i18n="timetrails.guide.section4.gpx.title"><code class="code-green">.gpx</code> 轨迹文件</p>
+            <p class="mini-sub" data-i18n="timetrails.guide.section4.gpx.subtitle">导入完成后按日期显示在地图中</p>
+          </div>
+        </div>
+
+        <div class="mini-steps">
+          <div class="s"><span class="dot">1</span><span data-i18n="timetrails.guide.section4.gpx.step1">点击 .gpx 文件</span></div>
+          <div class="s"><span class="dot">2</span><span data-i18n="timetrails.guide.section4.gpx.step2">系统会自动解析并导入轨迹</span></div>
+          <div class="s"><span class="dot">3</span><span data-i18n="timetrails.guide.section4.gpx.step3">完成后在地图里查看</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <span aria-hidden="true">⚠️</span>
+      <span data-i18n="timetrails.guide.section4.alert">导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="sec-head">
+      <div class="sec-icon" aria-hidden="true">
+        <!-- alert -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" x2="12" y1="8" y2="12"></line>
+          <line x1="12" x2="12.01" y1="16" y2="16"></line>
+        </svg>
+      </div>
+      <h2 data-i18n="timetrails.guide.section5.title">五、常见提示说明</h2>
+    </div>
+
+    <div class="tips">
+      <div class="tip">
+        <p class="tip-title" data-i18n="timetrails.guide.section5.tip1.title">无法启动服务</p>
+        <p class="tip-text" data-i18n="timetrails.guide.section5.tip1.text">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</p>
+      </div>
+
+      <div class="tip blue">
+        <p class="tip-title" data-i18n="timetrails.guide.section5.tip2.title">导入失败或被跳过部分数据</p>
+        <p class="tip-text" data-i18n="timetrails.guide.section5.tip2.text">某些轨迹点缺少时间信息，系统会自动忽略</p>
+      </div>
+
+      <div class="tip blue">
+        <p class="tip-title" data-i18n="timetrails.guide.section5.tip3.title">文件没看到</p>
+        <p class="tip-text" data-i18n="timetrails.guide.section5.tip3.text">下拉列表刷新即可重新扫描</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="sec-head">
+      <div class="sec-icon" aria-hidden="true">

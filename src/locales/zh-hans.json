@@ -284,5 +284,67 @@
   "timetrails.privacy.section.use.items.0": "在设备本地生成并呈现轨迹、统计与地图可视化。",
   "timetrails.privacy.section.use.items.1": "（可选）当你启用 iCloud/私有服务器同步时，用于在你的设备之间保持数据一致。",
   "timetrails.privacy.section.use.items.2": "改进应用性能、稳定性与用户体验（如基于匿名崩溃日志的修复）。",
-  "timetrails.privacy.section.use.title": "我们如何使用信息"
+  "timetrails.privacy.section.use.title": "我们如何使用信息",
+  "timetrails.guide.meta.title": "数据导入页面设计",
+  "timetrails.guide.meta.description": "通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。",
+  "timetrails.guide.meta.ogTitle": "数据导入页面设计",
+  "timetrails.guide.meta.ogDescription": "通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。",
+  "timetrails.guide.meta.twitterTitle": "数据导入页面设计",
+  "timetrails.guide.meta.twitterDescription": "通过局域网把电脑里的数据文件导入到 TimeTrails。无需数据线，无需登录账号。",
+
+  "timetrails.guide.hero.title": "数据导入使用指南",
+  "timetrails.guide.hero.subtitle": "用户版",
+
+  "timetrails.guide.lead.p1": "你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。",
+  "timetrails.guide.lead.p2.before": "整个过程 ",
+  "timetrails.guide.lead.p2.hl1": "不需要数据线",
+  "timetrails.guide.lead.p2.middle": "，也 ",
+  "timetrails.guide.lead.p2.hl2": "不需要登录账号",
+  "timetrails.guide.lead.p2.after": "。",
+
+  "timetrails.guide.section1.title": "一、准备工作",
+  "timetrails.guide.section1.row1": "确保 <b>手机和电脑连接在同一个 Wi-Fi</b>",
+  "timetrails.guide.section1.row2.title": "准备好要导入的文件",
+  "timetrails.guide.section1.row2.note": "支持数据库文件 <code class=\"code-blue\">.db</code>，以及轨迹文件 <code class=\"code-green\">.gpx</code>",
+
+  "timetrails.guide.section2.title": "二、在手机上开启导入服务",
+  "timetrails.guide.section2.step1": "打开 TimeTrails",
+  "timetrails.guide.section2.step2": "进入「数据导入 / 数据传输」页面",
+  "timetrails.guide.section2.step3": "点击「启动服务」",
+  "timetrails.guide.section2.step4.text": "成功后，页面上会显示一个网址（局域网地址）。",
+  "timetrails.guide.section2.step4.example": "例如：http://192.168.1.100:9527",
+
+  "timetrails.guide.section3.title": "三、在电脑上上传文件",
+  "timetrails.guide.section3.step1": "在电脑浏览器中，输入手机上显示的那个网址",
+  "timetrails.guide.section3.step2": "打开后，选择并上传你的文件",
+  "timetrails.guide.section3.step3": "上传完成后，文件会自动出现在手机的文件列表中",
+
+  "timetrails.guide.section4.title": "四、导入数据",
+  "timetrails.guide.section4.lead": "在手机的文件列表中：",
+  "timetrails.guide.section4.db.title": "<code class=\"code-blue\">.db</code> 数据库文件",
+  "timetrails.guide.section4.db.subtitle": "用于恢复或迁移整个 TimeTrails 数据",
+  "timetrails.guide.section4.db.step1": "点击 .db 文件",
+  "timetrails.guide.section4.db.step2": "选择「导入」",
+  "timetrails.guide.section4.db.step3": "完成后会提示成功",
+  "timetrails.guide.section4.gpx.title": "<code class=\"code-green\">.gpx</code> 轨迹文件",
+  "timetrails.guide.section4.gpx.subtitle": "导入完成后按日期显示在地图中",
+  "timetrails.guide.section4.gpx.step1": "点击 .gpx 文件",
+  "timetrails.guide.section4.gpx.step2": "系统会自动解析并导入轨迹",
+  "timetrails.guide.section4.gpx.step3": "完成后在地图里查看",
+  "timetrails.guide.section4.alert": "导入过程中请保持 App 在前台，完成后会看到成功提示。",
+
+  "timetrails.guide.section5.title": "五、常见提示说明",
+  "timetrails.guide.section5.tip1.title": "无法启动服务",
+  "timetrails.guide.section5.tip1.text": "请确认当前连接的是 Wi-Fi，而不是蜂窝网络",
+  "timetrails.guide.section5.tip2.title": "导入失败或被跳过部分数据",
+  "timetrails.guide.section5.tip2.text": "某些轨迹点缺少时间信息，系统会自动忽略",
+  "timetrails.guide.section5.tip3.title": "文件没看到",
+  "timetrails.guide.section5.tip3.text": "下拉列表刷新即可重新扫描",
+
+  "timetrails.guide.section6.title": "六、小建议",
+  "timetrails.guide.section6.s1": "导入前，建议先备份当前数据",
+  "timetrails.guide.section6.s2": "<code class=\"code-blue\">.db</code> 文件通常用于完整迁移",
+  "timetrails.guide.section6.s3": "<code class=\"code-green\">.gpx</code> 更适合导入单次或多段轨迹记录",
+
+  "timetrails.guide.footer": "TimeTrails 数据导入使用指南"
 }
