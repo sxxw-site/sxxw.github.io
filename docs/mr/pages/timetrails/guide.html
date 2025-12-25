@@ -4,505 +4,265 @@
 <head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="light dark" name="color-scheme"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
 <title>डेटा आयात पृष्ठ डिझाइन</title>
+<!-- 与 index.html 同步：如果你项目统一用它，就保留 -->
+<link href="./assets/style.css" rel="stylesheet"/>
+<!-- 只保留必要的“页面差异”样式；基础风格对齐 index.html -->
 <style>
     :root{
-      --bg1:#eff6ff; --bg2:#ffffff; --bg3:#f5f3ff;
-      --text:#111827; --muted:#6b7280; --border:#e5e7eb;
-      --card:#ffffff; --shadow: 0 1px 2px rgba(0,0,0,.05);
-      --r20:20px; --r16:16px; --r12:12px;
-      --blue:#2563eb; --purple:#7c3aed; --green:#16a34a; --amber:#d97706;
+      --bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;
+      --ok:#34d399;--warn:#fbbf24;--bad:#fb7185;--border:rgba(255,255,255,.10);
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1;--border:rgba(15,23,42,.10)}
     }
 
     *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC",
-      "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-      color: var(--text);
-      background: radial-gradient(1200px 700px at 20% 10%, var(--bg1), transparent 60%),
-      radial-gradient(900px 600px at 90% 20%, var(--bg3), transparent 55%),
-      linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
-      min-height: 100vh;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,"Noto Sans CJK SC","Microsoft YaHei",Arial;
+      background:var(--bg);color:var(--text);
     }
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
 
-    .wrap{
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 32px 16px 56px;
-    }
-
-    .hero{
-      text-align:center;
-      margin-bottom: 28px;
-    }
-
-    .badge{
-      width:64px; height:64px;
-      margin: 0 auto 16px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #3b82f6, #7c3aed);
-      box-shadow: 0 10px 20px rgba(0,0,0,.10);
-      display:flex; align-items:center; justify-content:center;
-      color:#fff;
-    }
-
-    h1{
-      font-size: 28px;
-      margin: 0 0 6px;
-      letter-spacing: .2px;
-    }
-
-    .subtitle{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
+    /* === index.html 同款容器/card === */
+    .container{max-width:1040px;margin:0 auto;padding:40px 16px}
     .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r20);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      margin: 14px 0;
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25)
+    }
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:22px 0}
+
+    /* 顶部栏：对齐 index 的 topbar + brand + lang */
+    .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:16px;
+      background:linear-gradient(135deg,var(--accent),#9d7dff);
+      box-shadow:0 10px 26px rgba(0,0,0,.25)
     }
 
-    .lead p{
-      margin: 0;
-      color: #374151;
-      line-height: 1.75;
-    }
-    .lead p + p{ margin-top: 10px; }
+    h1{font-size:clamp(26px,3.2vw,40px);margin:0 0 6px;letter-spacing:.2px}
+    h2{font-size:clamp(18px,2.0vw,22px);margin:0 0 8px}
+    h3{margin:0 0 8px;font-size:16px}
 
-    .hl{
-      color: var(--blue);
-      font-weight: 600;
-    }
+    .subtitle{color:var(--muted);line-height:1.6}
+    .muted{color:var(--muted);font-size:13px;line-height:1.7}
+    p,li{line-height:1.75;margin:0}
 
-    .section{
-      padding: 18px;
+    /* 语言选择器：复用 index 的样式 */
+    .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border:1px solid rgba(34,211,238,.35);
+      background:rgba(15,23,42,.55);
+      color:inherit;
+      padding:10px 36px 10px 12px;
+      border-radius:12px;
+      font:inherit;line-height:1;cursor:pointer;outline:none;
     }
+    @media (prefers-color-scheme: light){ .lang-select{ background:rgba(148,163,184,.10); } }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
 
-    .sec-head{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      margin-bottom: 12px;
+    /* 内容区：用 panel 做分块（index 的 panel） */
+    .panel{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+      background:rgba(255,255,255,.02)
     }
+    .stack{display:grid;gap:14px}
 
-    .sec-icon{
-      width:48px; height:48px;
-      border-radius: 14px;
-      display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(124,58,237,.12));
-      color: var(--blue);
-      flex: 0 0 auto;
-    }
-
-    h2{
-      margin:0;
-      font-size: 18px;
-    }
-
-    .rows{ margin-top: 4px; }
-    .row{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      margin: 10px 0;
-      color:#1f2937;
-    }
-    .row svg{ flex: 0 0 auto; margin-top: 3px; }
-
-    .muted{
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 4px;
-      line-height: 1.6;
-    }
-
-    code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      background: #f3f4f6;
-      padding: 2px 8px;
-      border-radius: 8px;
-      font-size: 12px;
-    }
-    .code-blue{ color: var(--blue); font-weight:600; }
-    .code-green{ color: var(--green); font-weight:600; }
-
-    ol{
-      margin: 0;
-      padding-left: 0;
-      list-style: none;
-    }
-    .step{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      margin: 10px 0;
-    }
+    /* 简化版“步骤列表”与“提示块” */
+    ol{margin:0;padding:0;list-style:none}
+    .step{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
     .num{
-      width: 24px; height: 24px;
-      border-radius: 999px;
-      display:flex; align-items:center; justify-content:center;
-      font-size: 12px;
-      color: #1d4ed8;
-      background: rgba(59,130,246,.12);
-      flex: 0 0 auto;
+      width:24px;height:24px;border-radius:999px;flex:0 0 auto;
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;
+      background:rgba(34,211,238,.15);
+      border:1px solid rgba(34,211,238,.35);
+      color:var(--accent);
+      margin-top:1px;
     }
-    .num.purple{
-      color:#6d28d9;
-      background: rgba(124,58,237,.12);
-    }
-    .step .text{ padding-top: 2px; color:#1f2937; }
+    .num.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok)}
+    .num.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn)}
 
-    .pill{
-      margin-top: 10px;
-      background: rgba(34,197,94,.10);
-      border: 1px solid rgba(34,197,94,.25);
-      padding: 10px 12px;
-      border-radius: 12px;
-      color:#166534;
-      font-size: 13px;
+    .callout{
+      border-radius:14px;
+      padding:12px 14px;
+      border:1px solid rgba(251,191,36,.30);
+      background:rgba(251,191,36,.12);
+      color:color-mix(in srgb, var(--warn) 60%, var(--text));
+      font-size:13px;
+      line-height:1.6;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    @media (min-width: 820px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-      .section{ padding: 22px; }
-      h1{ font-size: 32px; }
-    }
+    code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
 
-    .mini-card{
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 14px;
-      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(59,130,246,.18));
-    }
-    .mini-card.green{
-      background: linear-gradient(135deg, rgba(34,197,94,.10), rgba(34,197,94,.18));
-    }
-    .mini-head{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      margin-bottom: 10px;
-    }
-    .mini-ico{
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      display:flex; align-items:center; justify-content:center;
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(0,0,0,.06);
-      color: var(--blue);
-      flex: 0 0 auto;
-    }
-    .mini-card.green .mini-ico{ color: var(--green); }
-
-    .mini-title{
-      margin:0;
-      font-size: 14px;
-      color:#111827;
-    }
-    .mini-sub{
-      margin: 2px 0 0;
-      font-size: 12px;
-      color:#4b5563;
-    }
-
-    .mini-steps .s{
-      display:flex; gap:8px;
-      margin: 8px 0;
-      font-size: 13px;
-      color:#374151;
-    }
-    .dot{
-      width: 18px; height: 18px;
-      border-radius: 999px;
-      display:flex; align-items:center; justify-content:center;
-      font-size: 11px;
-      color: #fff;
-      background: var(--blue);
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-    .mini-card.green .dot{ background: var(--green); }
-
-    .alert{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      border-radius: 14px;
-      padding: 12px 14px;
-      border: 1px solid rgba(245,158,11,.30);
-      background: rgba(245,158,11,.12);
-      color: #92400e;
-      font-size: 13px;
-      line-height: 1.6;
-      margin-top: 12px;
-    }
-
-    .tips .tip{
-      border-radius: 14px;
-      padding: 12px 14px;
-      border: 1px solid rgba(245,158,11,.30);
-      background: rgba(245,158,11,.12);
-      margin: 10px 0;
-    }
-    .tips .tip.blue{
-      border: 1px solid rgba(59,130,246,.25);
-      background: rgba(59,130,246,.10);
-    }
-    .tip-title{
-      font-weight: 700;
-      margin: 0 0 4px;
-      font-size: 14px;
-    }
-    .tip-text{
-      margin:0;
-      font-size: 13px;
-      color: #374151;
-      opacity: .95;
-      line-height: 1.6;
-    }
-
-    .suggest{
-      border-radius: 16px;
-      border: 1px solid rgba(124,58,237,.18);
-      background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(124,58,237,.10));
-      padding: 14px;
-    }
-    .suggest .line{
-      display:flex; gap:10px;
-      align-items:flex-start;
-      margin: 10px 0;
-      color:#1f2937;
-      font-size: 14px;
-    }
-    .bullet{
-      width: 18px;
-      color: var(--blue);
-      font-weight: 900;
-      line-height: 1.2;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-
-    footer{
-      margin-top: 24px;
-      text-align:center;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    /* 双列区块：用于 db/gpx 两块说明（可响应式降为单列） */
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    @media (min-width: 880px){ .grid{grid-template-columns:1fr 1fr} }
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
   </style>
-<!-- ✅ 默认语言配置：以当前 <html lang> 为准 -->
-<script>
-    window.TimeTrailsI18N = window.TimeTrailsI18N || {};
-    window.TimeTrailsI18N.prefix = document.documentElement.dataset.i18nPrefix || "timetrails.guide";
-    window.TimeTrailsI18N.lang = document.documentElement.dataset.i18nLang || document.documentElement.lang || "zh-CN";
-  </script>
 </head>
 <body>
-<main class="wrap">
-<header class="hero">
-<div aria-hidden="true" class="badge">
-<!-- 文件导入 icon（内联 SVG） -->
-<svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28">
-<path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"></path>
-<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-<path d="M2 15h10"></path>
-<path d="m9 18 3-3-3-3"></path>
-</svg>
-</div>
+<div class="container">
+<div class="card">
+<!-- 顶部：对齐 index 的 topbar -->
+<div class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
 <h1>डेटा आयात वापरकर्ता मार्गदर्शक</h1>
-<p class="subtitle">वापरकर्ता आवृत्ती</p>
-</header>
-<section class="card lead">
+<div class="subtitle">वापरकर्ता आवृत्ती</div>
+</div>
+</div>
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect">
+<option>Loading…</option>
+</select>
+<span class="lang-caret">▾</span>
+</div>
+</div>
+<div class="divider"></div>
+<!-- 引导说明 -->
+<div class="panel">
 <p>आपण आपल्या संगणकावरून डेटा फायली स्थानिक क्षेत्र नेटवर्कद्वारे TimeTrails मध्ये आयात करू शकता.</p>
-<p>
+<p style="margin-top:10px">
 <span>संपूर्ण प्रक्रिया</span>
-<span class="hl">डेटा केबलची आवश्यकता नाही</span>
+<strong style="color:var(--accent)">डेटा केबलची आवश्यकता नाही</strong>
 <span>, देखील</span>
-<span class="hl">खाते लॉगिन आवश्यक नाही</span>
+<strong style="color:var(--accent)">खाते लॉगिन आवश्यक नाही</strong>
 <span>.</span>
 </p>
-</section>
-<section class="card section">
-<div class="sec-head">
-<div aria-hidden="true" class="sec-icon">
-<!-- check icon -->
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
-<path d="m9 11 3 3L22 4"></path>
-</svg>
 </div>
+<div class="divider"></div>
+<div class="stack">
+<!-- 一、准备工作 -->
+<section class="panel">
 <h2>1. तयारीचे काम</h2>
-</div>
-<div class="rows">
-<div class="row">
-<!-- wifi -->
-<svg fill="none" height="20" stroke="#2563eb" stroke-width="2" viewbox="0 0 24 24" width="20">
-<path d="M12 20h.01"></path>
-<path d="M2 8.82a15 15 0 0 1 20 0"></path>
-<path d="M5 12.859a10 10 0 0 1 14 0"></path>
-<path d="M8.5 16.429a5 5 0 0 1 7 0"></path>
-</svg>
+<div class="step">
+<span class="num ok">✓</span>
 <div>
 <div>तुमच्या &lt;b&gt; मोबाइल आणि संगणकाने एकाच Wi-Fi &lt;/b&gt; शी कनेक्ट केलेले याची खात्री करा.</div>
 </div>
 </div>
-<div class="row">
-<!-- upload -->
-<svg fill="none" height="20" stroke="#2563eb" stroke-width="2" viewbox="0 0 24 24" width="20">
-<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-<polyline points="17 8 12 3 7 8"></polyline>
-<line x1="12" x2="12" y1="3" y2="15"></line>
-</svg>
+<div class="step">
+<span class="num ok">✓</span>
 <div>
 <div>आयात करण्यासाठी फाइल तयार करा</div>
 <div class="muted">डेटाबेस फाइल &lt;code class="code-blue"&gt;.db&lt;/code&gt; आणि ट्रॅक फाइल &lt;code class="code-green"&gt;.gpx&lt;/code&gt; ला समर्थन देते.</div>
 </div>
 </div>
-</div>
 </section>
-<section class="card section">
-<div class="sec-head">
-<div aria-hidden="true" class="sec-icon">
-<!-- download -->
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-<polyline points="7 10 12 15 17 10"></polyline>
-<line x1="12" x2="12" y1="15" y2="3"></line>
-</svg>
-</div>
+<!-- 二、手机开启导入服务 -->
+<section class="panel">
 <h2>२. मोबाइलवर आयात सेवा सक्षम करा</h2>
-</div>
 <ol>
-<li class="step"><span class="num">1</span><span class="text">TimeTrails उघडा</span></li>
-<li class="step"><span class="num">2</span><span class="text">'डेटा आयात / डेटा हस्तांतरण' पृष्ठावर प्रवेश करा</span></li>
-<li class="step"><span class="num">3</span><span class="text">'सर्विस सुरू करा' वर क्लिक करा</span></li>
+<li class="step"><span class="num">1</span><div>TimeTrails उघडा</div></li>
+<li class="step"><span class="num">2</span><div>'डेटा आयात / डेटा हस्तांतरण' पृष्ठावर प्रवेश करा</div></li>
+<li class="step"><span class="num">3</span><div>'सर्विस सुरू करा' वर क्लिक करा</div></li>
 <li class="step">
 <span class="num">4</span>
-<div class="text">
-<span>यशानंतर, पृष्ठावर एक URL (स्थानिक नेटवर्क पत्ता) प्रदर्शित केला जाईल.</span>
-<div class="pill">उदाहरणार्थ: http://192.168.1.100:9527</div>
+<div>
+<div>यशानंतर, पृष्ठावर एक URL (स्थानिक नेटवर्क पत्ता) प्रदर्शित केला जाईल.</div>
+<div class="muted" style="margin-top:6px">उदाहरणार्थ: http://192.168.1.100:9527</div>
 </div>
 </li>
 </ol>
 </section>
-<section class="card section">
-<div class="sec-head">
-<div aria-hidden="true" class="sec-icon">
-<!-- upload -->
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-<polyline points="17 8 12 3 7 8"></polyline>
-<line x1="12" x2="12" y1="3" y2="15"></line>
-</svg>
-</div>
+<!-- 三、电脑上传文件 -->
+<section class="panel">
 <h2>3. संगणकावर फायली अपलोड करणे</h2>
-</div>
 <ol>
-<li class="step"><span class="num purple">1</span><span class="text">आपल्या संगणकाच्या ब्राउझरमध्ये, आपल्या फोनवर दर्शविलेला URL टाका.</span></li>
-<li class="step"><span class="num purple">2</span><span class="text">ते उघडा, नंतर तुमचा फाइल निवडा आणि अपलोड करा.</span></li>
-<li class="step"><span class="num purple">3</span><span class="text">अपलोड पूर्ण झाल्यानंतर, फाइल आपल्याच्या फोनवरील फाइल यादीत आपोआप दिसेल.</span></li>
+<li class="step"><span class="num">1</span><div>आपल्या संगणकाच्या ब्राउझरमध्ये, आपल्या फोनवर दर्शविलेला URL टाका.</div></li>
+<li class="step"><span class="num">2</span><div>ते उघडा, नंतर तुमचा फाइल निवडा आणि अपलोड करा.</div></li>
+<li class="step"><span class="num">3</span><div>अपलोड पूर्ण झाल्यानंतर, फाइल आपल्याच्या फोनवरील फाइल यादीत आपोआप दिसेल.</div></li>
 </ol>
 </section>
-<section class="card section">
-<div class="sec-head">
-<div aria-hidden="true" class="sec-icon">
-<!-- database -->
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-<path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-<path d="M3 12A9 3 0 0 0 21 12"></path>
-</svg>
-</div>
+<!-- 四、导入数据 -->
+<section class="panel">
 <h2>४. डेटा आयात करा</h2>
+<p class="muted">तुमच्या फोनवरील फाइल यादीमध्ये:</p>
+<div class="grid" style="margin-top:10px">
+<div class="panel">
+<h3>&lt;code class="code-blue"&gt;.db&lt;/code&gt; डेटाबेस फाइल</h3>
+<p class="muted">संपूर्ण TimeTrails डेटा पुनर्स्थापित किंवा स्थलांतरित करण्यासाठी वापरले जाते</p>
+<ol style="margin-top:10px">
+<li class="step"><span class="num">1</span><div>.db फाइलवर क्लिक करा</div></li>
+<li class="step"><span class="num">2</span><div>'आयात' निवडा</div></li>
+<li class="step"><span class="num">3</span><div>पूर्ण झाल्यावर एक यशस्वी संदेश प्रदर्शित केला जाईल.</div></li>
+</ol>
 </div>
-<p class="muted" style="margin:0 0 6px;">तुमच्या फोनवरील फाइल यादीमध्ये:</p>
-<div class="grid">
-<div class="mini-card">
-<div class="mini-head">
-<div aria-hidden="true" class="mini-ico">
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-<path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-<path d="M3 12A9 3 0 0 0 21 12"></path>
-</svg>
-</div>
-<div>
-<p class="mini-title">&lt;code class="code-blue"&gt;.db&lt;/code&gt; डेटाबेस फाइल</p>
-<p class="mini-sub">संपूर्ण TimeTrails डेटा पुनर्स्थापित किंवा स्थलांतरित करण्यासाठी वापरले जाते</p>
-</div>
-</div>
-<div class="mini-steps">
-<div class="s"><span class="dot">1</span><span>.db फाइलवर क्लिक करा</span></div>
-<div class="s"><span class="dot">2</span><span>'आयात' निवडा</span></div>
-<div class="s"><span class="dot">3</span><span>पूर्ण झाल्यावर एक यशस्वी संदेश प्रदर्शित केला जाईल.</span></div>
+<div class="panel">
+<h3>&lt;code class="code-green"&gt;.gpx&lt;/code&gt; ट्रॅक फाइल</h3>
+<p class="muted">आयात पूर्ण झाल्यानंतर दिनांकानुसार नकाशावर दर्शविले जाते.</p>
+<ol style="margin-top:10px">
+<li class="step"><span class="num">1</span><div>गणक .gpx फाइलवर क्लिक करा</div></li>
+<li class="step"><span class="num">2</span><div>सिस्टम आपोआप ट्रॅक पार्स आणि आयात करेल.</div></li>
+<li class="step"><span class="num">3</span><div>पूर्ण झाल्यावर नकाशा तपासा</div></li>
+</ol>
 </div>
 </div>
-<div class="mini-card green">
-<div class="mini-head">
-<div aria-hidden="true" class="mini-ico">
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-<circle cx="12" cy="10" r="3"></circle>
-</svg>
-</div>
-<div>
-<p class="mini-title">&lt;code class="code-green"&gt;.gpx&lt;/code&gt; ट्रॅक फाइल</p>
-<p class="mini-sub">आयात पूर्ण झाल्यानंतर दिनांकानुसार नकाशावर दर्शविले जाते.</p>
-</div>
-</div>
-<div class="mini-steps">
-<div class="s"><span class="dot">1</span><span>गणक .gpx फाइलवर क्लिक करा</span></div>
-<div class="s"><span class="dot">2</span><span>सिस्टम आपोआप ट्रॅक पार्स आणि आयात करेल.</span></div>
-<div class="s"><span class="dot">3</span><span>पूर्ण झाल्यावर नकाशा तपासा</span></div>
-</div>
-</div>
-</div>
-<div class="alert">
+<div class="callout" style="margin-top:12px">
 <span aria-hidden="true">⚠️</span>
 <span>कृपया आयात प्रक्रियेदरम्यान अॅपला अग्रभूमीत ठेवा, आणि एकदा पूर्ण झाल्यावर तुम्हाला यशस्वी संदेश दिसेल.</span>
 </div>
 </section>
-<section class="card section">
-<div class="sec-head">
-<div aria-hidden="true" class="sec-icon">
-<!-- alert -->
-<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22">
-<circle cx="12" cy="12" r="10"></circle>
-<line x1="12" x2="12" y1="8" y2="12"></line>
-<line x1="12" x2="12.01" y1="16" y2="16"></line>
-</svg>
-</div>
+<!-- 五、常见提示说明 -->
+<section class="panel">
 <h2>५. सामान्य टिप्स आणि स्पष्टीकरणे</h2>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>सेवा सुरू करण्यात अयशस्वी</b></div>
+<div class="muted">कृपया खात्री करा की आपण Wi-Fi शी कनेक्टेड आहात, सेलुलर नेटवर्कशी नाही.</div>
 </div>
-<div class="tips">
-<div class="tip">
-<p class="tip-title">सेवा सुरू करण्यात अयशस्वी</p>
-<p class="tip-text">कृपया खात्री करा की आपण Wi-Fi शी कनेक्टेड आहात, सेलुलर नेटवर्कशी नाही.</p>
 </div>
-<div class="tip blue">
-<p class="tip-title">आयात अयशस्वी झाली किंवा काही डेटा वगळला गेला</p>
-<p class="tip-text">काही ट्रॅक पॉइंट्समध्ये वेळेची माहिती नाही, आणि प्रणाली त्यांना स्वयंचलितपणे दुर्लक्षित करेल.</p>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>आयात अयशस्वी झाली किंवा काही डेटा वगळला गेला</b></div>
+<div class="muted">काही ट्रॅक पॉइंट्समध्ये वेळेची माहिती नाही, आणि प्रणाली त्यांना स्वयंचलितपणे दुर्लक्षित करेल.</div>
 </div>
-<div class="tip blue">
-<p class="tip-title">फाइल सापडली नाही</p>
-<p class="tip-text">ड्रॉपडाऊन सूची ताजीत करण्यासाठी पुनःस्कॅन करा.</p>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>फाइल सापडली नाही</b></div>
+<div class="muted">ड्रॉपडाऊन सूची ताजीत करण्यासाठी पुनःस्कॅन करा.</div>
 </div>
 </div>
 </section>
-<section class="card section">
-<div class="sec-head">
-<div aria-hidden="true" class="sec-icon">
-</div></div></section></main></body></html>
+<!-- 六、小建议 -->
+<section class="panel">
+<h2>६. काही सूचना</h2>
+<div class="step">
+<span class="num ok">✓</span>
+<div>आयात करण्यापूर्वी, वर्तमान डेटा बॅकअप घेणे शिफारसीय आहे.</div>
+</div>
+<div class="step">
+<span class="num ok">✓</span>
+<div>&lt;code class="code-blue"&gt;.db&lt;/code&gt; फायली सामान्यतः पूर्ण स्थलांतरासाठी वापरल्या जातात.</div>
+</div>
+<div class="step">
+<span class="num ok">✓</span>
+<div>&lt;code class="code-green"&gt;.gpx&lt;/code&gt; एकल किंवा अनेक ट्रॅक रेकॉर्ड आयात करण्यासाठी अधिक योग्य आहे.</div>
+</div>
+</section>
+</div>
+<div class="divider"></div>
+</div>
+<footer>TimeTrails डेटा आयात मार्गदर्शक</footer>
+</div>
+<!-- 多语言切换：按你的要求只用这个 -->
+<script src="./assets/lang-switch.js"></script>
+</body>
+</html>
