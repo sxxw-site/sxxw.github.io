@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generovat a prezentovat stopy, statistiky a vizualizace mapy lokálně na zařízení.",
   "timetrails.privacy.section.use.items.1": "(Volitelné) Používá se k udržení konzistence dat mezi vašimi zařízeními, když povolíte synchronizaci iCloud/soukromého serveru.",
   "timetrails.privacy.section.use.items.2": "Zlepšit výkon aplikace, stabilitu a uživatelskou zkušenost (např. opravy na základě anonymních protokolů o pádech).",
-  "timetrails.privacy.section.use.title": "Jak používáme informace"
+  "timetrails.privacy.section.use.title": "Jak používáme informace",
+  "timetrails.index.cta.guide": "Průvodce importem dat",
+  "timetrails.index.links.guide": "Průvodce importem dat"
 }

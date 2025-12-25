@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generirajte in prikažite sledi, statistiko in vizualizacije zemljevidov lokalno na napravi.",
   "timetrails.privacy.section.use.items.1": "(Neobvezno) Uporablja se za ohranjanje doslednosti podatkov med vašimi napravami, ko omogočite sinhronizacijo iCloud/zasebnega strežnika.",
   "timetrails.privacy.section.use.items.2": "Izboljšajte delovanje aplikacije, stabilnost in uporabniško izkušnjo (npr. popravki na podlagi anonimnih dnevnikov zrušitev).",
-  "timetrails.privacy.section.use.title": "Kako uporabljamo informacije"
+  "timetrails.privacy.section.use.title": "Kako uporabljamo informacije",
+  "timetrails.index.cta.guide": "Vodnik za uvoz podatkov",
+  "timetrails.index.links.guide": "Vodnik za uvoz podatkov"
 }

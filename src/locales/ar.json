@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "إنشاء وتقديم المسارات والإحصائيات والتصورات الخرائطية محليًا على الجهاز.",
   "timetrails.privacy.section.use.items.1": "(اختياري) يُستخدم للحفاظ على تناسق البيانات بين أجهزتك عندما تقوم بتمكين مزامنة iCloud/الخادم الخاص.",
   "timetrails.privacy.section.use.items.2": "تحسين أداء التطبيق، والاستقرار، وتجربة المستخدم (على سبيل المثال، إصلاحات بناءً على سجلات الأعطال المجهولة).",
-  "timetrails.privacy.section.use.title": "كيف نستخدم المعلومات"
+  "timetrails.privacy.section.use.title": "كيف نستخدم المعلومات",
+  "timetrails.index.cta.guide": "دليل استيراد البيانات",
+  "timetrails.index.links.guide": "دليل استيراد البيانات"
 }

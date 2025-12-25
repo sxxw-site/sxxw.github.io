@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "डिवाइस पर स्थानीय रूप से ट्रैक, सांख्यिकी और मानचित्र दृश्यावलियों का निर्माण और प्रदर्शन करें।",
   "timetrails.privacy.section.use.items.1": "(वैकल्पिक) जब आप iCloud/निजी सर्वर समन्वयन सक्षम करते हैं, तो आपके उपकरणों के बीच डेटा को सुसंगत रखने के लिए उपयोग किया जाता है।",
   "timetrails.privacy.section.use.items.2": "ऐप्लिकेशन के प्रदर्शन, स्थिरता और उपयोगकर्ता अनुभव में सुधार करें (जैसे, गुमनाम क्रैश लॉग के आधार पर सुधार)।",
-  "timetrails.privacy.section.use.title": "हम जानकारी का उपयोग कैसे करते हैं"
+  "timetrails.privacy.section.use.title": "हम जानकारी का उपयोग कैसे करते हैं",
+  "timetrails.index.cta.guide": "डेटा आयात गाइड",
+  "timetrails.index.links.guide": "डेटा आयात गाइड"
 }

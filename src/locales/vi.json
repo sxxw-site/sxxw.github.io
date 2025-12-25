@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Tạo và trình bày các bản nhạc, thống kê và hình ảnh bản đồ tại chỗ trên thiết bị.",
   "timetrails.privacy.section.use.items.1": "(Tùy chọn) Được sử dụng để giữ cho dữ liệu nhất quán giữa các thiết bị của bạn khi bạn bật đồng bộ hóa iCloud/máy chủ riêng.",
   "timetrails.privacy.section.use.items.2": "Cải thiện hiệu suất ứng dụng, độ ổn định và trải nghiệm người dùng (ví dụ: sửa lỗi dựa trên nhật ký sự cố ẩn danh).",
-  "timetrails.privacy.section.use.title": "Chúng Tôi Sử Dụng Thông Tin Như Thế Nào"
+  "timetrails.privacy.section.use.title": "Chúng Tôi Sử Dụng Thông Tin Như Thế Nào",
+  "timetrails.index.cta.guide": "Hướng dẫn Nhập Dữ liệu",
+  "timetrails.index.links.guide": "Hướng dẫn Nhập Dữ liệu"
 }

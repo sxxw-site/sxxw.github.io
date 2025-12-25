@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "مسیرها، آمار و تجسم‌های نقشه را به‌صورت محلی بر روی دستگاه تولید و ارائه دهید.",
   "timetrails.privacy.section.use.items.1": "(اختیاری) برای حفظ سازگاری داده‌ها بین دستگاه‌های شما زمانی که همگام‌سازی iCloud/سرور خصوصی را فعال می‌کنید، استفاده می‌شود.",
   "timetrails.privacy.section.use.items.2": "بهبود عملکرد، ثبات و تجربه کاربری برنامه (به عنوان مثال، اصلاحات مبتنی بر گزارش‌های ناشناس خرابی).",
-  "timetrails.privacy.section.use.title": "چگونه از اطلاعات استفاده می‌کنیم"
+  "timetrails.privacy.section.use.title": "چگونه از اطلاعات استفاده می‌کنیم",
+  "timetrails.index.cta.guide": "راهنمای واردات داده",
+  "timetrails.index.links.guide": "راهنمای واردات داده"
 }

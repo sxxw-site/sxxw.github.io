@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Luo ja esitä raitoja, tilastoja ja karttanäkymiä paikallisesti laitteella.",
   "timetrails.privacy.section.use.items.1": "(Valinnainen) Käytetään tietojen yhdenmukaisuuden ylläpitämiseen laitteidesi välillä, kun otat käyttöön iCloud/yksityisen palvelimen synkronoinnin.",
   "timetrails.privacy.section.use.items.2": "Paranna sovelluksen suorituskykyä, vakautta ja käyttäjäkokemusta (esim. korjaukset anonyymien kaatumislokien perusteella).",
-  "timetrails.privacy.section.use.title": "Kuinka Käytämme Tietoja"
+  "timetrails.privacy.section.use.title": "Kuinka Käytämme Tietoja",
+  "timetrails.index.cta.guide": "Tietojen tuontiopas",
+  "timetrails.index.links.guide": "Tietojen tuontiohje"
 }

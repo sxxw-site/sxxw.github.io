@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generați și prezentați trasee, statistici și vizualizări ale hărților local pe dispozitiv.",
   "timetrails.privacy.section.use.items.1": "(Opțional) Folosit pentru a menține datele consistente între dispozitivele tale atunci când activezi sincronizarea iCloud/server privat.",
   "timetrails.privacy.section.use.items.2": "Îmbunătățiți performanța aplicației, stabilitatea și experiența utilizatorului (de exemplu, corecții bazate pe jurnalele de blocare anonime).",
-  "timetrails.privacy.section.use.title": "Cum Folosim Informațiile"
+  "timetrails.privacy.section.use.title": "Cum Folosim Informațiile",
+  "timetrails.index.cta.guide": "Ghid pentru Importul Datelor",
+  "timetrails.index.links.guide": "Ghid pentru importul de date"
 }

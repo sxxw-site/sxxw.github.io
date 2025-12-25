@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "สร้างและนำเสนอแทร็ก สถิติ และการแสดงผลแผนที่ในเครื่องในอุปกรณ์",
   "timetrails.privacy.section.use.items.1": "(ไม่บังคับ) ใช้เพื่อรักษาความสอดคล้องของข้อมูลระหว่างอุปกรณ์ของคุณเมื่อคุณเปิดใช้งานการซิงโครไนซ์ iCloud/เซิร์ฟเวอร์ส่วนตัว.",
   "timetrails.privacy.section.use.items.2": "ปรับปรุงประสิทธิภาพของแอปพลิเคชัน ความเสถียร และประสบการณ์ของผู้ใช้ (เช่น การแก้ไขตามบันทึกการชนแบบไม่ระบุชื่อ).",
-  "timetrails.privacy.section.use.title": "เราจะใช้ข้อมูลอย่างไร"
+  "timetrails.privacy.section.use.title": "เราจะใช้ข้อมูลอย่างไร",
+  "timetrails.index.cta.guide": "คู่มือการนำเข้าข้อมูล",
+  "timetrails.index.links.guide": "คู่มือการนำเข้าข้อมูล"
 }

@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generere og presentere spor, statistikk og kartvisualiseringer lokalt på enheten.",
   "timetrails.privacy.section.use.items.1": "(Valgfritt) Brukes for å holde data konsistente mellom enhetene dine når du aktiverer iCloud/privat server-synkronisering.",
   "timetrails.privacy.section.use.items.2": "Forbedre applikasjonsytelse, stabilitet og brukeropplevelse (f.eks. feilrettinger basert på anonyme krasjlogger).",
-  "timetrails.privacy.section.use.title": "Hvordan vi bruker informasjon"
+  "timetrails.privacy.section.use.title": "Hvordan vi bruker informasjon",
+  "timetrails.index.cta.guide": "Data Import Guide",
+  "timetrails.index.links.guide": "Datainporteringsguide"
 }

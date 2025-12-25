@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generuj i prezentuj ścieżki, statystyki oraz wizualizacje map lokalnie na urządzeniu.",
   "timetrails.privacy.section.use.items.1": "(Opcjonalnie) Używane do utrzymania spójności danych między twoimi urządzeniami, gdy włączysz synchronizację iCloud/prywatnego serwera.",
   "timetrails.privacy.section.use.items.2": "Poprawa wydajności aplikacji, stabilności i doświadczeń użytkownika (np. poprawki oparte na anonimowych dziennikach awarii).",
-  "timetrails.privacy.section.use.title": "Jak wykorzystujemy informacje"
+  "timetrails.privacy.section.use.title": "Jak wykorzystujemy informacje",
+  "timetrails.index.cta.guide": "Przewodnik po imporcie danych",
+  "timetrails.index.links.guide": "Przewodnik po imporcie danych"
 }

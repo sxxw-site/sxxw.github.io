@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generirajte i prikazujte staze, statistike i vizualizacije karata lokalno na uređaju.",
   "timetrails.privacy.section.use.items.1": "(Opcionalno) Koristi se za održavanje dosljednosti podataka između vaših uređaja kada omogućite iCloud/sinkronizaciju privatnog poslužitelja.",
   "timetrails.privacy.section.use.items.2": "Poboljšajte performanse aplikacije, stabilnost i korisničko iskustvo (npr., ispravke temeljene na anonimnim zapisima o padu).",
-  "timetrails.privacy.section.use.title": "Kako koristimo informacije"
+  "timetrails.privacy.section.use.title": "Kako koristimo informacije",
+  "timetrails.index.cta.guide": "Vodič za uvoz podataka",
+  "timetrails.index.links.guide": "Vodič za uvoz podataka"
 }

@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Generuoti ir pateikti takelius, statistiką ir žemėlapių vizualizacijas vietoje, įrenginyje.",
   "timetrails.privacy.section.use.items.1": "(Pasirinktinai) Naudojama, kad duomenys būtų nuoseklūs tarp jūsų įrenginių, kai įjungiate iCloud/private server sinchronizavimą.",
   "timetrails.privacy.section.use.items.2": "Pagerinimo programos našumą, stabilumą ir vartotojo patirtį (pvz., pataisymai, pagrįsti anoniminiais avarijų žurnalais).",
-  "timetrails.privacy.section.use.title": "Kaip mes naudojame informaciją"
+  "timetrails.privacy.section.use.title": "Kaip mes naudojame informaciją",
+  "timetrails.index.cta.guide": "Duomenų importavimo vadovas",
+  "timetrails.index.links.guide": "Duomenų importavimo vadovas"
 }

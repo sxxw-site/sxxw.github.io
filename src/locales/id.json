@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Menghasilkan dan menyajikan trek, statistik, dan visualisasi peta secara lokal di perangkat.",
   "timetrails.privacy.section.use.items.1": "(Opsional) Digunakan untuk menjaga konsistensi data antara perangkat Anda saat Anda mengaktifkan sinkronisasi iCloud/server pribadi.",
   "timetrails.privacy.section.use.items.2": "Meningkatkan kinerja aplikasi, stabilitas, dan pengalaman pengguna (misalnya, perbaikan berdasarkan log kerusakan anonim).",
-  "timetrails.privacy.section.use.title": "Bagaimana Kami Menggunakan Informasi"
+  "timetrails.privacy.section.use.title": "Bagaimana Kami Menggunakan Informasi",
+  "timetrails.index.cta.guide": "Panduan Impor Data",
+  "timetrails.index.links.guide": "Panduan Impor Data"
 }

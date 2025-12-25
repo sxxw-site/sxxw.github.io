@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "ಯಂತ್ರದಲ್ಲಿ ಸ್ಥಳೀಯವಾಗಿ ಪಥಗಳು, ಅಂಕಿಅಂಶಗಳು ಮತ್ತು ನಕ್ಷೆ ದೃಶ್ಯೀಕರಣಗಳನ್ನು ರಚಿಸಿ ಮತ್ತು ಪ್ರದರ್ಶಿಸಿ.",
   "timetrails.privacy.section.use.items.1": "(ಆಯ್ಕೆಯ) ನೀವು iCloud/ಖಾಸಗಿ ಸರ್ವರ್ ಸಮನ್ವಯವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ನಿಮ್ಮ ಸಾಧನಗಳ ನಡುವಿನ ಡೇಟಾವನ್ನು ಸಮಾನವಾಗಿ ಇಡುವುದಕ್ಕಾಗಿ ಬಳಸಲಾಗುತ್ತದೆ.",
   "timetrails.privacy.section.use.items.2": "ಅನಾಮಿಕ ಕ್ರ್ಯಾಶ್ ಲಾಗ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ತಿದ್ದುಪಡಿ (ಉದಾಹರಣೆಗೆ) ಅಪ್ಲಿಕೇಶನ್ ಕಾರ್ಯಕ್ಷಮತೆ, ಸ್ಥಿರತೆ ಮತ್ತು ಬಳಕೆದಾರ ಅನುಭವವನ್ನು ಸುಧಾರಿಸಲು.",
-  "timetrails.privacy.section.use.title": "ನಾವು ಮಾಹಿತಿಯನ್ನು ಹೇಗೆ ಬಳಸುತ್ತೇವೆ"
+  "timetrails.privacy.section.use.title": "ನಾವು ಮಾಹಿತಿಯನ್ನು ಹೇಗೆ ಬಳಸುತ್ತೇವೆ",
+  "timetrails.index.cta.guide": "ಡೇಟಾ ಆಮದು ಮಾರ್ಗದರ್ಶಿ",
+  "timetrails.index.links.guide": "ಡೇಟಾ ಆಮದು ಮಾರ್ಗದರ್ಶಿ"
 }

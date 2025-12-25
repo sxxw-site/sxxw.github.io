@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Helyben generálja és mutassa be a nyomvonalakat, statisztikákat és térképi vizualizációkat az eszközön.",
   "timetrails.privacy.section.use.items.1": "(Opcionális) Az adatok konzisztenciájának megőrzésére használják az eszközeid között, amikor engedélyezed az iCloud/private server szinkronizálást.",
   "timetrails.privacy.section.use.items.2": "Javítsa az alkalmazás teljesítményét, stabilitását és felhasználói élményét (pl. javítások névtelen összeomlási naplók alapján).",
-  "timetrails.privacy.section.use.title": "Hogyan használjuk az információkat"
+  "timetrails.privacy.section.use.title": "Hogyan használjuk az információkat",
+  "timetrails.index.cta.guide": "Adatimportálási útmutató",
+  "timetrails.index.links.guide": "Adatimportálási útmutató"
 }

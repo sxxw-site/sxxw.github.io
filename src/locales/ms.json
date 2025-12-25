@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Hasilkan dan paparkan trek, statistik, dan visualisasi peta secara tempatan pada peranti.",
   "timetrails.privacy.section.use.items.1": "(Pilihan) Digunakan untuk memastikan data konsisten antara peranti anda apabila anda mengaktifkan penyegerakan iCloud/pelayan peribadi.",
   "timetrails.privacy.section.use.items.2": "Meningkatkan prestasi aplikasi, kestabilan, dan pengalaman pengguna (contohnya, pembetulan berdasarkan log kemalangan tanpa nama).",
-  "timetrails.privacy.section.use.title": "Bagaimana Kami Menggunakan Maklumat"
+  "timetrails.privacy.section.use.title": "Bagaimana Kami Menggunakan Maklumat",
+  "timetrails.index.cta.guide": "Panduan Import Data",
+  "timetrails.index.links.guide": "Panduan Import Data"
 }

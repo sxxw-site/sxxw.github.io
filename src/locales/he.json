@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "צור והצג מסלולים, סטטיסטיקות, וויזואליזציות של מפות באופן מקומי על המכשיר.",
   "timetrails.privacy.section.use.items.1": "(אופציונלי) משמש לשמירה על עקביות הנתונים בין המכשירים שלך כאשר אתה מפעיל סנכרון עם iCloud/שרת פרטי.",
   "timetrails.privacy.section.use.items.2": "שיפור ביצועי האפליקציה, יציבות וחוויית המשתמש (למשל, תיקונים המבוססים על יומני קריסה אנונימיים).",
-  "timetrails.privacy.section.use.title": "איך אנחנו משתמשים במידע"
+  "timetrails.privacy.section.use.title": "איך אנחנו משתמשים במידע",
+  "timetrails.index.cta.guide": "מדריך ייבוא נתונים",
+  "timetrails.index.links.guide": "מדריך לייבוא נתונים"
 }

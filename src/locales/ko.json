@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "장치 로컬에서 경로, 통계 및 지도 시각화를 생성하고 표시합니다.",
   "timetrails.privacy.section.use.items.1": "(선택 사항) iCloud/개인 서버 동기화를 활성화할 때, 장치 간 데이터 일관성을 유지하는 데 사용됩니다.",
   "timetrails.privacy.section.use.items.2": "애플리케이션 성능, 안정성 및 사용자 경험 개선(예: 익명 크래시 로그 기반 수정).",
-  "timetrails.privacy.section.use.title": "우리가 정보를 어떻게 사용하는지"
+  "timetrails.privacy.section.use.title": "우리가 정보를 어떻게 사용하는지",
+  "timetrails.index.cta.guide": "데이터 가져오기 가이드",
+  "timetrails.index.links.guide": "데이터 가져오기 가이드"
 }

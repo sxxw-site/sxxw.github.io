@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "ਡਿਵਾਈਸ 'ਤੇ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਟਰੈਕ, ਅੰਕੜੇ ਅਤੇ ਨਕਸ਼ਾ ਵਿਜ਼ੂਅਲਾਈਜ਼ੇਸ਼ਨ ਬਣਾਓ ਅਤੇ ਪ੍ਰਸਤੁਤ ਕਰੋ।",
   "timetrails.privacy.section.use.items.1": "(ਵਿਕਲਪੀ) ਜਦੋਂ ਤੁਸੀਂ iCloud/ਨਿੱਜੀ ਸਰਵਰ ਸਮਰੂਪਤਾ ਨੂੰ ਚਾਲੂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ਵਿਚ ਡੇਟਾ ਨੂੰ ਇਕਸਾਰ ਰੱਖਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।",
   "timetrails.privacy.section.use.items.2": "ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ, ਸਥਿਰਤਾ, ਅਤੇ ਉਪਭੋਗਤਾ ਦੇ ਅਨੁਭਵ ਵਿੱਚ ਸੁਧਾਰ ਕਰੋ (ਜਿਵੇਂ ਕਿ ਗੁਪਤ ਕ੍ਰੈਸ਼ ਲੌਗਾਂ ਦੇ ਆਧਾਰ 'ਤੇ ਫਿਕਸ)।",
-  "timetrails.privacy.section.use.title": "ਅਸੀਂ ਜਾਣਕਾਰੀ ਦਾ ਕਿਵੇਂ ਇਸਤੇਮਾਲ ਕਰਦੇ ਹਾਂ"
+  "timetrails.privacy.section.use.title": "ਅਸੀਂ ਜਾਣਕਾਰੀ ਦਾ ਕਿਵੇਂ ਇਸਤੇਮਾਲ ਕਰਦੇ ਹਾਂ",
+  "timetrails.index.cta.guide": "ਡੇਟਾ ਆਯਾਤ ਗਾਈਡ",
+  "timetrails.index.links.guide": "ਡੇਟਾ ਆਯਾਤ ਗਾਈਡ"
 }

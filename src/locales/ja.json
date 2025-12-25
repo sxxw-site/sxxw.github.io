@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "デバイス上でローカルにトレース、統計、マップのビジュアライゼーションを生成および表示します。",
   "timetrails.privacy.section.use.items.1": "（オプション）iCloud/プライベートサーバーの同期を有効にすると、デバイス間でデータを一貫性を保つために使用されます。",
   "timetrails.privacy.section.use.items.2": "アプリのパフォーマンス、安定性、ユーザーエクスペリエンスの向上（匿名のクラッシュログに基づく修正など）。",
-  "timetrails.privacy.section.use.title": "私たちが情報をどのように使用するか"
+  "timetrails.privacy.section.use.title": "私たちが情報をどのように使用するか",
+  "timetrails.index.cta.guide": "データインポートガイド",
+  "timetrails.index.links.guide": "データインポートガイド"
 }

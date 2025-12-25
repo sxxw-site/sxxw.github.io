@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Cihazda yerel olarak parçalar, istatistikler ve harita görselleştirmeleri oluşturun ve sunun.",
   "timetrails.privacy.section.use.items.1": "(Opsiyonel) iCloud/özel sunucu senkronizasyonunu etkinleştirdiğinizde verilerinizi cihazlarınız arasında tutmak için kullanılır.",
   "timetrails.privacy.section.use.items.2": "Uygulama performansını, kararlılığını ve kullanıcı deneyimini geliştirin (örneğin, anonim çökme günlüklerine dayalı düzeltmeler).",
-  "timetrails.privacy.section.use.title": "Bilgileri Nasıl Kullanıyoruz"
+  "timetrails.privacy.section.use.title": "Bilgileri Nasıl Kullanıyoruz",
+  "timetrails.index.cta.guide": "Veri İçe Aktarma Kılavuzu",
+  "timetrails.index.links.guide": "Veri İçe Aktarma Kılavuzu"
 }

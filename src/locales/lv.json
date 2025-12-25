@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Ģenerēt un attēlot ierakstus, statistiku un kartes vizualizācijas lokāli ierīcē.",
   "timetrails.privacy.section.use.items.1": "(Nepies mandatory) Tiek izmantots, lai saglabātu datus konsekventus starp jūsu ierīcēm, kad jūs aktivizējat iCloud/privātā servera sinhronizāciju.",
   "timetrails.privacy.section.use.items.2": "Uzlabot lietojumprogrammas veiktspēju, stabilitāti un lietotāja pieredzi (piemēram, labojumi, pamatojoties uz anonīmiem avāriju žurnāliem).",
-  "timetrails.privacy.section.use.title": "Kā mēs izmantojam informāciju"
+  "timetrails.privacy.section.use.title": "Kā mēs izmantojam informāciju",
+  "timetrails.index.cta.guide": "Datu importēšanas ceļvedis",
+  "timetrails.index.links.guide": "Datu importēšanas ceļvedis"
 }

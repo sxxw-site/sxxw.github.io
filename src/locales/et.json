@@ -337,5 +337,7 @@
   "timetrails.privacy.section.use.items.0": "Genereeri ja esita lugusid, statistikat ja kaardivisualiseerimisi kohapeal seadmes.",
   "timetrails.privacy.section.use.items.1": "(Valikuline) Kasutatakse andmete järjepidevuse säilitamiseks teie seadmete vahel, kui aktiveerite iCloud/privaatserveri sünkroonimise.",
   "timetrails.privacy.section.use.items.2": "Parandada rakenduse jõudlust, stabiilsust ja kasutajakogemust (nt parandused, mis põhinevad anonüümsetel krahhikirjadel).",
-  "timetrails.privacy.section.use.title": "Kuidas me teavet kasutame"
+  "timetrails.privacy.section.use.title": "Kuidas me teavet kasutame",
+  "timetrails.index.cta.guide": "Andmete importimise juhend",
+  "timetrails.index.links.guide": "Andmete importimise juhend"
 }
