@@ -14763,5 +14763,20 @@
   "Chinese (Simplified)|||ko|||Loading…": "로딩 중…",
   "Chinese (Simplified)|||ko|||© TimeTrails · 上海树下小屋网络科技有限公司。": "© TimeTrails · 上海树下小屋网络科技有限公司.",
   "Chinese (Simplified)|||ko|||仅集成少量必要的开源组件，默认本地存储与处理；不集成第三方数据分析/广告 SDK。你可以随时清除、导出或撤回权限。": "필요한 오픈 소스 구성 요소만 소량 통합하며, 기본적으로 로컬 저장 및 처리를 수행합니다; 서드파티 데이터 분석/광고 SDK는 통합하지 않습니다. 언제든지 권한을 삭제, 내보내기 또는 철회할 수 있습니다.",
-  "Chinese (Simplified)|||ko|||{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"时光轨迹（TimeTrails）\",\n  \"description\":\"把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。\",\n  \"inLanguage\":[\"zh-Hans\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}": "{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"TimeTrails\",\n  \"description\":\"여행을 되돌아볼 수 있는 시간선으로 변환: 경로, 정차 지점, 거리 통계, 지역 우선.\",\n  \"inLanguage\":[\"ko\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}"
+  "Chinese (Simplified)|||ko|||{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"时光轨迹（TimeTrails）\",\n  \"description\":\"把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。\",\n  \"inLanguage\":[\"zh-Hans\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}": "{\n  \"@context\":\"https://schema.org\",\n  \"@type\":\"WebPage\",\n  \"name\":\"TimeTrails\",\n  \"description\":\"여행을 되돌아볼 수 있는 시간선으로 변환: 경로, 정차 지점, 거리 통계, 지역 우선.\",\n  \"inLanguage\":[\"ko\",\"en\"],\n  \"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"TimeTrails\",\"url\":\"https://sxxw.site/\"}\n}",
+  "Chinese (Simplified)|||en|||<strong>手机和电脑连接在同一个 Wi-Fi</strong>": "<strong>Connect your phone and computer to the same Wi-Fi</strong>",
+  "Chinese (Simplified)|||ja|||<strong>手机和电脑连接在同一个 Wi-Fi</strong>": "<strong>スマートフォンとコンピュータが同じWi-Fiに接続されている</strong>",
+  "Chinese (Simplified)|||ko|||<strong>手机和电脑连接在同一个 Wi-Fi</strong>": "<strong> 휴대폰과 컴퓨터가 같은 Wi-Fi에 연결되어 있습니다 </strong>",
+  "Chinese (Simplified)|||en|||数据库文件": "Database File",
+  "Chinese (Simplified)|||en|||更适合导入单次或多段轨迹记录": "More suitable for importing single or multiple track records",
+  "Chinese (Simplified)|||en|||轨迹文件": "Track File",
+  "Chinese (Simplified)|||en|||文件通常用于完整迁移": "Files are typically used for complete migration.",
+  "Chinese (Simplified)|||ja|||数据库文件": "データベースファイル",
+  "Chinese (Simplified)|||ja|||轨迹文件": "トラックファイル",
+  "Chinese (Simplified)|||ja|||文件通常用于完整迁移": "ファイルは通常、完全な移行に使用されます",
+  "Chinese (Simplified)|||ja|||更适合导入单次或多段轨迹记录": "単一または複数のトラック記録のインポートにより適しています",
+  "Chinese (Simplified)|||ko|||轨迹文件": "경로 파일",
+  "Chinese (Simplified)|||ko|||文件通常用于完整迁移": "파일은 일반적으로 전체 마이그레이션에 사용됩니다.",
+  "Chinese (Simplified)|||ko|||更适合导入单次或多段轨迹记录": "단일 또는 다중 경로 기록을 가져오는 데 더 적합합니다.",
+  "Chinese (Simplified)|||ko|||数据库文件": "데이터베이스 파일"
 }

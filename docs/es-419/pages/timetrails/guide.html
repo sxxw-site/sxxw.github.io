@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>Diseño de Página de Importación de Datos</title>
+<title>数据导入使用指南</title>
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
     :root{
@@ -123,8 +123,8 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>Guía del Usuario para la Importación de Datos</h1>
-<div class="subtitle">Versión de Usuario</div>
+<h1>数据导入使用指南</h1>
+<div class="subtitle">用户版</div>
 </div>
 </div>
 <div aria-label="Language switcher" class="lang-wrap">
@@ -136,71 +136,70 @@
 </div>
 <div class="divider"></div>
 <div class="panel">
-<p>Puedes importar archivos de datos desde tu computadora a TimeTrails a través de la red de área local.</p>
+<p>你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
 <p style="margin-top:10px">
-<span>Todo el proceso</span>
-<strong style="color:var(--accent)">No se necesita cable de datos</strong>
-<span>, también</span>
-<strong style="color:var(--accent)">No se requiere inicio de sesión en la cuenta</strong>
-<span>.</span>
+<span>整个过程 </span>
+<strong style="color:var(--accent)">不需要数据线</strong>
+<span>，也 </span>
+<strong style="color:var(--accent)">不需要登录账号</strong>
+<span>。</span>
 </p>
 </div>
 <div class="divider"></div>
 <div class="stack">
 <section class="panel">
-<h2>1. Trabajo de Preparación</h2>
+<h2>一、准备工作</h2>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Asegúrate de que &lt;b&gt; móvil y computadora estén conectados a la misma red Wi-Fi &lt;/b&gt;.</div>
+<div>&lt;strong&gt;手机和电脑连接在同一个 Wi-Fi&lt;/strong&gt;</div>
 </div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Prepara el archivo para ser importado</div>
-<div class="muted">Soporta el archivo de base de datos &lt;code class="code-blue"&gt;.db&lt;/code&gt; y el archivo de pista &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
+<div>准备好要导入的文件</div>
+<div class="muted">支持数据库文件 &lt;code class="code-blue"&gt;.db&lt;/code&gt;，以及轨迹文件 &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>2. Habilitar el Servicio de Importación en Móvil</h2>
+<h2>二、在手机上开启导入服务</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>Abre TimeTrails</div></li>
-<li class="step"><span class="num">2</span><div>Ingrese a la página 'Importación de Datos / Transferencia de Datos'</div></li>
-<li class="step"><span class="num">3</span><div>Haz clic en 'Iniciar Servicio'</div></li>
+<li class="step"><span class="num">1</span><div>打开 TimeTrails</div></li>
+<li class="step"><span class="num">2</span><div>进入「数据导入 / 数据传输」页面</div></li>
+<li class="step"><span class="num">3</span><div>点击「启动服务」</div></li>
 <li class="step">
 <span class="num">4</span>
 <div>
-<div>Después de tener éxito, se mostrará una URL (dirección de red local) en la página.</div>
-<div class="muted" style="margin-top:6px">Por ejemplo: http://192.168.1.100:9527</div>
+<div>成功后，页面上会显示一个网址（局域网地址）。</div>
+<div class="muted" style="margin-top:6px">例如：http://192.168.1.100:9527</div>
 </div>
 </li>
 </ol>
 </section>
 <section class="panel">
-<h2>3. Cargando Archivos en la Computadora</h2>
+<h2>三、在电脑上上传文件</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>En el navegador de tu computadora, ingresa la URL que se muestra en tu teléfono.</div></li>
-<li class="step"><span class="num">2</span><div>Ábrelo, luego selecciona y sube tu archivo.</div></li>
-<li class="step"><span class="num">3</span><div>Una vez que la carga esté completa, el archivo aparecerá automáticamente en la lista de archivos en tu teléfono.</div></li>
+<li class="step"><span class="num">1</span><div>在电脑浏览器中，输入手机上显示的那个网址</div></li>
+<li class="step"><span class="num">2</span><div>打开后，选择并上传你的文件</div></li>
+<li class="step"><span class="num">3</span><div>上传完成后，文件会自动出现在手机的文件列表中</div></li>
 </ol>
 </section>
 <section class="panel">
-<h2>4. Importar Datos</h2>
-<p class="muted">En la lista de archivos en tu teléfono:</p>
+<h2>四、导入数据</h2>
+<p class="muted">在手机的文件列表中：</p>
 <div class="grid" style="margin-top:10px">
 <div class="panel">
-<!-- ✅ 关键修复：不要把 <code> 放进 i18n 文案里 -->
 <h3>
 <code class="code-blue">.db</code>
 <span>数据库文件</span>
 </h3>
-<p class="muted">Se utiliza para restaurar o migrar todos los datos de TimeTrails</p>
+<p class="muted">用于恢复或迁移整个 TimeTrails 数据</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Haz clic en el archivo .db</div></li>
-<li class="step"><span class="num">2</span><div>Selecciona 'Importar'</div></li>
-<li class="step"><span class="num">3</span><div>Se mostrará un mensaje de éxito al completar.</div></li>
+<li class="step"><span class="num">1</span><div>点击 .db 文件</div></li>
+<li class="step"><span class="num">2</span><div>选择「导入」</div></li>
+<li class="step"><span class="num">3</span><div>完成后会提示成功</div></li>
 </ol>
 </div>
 <div class="panel">
@@ -208,48 +207,48 @@
 <code class="code-blue">.gpx</code>
 <span>轨迹文件</span>
 </h3>
-<p class="muted">Mostrado en el mapa por fecha después de que la importación esté completa.</p>
+<p class="muted">导入完成后按日期显示在地图中</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Haz clic en el archivo .gpx</div></li>
-<li class="step"><span class="num">2</span><div>El sistema analizará e importará automáticamente la ruta.</div></li>
-<li class="step"><span class="num">3</span><div>Revisa el mapa después de completar</div></li>
+<li class="step"><span class="num">1</span><div>点击 .gpx 文件</div></li>
+<li class="step"><span class="num">2</span><div>系统会自动解析并导入轨迹</div></li>
+<li class="step"><span class="num">3</span><div>完成后在地图里查看</div></li>
 </ol>
 </div>
 </div>
 <div class="callout" style="margin-top:12px">
 <span aria-hidden="true">⚠️</span>
-<span>Por favor, mantén la App en primer plano durante el proceso de importación, y verás un mensaje de éxito una vez completado.</span>
+<span>导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
 </div>
 </section>
 <section class="panel">
-<h2>5. Consejos y Explicaciones Comunes</h2>
+<h2>五、常见提示说明</h2>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>No se puede iniciar el servicio</b></div>
-<div class="muted">Por favor, asegúrate de que estás conectado a Wi-Fi, no a la red celular.</div>
-</div>
-</div>
-<div class="step">
-<span class="num warn">!</span>
-<div>
-<div><b>La importación falló o se omitieron algunos datos</b></div>
-<div class="muted">Algunos puntos de la pista faltan información de tiempo, y el sistema los ignorará automáticamente.</div>
+<div><b>无法启动服务</b></div>
+<div class="muted">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</div>
 </div>
 </div>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Archivo no encontrado</b></div>
-<div class="muted">Actualiza la lista desplegable para volver a escanear.</div>
+<div><b>导入失败或被跳过部分数据</b></div>
+<div class="muted">某些轨迹点缺少时间信息，系统会自动忽略</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>文件没看到</b></div>
+<div class="muted">下拉列表刷新即可重新扫描</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>6. Algunas Sugerencias</h2>
+<h2>六、小建议</h2>
 <div class="step">
 <span class="num ok">✓</span>
-<div>Antes de importar, se recomienda hacer una copia de seguridad de los datos actuales.</div>
+<div>导入前，建议先备份当前数据</div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
@@ -263,7 +262,7 @@
 </div>
 <div class="divider"></div>
 </div>
-<footer>Guía de Importación de Datos de TimeTrails</footer>
+<footer>TimeTrails 数据导入使用指南</footer>
 </div>
 <script src="./assets/lang-switch.js"></script>
 </body>

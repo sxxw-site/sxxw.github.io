@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>Dizajn stranice za uvoz podataka</title>
+<title>数据导入使用指南</title>
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
     :root{
@@ -123,8 +123,8 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>Vodič za korisnike uvoz podataka</h1>
-<div class="subtitle">Korisnička verzija</div>
+<h1>数据导入使用指南</h1>
+<div class="subtitle">用户版</div>
 </div>
 </div>
 <div aria-label="Language switcher" class="lang-wrap">
@@ -136,71 +136,70 @@
 </div>
 <div class="divider"></div>
 <div class="panel">
-<p>Možete uvesti datoteke s podacima s vašeg računala u TimeTrails putem lokalne mreže.</p>
+<p>你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
 <p style="margin-top:10px">
-<span>Cijeli proces</span>
-<strong style="color:var(--accent)">Nema potrebe za podatkovnim kabelom</strong>
-<span>, također</span>
-<strong style="color:var(--accent)">Nema potrebe za prijavom na račun</strong>
-<span>.</span>
+<span>整个过程 </span>
+<strong style="color:var(--accent)">不需要数据线</strong>
+<span>，也 </span>
+<strong style="color:var(--accent)">不需要登录账号</strong>
+<span>。</span>
 </p>
 </div>
 <div class="divider"></div>
 <div class="stack">
 <section class="panel">
-<h2>1. Pripremni radovi</h2>
+<h2>一、准备工作</h2>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Provjerite da su &lt;b&gt; mobilni uređaj i računalo povezani na istu Wi-Fi &lt;/b&gt;.</div>
+<div>&lt;strong&gt;手机和电脑连接在同一个 Wi-Fi&lt;/strong&gt;</div>
 </div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Pripremite datoteku za uvoz</div>
-<div class="muted">Podržava datoteku baze podataka &lt;code class="code-blue"&gt;.db&lt;/code&gt; i datoteku staze &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
+<div>准备好要导入的文件</div>
+<div class="muted">支持数据库文件 &lt;code class="code-blue"&gt;.db&lt;/code&gt;，以及轨迹文件 &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>2. Omogućite uslugu uvoza na mobilnom uređaju</h2>
+<h2>二、在手机上开启导入服务</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>Otvorite TimeTrails</div></li>
-<li class="step"><span class="num">2</span><div>Unesite stranicu 'Uvoz podataka / Prijenos podataka'</div></li>
-<li class="step"><span class="num">3</span><div>Kliknite 'Pokreni uslugu'</div></li>
+<li class="step"><span class="num">1</span><div>打开 TimeTrails</div></li>
+<li class="step"><span class="num">2</span><div>进入「数据导入 / 数据传输」页面</div></li>
+<li class="step"><span class="num">3</span><div>点击「启动服务」</div></li>
 <li class="step">
 <span class="num">4</span>
 <div>
-<div>Nakon uspjeha, URL (adresa lokalne mreže) bit će prikazan na stranici.</div>
-<div class="muted" style="margin-top:6px">Na primjer: http://192.168.1.100:9527</div>
+<div>成功后，页面上会显示一个网址（局域网地址）。</div>
+<div class="muted" style="margin-top:6px">例如：http://192.168.1.100:9527</div>
 </div>
 </li>
 </ol>
 </section>
 <section class="panel">
-<h2>3. Učitavanje datoteka na računalo</h2>
+<h2>三、在电脑上上传文件</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>U pregledniku vašeg računala unesite URL prikazan na vašem telefonu.</div></li>
-<li class="step"><span class="num">2</span><div>Otvorite ga, a zatim odaberite i prenesite svoju datoteku.</div></li>
-<li class="step"><span class="num">3</span><div>Nakon što je prijenos završen, datoteka će se automatski pojaviti na popisu datoteka na vašem telefonu.</div></li>
+<li class="step"><span class="num">1</span><div>在电脑浏览器中，输入手机上显示的那个网址</div></li>
+<li class="step"><span class="num">2</span><div>打开后，选择并上传你的文件</div></li>
+<li class="step"><span class="num">3</span><div>上传完成后，文件会自动出现在手机的文件列表中</div></li>
 </ol>
 </section>
 <section class="panel">
-<h2>4. Uvezi podatke</h2>
-<p class="muted">Na popisu datoteka na vašem telefonu:</p>
+<h2>四、导入数据</h2>
+<p class="muted">在手机的文件列表中：</p>
 <div class="grid" style="margin-top:10px">
 <div class="panel">
-<!-- ✅ 关键修复：不要把 <code> 放进 i18n 文案里 -->
 <h3>
 <code class="code-blue">.db</code>
 <span>数据库文件</span>
 </h3>
-<p class="muted">Koristi se za vraćanje ili migraciju cijelih TimeTrails podataka</p>
+<p class="muted">用于恢复或迁移整个 TimeTrails 数据</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Kliknite na .db datoteku</div></li>
-<li class="step"><span class="num">2</span><div>Odaberite 'Uvezi'</div></li>
-<li class="step"><span class="num">3</span><div>Poruka o uspjehu bit će prikazana nakon završetka.</div></li>
+<li class="step"><span class="num">1</span><div>点击 .db 文件</div></li>
+<li class="step"><span class="num">2</span><div>选择「导入」</div></li>
+<li class="step"><span class="num">3</span><div>完成后会提示成功</div></li>
 </ol>
 </div>
 <div class="panel">
@@ -208,48 +207,48 @@
 <code class="code-blue">.gpx</code>
 <span>轨迹文件</span>
 </h3>
-<p class="muted">Prikazano na karti po datumu nakon što je uvoz završen.</p>
+<p class="muted">导入完成后按日期显示在地图中</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Kliknite na .gpx datoteku</div></li>
-<li class="step"><span class="num">2</span><div>Sustav će automatski analizirati i uvesti stazu.</div></li>
-<li class="step"><span class="num">3</span><div>Provjerite kartu nakon završetka</div></li>
+<li class="step"><span class="num">1</span><div>点击 .gpx 文件</div></li>
+<li class="step"><span class="num">2</span><div>系统会自动解析并导入轨迹</div></li>
+<li class="step"><span class="num">3</span><div>完成后在地图里查看</div></li>
 </ol>
 </div>
 </div>
 <div class="callout" style="margin-top:12px">
 <span aria-hidden="true">⚠️</span>
-<span>Molimo vas da zadržite aplikaciju u prvom planu tijekom procesa uvoza, a vidjet ćete poruku o uspjehu kada završi.</span>
+<span>导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
 </div>
 </section>
 <section class="panel">
-<h2>5. Uobičajeni savjeti i objašnjenja</h2>
+<h2>五、常见提示说明</h2>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Nije moguće pokrenuti uslugu</b></div>
-<div class="muted">Molimo vas da osigurate da ste povezani na Wi-Fi, a ne na mobilnu mrežu.</div>
-</div>
-</div>
-<div class="step">
-<span class="num warn">!</span>
-<div>
-<div><b>Uvoz nije uspio ili su neki podaci preskočeni</b></div>
-<div class="muted">Neki podaci o stazama nemaju informacije o vremenu, a sustav će ih automatski ignorirati.</div>
+<div><b>无法启动服务</b></div>
+<div class="muted">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</div>
 </div>
 </div>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Datoteka nije pronađena</b></div>
-<div class="muted">Osvježite padajući izbornik za ponovni sken.</div>
+<div><b>导入失败或被跳过部分数据</b></div>
+<div class="muted">某些轨迹点缺少时间信息，系统会自动忽略</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>文件没看到</b></div>
+<div class="muted">下拉列表刷新即可重新扫描</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>6. Neki prijedlozi</h2>
+<h2>六、小建议</h2>
 <div class="step">
 <span class="num ok">✓</span>
-<div>Prije uvoza, preporučuje se izraditi sigurnosnu kopiju trenutnih podataka.</div>
+<div>导入前，建议先备份当前数据</div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
@@ -263,7 +262,7 @@
 </div>
 <div class="divider"></div>
 </div>
-<footer>Vodič za uvoz podataka TimeTrails</footer>
+<footer>TimeTrails 数据导入使用指南</footer>
 </div>
 <script src="./assets/lang-switch.js"></script>
 </body>

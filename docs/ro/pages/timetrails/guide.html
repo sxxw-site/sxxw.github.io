@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>Designul Paginii de Import Date</title>
+<title>数据导入使用指南</title>
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
     :root{
@@ -123,8 +123,8 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>Ghidul utilizatorului pentru importul de date</h1>
-<div class="subtitle">Versiunea utilizatorului</div>
+<h1>数据导入使用指南</h1>
+<div class="subtitle">用户版</div>
 </div>
 </div>
 <div aria-label="Language switcher" class="lang-wrap">
@@ -136,71 +136,70 @@
 </div>
 <div class="divider"></div>
 <div class="panel">
-<p>Puteți importa fișiere de date de pe computerul dvs. în TimeTrails prin intermediul rețelei locale.</p>
+<p>你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
 <p style="margin-top:10px">
-<span>Întregul proces</span>
-<strong style="color:var(--accent)">Nu este nevoie de cablu de date</strong>
-<span>, de asemenea</span>
-<strong style="color:var(--accent)">Nu este necesar un cont pentru autentificare</strong>
-<span>.</span>
+<span>整个过程 </span>
+<strong style="color:var(--accent)">不需要数据线</strong>
+<span>，也 </span>
+<strong style="color:var(--accent)">不需要登录账号</strong>
+<span>。</span>
 </p>
 </div>
 <div class="divider"></div>
 <div class="stack">
 <section class="panel">
-<h2>1. Lucrări de pregătire</h2>
+<h2>一、准备工作</h2>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Asigurați-vă că &lt;b&gt; mobilul și computerul sunt conectate la aceeași rețea Wi-Fi &lt;/b&gt;.</div>
+<div>&lt;strong&gt;手机和电脑连接在同一个 Wi-Fi&lt;/strong&gt;</div>
 </div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Pregătiți fișierul pentru a fi importat</div>
-<div class="muted">Suportă fișierul bazei de date &lt;code class="code-blue"&gt;.db&lt;/code&gt; și fișierul de traseu &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
+<div>准备好要导入的文件</div>
+<div class="muted">支持数据库文件 &lt;code class="code-blue"&gt;.db&lt;/code&gt;，以及轨迹文件 &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>2. Activează Serviciul de Import pe Mobil</h2>
+<h2>二、在手机上开启导入服务</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>Deschide TimeTrails</div></li>
-<li class="step"><span class="num">2</span><div>Introduceți pagina 'Importare date / Transfer de date'</div></li>
-<li class="step"><span class="num">3</span><div>Faceți clic pe 'Start Service'</div></li>
+<li class="step"><span class="num">1</span><div>打开 TimeTrails</div></li>
+<li class="step"><span class="num">2</span><div>进入「数据导入 / 数据传输」页面</div></li>
+<li class="step"><span class="num">3</span><div>点击「启动服务」</div></li>
 <li class="step">
 <span class="num">4</span>
 <div>
-<div>După succes, un URL (adresă de rețea locală) va fi afișat pe pagină.</div>
-<div class="muted" style="margin-top:6px">De exemplu: http://192.168.1.100:9527</div>
+<div>成功后，页面上会显示一个网址（局域网地址）。</div>
+<div class="muted" style="margin-top:6px">例如：http://192.168.1.100:9527</div>
 </div>
 </li>
 </ol>
 </section>
 <section class="panel">
-<h2>3. Încărcarea fișierelor pe computer</h2>
+<h2>三、在电脑上上传文件</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>În browserul computerului tău, introdu URL-ul afișat pe telefon.</div></li>
-<li class="step"><span class="num">2</span><div>Deschide-l, apoi selectează și încarcă fișierul tău.</div></li>
-<li class="step"><span class="num">3</span><div>După ce încărcarea este completă, fișierul va apărea automat în lista de fișiere de pe telefonul tău.</div></li>
+<li class="step"><span class="num">1</span><div>在电脑浏览器中，输入手机上显示的那个网址</div></li>
+<li class="step"><span class="num">2</span><div>打开后，选择并上传你的文件</div></li>
+<li class="step"><span class="num">3</span><div>上传完成后，文件会自动出现在手机的文件列表中</div></li>
 </ol>
 </section>
 <section class="panel">
-<h2>4. Importați datele</h2>
-<p class="muted">În lista de fișiere de pe telefonul tău:</p>
+<h2>四、导入数据</h2>
+<p class="muted">在手机的文件列表中：</p>
 <div class="grid" style="margin-top:10px">
 <div class="panel">
-<!-- ✅ 关键修复：不要把 <code> 放进 i18n 文案里 -->
 <h3>
 <code class="code-blue">.db</code>
 <span>数据库文件</span>
 </h3>
-<p class="muted">Utilizat pentru a restaura sau migra datele întregi TimeTrails</p>
+<p class="muted">用于恢复或迁移整个 TimeTrails 数据</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Faceți clic pe fișierul .db</div></li>
-<li class="step"><span class="num">2</span><div>Selectați 'Import'</div></li>
-<li class="step"><span class="num">3</span><div>Un mesaj de succes va fi afișat la finalizare.</div></li>
+<li class="step"><span class="num">1</span><div>点击 .db 文件</div></li>
+<li class="step"><span class="num">2</span><div>选择「导入」</div></li>
+<li class="step"><span class="num">3</span><div>完成后会提示成功</div></li>
 </ol>
 </div>
 <div class="panel">
@@ -208,48 +207,48 @@
 <code class="code-blue">.gpx</code>
 <span>轨迹文件</span>
 </h3>
-<p class="muted">Afișat pe hartă după dată, după ce importul este complet.</p>
+<p class="muted">导入完成后按日期显示在地图中</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Faceți clic pe fișierul .gpx</div></li>
-<li class="step"><span class="num">2</span><div>Sistemul va analiza și importa automat traseul.</div></li>
-<li class="step"><span class="num">3</span><div>Verificați harta după finalizare</div></li>
+<li class="step"><span class="num">1</span><div>点击 .gpx 文件</div></li>
+<li class="step"><span class="num">2</span><div>系统会自动解析并导入轨迹</div></li>
+<li class="step"><span class="num">3</span><div>完成后在地图里查看</div></li>
 </ol>
 </div>
 </div>
 <div class="callout" style="margin-top:12px">
 <span aria-hidden="true">⚠️</span>
-<span>Vă rugăm să mențineți aplicația în prim-plan în timpul procesului de import, iar odată finalizat, veți vedea un mesaj de succes.</span>
+<span>导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
 </div>
 </section>
 <section class="panel">
-<h2>5. Sfaturi și explicații comune</h2>
+<h2>五、常见提示说明</h2>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Imposibil de a porni serviciul</b></div>
-<div class="muted">Vă rugăm să vă asigurați că sunteți conectat la Wi-Fi, nu la rețeaua celulară.</div>
-</div>
-</div>
-<div class="step">
-<span class="num warn">!</span>
-<div>
-<div><b>Importul a eșuat sau unele date au fost omise</b></div>
-<div class="muted">Unele puncte de pe traseu lipsesc informații despre timp, iar sistemul le va ignora automat.</div>
+<div><b>无法启动服务</b></div>
+<div class="muted">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</div>
 </div>
 </div>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Fișierul nu a fost găsit</b></div>
-<div class="muted">Actualizați lista derulantă pentru a rescana.</div>
+<div><b>导入失败或被跳过部分数据</b></div>
+<div class="muted">某些轨迹点缺少时间信息，系统会自动忽略</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>文件没看到</b></div>
+<div class="muted">下拉列表刷新即可重新扫描</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>6. Câteva sugestii</h2>
+<h2>六、小建议</h2>
 <div class="step">
 <span class="num ok">✓</span>
-<div>Înainte de a importa, se recomandă să faceți o copie de rezervă a datelor curente.</div>
+<div>导入前，建议先备份当前数据</div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
@@ -263,7 +262,7 @@
 </div>
 <div class="divider"></div>
 </div>
-<footer>Ghid de Importare a Datelor TimeTrails</footer>
+<footer>TimeTrails 数据导入使用指南</footer>
 </div>
 <script src="./assets/lang-switch.js"></script>
 </body>

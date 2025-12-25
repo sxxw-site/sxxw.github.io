@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>Datu importēšanas lapas dizains</title>
+<title>数据导入使用指南</title>
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
     :root{
@@ -123,8 +123,8 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>Datu importēšanas lietotāja rokasgrāmata</h1>
-<div class="subtitle">Lietotāja versija</div>
+<h1>数据导入使用指南</h1>
+<div class="subtitle">用户版</div>
 </div>
 </div>
 <div aria-label="Language switcher" class="lang-wrap">
@@ -136,71 +136,70 @@
 </div>
 <div class="divider"></div>
 <div class="panel">
-<p>Jūs varat importēt datu failus no sava datora TimeTrails, izmantojot lokālo tīklu.</p>
+<p>你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
 <p style="margin-top:10px">
-<span>Visu procesu</span>
-<strong style="color:var(--accent)">Nav nepieciešams datu kabelis</strong>
-<span>, arī</span>
-<strong style="color:var(--accent)">Nav nepieciešama konta pieteikšanās</strong>
-<span>.</span>
+<span>整个过程 </span>
+<strong style="color:var(--accent)">不需要数据线</strong>
+<span>，也 </span>
+<strong style="color:var(--accent)">不需要登录账号</strong>
+<span>。</span>
 </p>
 </div>
 <div class="divider"></div>
 <div class="stack">
 <section class="panel">
-<h2>1. Sagatavošanās darbs</h2>
+<h2>一、准备工作</h2>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Pārliecinieties, ka &lt;b&gt; mobilais tālrunis un dators ir savienoti ar to pašu Wi-Fi &lt;/b&gt;.</div>
+<div>&lt;strong&gt;手机和电脑连接在同一个 Wi-Fi&lt;/strong&gt;</div>
 </div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>Sagatavojiet failu importēšanai</div>
-<div class="muted">Atbalsta datu bāzes failu &lt;code class="code-blue"&gt;.db&lt;/code&gt; un trases failu &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
+<div>准备好要导入的文件</div>
+<div class="muted">支持数据库文件 &lt;code class="code-blue"&gt;.db&lt;/code&gt;，以及轨迹文件 &lt;code class="code-green"&gt;.gpx&lt;/code&gt;</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>2. Iespējot importēšanas pakalpojumu mobilajā ierīcē</h2>
+<h2>二、在手机上开启导入服务</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>Atveriet TimeTrails</div></li>
-<li class="step"><span class="num">2</span><div>Ievadiet 'Datu importēšana / Datu pārsūtīšana' lapu</div></li>
-<li class="step"><span class="num">3</span><div>Noklikšķiniet uz 'Sākt pakalpojumu'</div></li>
+<li class="step"><span class="num">1</span><div>打开 TimeTrails</div></li>
+<li class="step"><span class="num">2</span><div>进入「数据导入 / 数据传输」页面</div></li>
+<li class="step"><span class="num">3</span><div>点击「启动服务」</div></li>
 <li class="step">
 <span class="num">4</span>
 <div>
-<div>Pēc veiksmīgas darbības lapā tiks parādīts URL (lokālā tīkla adrese).</div>
-<div class="muted" style="margin-top:6px">Piemēram: http://192.168.1.100:9527</div>
+<div>成功后，页面上会显示一个网址（局域网地址）。</div>
+<div class="muted" style="margin-top:6px">例如：http://192.168.1.100:9527</div>
 </div>
 </li>
 </ol>
 </section>
 <section class="panel">
-<h2>3. Failu augšupielāde datorā</h2>
+<h2>三、在电脑上上传文件</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>Savā datora pārlūkprogrammā ierakstiet URL, kas tiek rādīts jūsu telefonā.</div></li>
-<li class="step"><span class="num">2</span><div>Atveriet to, pēc tam izvēlieties un augšupielādējiet savu failu.</div></li>
-<li class="step"><span class="num">3</span><div>Pēc augšupielādes pabeigšanas fails automātiski parādīsies failu sarakstā jūsu telefonā.</div></li>
+<li class="step"><span class="num">1</span><div>在电脑浏览器中，输入手机上显示的那个网址</div></li>
+<li class="step"><span class="num">2</span><div>打开后，选择并上传你的文件</div></li>
+<li class="step"><span class="num">3</span><div>上传完成后，文件会自动出现在手机的文件列表中</div></li>
 </ol>
 </section>
 <section class="panel">
-<h2>4. Importēt datus</h2>
-<p class="muted">Failu sarakstā jūsu telefonā:</p>
+<h2>四、导入数据</h2>
+<p class="muted">在手机的文件列表中：</p>
 <div class="grid" style="margin-top:10px">
 <div class="panel">
-<!-- ✅ 关键修复：不要把 <code> 放进 i18n 文案里 -->
 <h3>
 <code class="code-blue">.db</code>
 <span>数据库文件</span>
 </h3>
-<p class="muted">Izmantots, lai atjaunotu vai migrētu visu TimeTrails datus</p>
+<p class="muted">用于恢复或迁移整个 TimeTrails 数据</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Noklikšķiniet uz .db faila</div></li>
-<li class="step"><span class="num">2</span><div>Izvēlieties 'Importēt'</div></li>
-<li class="step"><span class="num">3</span><div>Pabeidzot, tiks parādīts veiksmīgas paziņojuma ziņojums.</div></li>
+<li class="step"><span class="num">1</span><div>点击 .db 文件</div></li>
+<li class="step"><span class="num">2</span><div>选择「导入」</div></li>
+<li class="step"><span class="num">3</span><div>完成后会提示成功</div></li>
 </ol>
 </div>
 <div class="panel">
@@ -208,48 +207,48 @@
 <code class="code-blue">.gpx</code>
 <span>轨迹文件</span>
 </h3>
-<p class="muted">Pēc importa pabeigšanas datums tiek attēlots kartē.</p>
+<p class="muted">导入完成后按日期显示在地图中</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>Noklikšķiniet uz .gpx faila</div></li>
-<li class="step"><span class="num">2</span><div>Sistēma automātiski analizēs un importēs trasi.</div></li>
-<li class="step"><span class="num">3</span><div>Pārbaudiet karti pēc pabeigšanas</div></li>
+<li class="step"><span class="num">1</span><div>点击 .gpx 文件</div></li>
+<li class="step"><span class="num">2</span><div>系统会自动解析并导入轨迹</div></li>
+<li class="step"><span class="num">3</span><div>完成后在地图里查看</div></li>
 </ol>
 </div>
 </div>
 <div class="callout" style="margin-top:12px">
 <span aria-hidden="true">⚠️</span>
-<span>Lūdzu, turiet lietotni priekšplānā importēšanas procesa laikā, un jūs redzēsiet veiksmīgas paziņojuma ziņu, kad tas būs pabeigts.</span>
+<span>导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
 </div>
 </section>
 <section class="panel">
-<h2>5. Bieži padomi un skaidrojumi</h2>
+<h2>五、常见提示说明</h2>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Nevar uzsākt pakalpojumu</b></div>
-<div class="muted">Lūdzu, pārliecinieties, ka esat savienots ar Wi-Fi, nevis mobilā tīkla.</div>
-</div>
-</div>
-<div class="step">
-<span class="num warn">!</span>
-<div>
-<div><b>Importēšana neizdevās vai daži dati tika izlaisti</b></div>
-<div class="muted">Daži trases punkti trūkst laika informācijas, un sistēma tos automātiski ignorēs.</div>
+<div><b>无法启动服务</b></div>
+<div class="muted">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</div>
 </div>
 </div>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>Fails nav atrasts</b></div>
-<div class="muted">Atjaunojiet nolaižamo sarakstu, lai atkārtoti skenētu.</div>
+<div><b>导入失败或被跳过部分数据</b></div>
+<div class="muted">某些轨迹点缺少时间信息，系统会自动忽略</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>文件没看到</b></div>
+<div class="muted">下拉列表刷新即可重新扫描</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>6. Dažas ieteikumi</h2>
+<h2>六、小建议</h2>
 <div class="step">
 <span class="num ok">✓</span>
-<div>Pirms importēšanas ieteicams izveidot pašreizējo datu dublējumu.</div>
+<div>导入前，建议先备份当前数据</div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
@@ -263,7 +262,7 @@
 </div>
 <div class="divider"></div>
 </div>
-<footer>TimeTrails datu importēšanas ceļvedis</footer>
+<footer>TimeTrails 数据导入使用指南</footer>
 </div>
 <script src="./assets/lang-switch.js"></script>
 </body>
