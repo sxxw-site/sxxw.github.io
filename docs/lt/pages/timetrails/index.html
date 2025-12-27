@@ -10,8 +10,8 @@
 <meta content='Paverskite savo telefono "kur buvote, kiek laiko buvote, kiek nuėjote" į asmeninę laiko juostą, kurią galite vėl aplankyti.' name="description"/>
 <meta content="index,follow" name="robots"/>
 <meta content="website" property="og:type"/>
-<meta content="时光轨迹（TimeTrails）" property="og:title"/>
-<meta content="把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。" property="og:description"/>
+<meta content="TimeTrails" property="og:title"/>
+<meta content="Paverskite savo keliones į laiko juostą, kurią galima vėl aplankyti: trasos, sustojimo taškai, mylių statistika, vietinis pirmumas." property="og:description"/>
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
     :root{--bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185;--border:rgba(255,255,255,.10)}
@@ -95,10 +95,10 @@
     code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
   </style>
 <script type="application/ld+json">{
-  "@context":"https://schema.org",
+  "@context":"https://sxxw.site/",
   "@type":"WebPage",
-  "name":"时光轨迹（TimeTrails）",
-  "description":"把出行变成可回看的时间线：轨迹、停留点、里程统计，本地优先。",
+  "name":"TimeTrails",
+  "description":"Paverskite keliones į atkuriamą laiko juostą: trasos, sustojimai, mylių statistika, vietinis pirmumas.",
   "inLanguage":["zh-Hans","en"],
   "isPartOf":{"@type":"WebSite","name":"TimeTrails","url":"https://sxxw.site/"}
 }</script>
@@ -110,13 +110,13 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>时光轨迹 TimeTrails</h1>
-<div class="subtitle">把手机“去过哪里、停留多久、走了多远”变成一条可回看的个人时间线。</div>
+<h1>TimeTrails</h1>
+<div class="subtitle">Paverskite savo telefono "kur buvote, kiek laiko buvote, kiek nuėjote" į asmeninę laiko juostą, kurią galite vėl aplankyti.</div>
 </div>
 </div>
 <div aria-label="Language switcher" class="lang-wrap">
 <select aria-label="Language" class="lang-select" id="langSelect">
-<option>Loading…</option>
+<option>Kraunama…</option>
 </select>
 <span class="lang-caret">▾</span>
 </div>
@@ -125,94 +125,94 @@
 <div class="hero">
 <div class="panel">
 <h2>TimeTrails</h2>
-<p>记录日常轨迹的价值，不是“点很多”，而是<strong>能回看、能整理、能复盘</strong>。<strong>TimeTrails</strong>把你的移动变成一条清晰的<strong>时间线</strong>：今天去了哪、停留多久、走了多远，一眼看懂。同时我们坚持<strong>本地优先</strong>与<strong>最小化收集</strong>——你记录，是为了理解自己，而不是为了被平台理解。</p>
+<p>Kasdieninių takelių įrašymo vertė nėra "turėti daug taškų", bet <strong> gebėti peržiūrėti, organizuoti ir analizuoti </strong>. <strong>TimeTrails</strong> paverčia jūsų judesius aiškia <strong> laiko juosta </strong>: kur jūs buvote šiandien, kiek laiko praleidote, kiek nuėjote, visa tai lengvai suprantama iš pirmo žvilgsnio. Tuo pačiu mes reikalaujame <strong> vietinio prioritetų </strong> ir <strong> minimalaus duomenų rinkimo </strong>—jūs įrašote, kad suprastumėte save, o ne kad platforma suprastų jus.</p>
 <div aria-label="highlights" class="chips">
-<span class="chip ok">本地优先</span>
-<span class="chip ok">权限可撤回</span>
-<span class="chip accent">时间线 + 地图</span>
-<span class="chip accent">停留点识别</span>
-<span class="chip warn">可导出</span>
+<span class="chip ok">Vietinė prioritetas</span>
+<span class="chip ok">Teisės gali būti atšauktos</span>
+<span class="chip accent">Laiko juosta + Žemėlapis</span>
+<span class="chip accent">Staypoint atpažinimas</span>
+<span class="chip warn">Eksportuojama</span>
 </div>
 <div class="btns" style="margin-top:14px">
-<a class="btn primary" href="./about.html">了解产品理念</a>
+<a class="btn primary" href="./about.html">Sužinokite apie produkto koncepciją</a>
 <!-- ✅ 新增：Guide 入口（主入口） -->
 <a class="btn ok" href="./guide.html">Duomenų importavimo vadovas</a>
 <a class="btn" href="./feedback.html">Pateikti atsiliepimą / Apžvalgą</a>
-<a class="btn" href="privacy.html">查看隐私政策</a>
-<a class="btn" href="./licenses.html">开源许可</a>
+<a class="btn" href="privacy.html">Peržiūrėti privatumo politiką</a>
+<a class="btn" href="./licenses.html">Atvirojo kodo licencija</a>
 </div>
-<p class="muted" style="margin-top:10px">默认本地保存与处理；是否开启同步、是否导出、导出给谁——由你控制。</p>
+<p class="muted" style="margin-top:10px">Vietinis saugojimas ir apdorojimas pagal numatytuosius nustatymus; ar įgalinti sinchronizavimą, ar eksportuoti, ir kam eksportuoti - viską kontroliuojate jūs.</p>
 </div>
 <div class="panel">
-<h3>你会用它做什么</h3>
+<h3>Kam jūs tai naudosite?</h3>
 <ul>
-<li>每天自动生成“今日轨迹”：路线、里程、停留点一眼看懂</li>
-<li>回看某次旅行：按天/按地点翻阅你的行动时间线</li>
-<li>做个人复盘：通勤、运动、出行模式的长期变化</li>
-<li>回忆某一天：按时间轴快速定位“那家店”“那段路”“那次散步”</li>
-<li>统计你的节奏：通勤/运动/旅行里程趋势，长期对比更直观</li>
+<li>Automatiškai generuoti 'Šiandienos Taką' kiekvieną dieną: maršrutas, atstumas ir sustojimo taškai viename žvilgsnyje.</li>
+<li>Peržiūrėti kelionę: Naršykite savo veiksmų laikotarpį pagal dieną/vietą</li>
+<li>Asmeninė apžvalga: ilgalaikiai pokyčiai kasdienėje kelionėje, mankštoje ir kelionių įpročiuose</li>
+<li>Prisiminkite tam tikrą dieną: greitai suraskite "tą parduotuvę", "tą kelią", "tą pasivaikščiojimą" laiko juostoje.</li>
+<li>Sekite savo tempą: tendencijos kasdienėje kelionėje/pratimų/kelionių mylių, ilgalaikiai palyginimai yra intuityvesni.</li>
 </ul>
 <div aria-label="kpis" class="kpi">
 <div class="item">
-<div class="num">轨迹</div>
-<div class="lab">路线与速度变化</div>
+<div class="num">Sekti</div>
+<div class="lab">Maršruto ir greičio pakeitimai</div>
 </div>
 <div class="item">
-<div class="num">停留</div>
-<div class="lab">地点与时长统计</div>
+<div class="num">Palaikykite</div>
+<div class="lab">Vietos ir trukmės statistika</div>
 </div>
 <div class="item">
-<div class="num">里程</div>
-<div class="lab">每日/每周趋势</div>
+<div class="num">Rida</div>
+<div class="lab">Dienos/Savaitės Tendencija</div>
 </div>
 <div class="item">
-<div class="num">回忆</div>
-<div class="lab">把行走变成故事</div>
+<div class="num">Atmintis</div>
+<div class="lab">Paverskite vaikščiojimą į pasakojimą</div>
 </div>
 </div>
 </div>
 </div>
 <div class="grid">
 <div class="panel span4">
-<h3>自动记录</h3>
-<p class="muted">以尽量少的打扰，把移动过程记录成轨迹与统计；权限随时可撤回。</p>
+<h3>Automatinis įrašymas</h3>
+<p class="muted">Įrašykite judėjimo procesą į takus ir statistiką su minimaliais trikdžiais; leidimai gali būti atšaukti bet kuriuo metu.</p>
 </div>
 <div class="panel span4">
-<h3>可视化整理</h3>
-<p class="muted">时间线 + 地图双视角：按天回看、按地点聚合、按里程复盘。</p>
+<h3>Vizualinė organizacija</h3>
+<p class="muted">Laiko juosta + Žemėlapis Dviejų Perspektyvų: Peržiūrėti pagal dieną, apibendrinti pagal vietą, apžvelgti pagal mylių.</p>
 </div>
 <div class="panel span4">
-<h3>隐私优先</h3>
-<p class="muted">仅集成少量必要的开源组件，默认本地存储与处理；不集成第三方数据分析/广告 SDK。你可以随时清除、导出或撤回权限。</p>
+<h3>Privatumas Pirmiausia</h3>
+<p class="muted">Yra integruota tik nedidelis skaičius būtinų atvirojo kodo komponentų, su numatytuoju vietiniu saugojimu ir apdorojimu; trečiųjų šalių duomenų analizės/ad SDK nėra integruota. Bet kada galite išvalyti, eksportuoti arba atšaukti leidimus.</p>
 </div>
 <div class="panel span12">
-<h3>核心能力</h3>
-<p class="muted">不堆砌复杂功能，只把“轨迹记录”这件事做到顺手、清晰、可控。</p>
+<h3>Pagrindinės kompetencijos</h3>
+<p class="muted">Nėra sudėtingų funkcijų, tiesiog siekiame, kad 'trasos įrašymo' procesas būtų sklandus, aiškus ir kontroliuojamas.</p>
 <div aria-label="features" class="chips">
-<span class="chip accent">每日轨迹自动整理</span>
-<span class="chip accent">停留点与时长统计</span>
-<span class="chip accent">地图轨迹回放</span>
-<span class="chip accent">里程趋势（天/周）</span>
-<span class="chip ok">本地保存</span>
-<span class="chip warn">导出/备份</span>
+<span class="chip accent">Kasdienis trasų automatinis organizavimas</span>
+<span class="chip accent">Sustojimo taškai ir trukmės statistika</span>
+<span class="chip accent">Žemėlapio trasos atkūrimas</span>
+<span class="chip accent">Rida Tendencijos (Dienos/Savaitės)</span>
+<span class="chip ok">Vietinis išsaugojimas</span>
+<span class="chip warn">Eksportuoti/Atkurti</span>
 </div>
 </div>
 <div class="panel span12">
 <h3>Susijusios puslapiai</h3>
-<p class="muted">想更深入了解？这里有产品理念、隐私说明，以及你的反馈入口。</p>
+<p class="muted">Norite sužinoti daugiau? Čia yra produkto filosofija, privatumo pareiškimas ir jūsų atsiliepimų įrašas.</p>
 <div class="btns">
-<a class="btn ok" href="./about.html">关于 TimeTrails</a>
+<a class="btn ok" href="./about.html">Apie TimeTrails</a>
 <!-- ✅ 新增：Guide 入口（相关页面） -->
 <a class="btn" href="./guide.html">Duomenų importavimo vadovas</a>
-<a class="btn primary" href="./feedback.html">意见反馈</a>
-<a class="btn" href="privacy.html">隐私政策</a>
-<a class="btn" href="./licenses.html">开源许可</a>
+<a class="btn primary" href="./feedback.html">Atsiliepimai</a>
+<a class="btn" href="privacy.html">Privatumo politika</a>
+<a class="btn" href="./licenses.html">Atvirojo kodo licencija</a>
 </div>
 </div>
 </div>
 <div class="divider"></div>
 </div>
-<footer>© TimeTrails · 上海树下小屋网络科技有限公司。</footer>
+<footer>© TimeTrails · 上海树下小屋网络科技有限公司.</footer>
 </div>
 <script src="/assets/main.js"></script>
 <script src="/assets/lang-switch.js"></script>

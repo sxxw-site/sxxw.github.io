@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="dark light" name="color-scheme"/>
 <meta content="#0ea5e9" name="theme-color"/>
-<title>数据导入使用指南</title>
+<title>Brugerhåndbog til dataimport</title>
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
     :root{
@@ -123,156 +123,156 @@
 <div class="brand">
 <div aria-hidden="true" class="logo"></div>
 <div>
-<h1>数据导入使用指南</h1>
-<div class="subtitle">用户版</div>
+<h1>Brugerhåndbog til dataimport</h1>
+<div class="subtitle">Bruger Version</div>
 </div>
 </div>
 <div aria-label="Language switcher" class="lang-wrap">
 <select aria-label="Language" class="lang-select" id="langSelect">
-<option>Loading…</option>
+<option>Indlæser…</option>
 </select>
 <span class="lang-caret">▾</span>
 </div>
 </div>
 <div class="divider"></div>
 <div class="panel">
-<p>你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
+<p>Du kan importere datafiler fra din computer til TimeTrails via det lokale netværk.</p>
 <p style="margin-top:10px">
-<span>整个过程 </span>
-<strong style="color:var(--accent)">不需要数据线</strong>
-<span>，也 </span>
-<strong style="color:var(--accent)">不需要登录账号</strong>
-<span>。</span>
+<span>Hele processen</span>
+<strong style="color:var(--accent)">Ingen datakabel nødvendig</strong>
+<span>, også</span>
+<strong style="color:var(--accent)">Ingen konto login kræves</strong>
+<span>.</span>
 </p>
 </div>
 <div class="divider"></div>
 <div class="stack">
 <section class="panel">
-<h2>一、准备工作</h2>
+<h2>1. Forberedelsesarbejde</h2>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div><strong>手机和电脑连接在同一个 Wi-Fi</strong></div>
+<div><strong>Forbind din telefon og computer til det samme Wi-Fi</strong></div>
 </div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
 <div>
-<div>准备好要导入的文件</div>
-<div class="muted">支持数据库文件 <code class="code-blue">.db</code>，以及轨迹文件 <code class="code-green">.gpx</code></div>
+<div>Forbered filen til import</div>
+<div class="muted">Understøtter databasefil <code class="code-blue">.db</code> og sporfil <code class="code-green">.gpx</code></div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>二、在手机上开启导入服务</h2>
+<h2>2. Aktiver Importtjeneste på Mobil</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>打开 TimeTrails</div></li>
-<li class="step"><span class="num">2</span><div>进入「数据导入 / 数据传输」页面</div></li>
-<li class="step"><span class="num">3</span><div>点击「启动服务」</div></li>
+<li class="step"><span class="num">1</span><div>Åbn TimeTrails</div></li>
+<li class="step"><span class="num">2</span><div>Gå til siden 'Data Import / Data Transfer'</div></li>
+<li class="step"><span class="num">3</span><div>Klik på 'Start Service'</div></li>
 <li class="step">
 <span class="num">4</span>
 <div>
-<div>成功后，页面上会显示一个网址（局域网地址）。</div>
-<div class="muted" style="margin-top:6px">例如：http://192.168.1.100:9527</div>
+<div>Efter succes vil en URL (lokal netværksadresse) blive vist på siden.</div>
+<div class="muted" style="margin-top:6px">For example: http://192.168.1.100:9527</div>
 </div>
 </li>
 </ol>
 </section>
 <section class="panel">
-<h2>三、在电脑上上传文件</h2>
+<h2>3. Uploading Files på Computeren</h2>
 <ol>
-<li class="step"><span class="num">1</span><div>在电脑浏览器中，输入手机上显示的那个网址</div></li>
-<li class="step"><span class="num">2</span><div>打开后，选择并上传你的文件</div></li>
-<li class="step"><span class="num">3</span><div>上传完成后，文件会自动出现在手机的文件列表中</div></li>
+<li class="step"><span class="num">1</span><div>I din computers browser, indtast den URL, der vises på din telefon.</div></li>
+<li class="step"><span class="num">2</span><div>Åbn det, og vælg derefter og upload din fil.</div></li>
+<li class="step"><span class="num">3</span><div>Når uploaden er fuldført, vil filen automatisk vises i fillisten på din telefon.</div></li>
 </ol>
 </section>
 <section class="panel">
-<h2>四、导入数据</h2>
-<p class="muted">在手机的文件列表中：</p>
+<h2>4. Importer data</h2>
+<p class="muted">I filoversigten på din telefon:</p>
 <div class="grid" style="margin-top:10px">
 <div class="panel">
 <h3>
 <code class="code-blue">.db</code>
-<span>数据库文件</span>
+<span>Databasefil</span>
 </h3>
-<p class="muted">用于恢复或迁移整个 TimeTrails 数据</p>
+<p class="muted">Bruges til at gendanne eller migrere hele TimeTrails data</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>点击 .db 文件</div></li>
-<li class="step"><span class="num">2</span><div>选择「导入」</div></li>
-<li class="step"><span class="num">3</span><div>完成后会提示成功</div></li>
+<li class="step"><span class="num">1</span><div>Klik på .db-filen</div></li>
+<li class="step"><span class="num">2</span><div>Vælg 'Import'</div></li>
+<li class="step"><span class="num">3</span><div>En succesmeddelelse vises ved afslutningen.</div></li>
 </ol>
 </div>
 <div class="panel">
 <h3>
 <code class="code-blue">.gpx</code>
-<span>轨迹文件</span>
+<span>Trackfil</span>
 </h3>
-<p class="muted">导入完成后按日期显示在地图中</p>
+<p class="muted">Vises på kortet efter dato, når importen er fuldført.</p>
 <ol style="margin-top:10px">
-<li class="step"><span class="num">1</span><div>点击 .gpx 文件</div></li>
-<li class="step"><span class="num">2</span><div>系统会自动解析并导入轨迹</div></li>
-<li class="step"><span class="num">3</span><div>完成后在地图里查看</div></li>
+<li class="step"><span class="num">1</span><div>Klik på .gpx-filen</div></li>
+<li class="step"><span class="num">2</span><div>Systemet vil automatisk analysere og importere ruten.</div></li>
+<li class="step"><span class="num">3</span><div>Tjek kortet efter afslutning</div></li>
 </ol>
 </div>
 </div>
 <div class="callout" style="margin-top:12px">
 <span aria-hidden="true">⚠️</span>
-<span>导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
+<span>Venligst hold appen i forgrunden under importprocessen, og du vil se en succesmeddelelse, når det er færdigt.</span>
 </div>
 </section>
 <section class="panel">
-<h2>五、常见提示说明</h2>
+<h2>5. Almindelige tips og forklaringer</h2>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>无法启动服务</b></div>
-<div class="muted">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</div>
-</div>
-</div>
-<div class="step">
-<span class="num warn">!</span>
-<div>
-<div><b>导入失败或被跳过部分数据</b></div>
-<div class="muted">某些轨迹点缺少时间信息，系统会自动忽略</div>
+<div><b>Kan ikke starte tjenesten</b></div>
+<div class="muted">Sørg venligst for, at du er tilsluttet Wi-Fi, ikke mobilnetværk.</div>
 </div>
 </div>
 <div class="step">
 <span class="num warn">!</span>
 <div>
-<div><b>文件没看到</b></div>
-<div class="muted">下拉列表刷新即可重新扫描</div>
+<div><b>Importen mislykkedes, eller nogle data blev sprunget over</b></div>
+<div class="muted">Nogle sporpunkter mangler tidsinformation, og systemet vil automatisk ignorere dem.</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>Fil ikke fundet</b></div>
+<div class="muted">Opdater dropdown-listen for at rescanne.</div>
 </div>
 </div>
 </section>
 <section class="panel">
-<h2>六、小建议</h2>
+<h2>6. Nogle Forslag</h2>
 <div class="step">
 <span class="num ok">✓</span>
-<div>导入前，建议先备份当前数据</div>
+<div>Før import, anbefales det at sikkerhedskopiere de nuværende data.</div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
-<div><code class="code-blue">.db</code> <span>文件通常用于完整迁移</span></div>
+<div><code class="code-blue">.db</code> <span>Filer bruges typisk til fuld migration.</span></div>
 </div>
 <div class="step">
 <span class="num ok">✓</span>
-<div><code class="code-blue">.gpx</code> <span>更适合导入单次或多段轨迹记录</span></div>
+<div><code class="code-blue">.gpx</code> <span>Mere egnet til import af enkelt- eller flere sporoptegnelser</span></div>
 </div>
 </section>
 </div>
 <!-- 苹果文件导入 -->
 <section class="panel">
-<h2>七、苹果文件导入</h2>
-<p class="muted">通过以下视频指南了解如何导入文件到苹果设备。</p>
+<h2>7. Import af Apple-filer</h2>
+<p class="muted">Lær hvordan man importerer filer til Apple-enheder gennem de følgende videovejledninger.</p>
 <div class="video-guide" style="padding-left: 20px; padding-top: 20px;">
-<video controls="" style="width: 100%; max-width: 180px; height: auto; display: block;">
+<video aria-label="苹果文件导入视频指南" controls="" data-i18n-aria-label="timetrails.guide.section7.video.aria" style="width: 100%; max-width: 180px; height: auto; display: block;">
 <source src="assets/guide.mp4" type="video/mp4"/>
-          您的浏览器不支持视频播放。
-        </video>
+<span>Din browser understøtter ikke videovisning.</span>
+</video>
 </div>
 </section>
 </div>
-<footer>TimeTrails 数据导入使用指南</footer>
+<footer>TimeTrails Data Import Guide</footer>
 </div>
 <script src="./assets/lang-switch.js"></script>
 </body>
