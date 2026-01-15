@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html data-i18n-lang="zh-CN" data-i18n-prefix="timetrails.guide" lang="my">
+<head><meta content="1" name="i18n-critical-head"/><meta content="dark light" name="color-scheme"/><style>:root{color-scheme:dark light;}html,body{margin:0;min-height:100vh;background:#0b1020;}@media (prefers-color-scheme: light){html,body{background:#f8fafc;}}</style><meta content="#0b1020" media="(prefers-color-scheme: dark)" name="theme-color"/><meta content="#f8fafc" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0b1020" id="themeColorFallback" name="theme-color"/><script>(function(){var el=document.getElementById('themeColorFallback');if(!el||!window.matchMedia) return;var dark='#0b1020', light='#f8fafc';var mq=window.matchMedia('(prefers-color-scheme: dark)');function apply(){ el.setAttribute('content', mq.matches?dark:light); }apply();if(mq.addEventListener) mq.addEventListener('change', apply);else if(mq.addListener) mq.addListener(apply);})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<title>数据导入使用指南</title>
+<link href="./assets/style.css" rel="stylesheet"/>
+<style>
+    :root{
+      --bg:#0b1020;--card:#121a2a;--muted:#9fb0c6;--text:#e6eef9;--accent:#22d3ee;--link:#7dd3fc;
+      --ok:#34d399;--warn:#fbbf24;--bad:#fb7185;--border:rgba(255,255,255,.10);
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f8fafc;--card:#ffffff;--muted:#4b5563;--text:#0f172a;--accent:#0ea5e9;--link:#0369a1;--border:rgba(15,23,42,.10)}
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,PingFang SC,"Noto Sans CJK SC","Microsoft YaHei",Arial;
+      background:var(--bg);color:var(--text);
+    }
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+
+    .container{max-width:1040px;margin:0 auto;padding:40px 16px}
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25)
+    }
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:22px 0}
+
+    .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:16px;
+      background:linear-gradient(135deg,var(--accent),#9d7dff);
+      box-shadow:0 10px 26px rgba(0,0,0,.25)
+    }
+
+    h1{font-size:clamp(26px,3.2vw,40px);margin:0 0 6px;letter-spacing:.2px}
+    h2{font-size:clamp(18px,2.0vw,22px);margin:0 0 8px}
+    h3{margin:0 0 8px;font-size:16px}
+
+    .subtitle{color:var(--muted);line-height:1.6}
+    .muted{color:var(--muted);font-size:13px;line-height:1.7}
+    p,li{line-height:1.75;margin:0}
+
+    .lang-wrap{position:relative;display:inline-flex;align-items:center;gap:10px}
+    .lang-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      border:1px solid rgba(34,211,238,.35);
+      background:rgba(15,23,42,.55);
+      color:inherit;
+      padding:10px 36px 10px 12px;
+      border-radius:12px;
+      font:inherit;line-height:1;cursor:pointer;outline:none;
+    }
+    @media (prefers-color-scheme: light){ .lang-select{ background:rgba(148,163,184,.10); } }
+    .lang-select:focus{box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .lang-caret{position:absolute;right:12px;pointer-events:none;opacity:.8;font-size:12px;transform:translateY(1px)}
+
+    .panel{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+      background:rgba(255,255,255,.02)
+    }
+    .stack{display:grid;gap:14px}
+
+    ol{margin:0;padding:0;list-style:none}
+    .step{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+    .num{
+      width:24px;height:24px;border-radius:999px;flex:0 0 auto;
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;
+      background:rgba(34,211,238,.15);
+      border:1px solid rgba(34,211,238,.35);
+      color:var(--accent);
+      margin-top:1px;
+    }
+    .num.ok{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);color:var(--ok)}
+    .num.warn{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.35);color:var(--warn)}
+
+    .callout{
+      border-radius:14px;
+      padding:12px 14px;
+      border:1px solid rgba(251,191,36,.30);
+      background:rgba(251,191,36,.12);
+      color:color-mix(in srgb, var(--warn) 60%, var(--text));
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    /* 基础 code 样式 */
+    code{
+      background:rgba(148,163,184,.15);
+      padding:2px 6px;
+      border-radius:6px
+    }
+
+    /* ✅ 你提到的 code-blue：补齐 */
+    code.code-blue{
+      color: var(--link);
+      border: 1px solid rgba(125,211,252,.35);
+      background: rgba(125,211,252,.12);
+    }
+
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    @media (min-width: 880px){ .grid{grid-template-columns:1fr 1fr} }
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
+<h1>数据导入使用指南</h1>
+<div class="subtitle">用户版</div>
+</div>
+</div>
+<div aria-label="Language switcher" class="lang-wrap">
+<select aria-label="Language" class="lang-select" id="langSelect">
+<option>Loading…</option>
+</select>
+<span class="lang-caret">▾</span>
+</div>
+</div>
+<div class="divider"></div>
+<div class="panel">
+<p>你可以通过局域网，把电脑里的数据文件导入到 TimeTrails。</p>
+<p style="margin-top:10px">
+<span>整个过程 </span>
+<strong style="color:var(--accent)">不需要数据线</strong>
+<span>，也 </span>
+<strong style="color:var(--accent)">不需要登录账号</strong>
+<span>。</span>
+</p>
+</div>
+<div class="divider"></div>
+<div class="stack">
+<section class="panel">
+<h2>一、准备工作</h2>
+<div class="step">
+<span class="num ok">✓</span>
+<div>
+<div><strong>手机和电脑连接在同一个 Wi-Fi</strong></div>
+</div>
+</div>
+<div class="step">
+<span class="num ok">✓</span>
+<div>
+<div>准备好要导入的文件</div>
+<div class="muted">支持数据库文件 <code class="code-blue">.db</code>，以及轨迹文件 <code class="code-green">.gpx</code></div>
+</div>
+</div>
+</section>
+<section class="panel">
+<h2>二、在手机上开启导入服务</h2>
+<ol>
+<li class="step"><span class="num">1</span><div>打开 TimeTrails</div></li>
+<li class="step"><span class="num">2</span><div>进入「数据导入 / 数据传输」页面</div></li>
+<li class="step"><span class="num">3</span><div>点击「启动服务」</div></li>
+<li class="step">
+<span class="num">4</span>
+<div>
+<div>成功后，页面上会显示一个网址（局域网地址）。</div>
+<div class="muted" style="margin-top:6px">例如：http://192.168.1.100:9527</div>
+</div>
+</li>
+</ol>
+</section>
+<section class="panel">
+<h2>三、在电脑上上传文件</h2>
+<ol>
+<li class="step"><span class="num">1</span><div>在电脑浏览器中，输入手机上显示的那个网址</div></li>
+<li class="step"><span class="num">2</span><div>打开后，选择并上传你的文件</div></li>
+<li class="step"><span class="num">3</span><div>上传完成后，文件会自动出现在手机的文件列表中</div></li>
+</ol>
+</section>
+<section class="panel">
+<h2>四、导入数据</h2>
+<p class="muted">在手机的文件列表中：</p>
+<div class="grid" style="margin-top:10px">
+<div class="panel">
+<h3>
+<code class="code-blue">.db</code>
+<span>数据库文件</span>
+</h3>
+<p class="muted">用于恢复或迁移整个 TimeTrails 数据</p>
+<ol style="margin-top:10px">
+<li class="step"><span class="num">1</span><div>点击 .db 文件</div></li>
+<li class="step"><span class="num">2</span><div>选择「导入」</div></li>
+<li class="step"><span class="num">3</span><div>完成后会提示成功</div></li>
+</ol>
+</div>
+<div class="panel">
+<h3>
+<code class="code-blue">.gpx</code>
+<span>轨迹文件</span>
+</h3>
+<p class="muted">导入完成后按日期显示在地图中</p>
+<ol style="margin-top:10px">
+<li class="step"><span class="num">1</span><div>点击 .gpx 文件</div></li>
+<li class="step"><span class="num">2</span><div>系统会自动解析并导入轨迹</div></li>
+<li class="step"><span class="num">3</span><div>完成后在地图里查看</div></li>
+</ol>
+</div>
+</div>
+<div class="callout" style="margin-top:12px">
+<span aria-hidden="true">⚠️</span>
+<span>导入过程中请保持 App 在前台，完成后会看到成功提示。</span>
+</div>
+</section>
+<section class="panel">
+<h2>五、常见提示说明</h2>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>无法启动服务</b></div>
+<div class="muted">请确认当前连接的是 Wi-Fi，而不是蜂窝网络</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>导入失败或被跳过部分数据</b></div>
+<div class="muted">某些轨迹点缺少时间信息，系统会自动忽略</div>
+</div>
+</div>
+<div class="step">
+<span class="num warn">!</span>
+<div>
+<div><b>文件没看到</b></div>
+<div class="muted">下拉列表刷新即可重新扫描</div>
+</div>
+</div>
+</section>
+<section class="panel">
+<h2>六、小建议</h2>
+<div class="step">
+<span class="num ok">✓</span>
+<div>导入前，建议先备份当前数据</div>
+</div>
+<div class="step">
+<span class="num ok">✓</span>
+<div><code class="code-blue">.db</code> <span>文件通常用于完整迁移</span></div>
+</div>
+<div class="step">
+<span class="num ok">✓</span>
+<div><code class="code-blue">.gpx</code> <span>更适合导入单次或多段轨迹记录</span></div>
+</div>
+</section>
+</div>
+<!-- 苹果文件导入 -->
+<section class="panel">
+<h2>七、苹果文件导入</h2>
+<p class="muted">通过以下视频指南了解如何导入文件到苹果设备。</p>
+<div class="video-guide" style="padding-left: 20px; padding-top: 20px;">
+<video aria-label="苹果文件导入视频指南" controls="" data-i18n-aria-label="timetrails.guide.section7.video.aria" style="width: 100%; max-width: 180px; height: auto; display: block;">
+<source src="assets/guide.mp4" type="video/mp4"/>
+<span>您的浏览器不支持视频播放。</span>
+</video>
+</div>
+</section>
+</div>
+<footer>TimeTrails 数据导入使用指南</footer>
+</div>
+<script src="./assets/lang-switch.js"></script>
+</body>
+</html>
