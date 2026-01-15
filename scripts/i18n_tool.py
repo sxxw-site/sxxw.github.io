@@ -24,7 +24,7 @@ DEFAULT_LOCALES_DIR_CANDIDATES = [Path("src/locales"), Path("locales")]
 
 # 你的基础文件实际是：src/locales/zh-hans.json
 BASE = "zh-hans"
-FIRST_HOP = ["en", "zh-hant", "zh-hk","ja", "ko"]
+FIRST_HOP = ["en", "zh-hant", "zh-hk", "ja", "ko", "yue"]
 
 MODEL = "gpt-4o-mini"
 
@@ -52,8 +52,12 @@ def is_zh(code: str) -> bool:
     return (code or "").lower().startswith("zh")
 
 def is_cjk(code: str) -> bool:
+    """
+    ✅ 关键修复：把 yue 视为 CJK（粤语书写用汉字），避免后处理把汉字删光
+    注意：不要把 yue 算进 is_zh，否则会误触发 zh->zh 的 OpenCC 直转捷径
+    """
     c = (code or "").lower()
-    return c.startswith("zh") or c.startswith("ja") or c.startswith("ko")
+    return c.startswith("zh") or c.startswith("ja") or c.startswith("ko") or c.startswith("yue")
 
 def ensure_no_cjk_when_forbidden(text: str, tgt_locale: str) -> str:
     if not text:
@@ -321,7 +325,8 @@ def build_system_prompt(src_lang_name: str, tgt_lang_name: str, tgt_code: str) -
         'JSON schema: {"items":[{"path":"...","text":"..."}]}',
         "Do not change any path value.",
     ]
-    if not is_zh(tgt_code):
+    # ✅ 关键修复：非 CJK 才禁止中文字符；yue 属于 CJK（书写用汉字）
+    if not is_cjk(tgt_code):
         rules.append("IMPORTANT: Do NOT use any Chinese characters in the output.")
     return " ".join(rules)
 
@@ -412,6 +417,7 @@ def translate_tree(
     protected_terms = protected_terms or []
 
     # ---- 中文同语系：OpenCC 直转（如果可用，非 GPT）----
+    # ✅ 注意：yue 不属于 zh，因此不会走这里；仍会走 GPT 翻译
     if is_zh(base_code) and is_zh(tgt_code):
         base_pairs = flatten_json(base_obj)
         out_pairs: List[Tuple[str, Any]] = []
@@ -900,10 +906,10 @@ def menu() -> None:
         print(f"WORKERS    : {MAX_WORKERS}  (env: I18N_WORKERS)", flush=True)
         print(f"PROTECTED  : {len(protected_terms)}  ({PROTECTED_TERMS_FILE} / env: I18N_PROTECTED_TERMS)", flush=True)
         print("--------------------------------", flush=True)
-        print("1) 第一阶段（增量追加）：zh-hans → en / zh-hant / zh-hk  / ja / ko", flush=True)
-        print("2) 第一阶段（全量覆盖）：zh-hans → en / zh-hant / zh-hk / ja / ko", flush=True)
-        print("3) 第二阶段（增量追加）：en → 其它语言（排除 en/zh-hant/zh-hk/ja/ko）", flush=True)
-        print("4) 第二阶段（全量覆盖）：en → 其它语言（排除 en/zh-hant/zh-hk/ja/ko）", flush=True)
+        print("1) 第一阶段（增量追加）：zh-hans → en / zh-hant / zh-hk / ja / ko / yue", flush=True)
+        print("2) 第一阶段（全量覆盖）：zh-hans → en / zh-hant / zh-hk / ja / ko / yue", flush=True)
+        print("3) 第二阶段（增量追加）：en → 其它语言（排除 en/zh-hant/zh-hk/ja/ko/yue）", flush=True)
+        print("4) 第二阶段（全量覆盖）：en → 其它语言（排除 en/zh-hant/zh-hk/ja/ko/yue）", flush=True)
         print("5) 根据 key 清理翻译字段（不动 base，不排序）", flush=True)
         print("6) 排序翻译文件（仅此选项才排序）", flush=True)
         print("7) 删除其它语言中 base 不存在的多余 key（不动 base，不排序）", flush=True)
