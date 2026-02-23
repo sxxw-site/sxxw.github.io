@@ -1,8 +1,8 @@
 {
-  "version": "0.0.2",
-  "build": "1",
+  "version": "0.0.3",
+  "build": "2602240022",
   "notes": "优化性能与稳定性，提升轨迹记录体验。",
   "url": "https://testflight.apple.com/join/cUmPp5qg",
   "forceUpdate": false,
-  "publishedAt": "2026-02-21T03:15:42Z"
+  "publishedAt": "2026-02-23T16:31:41Z"
 }
