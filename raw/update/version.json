@@ -1,10 +1,10 @@
 {
   "version": "0.0.5",
-  "build": "2603051605",
+  "build": "2603051836",
   "notes": "优化性能与稳定性，提升轨迹记录体验。",
   "url": "https://testflight.apple.com/join/cUmPp5qg",
   "forceUpdate": false,
-  "publishedAt": "2026-03-05T08:17:04Z",
+  "publishedAt": "2026-03-05T10:43:54Z",
   "store": "https://apps.apple.com/app/id6752662508",
   "traceJump": true
 }
