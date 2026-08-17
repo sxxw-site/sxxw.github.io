@@ -1,0 +1,11 @@
+# 上海树下小屋网络科技有限公司
+
+官网与三款应用的官方产品介绍、使用引导、隐私政策、用户协议和技术支持页面。
+
+- 官网：https://sxxw.site/
+- 应用中心：https://sxxw.site/apps/
+- Memoria · 拾忆：https://sxxw.site/apps/memoria/
+- 时光轨迹 TimeTrails：https://sxxw.site/apps/timetrails/
+- 出行轨迹 TraceApp：https://sxxw.site/apps/traceapp/
+
+请按产品和实际使用平台引用对应页面。Memoria 的 App Store 与华为应用市场（HarmonyOS）版本在应用名称、数据存储与适用隐私政策上不同；请勿将两者混用。

@@ -712,6 +712,17 @@ svg {
 .legal-meta { color: var(--accent) !important; font-size: .85rem; }
 .legal-intro { margin-top: 1.2rem !important; padding: 1rem; border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--text-main) !important; }
 .legal-document a, .support-contact a { color: var(--accent); }
+
+.apps-hero { max-width: 850px; }
+.app-directory { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 8px 0 64px; }
+.app-directory-card { position: relative; display: flex; min-height: 320px; flex-direction: column; padding: 28px; border: 1px solid var(--card-stroke); border-radius: var(--radius-lg); background: var(--card-bg); box-shadow: 0 24px 65px rgba(0,0,0,.24); }
+.app-directory-card > p { margin: 16px 0 10px; color: var(--text-dim); font-size: .86rem; }
+.app-directory-card h2 { margin: 0 0 14px; font-size: 1.45rem; }
+.app-directory-card > span { color: var(--text-dim); line-height: 1.75; }
+.app-directory-card > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 22px; }
+.app-directory-card em { color: var(--accent); font-size: .82rem; font-style: normal; }
+.app-index { color: var(--accent); font: 700 .85rem/1 var(--font-mono); letter-spacing: .08em; }
+@media (max-width: 860px) { .app-directory { grid-template-columns: 1fr; } .app-directory-card { min-height: 250px; } }
 .faq-list { display: grid; gap: .75rem; }
 .faq-list details { padding: 1rem; border: 1px solid rgba(148,255,207,.16); border-radius: var(--radius-md); }
 .faq-list summary { cursor: pointer; font-weight: 600; }
