@@ -5,6 +5,7 @@ import MemoriaPage from './pages/MemoriaPage';
 import TimeTrailsPage from './pages/TimeTrailsPage';
 import TraceAppPage from './pages/TraceAppPage';
 import AppsPage from './pages/AppsPage';
+import ThemeToggle from './components/ThemeToggle';
 
 function BrandMark() {
   return <span className="brand-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" role="img"><circle cx="11" cy="10" r="6" fill="url(#gradTree)" /><rect x="9.5" y="14" width="3" height="6" rx="1" fill="#94ffcf" /><path d="M20 15 L26 19 L26 27 L14 27 L14 19 Z" fill="#1e293b" stroke="#94ffcf" strokeWidth="1.5" /><path d="M14 19 L20 15 L26 19" fill="#1e293b" stroke="#94ffcf" strokeWidth="1.5" /><rect x="18" y="21" width="4" height="6" fill="#0f172a" stroke="#94ffcf" strokeWidth="1" rx="0.5" /><defs><radialGradient id="gradTree" cx="0" cy="0" r="1" gradientTransform="translate(9 8) rotate(45) scale(10)" gradientUnits="userSpaceOnUse"><stop stopColor="#34d399" /><stop offset="1" stopColor="#065f46" /></radialGradient></defs></svg></span>;
@@ -62,17 +63,18 @@ export default function App({ path }: { path?: string }) {
   }
 
   return <>
+    <ThemeToggle />
     <header className="navbar"><div className="container nav-inner">
       <a className="brand" href="#hero" aria-label={t('home.meta.title')} onClick={handleAnchorClick}><BrandMark /><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">{t('home.brand.en')}</span></span></a>
       <button className={`nav-toggle${isMenuOpen ? ' open' : ''}`} aria-label={t('home.nav.toggle')} aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((open) => !open)}><span className="bar" /><span className="bar" /><span className="bar" /></button>
       <nav className={`nav-menu${isMenuOpen ? ' open' : ''}`}>
-        <a href="#hero" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.home')}</a><a href="#about" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.about')}</a><a href="#contact" className="nav-link cta-nav" onClick={handleAnchorClick}>{t('home.nav.contact')}</a>
+        <a href="#hero" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.home')}</a><a href="/apps/" className="nav-link">应用中心</a><a href="#about" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.about')}</a><a href="#contact" className="nav-link cta-nav" onClick={handleAnchorClick}>{t('home.nav.contact')}</a>
         <div className="lang-wrap" aria-label="Language switcher"><select className="lang-select" aria-label="Language" value={language.normalizedCode} onChange={(event) => setLanguage(event.target.value)}>{languages.map((item) => <option key={item.normalizedCode} value={item.normalizedCode}>{item.label}</option>)}</select><span className="lang-caret">▾</span></div>
       </nav>
     </div></header>
 
     <section id="hero" className="hero-section"><div className="hero-bg" /><div className="container hero-inner">
-      <div className="hero-copy reveal"><h1 className="hero-title"><HtmlText value={t('home.hero.title')} /></h1><p className="hero-desc">{t('home.hero.desc')}</p><div className="hero-cta-row"><a className="btn-primary" href="#contact" onClick={handleAnchorClick}>{t('home.hero.cta.contact')}</a><a className="btn-ghost" href="#about" onClick={handleAnchorClick}>{t('home.hero.cta.about')}</a></div><div className="hero-meta">{[0, 1, 2].map((item) => <div className="meta-item" key={item}><span className="meta-num">{t(`home.hero.meta.${item}.num`)}</span><span className="meta-label">{t(`home.hero.meta.${item}.label`)}</span></div>)}</div></div>
+      <div className="hero-copy reveal"><h1 className="hero-title"><HtmlText value={t('home.hero.title')} /></h1><p className="hero-desc">{t('home.hero.desc')}</p><div className="hero-cta-row"><a className="btn-primary" href="/apps/">浏览应用中心</a><a className="btn-ghost" href="#contact" onClick={handleAnchorClick}>{t('home.hero.cta.contact')}</a></div><div className="hero-meta">{[0, 1, 2].map((item) => <div className="meta-item" key={item}><span className="meta-num">{t(`home.hero.meta.${item}.num`)}</span><span className="meta-label">{t(`home.hero.meta.${item}.label`)}</span></div>)}</div></div>
       <div className="hero-card reveal"><div className="mini-card"><p className="mini-head">{t('home.hero.mini.head')}</p><p className="mini-main">{t('home.hero.mini.main')}</p><ul className="mini-stats">{[0, 1, 2, 3].map((item) => <li key={item}><span>{t(`home.hero.mini.stats.${item}.k`)}</span><b>{t(`home.hero.mini.stats.${item}.v`)}</b></li>)}</ul><p className="mini-foot">{t('home.hero.mini.foot')}</p></div><div className="glass-note"><HtmlText value={t('home.hero.glass')} /></div></div>
     </div></section>
 
@@ -87,6 +89,7 @@ export default function App({ path }: { path?: string }) {
 
 function RouteScaffold({ routeTitle, routeDescription }: { routeTitle: string; routeDescription: string }) {
   return <>
+    <ThemeToggle />
     <header className="navbar"><div className="container nav-inner">
       <a className="brand" href="/" aria-label="上海树下小屋网络科技有限公司"><BrandMark /><span className="brand-text"><span className="cn">上海树下小屋网络科技有限公司</span><span className="en">TreeHouse Tech · Shanghai</span></span></a>
       <nav className="nav-menu nav-menu-static"><a href="/" className="nav-link">首页</a><a href="/apps/" className="nav-link cta-nav">应用中心</a></nav>

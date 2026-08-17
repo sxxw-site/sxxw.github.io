@@ -1,4 +1,5 @@
 import memoria from '../content/apps/memoria.zh.json';
+import ThemeToggle from '../components/ThemeToggle';
 
 type Platform = 'ios' | 'harmony';
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
@@ -14,7 +15,7 @@ export default function MemoriaPage({ path }: { path: string }) {
   const product = memoria[platform];
   const base = `/apps/memoria/${platform}`;
 
-  return <>
+  return <><ThemeToggle />
     <MemoriaHeader />
     <main className="product-page">
       <div className="container product-page-inner">
@@ -33,7 +34,7 @@ export default function MemoriaPage({ path }: { path: string }) {
 }
 
 function PlatformChooser() {
-  return <>
+  return <><ThemeToggle />
     <MemoriaHeader />
     <main className="product-page"><div className="container product-page-inner">
       <nav className="breadcrumbs" aria-label="面包屑"><a href="/">首页</a><span>／</span><a href="/apps/">应用中心</a><span>／</span><span>Memoria · 拾忆</span></nav>
@@ -51,6 +52,7 @@ function PageBody({ product, section, base }: { product: typeof memoria.ios; sec
   if (section === 'overview') return <>
     <section className="content-section"><h2>适合记录的每一种重要</h2><div className="feature-grid">{product.features.map((feature) => <div className="feature-card" key={feature}>{feature}</div>)}</div></section>
     <section className="privacy-facts"><h2>隐私先于便利</h2><p>{product.description.includes('不联网') ? '不设账号、不联网、不提供云端备份；你的记录仅在当前设备中保存。' : '不设账号、不投放广告、不接入第三方追踪；同步如启用，仅进入你的 iCloud 私有数据库。'}</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>开始使用</a><a className="btn-ghost" href={`${base}/privacy/`}>阅读隐私政策</a></div></section>
+    <ScreenshotGallery appName={product.displayName} images={product.storeUrl ? ['/apps/memoria/ios/shot-01.png', '/apps/memoria/ios/shot-02.png', '/apps/memoria/ios/shot-03.png'] : ['/apps/memoria/harmony/shot-01.jpg', '/apps/memoria/harmony/shot-02.jpg', '/apps/memoria/harmony/shot-03.jpg']} />
     {product.storeUrl ? <a className="store-link" href={product.storeUrl} target="_blank" rel="noreferrer">在 App Store 获取 {product.displayName}</a> : <p className="store-hint">请在华为应用市场搜索“拾忆”获取本应用。</p>}
   </>;
   if (section === 'getting-started') return <section className="content-section"><h2>从第一条记录开始</h2><ol className="guide-list">{product.guide.map((step, index) => <li key={step.title}><span>{index + 1}</span><div><h3>{step.title}</h3><p>{step.body}</p></div></li>)}</ol></section>;
@@ -77,6 +79,10 @@ function MemoriaHeader() {
 
 function ProductFooter() {
   return <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">Memoria · 拾忆</div><div className="footer-slogan">产品介绍 · 新手引导 · 隐私与支持</div></div><div className="footer-right"><div className="footer-links"><a href="/apps/memoria/ios/privacy/">iOS 隐私政策</a><a href="/apps/memoria/harmony/privacy/">HarmonyOS 隐私政策</a></div></div></div></footer>;
+}
+
+function ScreenshotGallery({ appName, images }: { appName: string; images: string[] }) {
+  return <section className="screenshot-section"><div><p className="route-eyebrow">商店截图</p><h2>看见 {appName} 的实际界面</h2></div><div className="screenshot-strip">{images.map((image, index) => <img src={image} alt={`${appName} 商店截图 ${index + 1}`} key={image} loading="lazy" />)}</div></section>;
 }
 
 function sectionTitle(section: Section, name: string) {

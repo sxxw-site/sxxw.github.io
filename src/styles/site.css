@@ -30,6 +30,54 @@
         sans-serif;
 }
 
+html[data-theme="light"] {
+    --page-bg: #f6f8f5;
+    --card-bg: rgba(255, 255, 255, .84);
+    --card-stroke: rgba(15, 92, 67, .16);
+    --text-main: #12231d;
+    --text-dim: #5b6c64;
+    --accent: #087a59;
+    --accent-soft: rgba(8, 122, 89, .11);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    z-index: 2000;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    min-height: 36px;
+    padding: 0 .7rem;
+    border: 1px solid var(--card-stroke);
+    border-radius: var(--radius-full);
+    color: var(--text-main);
+    background: var(--card-bg);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .14);
+    cursor: pointer;
+    font: inherit;
+    font-size: .78rem;
+}
+
+html[data-theme="light"] .navbar,
+html[data-theme="light"] .site-footer { background: rgba(246, 248, 245, .78); border-color: var(--card-stroke); }
+html[data-theme="light"] .hero-bg { opacity: .55; }
+html[data-theme="light"] .hero-section,
+html[data-theme="light"] .product-page { background-color: var(--page-bg); }
+html[data-theme="light"] .mini-card,
+html[data-theme="light"] .about-glass,
+html[data-theme="light"] .contact-card,
+html[data-theme="light"] .feature-card,
+html[data-theme="light"] .faq-list details { background: rgba(255, 255, 255, .72); border-color: var(--card-stroke); box-shadow: 0 14px 34px rgba(15, 23, 42, .08); }
+html[data-theme="light"] .btn-primary,
+html[data-theme="light"] .platform-tabs a.active { color: #fff; }
+html[data-theme="light"] .btn-ghost,
+html[data-theme="light"] .nav-link:hover,
+html[data-theme="light"] .hl-box { background: rgba(8, 122, 89, .08); border-color: var(--card-stroke); }
+html[data-theme="light"] .hero-title,
+html[data-theme="light"] .hero-title span { text-shadow: none; }
+
 *,
 *::before,
 *::after {
@@ -723,6 +771,14 @@ svg {
 .app-directory-card em { color: var(--accent); font-size: .82rem; font-style: normal; }
 .app-index { color: var(--accent); font: 700 .85rem/1 var(--font-mono); letter-spacing: .08em; }
 @media (max-width: 860px) { .app-directory { grid-template-columns: 1fr; } .app-directory-card { min-height: 250px; } }
+
+.screenshot-section { margin-top: 2.25rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--card-stroke); border-radius: var(--radius-lg); background: var(--card-bg); box-shadow: 0 24px 65px rgba(0,0,0,.18); overflow: hidden; }
+.screenshot-section h2 { margin: .2rem 0 1.5rem; font-size: clamp(1.25rem, 2vw, 1.65rem); }
+.screenshot-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 220px); gap: 14px; overflow-x: auto; padding: 2px 2px 10px; scrollbar-color: var(--accent) transparent; }
+.screenshot-strip img { width: 100%; aspect-ratio: 9 / 19.5; object-fit: cover; object-position: top; border-radius: 18px; border: 1px solid var(--card-stroke); box-shadow: 0 14px 34px rgba(0,0,0,.22); }
+.trace-screenshot-strip { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; }
+.trace-screenshot-strip img { aspect-ratio: 1.45; object-fit: cover; }
+@media (max-width: 640px) { .theme-toggle { top: 13px; right: 12px; } .screenshot-strip { grid-auto-columns: minmax(155px, 62vw); } .trace-screenshot-strip { grid-template-columns: 1fr; } }
 .faq-list { display: grid; gap: .75rem; }
 .faq-list details { padding: 1rem; border: 1px solid rgba(148,255,207,.16); border-radius: var(--radius-md); }
 .faq-list summary { cursor: pointer; font-weight: 600; }
