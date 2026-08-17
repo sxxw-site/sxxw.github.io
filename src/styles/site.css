@@ -674,6 +674,51 @@ svg {
 .route-description { margin: 0; max-width: 620px; color: var(--text-dim); font-size: 1.1rem; }
 .route-note { margin: 2rem 0; max-width: 620px; padding: 1rem 1.1rem; color: var(--text-dim); background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: var(--radius-md); }
 
+.product-page { min-height: calc(100vh - 64px); padding: clamp(2rem, 5vw, 5rem) 0 5rem; background: radial-gradient(circle at 10% 0%, rgba(245,158,11,.16), transparent 38%), var(--page-bg); }
+.product-page-inner { max-width: 980px; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: .45rem; color: var(--text-dim); font-size: .8rem; }
+.breadcrumbs a { color: var(--text-dim); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--accent); }
+.product-hero { max-width: 760px; padding: 3rem 0; }
+.product-hero h1 { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.16; letter-spacing: -.05em; }
+.product-hero > p:not(.route-eyebrow) { margin: 0; color: var(--text-dim); font-size: 1.08rem; }
+.platform-tabs { display: inline-flex; flex-wrap: wrap; gap: .4rem; padding: .35rem; margin-top: 2rem; border: 1px solid var(--card-stroke); border-radius: var(--radius-full); background: var(--card-bg); }
+.platform-tabs a { padding: .55rem .85rem; border-radius: var(--radius-full); color: var(--text-dim); font-size: .8rem; text-decoration: none; }
+.platform-tabs a.active { color: #0f172a; background: var(--accent); font-weight: 600; }
+.platform-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.platform-card, .content-section, .privacy-facts, .legal-document { padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--card-stroke); border-radius: var(--radius-lg); background: var(--card-bg); box-shadow: 0 24px 65px rgba(0,0,0,.24); }
+.platform-card p { margin: 0; color: var(--accent); font-size: .8rem; font-weight: 600; }
+.platform-card h2 { margin: .65rem 0; }
+.platform-card span { display: block; min-height: 3.2rem; color: var(--text-dim); }
+.platform-card .btn-ghost { margin-top: 1.5rem; }
+.content-section h2, .privacy-facts h2 { margin-top: 0; }
+.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.feature-card { padding: 1rem; border: 1px solid rgba(148,255,207,.16); border-radius: var(--radius-md); background: rgba(15,23,42,.5); color: var(--text-main); font-size: .9rem; }
+.privacy-facts { margin-top: 1.25rem; }
+.privacy-facts p { color: var(--text-dim); }
+.action-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.store-link, .store-hint { display: inline-block; margin-top: 1.25rem; color: var(--accent); }
+.store-link { text-decoration: none; }
+.guide-list { display: grid; gap: 1rem; padding: 0; list-style: none; }
+.guide-list li { display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(148,255,207,.12); }
+.guide-list li:last-child { border-bottom: 0; }
+.guide-list li > span { display: grid; width: 2rem; height: 2rem; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.guide-list h3 { margin: .1rem 0 .35rem; font-size: 1rem; }
+.guide-list p, .legal-document p { margin: 0; color: var(--text-dim); }
+.legal-document { max-width: 820px; }
+.legal-document section { padding: 1.35rem 0; border-bottom: 1px solid rgba(148,255,207,.12); }
+.legal-document section:last-child { border-bottom: 0; }
+.legal-document h2 { margin: 0 0 .7rem; font-size: 1.15rem; }
+.legal-meta { color: var(--accent) !important; font-size: .85rem; }
+.legal-intro { margin-top: 1.2rem !important; padding: 1rem; border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--text-main) !important; }
+.legal-document a, .support-contact a { color: var(--accent); }
+.faq-list { display: grid; gap: .75rem; }
+.faq-list details { padding: 1rem; border: 1px solid rgba(148,255,207,.16); border-radius: var(--radius-md); }
+.faq-list summary { cursor: pointer; font-weight: 600; }
+.faq-list p { color: var(--text-dim); }
+.support-contact { margin: 1.5rem 0 0; color: var(--text-dim); }
+@media (max-width: 700px) { .platform-cards, .feature-grid { grid-template-columns: 1fr; } .platform-tabs { border-radius: var(--radius-md); } }
+
 .footer-inner {
     display: grid;
     gap: 2rem;

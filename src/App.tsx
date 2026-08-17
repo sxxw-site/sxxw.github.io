@@ -1,6 +1,7 @@
 import { useEffect, useState, type MouseEvent } from 'react';
 import { routeFor } from './app/routes';
 import { useI18n } from './i18n/I18nProvider';
+import MemoriaPage from './pages/MemoriaPage';
 
 function BrandMark() {
   return <span className="brand-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" role="img"><circle cx="11" cy="10" r="6" fill="url(#gradTree)" /><rect x="9.5" y="14" width="3" height="6" rx="1" fill="#94ffcf" /><path d="M20 15 L26 19 L26 27 L14 27 L14 19 Z" fill="#1e293b" stroke="#94ffcf" strokeWidth="1.5" /><path d="M14 19 L20 15 L26 19" fill="#1e293b" stroke="#94ffcf" strokeWidth="1.5" /><rect x="18" y="21" width="4" height="6" fill="#0f172a" stroke="#94ffcf" strokeWidth="1" rx="0.5" /><defs><radialGradient id="gradTree" cx="0" cy="0" r="1" gradientTransform="translate(9 8) rotate(45) scale(10)" gradientUnits="userSpaceOnUse"><stop stopColor="#34d399" /><stop offset="1" stopColor="#065f46" /></radialGradient></defs></svg></span>;
@@ -50,6 +51,7 @@ export default function App({ path }: { path?: string }) {
   }
 
   if (pathname !== '/') {
+    if (pathname.startsWith('/apps/memoria/')) return <MemoriaPage path={pathname} />;
     return <RouteScaffold routeTitle={route?.title ?? '页面未找到'} routeDescription={route?.description ?? '你访问的页面不存在或正在准备中。'} />;
   }
 
