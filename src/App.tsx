@@ -1,4 +1,5 @@
 import { useEffect, useState, type MouseEvent } from 'react';
+import { routeFor } from './app/routes';
 import { useI18n } from './i18n/I18nProvider';
 
 function BrandMark() {
@@ -9,14 +10,16 @@ function HtmlText({ value }: { value: string }) {
   return <span dangerouslySetInnerHTML={{ __html: value }} />;
 }
 
-export default function App() {
+export default function App({ path }: { path?: string }) {
   const { language, languages, setLanguage, t } = useI18n();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = path ?? (typeof window === 'undefined' ? '/' : window.location.pathname);
+  const route = routeFor(pathname);
 
   useEffect(() => {
-    document.title = t('home.meta.title');
-    document.querySelector('meta[name="description"]')?.setAttribute('content', t('home.meta.description'));
-  }, [t]);
+    document.title = route?.title ?? t('home.meta.title');
+    document.querySelector('meta[name="description"]')?.setAttribute('content', route?.description ?? t('home.meta.description'));
+  }, [route, t]);
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
@@ -46,6 +49,10 @@ export default function App() {
     section.scrollIntoView({ behavior: 'smooth' });
   }
 
+  if (pathname !== '/') {
+    return <RouteScaffold routeTitle={route?.title ?? '页面未找到'} routeDescription={route?.description ?? '你访问的页面不存在或正在准备中。'} />;
+  }
+
   return <>
     <header className="navbar"><div className="container nav-inner">
       <a className="brand" href="#hero" aria-label={t('home.meta.title')} onClick={handleAnchorClick}><BrandMark /><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">{t('home.brand.en')}</span></span></a>
@@ -67,5 +74,16 @@ export default function App() {
 
     <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">{t('home.common.company')}</div><div className="footer-slogan">{t('home.footer.slogan')}</div></div><div className="footer-right"><div className="footer-links"><a href="#hero" onClick={handleAnchorClick}>{t('home.footer.links.home')}</a><a href="#about" onClick={handleAnchorClick}>{t('home.footer.links.about')}</a><a href="#contact" onClick={handleAnchorClick}>{t('home.footer.links.contact')}</a></div><div className="footer-legal"><span>{t('home.footer.legal')}</span></div></div></div></footer>
     <noscript>{t('home.noscript')}</noscript>
+  </>;
+}
+
+function RouteScaffold({ routeTitle, routeDescription }: { routeTitle: string; routeDescription: string }) {
+  return <>
+    <header className="navbar"><div className="container nav-inner">
+      <a className="brand" href="/" aria-label="上海树下小屋网络科技有限公司"><BrandMark /><span className="brand-text"><span className="cn">上海树下小屋网络科技有限公司</span><span className="en">TreeHouse Tech · Shanghai</span></span></a>
+      <nav className="nav-menu nav-menu-static"><a href="/" className="nav-link">首页</a><a href="/apps/" className="nav-link cta-nav">应用中心</a></nav>
+    </div></header>
+    <main className="route-page"><div className="container route-page-inner"><p className="route-eyebrow">sxxw.site · 应用支持中心</p><h1 className="route-title">{routeTitle}</h1><p className="route-description">{routeDescription}</p><p className="route-note">该页面的完整内容将按已公开的产品事实、适用平台和正式法律文本逐项发布。</p><a className="btn-primary" href="/apps/">查看应用中心</a></div></main>
+    <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">上海树下小屋网络科技有限公司</div><div className="footer-slogan">产品介绍 · 新手引导 · 隐私与支持</div></div></div></footer>
   </>;
 }

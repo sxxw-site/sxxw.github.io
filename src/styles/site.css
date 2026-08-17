@@ -659,6 +659,21 @@ svg {
     color: var(--text-dim);
 }
 
+.nav-menu-static { display: flex; }
+
+.route-page {
+    min-height: calc(100vh - 64px - 160px);
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    background:
+        radial-gradient(circle at 15% 5%, rgba(52,211,153,.16) 0%, rgba(15,23,42,0) 40%),
+        radial-gradient(circle at 80% 30%, rgba(37,99,235,.14) 0%, rgba(15,23,42,0) 48%);
+}
+.route-page-inner { max-width: 760px; }
+.route-eyebrow { margin: 0 0 .75rem; color: var(--accent); font-size: .85rem; font-weight: 600; }
+.route-title { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.2; letter-spacing: -.04em; }
+.route-description { margin: 0; max-width: 620px; color: var(--text-dim); font-size: 1.1rem; }
+.route-note { margin: 2rem 0; max-width: 620px; padding: 1rem 1.1rem; color: var(--text-dim); background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: var(--radius-md); }
+
 .footer-inner {
     display: grid;
     gap: 2rem;

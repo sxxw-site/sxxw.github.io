@@ -80,8 +80,8 @@ async function loadDictionary(code: string): Promise<Dictionary> {
   return { ...defaultDictionary, ...baseDictionary, ...regionalDictionary };
 }
 
-export function I18nProvider({ children }: PropsWithChildren) {
-  const [languageCode, setLanguageCode] = useState(initialLanguage);
+export function I18nProvider({ children, initialLanguage: initialLanguageCode }: PropsWithChildren<{ initialLanguage?: string }>) {
+  const [languageCode, setLanguageCode] = useState(initialLanguageCode ?? DEFAULT_LANGUAGE);
   const language = useMemo(() => languageFor(languageCode), [languageCode]);
   const [dictionary, setDictionary] = useState<Dictionary>(defaultDictionary);
 
@@ -92,6 +92,11 @@ export function I18nProvider({ children }: PropsWithChildren) {
     });
     return () => { cancelled = true; };
   }, [language]);
+
+  useEffect(() => {
+    if (initialLanguageCode) return;
+    setLanguageCode(initialLanguage());
+  }, [initialLanguageCode]);
 
   const setLanguage = useCallback((code: string) => {
     const next = languageFor(code);

@@ -7,5 +7,6 @@ export default defineConfig({
     outDir: 'docs',
     assetsDir: 'react-assets',
     emptyOutDir: true,
+    manifest: true,
   },
 });
