@@ -1,1 +1,1 @@
-python3 scripts/build.py
+npm run build
