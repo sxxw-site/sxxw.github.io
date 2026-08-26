@@ -4,6 +4,7 @@
   "privacyEmail": "flywithbug@gmail.com",
   "platformName": "iPhone",
   "storeName": "App Store",
+  "storeUrl": "https://apps.apple.com/app/id1634761411",
   "tagline": "记录每一段出行，也把控制权留给你。",
   "description": "出行轨迹 TraceApp 帮你记录路线、里程、速度与配速，并以本地优先的方式保存数据。无需账号，不内置第三方统计或广告 SDK。",
   "features": ["记录与展示出行路径", "里程、速度与配速统计", "轨迹回放和地图可视化", "可选运动状态识别", "本机沙盒保存历史数据", "可选 iCloud 设备间同步"],
