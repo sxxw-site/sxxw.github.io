@@ -26,7 +26,7 @@ export default function MemoriaPage({ path }: { path: string }) {
           <p>{section === 'overview' ? product.description : sectionDescription(section, product.displayName)}</p>
           <PlatformTabs active={platform} section={section} />
         </section>
-        <PageBody product={product} section={section} base={base} />
+        <PageBody product={product} section={section} base={base} platform={platform} />
       </div>
     </main>
     <ProductFooter />
@@ -48,12 +48,13 @@ function PlatformChooser() {
   </>;
 }
 
-function PageBody({ product, section, base }: { product: typeof memoria.ios; section: Section; base: string }) {
+function PageBody({ product, section, base, platform }: { product: typeof memoria.ios; section: Section; base: string; platform: Platform }) {
+  const isIOS = platform === 'ios';
   if (section === 'overview') return <>
     <section className="content-section"><h2>适合记录的每一种重要</h2><div className="feature-grid">{product.features.map((feature) => <div className="feature-card" key={feature}>{feature}</div>)}</div></section>
-    <section className="privacy-facts"><h2>隐私先于便利</h2><p>{product.description.includes('不联网') ? '不设账号、不联网、不提供云端备份；你的记录仅在当前设备中保存。' : '不设账号、不投放广告、不接入第三方追踪；同步如启用，仅进入你的 iCloud 私有数据库。'}</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>开始使用</a><a className="btn-ghost" href={`${base}/privacy/`}>阅读隐私政策</a></div></section>
-    <ScreenshotGallery appName={product.displayName} images={product.storeUrl ? ['/apps/memoria/ios/shot-01.png', '/apps/memoria/ios/shot-02.png', '/apps/memoria/ios/shot-03.png'] : ['/apps/memoria/harmony/shot-01.jpg', '/apps/memoria/harmony/shot-02.jpg', '/apps/memoria/harmony/shot-03.jpg']} />
-    {product.storeUrl ? <a className="store-link" href={product.storeUrl} target="_blank" rel="noreferrer">在 App Store 获取 {product.displayName}</a> : <p className="store-hint">请在华为应用市场搜索“拾忆”获取本应用。</p>}
+    <section className="privacy-facts"><h2>隐私先于便利</h2><p>{isIOS ? '不设账号、不投放广告、不接入第三方追踪；同步如启用，仅进入你的 iCloud 私有数据库。' : '不设账号、不联网、不提供云端备份；你的记录仅在当前设备中保存。'}</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>开始使用</a><a className="btn-ghost" href={`${base}/privacy/`}>阅读隐私政策</a></div></section>
+    <ScreenshotGallery appName={product.displayName} images={isIOS ? ['/apps/memoria/ios/shot-01.png', '/apps/memoria/ios/shot-02.png', '/apps/memoria/ios/shot-03.png'] : ['/apps/memoria/harmony/shot-01.jpg', '/apps/memoria/harmony/shot-02.jpg', '/apps/memoria/harmony/shot-03.jpg']} />
+    {product.storeUrl ? <a className="store-link" href={product.storeUrl} target="_blank" rel="noreferrer">在 {product.storeName} 获取 {product.displayName}</a> : <p className="store-hint">请在{product.storeName}搜索“{product.displayName}”获取本应用。</p>}
   </>;
   if (section === 'getting-started') return <section className="content-section"><h2>从第一条记录开始</h2><ol className="guide-list">{product.guide.map((step, index) => <li key={step.title}><span>{index + 1}</span><div><h3>{step.title}</h3><p>{step.body}</p></div></li>)}</ol></section>;
   if (section === 'privacy' || section === 'terms') {
@@ -61,7 +62,7 @@ function PageBody({ product, section, base }: { product: typeof memoria.ios; sec
     const contactEmail = 'contactEmail' in document ? document.contactEmail : memoria.supportEmail;
     return <article className="legal-document"><p className="legal-meta">生效日期：{document.effectiveDate} · 适用平台：{product.platformName} · 应用名称：{product.displayName}</p>{'intro' in document && <p className="legal-intro">{document.intro}</p>}{document.sections.map((item) => <section key={item.title}><h2>{item.title}</h2>{item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}<section><h2>{section === 'privacy' ? '联系我们' : '十一、联系我们'}</h2><p>如有疑问，请联系：<a href={`mailto:${contactEmail}`}>{contactEmail}</a></p></section></article>;
   }
-  return <section className="content-section"><h2>技术支持</h2><div className="faq-list"><details open><summary>数据会同步到其他设备吗？</summary><p>{product.storeUrl ? '登录 iCloud 并开启同步后，数据会通过你的 iCloud 私有库在 iPhone、iPad 与 Apple Watch 间同步。' : '不会。本版本不联网且不提供云同步，数据只保存在当前设备。'}</p></details><details><summary>如何删除数据？</summary><p>{product.storeUrl ? '你可以在应用内删除记录；卸载应用会删除本地数据，iCloud 数据可在系统“设置 → iCloud”中管理。' : '你可以在应用内删除记录并清空回收站；卸载应用将删除全部本地数据。'}</p></details><details><summary>提醒没有出现怎么办？</summary><p>请确认记录已设置提醒，并在系统设置中允许本应用发送通知。关闭通知只会影响提醒，不影响记录本身。</p></details></div><p className="support-contact">仍需帮助？请邮件联系 <a href={`mailto:${memoria.supportEmail}`}>{memoria.supportEmail}</a>。</p></section>;
+  return <section className="content-section"><h2>技术支持</h2><div className="faq-list"><details open><summary>数据会同步到其他设备吗？</summary><p>{isIOS ? '登录 iCloud 并开启同步后，数据会通过你的 iCloud 私有库在 iPhone、iPad 与 Apple Watch 间同步。' : '不会。本版本不联网且不提供云同步，数据只保存在当前设备。'}</p></details><details><summary>如何删除数据？</summary><p>{isIOS ? '你可以在应用内删除记录；卸载应用会删除本地数据，iCloud 数据可在系统“设置 → iCloud”中管理。' : '你可以在应用内删除记录并清空回收站；卸载应用将删除全部本地数据。'}</p></details><details><summary>提醒没有出现怎么办？</summary><p>请确认记录已设置提醒，并在系统设置中允许本应用发送通知。关闭通知只会影响提醒，不影响记录本身。</p></details></div><p className="support-contact">仍需帮助？请邮件联系 <a href={`mailto:${memoria.supportEmail}`}>{memoria.supportEmail}</a>。</p></section>;
 }
 
 function PlatformTabs({ active, section }: { active: Platform; section: Section }) {

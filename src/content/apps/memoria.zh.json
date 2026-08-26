@@ -51,7 +51,7 @@
     "displayName": "拾忆",
     "platformName": "HarmonyOS",
     "storeName": "华为应用市场",
-    "storeUrl": "",
+    "storeUrl": "https://appgallery.huawei.com/app/C6917613545100329502",
     "tagline": "在设备本地记录生日、纪念日与重要日子。",
     "description": "拾忆是 Memoria · 拾忆在 HarmonyOS 平台的本地版本。它不设账号、不联网、不提供云同步，数据只保存在你的设备应用沙箱中。",
     "features": ["生日、纪念日、节日和自定义事件", "公历与农历日期", "倒数、正计时与人生进度", "本地提醒", "回收站恢复与彻底清除", "无账号、无广告、无网络请求"],
