@@ -4,8 +4,8 @@
   "platformName": "iPhone 与 Apple Watch",
   "storeName": "App Store",
   "storeUrl": "https://apps.apple.com/app/id6752662508",
-  "tagline": "把走过的路，留在自己的时间里。",
-  "description": "时光轨迹 TimeTrails 是一款隐私优先的轨迹记录应用。无需注册账号，不接入广告、第三方分析或追踪 SDK；轨迹数据默认仅保存在你的设备本地。",
+  "tagline": "GPS 轨迹记录，把走过的路留在自己的时间里。",
+  "description": "时光轨迹 TimeTrails 是一款隐私优先的 GPS 轨迹记录应用。自动记录出行、跑步、骑行、徒步与驾车路线，在地图上生动呈现足迹、点亮走过的城市。无需注册账号，不接入广告或第三方追踪，轨迹数据默认仅保存在你的设备本地。",
   "features": [
     "自动记录日常移动轨迹与里程",
     "按当地时间生成每日轨迹与活动摘要",

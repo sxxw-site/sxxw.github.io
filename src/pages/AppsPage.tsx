@@ -2,7 +2,7 @@ import ThemeToggle from '../components/ThemeToggle';
 
 const apps = [
   { name: 'Memoria · 拾忆', platform: 'App Store · HarmonyOS', description: '记录生日、纪念日与倒数。iOS 版支持可选 iCloud 私有同步；华为应用市场的拾忆为纯本地版本。', href: '/apps/memoria/', tag: '纪念日 · 提醒' },
-  { name: '时光轨迹 TimeTrails', platform: 'App Store · iPhone 与 Apple Watch', description: '把日常出行连成自己的时间线。轨迹默认本地保存，可按需开启 iCloud 私有备份。', href: '/apps/timetrails/', tag: '轨迹 · 回顾' },
+  { name: '时光轨迹 TimeTrails', platform: 'App Store · iPhone 与 Apple Watch', description: '隐私优先的 GPS 轨迹记录：自动记录出行、运动与旅行路线，在地图上呈现足迹、点亮走过的城市。轨迹默认本地保存，可选 iCloud 私有备份。', href: '/apps/timetrails/', tag: 'GPS轨迹 · 路线' },
   { name: '出行轨迹 TraceApp', platform: 'App Store · iPhone', description: '记录路径、里程、速度与配速。无需账号，不内置广告或第三方统计。', href: '/apps/traceapp/', tag: '路线 · 统计' },
 ];
 
