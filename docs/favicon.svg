@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="树下小屋">
+  <rect width="64" height="64" rx="14" fill="#0f1216"/>
+  <circle cx="32" cy="24" r="14" fill="#3aa675"/>
+  <circle cx="32" cy="24" r="14" fill="url(#g)" opacity="0.5"/>
+  <rect x="29" y="34" width="6" height="14" rx="2" fill="#7a5230"/>
+  <path d="M20 52 L32 40 L44 52 Z" fill="#c9832f"/>
+  <rect x="28.5" y="46" width="7" height="6" rx="1" fill="#0f1216"/>
+  <defs>
+    <linearGradient id="g" x1="18" y1="12" x2="46" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5fd0a0"/>
+      <stop offset="1" stop-color="#2b8f63"/>
+    </linearGradient>
+  </defs>
+</svg>

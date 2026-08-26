@@ -1,4 +1,33 @@
+# 上海树下小屋网络科技有限公司 · sxxw.site
 User-agent: *
+Allow: /
+
+# 显式放行主流 AI / 生成式搜索爬虫(GEO)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://sxxw.site/sitemap.xml
