@@ -889,3 +889,150 @@ svg {
         padding: .75rem .8rem;
     }
 }
+
+/* ===================================================================
+   首页科技感升级(覆盖式,复用现有文案与主题变量)
+   =================================================================== */
+
+.hero-section {
+    padding-top: 5.5rem;
+    padding-bottom: 5rem;
+    background:
+        radial-gradient(1100px 560px at 12% -12%, rgba(52, 211, 153, .20), transparent 60%),
+        radial-gradient(900px 520px at 100% -6%, rgba(37, 99, 235, .16), transparent 55%);
+}
+
+.hero-bg {
+    inset: -25% -10% 0;
+    filter: none;
+    opacity: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero-grid {
+    position: absolute;
+    inset: -2px;
+    background-image:
+        linear-gradient(rgba(148, 255, 207, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 255, 207, .06) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 38%, transparent 78%);
+    mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 38%, transparent 78%);
+    animation: gridPan 20s linear infinite;
+}
+@keyframes gridPan { to { background-position: 44px 44px; } }
+
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .55;
+}
+.hero-orb.orb-1 {
+    width: 440px; height: 440px; left: -70px; top: -90px;
+    background: radial-gradient(circle, #34d399, transparent 66%);
+    animation: orbFloatA 15s ease-in-out infinite;
+}
+.hero-orb.orb-2 {
+    width: 380px; height: 380px; right: -50px; top: 30px;
+    background: radial-gradient(circle, #2563eb, transparent 66%);
+    animation: orbFloatB 18s ease-in-out infinite;
+}
+@keyframes orbFloatA { 50% { transform: translate(32px, 26px) scale(1.08); } }
+@keyframes orbFloatB { 50% { transform: translate(-26px, 32px) scale(1.05); } }
+
+.hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .35rem .85rem;
+    margin-bottom: 1.15rem;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--card-stroke);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+}
+.hero-chip .live {
+    width: .45rem; height: .45rem; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, .7);
+    animation: livePulse 2.2s ease-out infinite;
+}
+@keyframes livePulse {
+    70% { box-shadow: 0 0 0 7px rgba(52, 211, 153, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.hero-title {
+    font-size: clamp(2.2rem, 3vw + 1rem, 3.4rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+}
+.hero-title .accent {
+    background: linear-gradient(100deg, #34d399, #38bdf8 55%, #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+
+.btn-primary {
+    padding: .8rem 1.35rem;
+    box-shadow: 0 10px 30px rgba(52, 211, 153, .28);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 42px rgba(52, 211, 153, .45);
+}
+.btn-ghost { padding: .8rem 1.35rem; }
+
+/* 玻璃拟态 + 渐变描边 + 悬浮 */
+.mini-card, .glass-note {
+    position: relative;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+.mini-card { animation: cardFloat 9s ease-in-out infinite; }
+@keyframes cardFloat { 50% { transform: translateY(-8px); } }
+.mini-card::before, .glass-note::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(52, 211, 153, .65), rgba(56, 189, 248, .3), transparent 62%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* 章节标题:渐变小下划线,增强一致的科技调性 */
+.section-title { position: relative; }
+.hero-copy .section-title::after { display: none; }
+
+/* 浅色主题:减弱光晕、加深渐变字以保证对比 */
+html[data-theme="light"] .hero-orb { opacity: .28; }
+html[data-theme="light"] .hero-grid {
+    background-image:
+        linear-gradient(rgba(8, 122, 89, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8, 122, 89, .07) 1px, transparent 1px);
+}
+html[data-theme="light"] .hero-title .accent {
+    background: linear-gradient(100deg, #0a8f68, #0284c7 55%, #4f46e5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* 无障碍:尊重系统的减弱动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+    .hero-grid, .hero-orb, .hero-chip .live, .mini-card { animation: none; }
+    .btn-primary:hover { transform: none; }
+}
