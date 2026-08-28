@@ -79,7 +79,7 @@ export default function App({ path }: { path?: string }) {
       </nav>
     </div></header>
 
-    <section id="hero" className="hero-section pixel-hero"><div className="hero-bg" aria-hidden="true"><span className="hero-grid" /></div><div className="container hero-stack">
+    <section id="hero" className="hero-section pixel-hero"><div className="hero-bg" aria-hidden="true"><span className="hero-grid" /><svg className="hero-horizon" viewBox="0 0 320 96" preserveAspectRatio="none" shapeRendering="crispEdges"><path d="M0 66 L36 44 L68 60 L104 32 L146 56 L192 38 L236 58 L280 42 L320 60 L320 96 L0 96 Z" fill="#17120d" /><path d="M0 66 L36 44 L68 60 L104 32 L146 56 L192 38 L236 58 L280 42 L320 60" fill="none" stroke="#f0883e" strokeOpacity="0.45" strokeWidth="1" /><path d="M0 80 L44 66 L92 80 L150 62 L210 82 L262 68 L320 80 L320 96 L0 96 Z" fill="#0c0a08" /></svg></div><div className="container hero-stack">
       <span className="hero-chip"><span className="live" aria-hidden="true" />{t('home.brand.en')}</span>
       <h1 className="hero-title"><HtmlText value={t('home.hero.title')} /></h1>
       <p className="hero-desc">{t('home.hero.desc')}</p>

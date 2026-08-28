@@ -1289,26 +1289,48 @@ html[data-theme="light"] .faq-list details { box-shadow: 4px 4px 0 rgba(0, 0, 0,
    首页布局重构(Overmind 式板块)
    =================================================================== */
 
-.pixel-hero { padding-top: clamp(4.5rem, 9vh, 8rem); padding-bottom: clamp(4rem, 8vh, 6rem); }
+.pixel-hero { position: relative; padding-top: clamp(4rem, 9vh, 7rem); padding-bottom: clamp(6.5rem, 16vh, 11rem); }
+.pixel-hero::before {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: clamp(150px, 24vh, 260px); z-index: 0; pointer-events: none;
+    background: radial-gradient(130% 120% at 50% 130%, rgba(240, 136, 62, .3), rgba(240, 136, 62, .08) 45%, transparent 62%);
+}
+html[data-theme="light"] .pixel-hero::before { background: radial-gradient(130% 120% at 50% 130%, rgba(194, 90, 18, .18), transparent 60%); }
 .hero-stack {
     position: relative; z-index: 1;
     display: flex; flex-direction: column; align-items: flex-start;
-    max-width: 920px;
+    max-width: 940px;
 }
-.hero-stack .hero-title { margin: 1rem 0 1.35rem; }
-.hero-stack .hero-desc { max-width: 660px; font-size: 1.12rem; }
+.hero-stack .hero-title { margin: 1.1rem 0 1.4rem; }
+.hero-stack .hero-desc { max-width: 680px; font-size: 1.12rem; }
 .stat-strip {
-    display: flex; flex-wrap: wrap;
-    margin-top: 2.75rem;
+    display: flex; width: 100%;
+    margin-top: 2rem;
     border: 1px solid var(--hairline);
     border-radius: 4px; overflow: hidden;
+    background: rgba(127, 127, 127, .03);
     box-shadow: 4px 4px 0 rgba(0, 0, 0, .35);
 }
 html[data-theme="light"] .stat-strip { box-shadow: 4px 4px 0 rgba(0, 0, 0, .12); }
-.stat-cell { padding: .9rem 1.6rem; border-right: 1px solid var(--hairline); }
+.stat-cell { flex: 1; min-width: 0; padding: 1rem 1.5rem; border-right: 1px solid var(--hairline); }
 .stat-cell:last-child { border-right: 0; }
 .stat-cell b { display: block; font-family: var(--pixel); font-size: 1.05rem; color: var(--accent); letter-spacing: .02em; }
 .stat-cell span { font-size: .78rem; color: var(--text-dim); }
+@media (max-width: 640px) {
+    .stat-strip { flex-wrap: wrap; }
+    .stat-cell { flex: 1 1 100%; border-right: 0; border-bottom: 1px solid var(--hairline); }
+    .stat-cell:last-child { border-bottom: 0; }
+}
+
+/* 招牌像素地平线(填充 Hero 底部构图) */
+.hero-horizon {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    width: 100%; height: clamp(120px, 20vh, 210px);
+    z-index: 0; display: block;
+    -webkit-mask-image: linear-gradient(to top, #000 72%, transparent);
+    mask-image: linear-gradient(to top, #000 72%, transparent);
+}
+html[data-theme="light"] .hero-horizon { opacity: .35; }
 
 /* 板块分隔与 kicker */
 .band { border-top: 1px solid var(--hairline); padding-top: clamp(3rem, 5vw, 5rem); }
