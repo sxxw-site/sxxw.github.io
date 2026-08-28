@@ -9,8 +9,16 @@ function preferredTheme(): Theme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+function initialTheme(): Theme {
+  if (typeof document !== 'undefined') {
+    const t = document.documentElement.dataset.theme;
+    if (t === 'light' || t === 'dark') return t;
+  }
+  return 'light';
+}
+
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
   useEffect(() => setTheme(preferredTheme()), []);
   useEffect(() => {

@@ -839,15 +839,16 @@ svg {
 }
 /* reveal 动效（进场淡入上浮） */
 
-.reveal {
+/* 仅在 JS 就绪(html.js)后才对未显示的 reveal 做隐藏,避免首屏空白闪 */
+html.js .reveal:not(.show) {
     opacity: 0;
     transform: translateY(16px) scale(0.98);
-    transition: all .6s cubic-bezier(.16,1,.3,1);
-    will-change: transform, opacity;
 }
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+.reveal {
+    transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal:not(.show) { opacity: 1; transform: none; }
 }
 
 /* 响应式菜单：小屏下把 .nav-menu 变成弹出层 */
@@ -1188,15 +1189,14 @@ body::after {
     pointer-events: none;
     background: repeating-linear-gradient(
         to bottom,
-        rgba(0, 0, 0, .16) 0,
-        rgba(0, 0, 0, .16) 1px,
+        rgba(0, 0, 0, .10) 0,
+        rgba(0, 0, 0, .10) 1px,
         transparent 1px,
         transparent 3px
     );
-    mix-blend-mode: multiply;
-    opacity: .5;
+    opacity: .6;
 }
-html[data-theme="light"] body::after { opacity: .28; }
+html[data-theme="light"] body::after { opacity: .35; }
 
 /* 像素星空:hero 背景 */
 .hero-section {

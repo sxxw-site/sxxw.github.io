@@ -79,7 +79,7 @@ export default function App({ path }: { path?: string }) {
       </nav>
     </div></header>
 
-    <section id="hero" className="hero-section pixel-hero"><div className="hero-bg" aria-hidden="true"><span className="hero-grid" /></div><div className="container hero-stack reveal">
+    <section id="hero" className="hero-section pixel-hero"><div className="hero-bg" aria-hidden="true"><span className="hero-grid" /></div><div className="container hero-stack">
       <span className="hero-chip"><span className="live" aria-hidden="true" />{t('home.brand.en')}</span>
       <h1 className="hero-title"><HtmlText value={t('home.hero.title')} /></h1>
       <p className="hero-desc">{t('home.hero.desc')}</p>
