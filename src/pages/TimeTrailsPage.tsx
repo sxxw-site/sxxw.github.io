@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import timetrails from '../content/apps/timetrails.zh.json';
+import feedbackI18n from '../content/feedback.i18n.json';
 import ThemeToggle from '../components/ThemeToggle';
 
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
@@ -21,29 +22,30 @@ function TimeTrailsBody({ section, base }: { section: Section; base: string }) {
   return <><FeedbackSection /><section className="content-section"><h2>常见问题</h2><div className="faq-list"><details open><summary>时光轨迹会一直定位我吗？</summary><p>记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。</p></details><details><summary>定位没有被记录？</summary><p>请在“设置 → 隐私与安全性 → 定位服务”中为时光轨迹选择“始终”，并开启“精确位置”与后台 App 刷新。</p></details><details><summary>iCloud 备份如何恢复？</summary><p>使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。</p></details><details><summary>如何彻底清除数据？</summary><p>可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。</p></details></div></section></>;
 }
 
-// 反馈区多语言：App 通过 query 传入 lang（如 en / zh-Hans-SG / ja）。中文站默认中文，
-// 非中文用户（从 App 打开）显示英文，便于全球用户使用；页面其余部分仍为中文。
-type FbLang = 'zh-Hans' | 'zh-Hant' | 'en';
+// 反馈区多语言：App 通过 query 传入 lang（如 en / zh-Hans-SG / ja / pt-BR）。中文站默认简体，
+// 从 App 打开的境外用户按其语言显示，覆盖全站 40+ 语言；页面其余部分仍为中文。
 interface FbStrings {
   title: string; intro: string; emailLabel: string; deviceLabel: string; button: string;
   subject: string; problem: string; steps: string; diagHeader: string;
   dApp: string; dDevice: string; dOS: string; dLang: string; na: string; colon: string;
 }
-const FEEDBACK_I18N: Record<FbLang, FbStrings> = {
-  'zh-Hans': { title: '意见反馈', intro: '使用中遇到问题或有任何建议，欢迎邮件联系我们，我们会认真阅读每一条反馈。发送邮件时会自动附上你的 App 版本与设备信息，便于我们更快定位问题。', emailLabel: '反馈邮箱', deviceLabel: '设备信息', button: '发送邮件反馈', subject: '「时光轨迹 TimeTrails」意见反馈', problem: '【问题或建议】', steps: '【复现步骤（如有）】', diagHeader: '——— 以下为诊断信息，请勿删除 ———', dApp: 'App 版本', dDevice: '设备', dOS: '系统', dLang: '语言', na: '未提供', colon: '：' },
-  'zh-Hant': { title: '意見反饋', intro: '使用中遇到問題或有任何建議，歡迎郵件聯絡我們，我們會認真閱讀每一條反饋。傳送郵件時會自動附上你的 App 版本與裝置資訊，便於我們更快定位問題。', emailLabel: '反饋信箱', deviceLabel: '裝置資訊', button: '傳送郵件反饋', subject: '「時光軌跡 TimeTrails」意見反饋', problem: '【問題或建議】', steps: '【重現步驟（如有）】', diagHeader: '——— 以下為診斷資訊，請勿刪除 ———', dApp: 'App 版本', dDevice: '裝置', dOS: '系統', dLang: '語言', na: '未提供', colon: '：' },
-  en: { title: 'Feedback', intro: 'Run into a problem or have a suggestion? Email us — we read every message. Your app version and device info are attached automatically so we can look into it faster.', emailLabel: 'Feedback email', deviceLabel: 'Device info', button: 'Send feedback email', subject: 'TimeTrails Feedback', problem: '[Issue or suggestion]', steps: '[Steps to reproduce (if any)]', diagHeader: '——— Diagnostics (please keep) ———', dApp: 'App version', dDevice: 'Device', dOS: 'System', dLang: 'Language', na: 'N/A', colon: ': ' },
-};
+const FEEDBACK_I18N: Record<string, FbStrings> = feedbackI18n;
+const FALLBACK: FbStrings = FEEDBACK_I18N['zh-hans'];
+// 旧式/别名代码 → 词条键
+const LANG_ALIAS: Record<string, string> = { iw: 'he', in: 'id', no: 'nb', nn: 'nb' };
 
-/** 由 App 传入的 lang（无则跟随中文站）解析反馈区语言。 */
-function resolveFeedbackLang(): FbLang {
-  if (typeof window === 'undefined') return 'zh-Hans';
-  const raw = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
-  if (!raw) return 'zh-Hans';
-  if (raw.startsWith('zh')) {
-    return /hant|hk|tw|mo/.test(raw) ? 'zh-Hant' : 'zh-Hans';
+/** 由 App 传入的 lang（无则跟随中文站）解析反馈区词条。 */
+function resolveFeedbackStrings(): FbStrings {
+  if (typeof window === 'undefined') return FALLBACK;
+  const raw = (new URLSearchParams(window.location.search).get('lang') || '').trim().replace(/_/g, '-').toLowerCase();
+  if (!raw) return FALLBACK;
+  // 中文与粤语归并到简/繁两套
+  if (raw.startsWith('zh') || raw === 'yue') {
+    return FEEDBACK_I18N[/hant|hk|tw|mo|yue/.test(raw) ? 'zh-hant' : 'zh-hans'];
   }
-  return 'en';
+  const base = raw.split('-')[0];
+  const key = LANG_ALIAS[base] || base;
+  return FEEDBACK_I18N[key] || FEEDBACK_I18N['en'];
 }
 
 /** 从 URL query（App 打开时带上）+ 浏览器 UA 收集诊断信息。SSR 时返回空。 */
@@ -77,12 +79,12 @@ function buildFeedbackMailto(email: string, t: FbStrings, diag: string): string 
 
 function FeedbackSection() {
   const email = timetrails.supportEmail;
-  const [t, setT] = useState<FbStrings>(FEEDBACK_I18N['zh-Hans']);
+  const [t, setT] = useState<FbStrings>(FALLBACK);
   const [diag, setDiag] = useState('');
   const [fromApp, setFromApp] = useState(false);
-  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, FEEDBACK_I18N['zh-Hans'], ''));
+  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, FALLBACK, ''));
   useEffect(() => {
-    const strings = FEEDBACK_I18N[resolveFeedbackLang()];
+    const strings = resolveFeedbackStrings();
     const { text, fromApp } = collectFeedbackDiagnostics(strings);
     setT(strings);
     setDiag(text);
