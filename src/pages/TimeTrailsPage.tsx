@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import timetrails from '../content/apps/timetrails.zh.json';
 import ThemeToggle from '../components/ThemeToggle';
 
@@ -14,10 +15,55 @@ export default function TimeTrailsPage({ path }: { path: string }) {
 }
 
 function TimeTrailsBody({ section, base }: { section: Section; base: string }) {
-  if (section === 'overview') return <><section className="content-section"><h2>把时间和地点连成自己的故事</h2><div className="feature-grid">{timetrails.features.map((feature) => <div className="feature-card" key={feature}>{feature}</div>)}</div></section><section className="privacy-facts"><h2>记录归你，数据也归你</h2><p>无需账号、没有广告或第三方追踪。轨迹默认存于本机；iCloud 备份完全可选，仅进入你的 Apple CloudKit 私有数据库。</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>开始使用</a><a className="btn-ghost" href={`${base}/privacy/`}>阅读隐私政策</a></div></section><ScreenshotGallery />{timetrails.storeUrl && <a className="store-link" href={timetrails.storeUrl} target="_blank" rel="noreferrer">在 {timetrails.storeName} 获取 {timetrails.appName}</a>}</>;
+  if (section === 'overview') return <><section className="content-section"><h2>把时间和地点连成自己的故事</h2><div className="feature-grid">{timetrails.features.map((feature) => <div className="feature-card" key={feature}>{feature}</div>)}</div></section><section className="privacy-facts"><h2>记录归你，数据也归你</h2><p>无需账号、没有广告或第三方追踪。轨迹默认存于本机；iCloud 备份完全可选，仅进入你的 Apple CloudKit 私有数据库。</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>开始使用</a><a className="btn-ghost" href={`${base}/privacy/`}>阅读隐私政策</a></div></section><FeedbackSection /><ScreenshotGallery />{timetrails.storeUrl && <a className="store-link" href={timetrails.storeUrl} target="_blank" rel="noreferrer">在 {timetrails.storeName} 获取 {timetrails.appName}</a>}</>;
   if (section === 'getting-started') return <section className="content-section"><h2>从第一段轨迹开始</h2><ol className="guide-list">{timetrails.guide.map((step, index) => <li key={step.title}><span>{index + 1}</span><div><h3>{step.title}</h3><p>{step.body}</p></div></li>)}</ol></section>;
   if (section === 'privacy' || section === 'terms') { const document = timetrails[section]; const contactEmail = 'contactEmail' in document ? document.contactEmail : timetrails.supportEmail; return <article className="legal-document"><p className="legal-meta">生效日期：{document.effectiveDate} · 适用平台：{timetrails.platformName} · 应用名称：{timetrails.appName}</p>{'intro' in document && <p className="legal-intro">{document.intro}</p>}{document.sections.map((item) => <section key={item.title}><h2>{item.title}</h2>{item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}<section><h2>联系我们</h2><p>如有疑问，请联系：<a href={`mailto:${contactEmail}`}>{contactEmail}</a></p></section></article>; }
-  return <section className="content-section"><h2>技术支持</h2><div className="faq-list"><details open><summary>时光轨迹会一直定位我吗？</summary><p>记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。</p></details><details><summary>定位没有被记录？</summary><p>请在“设置 → 隐私与安全性 → 定位服务”中为时光轨迹选择“始终”，并开启“精确位置”与后台 App 刷新。</p></details><details><summary>iCloud 备份如何恢复？</summary><p>使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。</p></details><details><summary>如何彻底清除数据？</summary><p>可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。</p></details></div><p className="support-contact">仍需帮助？请邮件联系 <a href={`mailto:${timetrails.supportEmail}`}>{timetrails.supportEmail}</a>。</p></section>;
+  return <><FeedbackSection /><section className="content-section"><h2>常见问题</h2><div className="faq-list"><details open><summary>时光轨迹会一直定位我吗？</summary><p>记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。</p></details><details><summary>定位没有被记录？</summary><p>请在“设置 → 隐私与安全性 → 定位服务”中为时光轨迹选择“始终”，并开启“精确位置”与后台 App 刷新。</p></details><details><summary>iCloud 备份如何恢复？</summary><p>使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。</p></details><details><summary>如何彻底清除数据？</summary><p>可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。</p></details></div></section></>;
+}
+
+const FEEDBACK_SUBJECT = '「时光轨迹 TimeTrails」意见反馈';
+
+/** 从 URL query（App 打开时带上）+ 浏览器 UA 收集诊断信息。SSR 时返回空。 */
+function collectFeedbackDiagnostics(): { text: string; fromApp: boolean } {
+  if (typeof window === 'undefined') return { text: '', fromApp: false };
+  const q = new URLSearchParams(window.location.search);
+  const ua = navigator.userAgent || '';
+  const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua);
+  const m = ua.match(/OS (\d+(?:[_.]\d+){1,2})/);
+  const osFromUA = m ? (isApple ? 'iOS ' : '') + m[1].replace(/_/g, '.') : '';
+  const appv = q.get('appv') || '';
+  const build = q.get('build') || '';
+  const os = q.get('os') || osFromUA;
+  const device = q.get('device') || '';
+  const lang = q.get('lang') || navigator.language || '';
+  const lines = [
+    'App 版本：' + (appv ? appv + (build ? ` (${build})` : '') : '未提供'),
+    '设备：' + (device || '未提供'),
+    '系统：' + (os || '未提供'),
+    '语言：' + (lang || '未提供'),
+  ];
+  return { text: lines.join('\n'), fromApp: !!appv };
+}
+
+function buildFeedbackMailto(email: string, diag: string): string {
+  const body =
+    '【问题或建议】\n\n\n【复现步骤（如有）】\n\n\n' +
+    (diag ? `——— 以下为诊断信息，请勿删除 ———\n${diag}\n` : '');
+  return `mailto:${email}?subject=${encodeURIComponent(FEEDBACK_SUBJECT)}&body=${encodeURIComponent(body)}`;
+}
+
+function FeedbackSection() {
+  const email = timetrails.supportEmail;
+  const [diag, setDiag] = useState('');
+  const [fromApp, setFromApp] = useState(false);
+  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, ''));
+  useEffect(() => {
+    const { text, fromApp } = collectFeedbackDiagnostics();
+    setDiag(text);
+    setFromApp(fromApp);
+    setMailto(buildFeedbackMailto(email, text));
+  }, [email]);
+  return <section className="content-section feedback-section" id="feedback"><h2>意见反馈</h2><p>使用中遇到问题或有任何建议，欢迎邮件联系我们，我们会认真阅读每一条反馈。发送邮件时会自动附上你的 App 版本与设备信息，便于我们更快定位问题。</p><div className="contact-card" style={{ maxWidth: 760 }}><div className="contact-row"><div className="contact-label">反馈邮箱</div><div className="contact-value"><a className="linkish" href={`mailto:${email}`}>{email}</a></div></div>{fromApp && diag && <div className="contact-row"><div className="contact-label">设备信息</div><div className="contact-value" style={{ whiteSpace: 'pre-line', opacity: 0.85 }}>{diag}</div></div>}</div><div className="action-row"><a className="btn-primary" href={mailto}>发送邮件反馈</a></div></section>;
 }
 
 function ScreenshotGallery() { return <section className="screenshot-section"><div><p className="route-eyebrow">商店截图</p><h2>从每一天的路线，看见时光轨迹</h2></div><div className="screenshot-strip">{['/apps/timetrails/shot-01.png', '/apps/timetrails/shot-02.png', '/apps/timetrails/shot-03.png'].map((image, index) => <img src={image} alt={`时光轨迹 TimeTrails 商店截图 ${index + 1}`} key={image} loading="lazy" />)}</div></section>; }
