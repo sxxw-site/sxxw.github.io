@@ -21,10 +21,33 @@ function TimeTrailsBody({ section, base }: { section: Section; base: string }) {
   return <><FeedbackSection /><section className="content-section"><h2>常见问题</h2><div className="faq-list"><details open><summary>时光轨迹会一直定位我吗？</summary><p>记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。</p></details><details><summary>定位没有被记录？</summary><p>请在“设置 → 隐私与安全性 → 定位服务”中为时光轨迹选择“始终”，并开启“精确位置”与后台 App 刷新。</p></details><details><summary>iCloud 备份如何恢复？</summary><p>使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。</p></details><details><summary>如何彻底清除数据？</summary><p>可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。</p></details></div></section></>;
 }
 
-const FEEDBACK_SUBJECT = '「时光轨迹 TimeTrails」意见反馈';
+// 反馈区多语言：App 通过 query 传入 lang（如 en / zh-Hans-SG / ja）。中文站默认中文，
+// 非中文用户（从 App 打开）显示英文，便于全球用户使用；页面其余部分仍为中文。
+type FbLang = 'zh-Hans' | 'zh-Hant' | 'en';
+interface FbStrings {
+  title: string; intro: string; emailLabel: string; deviceLabel: string; button: string;
+  subject: string; problem: string; steps: string; diagHeader: string;
+  dApp: string; dDevice: string; dOS: string; dLang: string; na: string; colon: string;
+}
+const FEEDBACK_I18N: Record<FbLang, FbStrings> = {
+  'zh-Hans': { title: '意见反馈', intro: '使用中遇到问题或有任何建议，欢迎邮件联系我们，我们会认真阅读每一条反馈。发送邮件时会自动附上你的 App 版本与设备信息，便于我们更快定位问题。', emailLabel: '反馈邮箱', deviceLabel: '设备信息', button: '发送邮件反馈', subject: '「时光轨迹 TimeTrails」意见反馈', problem: '【问题或建议】', steps: '【复现步骤（如有）】', diagHeader: '——— 以下为诊断信息，请勿删除 ———', dApp: 'App 版本', dDevice: '设备', dOS: '系统', dLang: '语言', na: '未提供', colon: '：' },
+  'zh-Hant': { title: '意見反饋', intro: '使用中遇到問題或有任何建議，歡迎郵件聯絡我們，我們會認真閱讀每一條反饋。傳送郵件時會自動附上你的 App 版本與裝置資訊，便於我們更快定位問題。', emailLabel: '反饋信箱', deviceLabel: '裝置資訊', button: '傳送郵件反饋', subject: '「時光軌跡 TimeTrails」意見反饋', problem: '【問題或建議】', steps: '【重現步驟（如有）】', diagHeader: '——— 以下為診斷資訊，請勿刪除 ———', dApp: 'App 版本', dDevice: '裝置', dOS: '系統', dLang: '語言', na: '未提供', colon: '：' },
+  en: { title: 'Feedback', intro: 'Run into a problem or have a suggestion? Email us — we read every message. Your app version and device info are attached automatically so we can look into it faster.', emailLabel: 'Feedback email', deviceLabel: 'Device info', button: 'Send feedback email', subject: 'TimeTrails Feedback', problem: '[Issue or suggestion]', steps: '[Steps to reproduce (if any)]', diagHeader: '——— Diagnostics (please keep) ———', dApp: 'App version', dDevice: 'Device', dOS: 'System', dLang: 'Language', na: 'N/A', colon: ': ' },
+};
+
+/** 由 App 传入的 lang（无则跟随中文站）解析反馈区语言。 */
+function resolveFeedbackLang(): FbLang {
+  if (typeof window === 'undefined') return 'zh-Hans';
+  const raw = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
+  if (!raw) return 'zh-Hans';
+  if (raw.startsWith('zh')) {
+    return /hant|hk|tw|mo/.test(raw) ? 'zh-Hant' : 'zh-Hans';
+  }
+  return 'en';
+}
 
 /** 从 URL query（App 打开时带上）+ 浏览器 UA 收集诊断信息。SSR 时返回空。 */
-function collectFeedbackDiagnostics(): { text: string; fromApp: boolean } {
+function collectFeedbackDiagnostics(t: FbStrings): { text: string; fromApp: boolean } {
   if (typeof window === 'undefined') return { text: '', fromApp: false };
   const q = new URLSearchParams(window.location.search);
   const ua = navigator.userAgent || '';
@@ -37,33 +60,36 @@ function collectFeedbackDiagnostics(): { text: string; fromApp: boolean } {
   const device = q.get('device') || '';
   const lang = q.get('lang') || navigator.language || '';
   const lines = [
-    'App 版本：' + (appv ? appv + (build ? ` (${build})` : '') : '未提供'),
-    '设备：' + (device || '未提供'),
-    '系统：' + (os || '未提供'),
-    '语言：' + (lang || '未提供'),
+    t.dApp + t.colon + (appv ? appv + (build ? ` (${build})` : '') : t.na),
+    t.dDevice + t.colon + (device || t.na),
+    t.dOS + t.colon + (os || t.na),
+    t.dLang + t.colon + (lang || t.na),
   ];
   return { text: lines.join('\n'), fromApp: !!appv };
 }
 
-function buildFeedbackMailto(email: string, diag: string): string {
+function buildFeedbackMailto(email: string, t: FbStrings, diag: string): string {
   const body =
-    '【问题或建议】\n\n\n【复现步骤（如有）】\n\n\n' +
-    (diag ? `——— 以下为诊断信息，请勿删除 ———\n${diag}\n` : '');
-  return `mailto:${email}?subject=${encodeURIComponent(FEEDBACK_SUBJECT)}&body=${encodeURIComponent(body)}`;
+    `${t.problem}\n\n\n${t.steps}\n\n\n` +
+    (diag ? `${t.diagHeader}\n${diag}\n` : '');
+  return `mailto:${email}?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function FeedbackSection() {
   const email = timetrails.supportEmail;
+  const [t, setT] = useState<FbStrings>(FEEDBACK_I18N['zh-Hans']);
   const [diag, setDiag] = useState('');
   const [fromApp, setFromApp] = useState(false);
-  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, ''));
+  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, FEEDBACK_I18N['zh-Hans'], ''));
   useEffect(() => {
-    const { text, fromApp } = collectFeedbackDiagnostics();
+    const strings = FEEDBACK_I18N[resolveFeedbackLang()];
+    const { text, fromApp } = collectFeedbackDiagnostics(strings);
+    setT(strings);
     setDiag(text);
     setFromApp(fromApp);
-    setMailto(buildFeedbackMailto(email, text));
+    setMailto(buildFeedbackMailto(email, strings, text));
   }, [email]);
-  return <section className="content-section feedback-section" id="feedback"><h2>意见反馈</h2><p>使用中遇到问题或有任何建议，欢迎邮件联系我们，我们会认真阅读每一条反馈。发送邮件时会自动附上你的 App 版本与设备信息，便于我们更快定位问题。</p><div className="contact-card" style={{ maxWidth: 760 }}><div className="contact-row"><div className="contact-label">反馈邮箱</div><div className="contact-value"><a className="linkish" href={`mailto:${email}`}>{email}</a></div></div>{fromApp && diag && <div className="contact-row"><div className="contact-label">设备信息</div><div className="contact-value" style={{ whiteSpace: 'pre-line', opacity: 0.85 }}>{diag}</div></div>}</div><div className="action-row"><a className="btn-primary" href={mailto}>发送邮件反馈</a></div></section>;
+  return <section className="content-section feedback-section" id="feedback"><h2>{t.title}</h2><p>{t.intro}</p><div className="contact-card" style={{ maxWidth: 760 }}><div className="contact-row"><div className="contact-label">{t.emailLabel}</div><div className="contact-value"><a className="linkish" href={`mailto:${email}`}>{email}</a></div></div>{fromApp && diag && <div className="contact-row"><div className="contact-label">{t.deviceLabel}</div><div className="contact-value" style={{ whiteSpace: 'pre-line', opacity: 0.85 }}>{diag}</div></div>}</div><div className="action-row"><a className="btn-primary" href={mailto}>{t.button}</a></div></section>;
 }
 
 function ScreenshotGallery() { return <section className="screenshot-section"><div><p className="route-eyebrow">商店截图</p><h2>从每一天的路线，看见时光轨迹</h2></div><div className="screenshot-strip">{['/apps/timetrails/shot-01.png', '/apps/timetrails/shot-02.png', '/apps/timetrails/shot-03.png'].map((image, index) => <img src={image} alt={`时光轨迹 TimeTrails 商店截图 ${index + 1}`} key={image} loading="lazy" />)}</div></section>; }
