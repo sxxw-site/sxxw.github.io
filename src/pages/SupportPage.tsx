@@ -1,6 +1,18 @@
+import { useState } from 'react';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguageSelect from '../components/LanguageSelect';
 import { useI18n } from '../i18n/I18nProvider';
+import { FEEDBACK_CONTACTS_DEFAULT } from '../lib/feedback';
+
+async function copyText(text: string): Promise<boolean> {
+  try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch { /* fall through */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    const ok = document.execCommand('copy'); document.body.removeChild(ta); return ok;
+  } catch { return false; }
+}
 
 /*
  * 客户服务中心 /support/  （UI 文案走 i18n，可跟随站点语言切换）
@@ -8,13 +20,16 @@ import { useI18n } from '../i18n/I18nProvider';
  * 都留空则显示「筹备中」，可安全上线。
  */
 
-type Channel = { name: string; desc: string; meta: string; cta: string; href?: string; qr?: string };
+type Channel = { name: string; desc: string; meta: string; cta: string; href?: string; qr?: string; copy?: string };
 type Group = { kicker: string; label: string; title: string; note: string; items: Channel[] };
 
-function ChannelAction({ item, pending }: { item: Channel; pending: string }) {
+function ChannelAction({ item, pending, copied, onCopy }: { item: Channel; pending: string; copied: string; onCopy: (text: string) => void }) {
   if (item.href) {
     const external = /^https?:\/\//.test(item.href);
     return <a className="btn-ghost support-btn" href={item.href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>{item.cta} {external ? '↗' : '→'}</a>;
+  }
+  if (item.copy) {
+    return <button type="button" className="btn-ghost support-btn support-copy" onClick={() => onCopy(item.copy!)}>{item.copy} <em>{copied === item.copy ? '✓' : '⧉'}</em></button>;
   }
   if (item.qr) {
     return <div className="support-qr-wrap"><img className="support-qr" src={item.qr} alt={item.name} loading="lazy" /><span>{item.cta}</span></div>;
@@ -25,6 +40,15 @@ function ChannelAction({ item, pending }: { item: Channel; pending: string }) {
 export default function SupportPage() {
   const { t } = useI18n();
   const pending = t('support.pending');
+  const [copied, setCopied] = useState('');
+  const cc = FEEDBACK_CONTACTS_DEFAULT;
+  const qqGroup = cc.qq?.[0];
+
+  function onCopy(text: string) {
+    copyText(text).then((ok) => {
+      if (ok) { setCopied(text); window.setTimeout(() => setCopied((c) => (c === text ? '' : c)), 1600); }
+    });
+  }
 
   const groups: Group[] = [
     {
@@ -46,9 +70,9 @@ export default function SupportPage() {
     {
       kicker: '03', label: 'Groups', title: t('support.g3.title'), note: t('support.g3.note'),
       items: [
-        { name: t('support.g3.wechat.name'), desc: t('support.g3.wechat.desc'), meta: 'TreeHouse', cta: t('support.g3.join'), qr: '' },
-        { name: t('support.g3.qq.name'), desc: t('support.g3.qq.desc'), meta: 'TreeHouse', cta: t('support.g3.join'), qr: '' },
-        { name: t('support.g3.tg.name'), desc: t('support.g3.tg.desc'), meta: 'TreeHouse Chat', cta: t('support.g3.join'), href: 'https://t.me/+HJ8KMcExDNk2MTE1' },
+        { name: t('support.g3.wechat.name'), desc: t('support.g3.wechat.desc'), meta: 'TreeHouse', cta: t('support.g3.join'), copy: cc.wechat?.id },
+        { name: t('support.g3.qq.name'), desc: t('support.g3.qq.desc'), meta: qqGroup?.label ?? 'TreeHouse', cta: t('support.g3.join'), href: qqGroup?.joinUrl },
+        { name: t('support.g3.tg.name'), desc: t('support.g3.tg.desc'), meta: 'TreeHouse Chat', cta: t('support.g3.join'), href: cc.telegram?.url },
       ],
     },
   ];
@@ -75,7 +99,7 @@ export default function SupportPage() {
             <h3>{item.name}</h3>
             <p>{item.desc}</p>
           </div>
-          <div className="support-action"><ChannelAction item={item} pending={pending} /></div>
+          <div className="support-action"><ChannelAction item={item} pending={pending} copied={copied} onCopy={onCopy} /></div>
         </article>)}</div>
       </section>)}
 

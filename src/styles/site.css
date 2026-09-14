@@ -1433,3 +1433,7 @@ html[data-theme="light"] .fb-diag { background: rgba(0,0,0,.03); }
 .fb-chip-pair .fb-chip { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .fb-copy-chip { display: inline-flex; align-items: center; gap: 4px; padding: 9px 11px; border: 1px solid var(--card-stroke); border-left: 0; border-top-right-radius: 10px; border-bottom-right-radius: 10px; background: var(--card-bg); color: var(--text-dim); font-family: var(--pixel); font-size: .52rem; letter-spacing: .04em; cursor: pointer; white-space: nowrap; }
 .fb-copy-chip:hover { color: var(--accent); border-color: var(--accent); }
+
+/* /support/ 客服微信复制按钮 */
+.support-copy { cursor: pointer; }
+.support-copy em { font-style: normal; font-family: var(--pixel); font-size: .6rem; color: var(--accent); margin-left: 4px; }

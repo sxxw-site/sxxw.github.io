@@ -104,24 +104,17 @@ export const FEEDBACK_APPS: Record<string, FeedbackApp> = {
     email: 'flywithbug@163.com',
     stores: { appstore: { name: 'App Store', url: 'https://apps.apple.com/app/id1634761411?action=write-review' } },
     defaultStore: 'appstore',
-    // 沿用 TraceApp 现有官方社群（与其 App 内反馈一致）；后续可统一为树下小屋群。
-    contacts: {
-      qq: [
-        { label: '185198503', joinUrl: 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=185198503&key=04e52aa9e9b26feaaf8adf5191926d77c19a1e997834e51cef11f68f08215bcc&card_type=group&source=external&jump_from=webapi' },
-      ],
-      wechat: { id: 'flywithbug', url: 'weixin://' },
-    },
   },
 };
 
-// 树下小屋统一官方社群：与各 App 自身 contacts 合并（App 未覆盖的渠道用这里的）。
-// QQ 群可配多个；每个填 joinUrl（一键加群深链/网页）与可选 link（复制的加群链接）。
+// 树下小屋统一官方社群：作为各 App 的默认社群（与各 App 自身 contacts 合并，App 未覆盖的渠道用这里的）。
+// QQ 群沿用出行轨迹官方群 185198503（含一键加群深链）；客服微信号 timeTrails；Telegram 统一邀请群。
 export const FEEDBACK_CONTACTS_DEFAULT: Contacts = {
+  qq: [
+    { label: '185198503', joinUrl: 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=185198503&key=04e52aa9e9b26feaaf8adf5191926d77c19a1e997834e51cef11f68f08215bcc&card_type=group&source=external&jump_from=webapi' },
+  ],
+  wechat: { id: 'timeTrails' },
   telegram: { url: 'https://t.me/+HJ8KMcExDNk2MTE1' },
-  // qq: [
-  //   { label: '树下小屋 1 群', joinUrl: 'https://qm.qq.com/q/xxxxx', link: 'https://qm.qq.com/q/xxxxx' },
-  // ],
-  // wechat: { id: '' },
 };
 
 /** 树下小屋统一社群为底，App 自身 contacts 按渠道覆盖（同渠道 App 优先）。 */
