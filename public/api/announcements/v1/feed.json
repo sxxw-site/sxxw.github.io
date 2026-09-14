@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-14T00:00:00Z",
+  "items": [
+    {
+      "id": "welcome-treehouse-2026",
+      "type": "notice",
+      "priority": 100,
+      "pinned": true,
+      "dismissible": true,
+      "apps": [],
+      "platforms": [],
+      "minVersion": null,
+      "maxVersion": null,
+      "startAt": "2026-09-14T00:00:00Z",
+      "endAt": null,
+      "title": {
+        "zh-Hans": "欢迎来到树下小屋",
+        "zh-Hant": "歡迎來到樹下小屋",
+        "en": "Welcome to TreeHouse"
+      },
+      "body": {
+        "zh-Hans": "感谢使用树下小屋的应用。加入用户交流群，第一时间获取更新与帮助。",
+        "zh-Hant": "感謝使用樹下小屋的應用。加入用戶交流群，第一時間獲取更新與協助。",
+        "en": "Thanks for using TreeHouse apps. Join our community for updates and support."
+      },
+      "action": {
+        "label": { "zh-Hans": "加入交流群", "zh-Hant": "加入交流群", "en": "Join community" },
+        "url": "https://sxxw.site/apps/"
+      }
+    },
+    {
+      "id": "memoria-2-0-2026-09",
+      "type": "update",
+      "priority": 50,
+      "pinned": false,
+      "dismissible": true,
+      "apps": ["memoria"],
+      "platforms": ["ios"],
+      "minVersion": "2.0.0",
+      "maxVersion": null,
+      "startAt": "2026-09-14T00:00:00Z",
+      "endAt": "2026-10-14T00:00:00Z",
+      "title": {
+        "zh-Hans": "拾忆 2.0 已上线",
+        "zh-Hant": "拾憶 2.0 已上線",
+        "en": "Memoria 2.0 is here"
+      },
+      "body": {
+        "zh-Hans": "全新纪念日提醒与小组件，欢迎更新体验。",
+        "zh-Hant": "全新紀念日提醒與小工具，歡迎更新體驗。",
+        "en": "New anniversary reminders and widgets. Update to try them."
+      },
+      "action": {
+        "label": { "zh-Hans": "查看", "zh-Hant": "查看", "en": "View" },
+        "url": "https://sxxw.site/apps/memoria/"
+      }
+    }
+  ]
+}
