@@ -1370,3 +1370,46 @@ html[data-theme="light"] .do-panel { box-shadow: 4px 4px 0 rgba(0, 0, 0, .1); }
 /* 首页产品目录行(整行链接) */
 #products .app-directory-card { text-decoration: none; color: inherit; }
 .app-cta { font-family: var(--pixel); font-size: .64rem; letter-spacing: .06em; color: var(--accent); text-transform: uppercase; white-space: nowrap; }
+
+/* ============ 客户服务中心 /support/ ============ */
+.support-group { padding: 2.5rem 0; border-top: 1px solid var(--hairline); }
+.support-group:first-of-type { border-top: 0; }
+.support-group-note { color: var(--text-dim); max-width: 60ch; margin: .35rem 0 1.4rem; line-height: 1.7; }
+.support-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.support-card { display: flex; flex-direction: column; justify-content: space-between; gap: 1.1rem; min-height: 190px; padding: 20px; border: 1px solid var(--card-stroke); border-radius: var(--radius-lg); background: var(--card-bg); }
+.support-card:hover { border-color: var(--accent-soft); }
+.support-meta { font-family: var(--pixel); font-size: .56rem; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
+.support-card h3 { margin: .5rem 0 .4rem; font-size: 1.05rem; line-height: 1.35; }
+.support-card p { margin: 0; color: var(--text-dim); font-size: .9rem; line-height: 1.65; }
+.support-action { display: flex; align-items: center; }
+.support-btn { font-family: var(--pixel); font-size: .6rem; letter-spacing: .04em; }
+.support-pending { font-family: var(--pixel); font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); padding: .5rem .7rem; border: 1px dashed var(--card-stroke); border-radius: 8px; }
+.support-qr-wrap { display: flex; flex-direction: column; gap: .5rem; align-items: flex-start; }
+.support-qr { width: 132px; height: 132px; image-rendering: pixelated; border: 1px solid var(--card-stroke); border-radius: 8px; background: #fff; }
+.support-qr-wrap span { font-family: var(--pixel); font-size: .56rem; letter-spacing: .04em; color: var(--accent); }
+.support-foot-note { margin: 2.5rem 0 0; color: var(--text-dim); font-size: .92rem; }
+@media (max-width: 560px) { .support-cards { grid-template-columns: 1fr; } }
+
+/* ============ 独立意见反馈页 /feedback/ ============ */
+.fb-page { min-height: 100vh; display: flex; background: radial-gradient(120% 70% at 50% -10%, rgba(240,136,62,.16), transparent 60%), var(--page-bg); }
+.fb-shell { width: 100%; max-width: 560px; margin: 0 auto; padding: clamp(2.5rem, 8vh, 5rem) 20px 3rem; display: flex; flex-direction: column; }
+.fb-brand { align-self: flex-start; display: inline-flex; align-items: center; gap: .45rem; font-family: var(--pixel); font-size: .62rem; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
+.fb-star { font-size: .8rem; line-height: 1; }
+.fb-title { margin: 1rem 0 .5rem; font-size: clamp(1.9rem, 7vw, 2.7rem); line-height: 1.12; }
+.fb-intro { margin: 0 0 1.6rem; color: var(--text-dim); line-height: 1.7; font-size: .96rem; max-width: 48ch; }
+.fb-card { display: flex; flex-direction: column; gap: 14px; padding: 18px; border: 1px solid var(--card-stroke); border-radius: var(--radius-lg); background: var(--card-bg); box-shadow: 0 24px 60px rgba(0,0,0,.22); }
+.fb-textarea { width: 100%; box-sizing: border-box; min-height: 150px; resize: vertical; padding: 14px; border-radius: 12px; border: 1px solid var(--card-stroke); background: rgba(0,0,0,.2); color: var(--text-main); font-family: inherit; font-size: .98rem; line-height: 1.6; }
+html[data-theme="light"] .fb-textarea { background: rgba(0,0,0,.035); }
+.fb-textarea::placeholder { color: var(--text-dim); }
+.fb-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.fb-email { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: .86rem; color: var(--text-dim); }
+.fb-email span { font-family: var(--pixel); font-size: .54rem; letter-spacing: .05em; text-transform: uppercase; }
+.fb-diag { margin: 0; padding: 12px 14px; border: 1px dashed var(--card-stroke); border-radius: 10px; background: rgba(0,0,0,.18); color: var(--text-dim); font-family: var(--mono); font-size: .78rem; line-height: 1.7; white-space: pre-wrap; overflow-x: auto; }
+html[data-theme="light"] .fb-diag { background: rgba(0,0,0,.03); }
+.fb-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+.fb-send, .fb-rate { display: flex; align-items: center; justify-content: center; font-family: var(--pixel); }
+.fb-send { font-size: .66rem; }
+.fb-rate { font-size: .6rem; }
+.fb-foot { margin: 2.2rem auto 0; font-family: var(--pixel); font-size: .56rem; letter-spacing: .08em; color: var(--text-dim); text-decoration: none; }
+.fb-foot:hover { color: var(--accent); }
+@media (min-width: 520px) { .fb-actions { flex-direction: row; } .fb-send { flex: 1; } }

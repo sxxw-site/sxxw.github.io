@@ -5,6 +5,8 @@ import MemoriaPage from './pages/MemoriaPage';
 import TimeTrailsPage from './pages/TimeTrailsPage';
 import TraceAppPage from './pages/TraceAppPage';
 import AppsPage from './pages/AppsPage';
+import SupportPage from './pages/SupportPage';
+import FeedbackPage from './pages/FeedbackPage';
 import ThemeToggle from './components/ThemeToggle';
 
 const HOME_APPS = [
@@ -62,6 +64,8 @@ export default function App({ path }: { path?: string }) {
 
   if (pathname !== '/') {
     if (pathname === '/apps/') return <AppsPage />;
+    if (pathname === '/support/') return <SupportPage />;
+    if (pathname === '/feedback/') return <FeedbackPage />;
     if (pathname.startsWith('/apps/memoria/')) return <MemoriaPage path={pathname} />;
     if (pathname.startsWith('/apps/timetrails/')) return <TimeTrailsPage path={pathname} />;
     if (pathname.startsWith('/apps/traceapp/')) return <TraceAppPage path={pathname} />;
@@ -108,7 +112,7 @@ export default function App({ path }: { path?: string }) {
       <p className="contact-hint">{t('home.contact.hint')}</p>
     </div></section>
 
-    <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">{t('home.common.company')}</div><div className="footer-slogan">{t('home.footer.slogan')}</div></div><div className="footer-right"><div className="footer-links"><a href="#hero" onClick={handleAnchorClick}>{t('home.footer.links.home')}</a><a href="#about" onClick={handleAnchorClick}>{t('home.footer.links.about')}</a><a href="#contact" onClick={handleAnchorClick}>{t('home.footer.links.contact')}</a></div><div className="footer-legal"><span>{t('home.footer.legal')}</span></div></div></div></footer>
+    <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">{t('home.common.company')}</div><div className="footer-slogan">{t('home.footer.slogan')}</div></div><div className="footer-right"><div className="footer-links"><a href="#hero" onClick={handleAnchorClick}>{t('home.footer.links.home')}</a><a href="/apps/">应用中心</a><a href="/support/">客户服务</a><a href="#about" onClick={handleAnchorClick}>{t('home.footer.links.about')}</a><a href="#contact" onClick={handleAnchorClick}>{t('home.footer.links.contact')}</a></div><div className="footer-legal"><span>{t('home.footer.legal')}</span></div></div></div></footer>
     <noscript>{t('home.noscript')}</noscript>
   </>;
 }

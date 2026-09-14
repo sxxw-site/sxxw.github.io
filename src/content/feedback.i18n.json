@@ -14,7 +14,8 @@
     "dOS": "System",
     "dLang": "Language",
     "na": "N/A",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Rate this app"
   },
   "zh-hans": {
     "title": "意见反馈",
@@ -31,7 +32,8 @@
     "dOS": "系统",
     "dLang": "语言",
     "na": "未提供",
-    "colon": "："
+    "colon": "：",
+    "rate": "去应用商店评价"
   },
   "zh-hant": {
     "title": "意見反饋",
@@ -48,7 +50,8 @@
     "dOS": "系統",
     "dLang": "語言",
     "na": "未提供",
-    "colon": "："
+    "colon": "：",
+    "rate": "前往應用商店評價"
   },
   "af": {
     "title": "Terugvoer",
@@ -65,7 +68,8 @@
     "dOS": "Stelsel",
     "dLang": "Taal",
     "na": "N.v.t.",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Beoordeel hierdie app"
   },
   "ar": {
     "title": "الملاحظات",
@@ -82,7 +86,8 @@
     "dOS": "النظام",
     "dLang": "اللغة",
     "na": "غير متوفر",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "قيّم هذا التطبيق"
   },
   "be": {
     "title": "Зваротная сувязь",
@@ -99,7 +104,8 @@
     "dOS": "Сістэма",
     "dLang": "Мова",
     "na": "н/д",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Ацаніце праграму"
   },
   "bg": {
     "title": "Обратна връзка",
@@ -116,7 +122,8 @@
     "dOS": "Система",
     "dLang": "Език",
     "na": "н/д",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Оценете това приложение"
   },
   "bn": {
     "title": "মতামত",
@@ -133,7 +140,8 @@
     "dOS": "সিস্টেম",
     "dLang": "ভাষা",
     "na": "প্রযোজ্য নয়",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "এই অ্যাপটি রেট করুন"
   },
   "cs": {
     "title": "Zpětná vazba",
@@ -150,7 +158,8 @@
     "dOS": "Systém",
     "dLang": "Jazyk",
     "na": "—",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Ohodnotit aplikaci"
   },
   "da": {
     "title": "Feedback",
@@ -167,7 +176,8 @@
     "dOS": "System",
     "dLang": "Sprog",
     "na": "—",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Bedøm denne app"
   },
   "de": {
     "title": "Feedback",
@@ -184,7 +194,8 @@
     "dOS": "System",
     "dLang": "Sprache",
     "na": "–",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "App bewerten"
   },
   "el": {
     "title": "Σχόλια",
@@ -201,7 +212,8 @@
     "dOS": "Σύστημα",
     "dLang": "Γλώσσα",
     "na": "Μ/Δ",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Αξιολόγηση εφαρμογής"
   },
   "es": {
     "title": "Comentarios",
@@ -218,7 +230,8 @@
     "dOS": "Sistema",
     "dLang": "Idioma",
     "na": "N/D",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Valorar esta app"
   },
   "et": {
     "title": "Tagasiside",
@@ -235,7 +248,8 @@
     "dOS": "Süsteem",
     "dLang": "Keel",
     "na": "–",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Hinda rakendust"
   },
   "fa": {
     "title": "بازخورد",
@@ -252,7 +266,8 @@
     "dOS": "سیستم",
     "dLang": "زبان",
     "na": "موجود نیست",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "به این برنامه امتیاز دهید"
   },
   "fi": {
     "title": "Palaute",
@@ -269,7 +284,8 @@
     "dOS": "Järjestelmä",
     "dLang": "Kieli",
     "na": "–",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Arvioi sovellus"
   },
   "fr": {
     "title": "Commentaires",
@@ -286,7 +302,8 @@
     "dOS": "Système",
     "dLang": "Langue",
     "na": "N/D",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Noter cette app"
   },
   "gu": {
     "title": "પ્રતિસાદ",
@@ -303,7 +320,8 @@
     "dOS": "સિસ્ટમ",
     "dLang": "ભાષા",
     "na": "ઉપલબ્ધ નથી",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "આ ઍપને રેટ કરો"
   },
   "he": {
     "title": "משוב",
@@ -320,7 +338,8 @@
     "dOS": "מערכת",
     "dLang": "שפה",
     "na": "לא זמין",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "דרגו את האפליקציה"
   },
   "hi": {
     "title": "फ़ीडबैक",
@@ -337,7 +356,8 @@
     "dOS": "सिस्टम",
     "dLang": "भाषा",
     "na": "लागू नहीं",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "इस ऐप को रेट करें"
   },
   "hr": {
     "title": "Povratne informacije",
@@ -354,7 +374,8 @@
     "dOS": "Sustav",
     "dLang": "Jezik",
     "na": "—",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Ocijenite aplikaciju"
   },
   "hu": {
     "title": "Visszajelzés",
@@ -371,7 +392,8 @@
     "dOS": "Rendszer",
     "dLang": "Nyelv",
     "na": "—",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Értékeld az alkalmazást"
   },
   "id": {
     "title": "Masukan",
@@ -388,7 +410,8 @@
     "dOS": "Sistem",
     "dLang": "Bahasa",
     "na": "T/T",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Beri rating aplikasi"
   },
   "it": {
     "title": "Feedback",
@@ -405,7 +428,8 @@
     "dOS": "Sistema",
     "dLang": "Lingua",
     "na": "N/D",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Valuta questa app"
   },
   "ja": {
     "title": "フィードバック",
@@ -422,7 +446,8 @@
     "dOS": "システム",
     "dLang": "言語",
     "na": "なし",
-    "colon": "："
+    "colon": "：",
+    "rate": "このアプリを評価"
   },
   "kk": {
     "title": "Кері байланыс",
@@ -439,7 +464,8 @@
     "dOS": "Жүйе",
     "dLang": "Тіл",
     "na": "жоқ",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Қолданбаны бағалау"
   },
   "kn": {
     "title": "ಪ್ರತಿಕ್ರಿಯೆ",
@@ -456,7 +482,8 @@
     "dOS": "ಸಿಸ್ಟಂ",
     "dLang": "ಭಾಷೆ",
     "na": "ಲಭ್ಯವಿಲ್ಲ",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "ಈ ಆ್ಯಪ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ"
   },
   "ko": {
     "title": "피드백",
@@ -473,7 +500,8 @@
     "dOS": "시스템",
     "dLang": "언어",
     "na": "없음",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "이 앱 평가하기"
   },
   "lt": {
     "title": "Atsiliepimai",
@@ -490,7 +518,8 @@
     "dOS": "Sistema",
     "dLang": "Kalba",
     "na": "Nėra",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Įvertinkite programėlę"
   },
   "lv": {
     "title": "Atsauksmes",
@@ -507,7 +536,8 @@
     "dOS": "Sistēma",
     "dLang": "Valoda",
     "na": "Nav",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Novērtējiet lietotni"
   },
   "ml": {
     "title": "ഫീഡ്‌ബാക്ക്",
@@ -524,7 +554,8 @@
     "dOS": "സിസ്റ്റം",
     "dLang": "ഭാഷ",
     "na": "ലഭ്യമല്ല",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "ഈ ആപ്പ് റേറ്റ് ചെയ്യുക"
   },
   "mr": {
     "title": "अभिप्राय",
@@ -541,7 +572,8 @@
     "dOS": "सिस्टम",
     "dLang": "भाषा",
     "na": "लागू नाही",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "या ॲपला रेट करा"
   },
   "ms": {
     "title": "Maklum Balas",
@@ -558,7 +590,8 @@
     "dOS": "Sistem",
     "dLang": "Bahasa",
     "na": "T/B",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Nilai aplikasi ini"
   },
   "nb": {
     "title": "Tilbakemelding",
@@ -575,7 +608,8 @@
     "dOS": "System",
     "dLang": "Språk",
     "na": "I/T",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Vurder denne appen"
   },
   "nl": {
     "title": "Feedback",
@@ -592,7 +626,8 @@
     "dOS": "Systeem",
     "dLang": "Taal",
     "na": "N.v.t.",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Beoordeel deze app"
   },
   "pa": {
     "title": "ਫੀਡਬੈਕ",
@@ -609,7 +644,8 @@
     "dOS": "ਸਿਸਟਮ",
     "dLang": "ਭਾਸ਼ਾ",
     "na": "ਉਪਲਬਧ ਨਹੀਂ",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "ਇਸ ਐਪ ਨੂੰ ਰੇਟ ਕਰੋ"
   },
   "pl": {
     "title": "Opinie",
@@ -626,7 +662,8 @@
     "dOS": "System",
     "dLang": "Język",
     "na": "Nd.",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Oceń tę aplikację"
   },
   "pt": {
     "title": "Comentários",
@@ -643,7 +680,8 @@
     "dOS": "Sistema",
     "dLang": "Idioma",
     "na": "N/D",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Avaliar este app"
   },
   "ro": {
     "title": "Feedback",
@@ -660,7 +698,8 @@
     "dOS": "Sistem",
     "dLang": "Limbă",
     "na": "N/A",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Evaluează aplicația"
   },
   "ru": {
     "title": "Обратная связь",
@@ -677,7 +716,8 @@
     "dOS": "Система",
     "dLang": "Язык",
     "na": "н/д",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Оценить приложение"
   },
   "sk": {
     "title": "Spätná väzba",
@@ -694,7 +734,8 @@
     "dOS": "Systém",
     "dLang": "Jazyk",
     "na": "N/A",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Ohodnotiť aplikáciu"
   },
   "sl": {
     "title": "Povratne informacije",
@@ -711,7 +752,8 @@
     "dOS": "Sistem",
     "dLang": "Jezik",
     "na": "Ni podatka",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Ocenite aplikacijo"
   },
   "sv": {
     "title": "Feedback",
@@ -728,7 +770,8 @@
     "dOS": "System",
     "dLang": "Språk",
     "na": "Ej tillämpligt",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Betygsätt appen"
   },
   "ta": {
     "title": "கருத்து",
@@ -745,7 +788,8 @@
     "dOS": "சிஸ்டம்",
     "dLang": "மொழி",
     "na": "பொருந்தாது",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "இந்த ஆப்பை மதிப்பிடுங்கள்"
   },
   "te": {
     "title": "అభిప్రాయం",
@@ -762,7 +806,8 @@
     "dOS": "సిస్టమ్",
     "dLang": "భాష",
     "na": "వర్తించదు",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "ఈ యాప్‌ను రేట్ చేయండి"
   },
   "th": {
     "title": "ข้อเสนอแนะ",
@@ -779,7 +824,8 @@
     "dOS": "ระบบ",
     "dLang": "ภาษา",
     "na": "ไม่มี",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "ให้คะแนนแอปนี้"
   },
   "tr": {
     "title": "Geri Bildirim",
@@ -796,7 +842,8 @@
     "dOS": "Sistem",
     "dLang": "Dil",
     "na": "Yok",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Uygulamayı değerlendir"
   },
   "uk": {
     "title": "Зворотний зв'язок",
@@ -813,7 +860,8 @@
     "dOS": "Система",
     "dLang": "Мова",
     "na": "н/д",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Оцінити застосунок"
   },
   "vi": {
     "title": "Phản hồi",
@@ -830,6 +878,7 @@
     "dOS": "Hệ thống",
     "dLang": "Ngôn ngữ",
     "na": "Không có",
-    "colon": ": "
+    "colon": ": ",
+    "rate": "Đánh giá ứng dụng"
   }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import timetrails from '../content/apps/timetrails.zh.json';
-import feedbackI18n from '../content/feedback.i18n.json';
 import ThemeToggle from '../components/ThemeToggle';
+import { FEEDBACK_FALLBACK, buildFeedbackMailto, collectFeedbackDiagnostics, resolveFeedbackStrings, type FbStrings } from '../lib/feedback';
 
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
 
@@ -22,74 +22,20 @@ function TimeTrailsBody({ section, base }: { section: Section; base: string }) {
   return <><FeedbackSection /><section className="content-section"><h2>常见问题</h2><div className="faq-list"><details open><summary>时光轨迹会一直定位我吗？</summary><p>记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。</p></details><details><summary>定位没有被记录？</summary><p>请在“设置 → 隐私与安全性 → 定位服务”中为时光轨迹选择“始终”，并开启“精确位置”与后台 App 刷新。</p></details><details><summary>iCloud 备份如何恢复？</summary><p>使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。</p></details><details><summary>如何彻底清除数据？</summary><p>可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。</p></details></div></section></>;
 }
 
-// 反馈区多语言：App 通过 query 传入 lang（如 en / zh-Hans-SG / ja / pt-BR）。中文站默认简体，
-// 从 App 打开的境外用户按其语言显示，覆盖全站 40+ 语言；页面其余部分仍为中文。
-interface FbStrings {
-  title: string; intro: string; emailLabel: string; deviceLabel: string; button: string;
-  subject: string; problem: string; steps: string; diagHeader: string;
-  dApp: string; dDevice: string; dOS: string; dLang: string; na: string; colon: string;
-}
-const FEEDBACK_I18N: Record<string, FbStrings> = feedbackI18n;
-const FALLBACK: FbStrings = FEEDBACK_I18N['zh-hans'];
-// 旧式/别名代码 → 词条键
-const LANG_ALIAS: Record<string, string> = { iw: 'he', in: 'id', no: 'nb', nn: 'nb' };
-
-/** 由 App 传入的 lang（无则跟随中文站）解析反馈区词条。 */
-function resolveFeedbackStrings(): FbStrings {
-  if (typeof window === 'undefined') return FALLBACK;
-  const raw = (new URLSearchParams(window.location.search).get('lang') || '').trim().replace(/_/g, '-').toLowerCase();
-  if (!raw) return FALLBACK;
-  // 中文与粤语归并到简/繁两套
-  if (raw.startsWith('zh') || raw === 'yue') {
-    return FEEDBACK_I18N[/hant|hk|tw|mo|yue/.test(raw) ? 'zh-hant' : 'zh-hans'];
-  }
-  const base = raw.split('-')[0];
-  const key = LANG_ALIAS[base] || base;
-  return FEEDBACK_I18N[key] || FEEDBACK_I18N['en'];
-}
-
-/** 从 URL query（App 打开时带上）+ 浏览器 UA 收集诊断信息。SSR 时返回空。 */
-function collectFeedbackDiagnostics(t: FbStrings): { text: string; fromApp: boolean } {
-  if (typeof window === 'undefined') return { text: '', fromApp: false };
-  const q = new URLSearchParams(window.location.search);
-  const ua = navigator.userAgent || '';
-  const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua);
-  const m = ua.match(/OS (\d+(?:[_.]\d+){1,2})/);
-  const osFromUA = m ? (isApple ? 'iOS ' : '') + m[1].replace(/_/g, '.') : '';
-  const appv = q.get('appv') || '';
-  const build = q.get('build') || '';
-  const os = q.get('os') || osFromUA;
-  const device = q.get('device') || '';
-  const lang = q.get('lang') || navigator.language || '';
-  const lines = [
-    t.dApp + t.colon + (appv ? appv + (build ? ` (${build})` : '') : t.na),
-    t.dDevice + t.colon + (device || t.na),
-    t.dOS + t.colon + (os || t.na),
-    t.dLang + t.colon + (lang || t.na),
-  ];
-  return { text: lines.join('\n'), fromApp: !!appv };
-}
-
-function buildFeedbackMailto(email: string, t: FbStrings, diag: string): string {
-  const body =
-    `${t.problem}\n\n\n${t.steps}\n\n\n` +
-    (diag ? `${t.diagHeader}\n${diag}\n` : '');
-  return `mailto:${email}?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(body)}`;
-}
-
+// 反馈区多语言逻辑抽离到 ../lib/feedback，与共用反馈页 /feedback/ 单一来源。
 function FeedbackSection() {
   const email = timetrails.supportEmail;
-  const [t, setT] = useState<FbStrings>(FALLBACK);
+  const [t, setT] = useState<FbStrings>(FEEDBACK_FALLBACK);
   const [diag, setDiag] = useState('');
   const [fromApp, setFromApp] = useState(false);
-  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, FALLBACK, ''));
+  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, FEEDBACK_FALLBACK.subject, FEEDBACK_FALLBACK, ''));
   useEffect(() => {
     const strings = resolveFeedbackStrings();
     const { text, fromApp } = collectFeedbackDiagnostics(strings);
     setT(strings);
     setDiag(text);
     setFromApp(fromApp);
-    setMailto(buildFeedbackMailto(email, strings, text));
+    setMailto(buildFeedbackMailto(email, strings.subject, strings, text));
   }, [email]);
   return <section className="content-section feedback-section" id="feedback"><h2>{t.title}</h2><p>{t.intro}</p><div className="contact-card" style={{ maxWidth: 760 }}><div className="contact-row"><div className="contact-label">{t.emailLabel}</div><div className="contact-value"><a className="linkish" href={`mailto:${email}`}>{email}</a></div></div>{fromApp && diag && <div className="contact-row"><div className="contact-label">{t.deviceLabel}</div><div className="contact-value" style={{ whiteSpace: 'pre-line', opacity: 0.85 }}>{diag}</div></div>}</div><div className="action-row"><a className="btn-primary" href={mailto}>{t.button}</a></div></section>;
 }
