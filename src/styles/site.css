@@ -1440,3 +1440,8 @@ html[data-theme="light"] .fb-diag { background: rgba(0,0,0,.03); }
 
 /* 反馈页：已满的 QQ 群 */
 .fb-chip-off { display: inline-flex; align-items: center; gap: 6px; padding: 9px 13px; border: 1px dashed var(--card-stroke); border-radius: 10px; background: var(--card-bg); color: var(--text-dim); font-size: .82rem; }
+
+/* 反馈页：星级评分 */
+.fb-stars { display: flex; gap: 6px; }
+.fb-star { background: none; border: none; cursor: pointer; font-size: 1.5rem; line-height: 1; padding: 2px; color: var(--card-stroke); transition: color .12s; }
+.fb-star:hover, .fb-star.on { color: var(--accent); }

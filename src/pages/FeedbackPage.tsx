@@ -39,6 +39,7 @@ export default function FeedbackPage() {
   const [diag, setDiag] = useState('');
   const [fromApp, setFromApp] = useState(false);
   const [msg, setMsg] = useState('');
+  const [rating, setRating] = useState(0);
   const [copied, setCopied] = useState('');
 
   useEffect(() => {
@@ -56,7 +57,8 @@ export default function FeedbackPage() {
     });
   }
 
-  const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, fromApp ? diag : '', msg);
+  const ratingLine = rating ? `${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)\n\n` : '';
+  const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, fromApp ? diag : '', ratingLine + msg);
   const hasContacts = !!((contacts.qq && contacts.qq.length) || contacts.wechat || contacts.telegram);
   const copyMark = (key: string) => (copied === key ? `✓ ${t.copied}` : '⧉');
 
@@ -68,6 +70,13 @@ export default function FeedbackPage() {
       <p className="fb-intro">{t.intro}</p>
 
       <div className="fb-card">
+        <div className="fb-stars" role="radiogroup" aria-label={t.rate}>
+          {[1, 2, 3, 4, 5].map((n) => <button
+            key={n} type="button" className={`fb-star${n <= rating ? ' on' : ''}`}
+            role="radio" aria-checked={n === rating} aria-label={`${n}/5`}
+            onClick={() => setRating((r) => (r === n ? 0 : n))}
+          >★</button>)}
+        </div>
         <textarea
           className="fb-textarea"
           value={msg}
