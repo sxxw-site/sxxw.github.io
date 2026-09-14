@@ -1437,3 +1437,6 @@ html[data-theme="light"] .fb-diag { background: rgba(0,0,0,.03); }
 /* /support/ 客服微信复制按钮 */
 .support-copy { cursor: pointer; }
 .support-copy em { font-style: normal; font-family: var(--pixel); font-size: .6rem; color: var(--accent); margin-left: 4px; }
+
+/* 反馈页：已满的 QQ 群 */
+.fb-chip-off { display: inline-flex; align-items: center; gap: 6px; padding: 9px 13px; border: 1px dashed var(--card-stroke); border-radius: 10px; background: var(--card-bg); color: var(--text-dim); font-size: .82rem; }

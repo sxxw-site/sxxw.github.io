@@ -42,7 +42,7 @@ export default function SupportPage() {
   const pending = t('support.pending');
   const [copied, setCopied] = useState('');
   const cc = FEEDBACK_CONTACTS_DEFAULT;
-  const qqGroup = cc.qq?.[0];
+  const qqGroup = cc.qq?.find((g) => !g.full) ?? cc.qq?.[0];
 
   function onCopy(text: string) {
     copyText(text).then((ok) => {

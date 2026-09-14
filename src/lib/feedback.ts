@@ -66,8 +66,9 @@ export interface StoreEntry { name: string; url: string }
 // 官方社群联系方式（参考 TraceApp 原生反馈：QQ 群直达 + 微信复制号并打开）。
 export interface QQGroup {
   label: string;    // 显示名（群号或名称）
-  joinUrl?: string; // 一键加群：mqqapi:// 深链或 https://qm.qq.com/... 网页加群
+  joinUrl?: string; // 一键加群：https://qm.qq.com/... 网页加群（或 mqqapi:// 深链）
   link?: string;    // 「复制加群链接」要复制的内容；缺省则复制 label（群号）
+  full?: boolean;   // 群已满：不可加入，仅展示
 }
 export interface Contacts {
   qq?: QQGroup[];                         // 可配置多个 QQ 群
@@ -111,7 +112,8 @@ export const FEEDBACK_APPS: Record<string, FeedbackApp> = {
 // QQ 群沿用出行轨迹官方群 185198503（含一键加群深链）；客服微信号 timeTrails；Telegram 统一邀请群。
 export const FEEDBACK_CONTACTS_DEFAULT: Contacts = {
   qq: [
-    { label: '185198503', joinUrl: 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=185198503&key=04e52aa9e9b26feaaf8adf5191926d77c19a1e997834e51cef11f68f08215bcc&card_type=group&source=external&jump_from=webapi' },
+    { label: '574966492', joinUrl: 'https://qm.qq.com/q/WmKwcZcZW', link: 'https://qm.qq.com/q/WmKwcZcZW' },
+    { label: '185198503', joinUrl: 'https://qm.qq.com/q/J1eYFA7i4m', link: 'https://qm.qq.com/q/J1eYFA7i4m', full: true },
   ],
   wechat: { id: 'timeTrails' },
   telegram: { url: 'https://t.me/+HJ8KMcExDNk2MTE1' },

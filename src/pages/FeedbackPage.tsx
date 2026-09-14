@@ -95,7 +95,9 @@ export default function FeedbackPage() {
         <p className="fb-community-title">{t.community}</p>
         <div className="fb-chips">
           {contacts.qq?.map((g, i) => <div className="fb-chip-pair" key={g.label}>
-            <a className="fb-chip" href={g.joinUrl || '#'} {...(/^https?:/.test(g.joinUrl || '') ? { target: '_blank', rel: 'noreferrer' } : {})}>QQ 群 · {g.label} ↗</a>
+            {g.full
+              ? <span className="fb-chip fb-chip-off">QQ 群 · {g.label}（已满）</span>
+              : <a className="fb-chip" href={g.joinUrl || '#'} {...(/^https?:/.test(g.joinUrl || '') ? { target: '_blank', rel: 'noreferrer' } : {})}>QQ 群 · {g.label} ↗</a>}
             <button type="button" className="fb-copy-chip" onClick={() => copyAnd(`qq${i}`, g.link || g.label)} aria-label={g.link || g.label}>{copyMark(`qq${i}`)}</button>
           </div>)}
           {contacts.wechat && <button type="button" className="fb-chip" onClick={() => copyAnd('wechat', contacts.wechat!.id, contacts.wechat!.url)}>微信 · {contacts.wechat.id} <em>{copyMark('wechat')}</em></button>}
