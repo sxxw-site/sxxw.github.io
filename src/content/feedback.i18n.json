@@ -15,7 +15,9 @@
     "dLang": "Language",
     "na": "N/A",
     "colon": ": ",
-    "rate": "Rate this app"
+    "rate": "Rate this app",
+    "community": "Community",
+    "copied": "Copied"
   },
   "zh-hans": {
     "title": "意见反馈",
@@ -33,7 +35,9 @@
     "dLang": "语言",
     "na": "未提供",
     "colon": "：",
-    "rate": "去应用商店评价"
+    "rate": "去应用商店评价",
+    "community": "官方社群",
+    "copied": "已复制"
   },
   "zh-hant": {
     "title": "意見反饋",
@@ -51,7 +55,9 @@
     "dLang": "語言",
     "na": "未提供",
     "colon": "：",
-    "rate": "前往應用商店評價"
+    "rate": "前往應用商店評價",
+    "community": "官方社群",
+    "copied": "已複製"
   },
   "af": {
     "title": "Terugvoer",
@@ -69,7 +75,9 @@
     "dLang": "Taal",
     "na": "N.v.t.",
     "colon": ": ",
-    "rate": "Beoordeel hierdie app"
+    "rate": "Beoordeel hierdie app",
+    "community": "Gemeenskap",
+    "copied": "Gekopieer"
   },
   "ar": {
     "title": "الملاحظات",
@@ -87,7 +95,9 @@
     "dLang": "اللغة",
     "na": "غير متوفر",
     "colon": ": ",
-    "rate": "قيّم هذا التطبيق"
+    "rate": "قيّم هذا التطبيق",
+    "community": "المجتمع",
+    "copied": "تم النسخ"
   },
   "be": {
     "title": "Зваротная сувязь",
@@ -105,7 +115,9 @@
     "dLang": "Мова",
     "na": "н/д",
     "colon": ": ",
-    "rate": "Ацаніце праграму"
+    "rate": "Ацаніце праграму",
+    "community": "Супольнасць",
+    "copied": "Скапіравана"
   },
   "bg": {
     "title": "Обратна връзка",
@@ -123,7 +135,9 @@
     "dLang": "Език",
     "na": "н/д",
     "colon": ": ",
-    "rate": "Оценете това приложение"
+    "rate": "Оценете това приложение",
+    "community": "Общност",
+    "copied": "Копирано"
   },
   "bn": {
     "title": "মতামত",
@@ -141,7 +155,9 @@
     "dLang": "ভাষা",
     "na": "প্রযোজ্য নয়",
     "colon": ": ",
-    "rate": "এই অ্যাপটি রেট করুন"
+    "rate": "এই অ্যাপটি রেট করুন",
+    "community": "কমিউনিটি",
+    "copied": "কপি হয়েছে"
   },
   "cs": {
     "title": "Zpětná vazba",
@@ -159,7 +175,9 @@
     "dLang": "Jazyk",
     "na": "—",
     "colon": ": ",
-    "rate": "Ohodnotit aplikaci"
+    "rate": "Ohodnotit aplikaci",
+    "community": "Komunita",
+    "copied": "Zkopírováno"
   },
   "da": {
     "title": "Feedback",
@@ -177,7 +195,9 @@
     "dLang": "Sprog",
     "na": "—",
     "colon": ": ",
-    "rate": "Bedøm denne app"
+    "rate": "Bedøm denne app",
+    "community": "Fællesskab",
+    "copied": "Kopieret"
   },
   "de": {
     "title": "Feedback",
@@ -195,7 +215,9 @@
     "dLang": "Sprache",
     "na": "–",
     "colon": ": ",
-    "rate": "App bewerten"
+    "rate": "App bewerten",
+    "community": "Community",
+    "copied": "Kopiert"
   },
   "el": {
     "title": "Σχόλια",
@@ -213,7 +235,9 @@
     "dLang": "Γλώσσα",
     "na": "Μ/Δ",
     "colon": ": ",
-    "rate": "Αξιολόγηση εφαρμογής"
+    "rate": "Αξιολόγηση εφαρμογής",
+    "community": "Κοινότητα",
+    "copied": "Αντιγράφηκε"
   },
   "es": {
     "title": "Comentarios",
@@ -231,7 +255,9 @@
     "dLang": "Idioma",
     "na": "N/D",
     "colon": ": ",
-    "rate": "Valorar esta app"
+    "rate": "Valorar esta app",
+    "community": "Comunidad",
+    "copied": "Copiado"
   },
   "et": {
     "title": "Tagasiside",
@@ -249,7 +275,9 @@
     "dLang": "Keel",
     "na": "–",
     "colon": ": ",
-    "rate": "Hinda rakendust"
+    "rate": "Hinda rakendust",
+    "community": "Kogukond",
+    "copied": "Kopeeritud"
   },
   "fa": {
     "title": "بازخورد",
@@ -267,7 +295,9 @@
     "dLang": "زبان",
     "na": "موجود نیست",
     "colon": ": ",
-    "rate": "به این برنامه امتیاز دهید"
+    "rate": "به این برنامه امتیاز دهید",
+    "community": "انجمن",
+    "copied": "کپی شد"
   },
   "fi": {
     "title": "Palaute",
@@ -285,7 +315,9 @@
     "dLang": "Kieli",
     "na": "–",
     "colon": ": ",
-    "rate": "Arvioi sovellus"
+    "rate": "Arvioi sovellus",
+    "community": "Yhteisö",
+    "copied": "Kopioitu"
   },
   "fr": {
     "title": "Commentaires",
@@ -303,7 +335,9 @@
     "dLang": "Langue",
     "na": "N/D",
     "colon": ": ",
-    "rate": "Noter cette app"
+    "rate": "Noter cette app",
+    "community": "Communauté",
+    "copied": "Copié"
   },
   "gu": {
     "title": "પ્રતિસાદ",
@@ -321,7 +355,9 @@
     "dLang": "ભાષા",
     "na": "ઉપલબ્ધ નથી",
     "colon": ": ",
-    "rate": "આ ઍપને રેટ કરો"
+    "rate": "આ ઍપને રેટ કરો",
+    "community": "સમુદાય",
+    "copied": "કૉપિ થયું"
   },
   "he": {
     "title": "משוב",
@@ -339,7 +375,9 @@
     "dLang": "שפה",
     "na": "לא זמין",
     "colon": ": ",
-    "rate": "דרגו את האפליקציה"
+    "rate": "דרגו את האפליקציה",
+    "community": "קהילה",
+    "copied": "הועתק"
   },
   "hi": {
     "title": "फ़ीडबैक",
@@ -357,7 +395,9 @@
     "dLang": "भाषा",
     "na": "लागू नहीं",
     "colon": ": ",
-    "rate": "इस ऐप को रेट करें"
+    "rate": "इस ऐप को रेट करें",
+    "community": "समुदाय",
+    "copied": "कॉपी किया गया"
   },
   "hr": {
     "title": "Povratne informacije",
@@ -375,7 +415,9 @@
     "dLang": "Jezik",
     "na": "—",
     "colon": ": ",
-    "rate": "Ocijenite aplikaciju"
+    "rate": "Ocijenite aplikaciju",
+    "community": "Zajednica",
+    "copied": "Kopirano"
   },
   "hu": {
     "title": "Visszajelzés",
@@ -393,7 +435,9 @@
     "dLang": "Nyelv",
     "na": "—",
     "colon": ": ",
-    "rate": "Értékeld az alkalmazást"
+    "rate": "Értékeld az alkalmazást",
+    "community": "Közösség",
+    "copied": "Másolva"
   },
   "id": {
     "title": "Masukan",
@@ -411,7 +455,9 @@
     "dLang": "Bahasa",
     "na": "T/T",
     "colon": ": ",
-    "rate": "Beri rating aplikasi"
+    "rate": "Beri rating aplikasi",
+    "community": "Komunitas",
+    "copied": "Disalin"
   },
   "it": {
     "title": "Feedback",
@@ -429,7 +475,9 @@
     "dLang": "Lingua",
     "na": "N/D",
     "colon": ": ",
-    "rate": "Valuta questa app"
+    "rate": "Valuta questa app",
+    "community": "Community",
+    "copied": "Copiato"
   },
   "ja": {
     "title": "フィードバック",
@@ -447,7 +495,9 @@
     "dLang": "言語",
     "na": "なし",
     "colon": "：",
-    "rate": "このアプリを評価"
+    "rate": "このアプリを評価",
+    "community": "コミュニティ",
+    "copied": "コピーしました"
   },
   "kk": {
     "title": "Кері байланыс",
@@ -465,7 +515,9 @@
     "dLang": "Тіл",
     "na": "жоқ",
     "colon": ": ",
-    "rate": "Қолданбаны бағалау"
+    "rate": "Қолданбаны бағалау",
+    "community": "Қауымдастық",
+    "copied": "Көшірілді"
   },
   "kn": {
     "title": "ಪ್ರತಿಕ್ರಿಯೆ",
@@ -483,7 +535,9 @@
     "dLang": "ಭಾಷೆ",
     "na": "ಲಭ್ಯವಿಲ್ಲ",
     "colon": ": ",
-    "rate": "ಈ ಆ್ಯಪ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ"
+    "rate": "ಈ ಆ್ಯಪ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ",
+    "community": "ಸಮುದಾಯ",
+    "copied": "ನಕಲಿಸಲಾಗಿದೆ"
   },
   "ko": {
     "title": "피드백",
@@ -501,7 +555,9 @@
     "dLang": "언어",
     "na": "없음",
     "colon": ": ",
-    "rate": "이 앱 평가하기"
+    "rate": "이 앱 평가하기",
+    "community": "커뮤니티",
+    "copied": "복사됨"
   },
   "lt": {
     "title": "Atsiliepimai",
@@ -519,7 +575,9 @@
     "dLang": "Kalba",
     "na": "Nėra",
     "colon": ": ",
-    "rate": "Įvertinkite programėlę"
+    "rate": "Įvertinkite programėlę",
+    "community": "Bendruomenė",
+    "copied": "Nukopijuota"
   },
   "lv": {
     "title": "Atsauksmes",
@@ -537,7 +595,9 @@
     "dLang": "Valoda",
     "na": "Nav",
     "colon": ": ",
-    "rate": "Novērtējiet lietotni"
+    "rate": "Novērtējiet lietotni",
+    "community": "Kopiena",
+    "copied": "Nokopēts"
   },
   "ml": {
     "title": "ഫീഡ്‌ബാക്ക്",
@@ -555,7 +615,9 @@
     "dLang": "ഭാഷ",
     "na": "ലഭ്യമല്ല",
     "colon": ": ",
-    "rate": "ഈ ആപ്പ് റേറ്റ് ചെയ്യുക"
+    "rate": "ഈ ആപ്പ് റേറ്റ് ചെയ്യുക",
+    "community": "കമ്മ്യൂണിറ്റി",
+    "copied": "പകർത്തി"
   },
   "mr": {
     "title": "अभिप्राय",
@@ -573,7 +635,9 @@
     "dLang": "भाषा",
     "na": "लागू नाही",
     "colon": ": ",
-    "rate": "या ॲपला रेट करा"
+    "rate": "या ॲपला रेट करा",
+    "community": "समुदाय",
+    "copied": "कॉपी केले"
   },
   "ms": {
     "title": "Maklum Balas",
@@ -591,7 +655,9 @@
     "dLang": "Bahasa",
     "na": "T/B",
     "colon": ": ",
-    "rate": "Nilai aplikasi ini"
+    "rate": "Nilai aplikasi ini",
+    "community": "Komuniti",
+    "copied": "Disalin"
   },
   "nb": {
     "title": "Tilbakemelding",
@@ -609,7 +675,9 @@
     "dLang": "Språk",
     "na": "I/T",
     "colon": ": ",
-    "rate": "Vurder denne appen"
+    "rate": "Vurder denne appen",
+    "community": "Fellesskap",
+    "copied": "Kopiert"
   },
   "nl": {
     "title": "Feedback",
@@ -627,7 +695,9 @@
     "dLang": "Taal",
     "na": "N.v.t.",
     "colon": ": ",
-    "rate": "Beoordeel deze app"
+    "rate": "Beoordeel deze app",
+    "community": "Community",
+    "copied": "Gekopieerd"
   },
   "pa": {
     "title": "ਫੀਡਬੈਕ",
@@ -645,7 +715,9 @@
     "dLang": "ਭਾਸ਼ਾ",
     "na": "ਉਪਲਬਧ ਨਹੀਂ",
     "colon": ": ",
-    "rate": "ਇਸ ਐਪ ਨੂੰ ਰੇਟ ਕਰੋ"
+    "rate": "ਇਸ ਐਪ ਨੂੰ ਰੇਟ ਕਰੋ",
+    "community": "ਭਾਈਚਾਰਾ",
+    "copied": "ਕਾਪੀ ਕੀਤਾ"
   },
   "pl": {
     "title": "Opinie",
@@ -663,7 +735,9 @@
     "dLang": "Język",
     "na": "Nd.",
     "colon": ": ",
-    "rate": "Oceń tę aplikację"
+    "rate": "Oceń tę aplikację",
+    "community": "Społeczność",
+    "copied": "Skopiowano"
   },
   "pt": {
     "title": "Comentários",
@@ -681,7 +755,9 @@
     "dLang": "Idioma",
     "na": "N/D",
     "colon": ": ",
-    "rate": "Avaliar este app"
+    "rate": "Avaliar este app",
+    "community": "Comunidade",
+    "copied": "Copiado"
   },
   "ro": {
     "title": "Feedback",
@@ -699,7 +775,9 @@
     "dLang": "Limbă",
     "na": "N/A",
     "colon": ": ",
-    "rate": "Evaluează aplicația"
+    "rate": "Evaluează aplicația",
+    "community": "Comunitate",
+    "copied": "Copiat"
   },
   "ru": {
     "title": "Обратная связь",
@@ -717,7 +795,9 @@
     "dLang": "Язык",
     "na": "н/д",
     "colon": ": ",
-    "rate": "Оценить приложение"
+    "rate": "Оценить приложение",
+    "community": "Сообщество",
+    "copied": "Скопировано"
   },
   "sk": {
     "title": "Spätná väzba",
@@ -735,7 +815,9 @@
     "dLang": "Jazyk",
     "na": "N/A",
     "colon": ": ",
-    "rate": "Ohodnotiť aplikáciu"
+    "rate": "Ohodnotiť aplikáciu",
+    "community": "Komunita",
+    "copied": "Skopírované"
   },
   "sl": {
     "title": "Povratne informacije",
@@ -753,7 +835,9 @@
     "dLang": "Jezik",
     "na": "Ni podatka",
     "colon": ": ",
-    "rate": "Ocenite aplikacijo"
+    "rate": "Ocenite aplikacijo",
+    "community": "Skupnost",
+    "copied": "Kopirano"
   },
   "sv": {
     "title": "Feedback",
@@ -771,7 +855,9 @@
     "dLang": "Språk",
     "na": "Ej tillämpligt",
     "colon": ": ",
-    "rate": "Betygsätt appen"
+    "rate": "Betygsätt appen",
+    "community": "Gemenskap",
+    "copied": "Kopierat"
   },
   "ta": {
     "title": "கருத்து",
@@ -789,7 +875,9 @@
     "dLang": "மொழி",
     "na": "பொருந்தாது",
     "colon": ": ",
-    "rate": "இந்த ஆப்பை மதிப்பிடுங்கள்"
+    "rate": "இந்த ஆப்பை மதிப்பிடுங்கள்",
+    "community": "சமூகம்",
+    "copied": "நகலெடுக்கப்பட்டது"
   },
   "te": {
     "title": "అభిప్రాయం",
@@ -807,7 +895,9 @@
     "dLang": "భాష",
     "na": "వర్తించదు",
     "colon": ": ",
-    "rate": "ఈ యాప్‌ను రేట్ చేయండి"
+    "rate": "ఈ యాప్‌ను రేట్ చేయండి",
+    "community": "సంఘం",
+    "copied": "కాపీ చేయబడింది"
   },
   "th": {
     "title": "ข้อเสนอแนะ",
@@ -825,7 +915,9 @@
     "dLang": "ภาษา",
     "na": "ไม่มี",
     "colon": ": ",
-    "rate": "ให้คะแนนแอปนี้"
+    "rate": "ให้คะแนนแอปนี้",
+    "community": "ชุมชน",
+    "copied": "คัดลอกแล้ว"
   },
   "tr": {
     "title": "Geri Bildirim",
@@ -843,7 +935,9 @@
     "dLang": "Dil",
     "na": "Yok",
     "colon": ": ",
-    "rate": "Uygulamayı değerlendir"
+    "rate": "Uygulamayı değerlendir",
+    "community": "Topluluk",
+    "copied": "Kopyalandı"
   },
   "uk": {
     "title": "Зворотний зв'язок",
@@ -861,7 +955,9 @@
     "dLang": "Мова",
     "na": "н/д",
     "colon": ": ",
-    "rate": "Оцінити застосунок"
+    "rate": "Оцінити застосунок",
+    "community": "Спільнота",
+    "copied": "Скопійовано"
   },
   "vi": {
     "title": "Phản hồi",
@@ -879,6 +975,8 @@
     "dLang": "Ngôn ngữ",
     "na": "Không có",
     "colon": ": ",
-    "rate": "Đánh giá ứng dụng"
+    "rate": "Đánh giá ứng dụng",
+    "community": "Cộng đồng",
+    "copied": "Đã sao chép"
   }
 }

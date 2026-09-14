@@ -5,6 +5,7 @@ export interface FbStrings {
   title: string; intro: string; emailLabel: string; deviceLabel: string; button: string;
   subject: string; problem: string; steps: string; diagHeader: string;
   dApp: string; dDevice: string; dOS: string; dLang: string; na: string; colon: string; rate: string;
+  community: string; copied: string;
 }
 
 export const FEEDBACK_I18N: Record<string, FbStrings> = feedbackI18n as Record<string, FbStrings>;
@@ -61,11 +62,25 @@ export function buildFeedbackMailto(email: string, subject: string, t: FbStrings
 
 export type StoreKey = 'appstore' | 'huawei';
 export interface StoreEntry { name: string; url: string }
+
+// 官方社群联系方式（参考 TraceApp 原生反馈：QQ 群直达 + 微信复制号并打开）。
+export interface QQGroup {
+  label: string;    // 显示名（群号或名称）
+  joinUrl?: string; // 一键加群：mqqapi:// 深链或 https://qm.qq.com/... 网页加群
+  link?: string;    // 「复制加群链接」要复制的内容；缺省则复制 label（群号）
+}
+export interface Contacts {
+  qq?: QQGroup[];                         // 可配置多个 QQ 群
+  wechat?: { id: string; url?: string };  // id: 复制到剪贴板；url: weixin:// 打开微信
+  telegram?: { url: string };
+}
+
 export interface FeedbackApp {
   name: string;
   email: string;
   stores: Partial<Record<StoreKey, StoreEntry>>;
   defaultStore: StoreKey;
+  contacts?: Contacts;
 }
 
 export const FEEDBACK_APPS: Record<string, FeedbackApp> = {
@@ -89,8 +104,30 @@ export const FEEDBACK_APPS: Record<string, FeedbackApp> = {
     email: 'flywithbug@163.com',
     stores: { appstore: { name: 'App Store', url: 'https://apps.apple.com/app/id1634761411?action=write-review' } },
     defaultStore: 'appstore',
+    // 沿用 TraceApp 现有官方社群（与其 App 内反馈一致）；后续可统一为树下小屋群。
+    contacts: {
+      qq: [
+        { label: '185198503', joinUrl: 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=185198503&key=04e52aa9e9b26feaaf8adf5191926d77c19a1e997834e51cef11f68f08215bcc&card_type=group&source=external&jump_from=webapi' },
+      ],
+      wechat: { id: 'flywithbug', url: 'weixin://' },
+    },
   },
 };
+
+// 树下小屋统一官方社群：与各 App 自身 contacts 合并（App 未覆盖的渠道用这里的）。
+// QQ 群可配多个；每个填 joinUrl（一键加群深链/网页）与可选 link（复制的加群链接）。
+export const FEEDBACK_CONTACTS_DEFAULT: Contacts = {
+  telegram: { url: 'https://t.me/+HJ8KMcExDNk2MTE1' },
+  // qq: [
+  //   { label: '树下小屋 1 群', joinUrl: 'https://qm.qq.com/q/xxxxx', link: 'https://qm.qq.com/q/xxxxx' },
+  // ],
+  // wechat: { id: '' },
+};
+
+/** 树下小屋统一社群为底，App 自身 contacts 按渠道覆盖（同渠道 App 优先）。 */
+export function contactsFor(app: FeedbackApp): Contacts {
+  return { ...FEEDBACK_CONTACTS_DEFAULT, ...(app.contacts ?? {}) };
+}
 
 // 未识别到 app 时的通用兜底（不显示商店评价按钮）
 export const FEEDBACK_GENERIC: FeedbackApp = {

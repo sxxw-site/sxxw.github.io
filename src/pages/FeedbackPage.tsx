@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import ThemeToggle from '../components/ThemeToggle';
 import {
   FEEDBACK_FALLBACK, FEEDBACK_GENERIC,
-  buildFeedbackMailto, collectFeedbackDiagnostics, resolveFeedbackApp, resolveFeedbackStrings,
-  type FbStrings, type FeedbackApp, type StoreEntry,
+  buildFeedbackMailto, collectFeedbackDiagnostics, contactsFor, resolveFeedbackApp, resolveFeedbackStrings,
+  type Contacts, type FbStrings, type FeedbackApp, type StoreEntry,
 } from '../lib/feedback';
 
 // 邮件主题：应用名 · 本地化「意见反馈」标题
@@ -11,8 +11,20 @@ function subjectFor(app: FeedbackApp, t: FbStrings): string { return `${app.name
 // 输入框占位符：复用 problem 文案，去掉方括号（[问题或建议] → 问题或建议）
 function placeholderFor(t: FbStrings): string { return t.problem.replace(/^[[【]+/, '').replace(/[\]】]+$/, ''); }
 
+// 剪贴板复制：优先 async clipboard，回退 execCommand，适配 App 内 webview。
+async function copyText(text: string): Promise<boolean> {
+  try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch { /* fall through */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    const ok = document.execCommand('copy'); document.body.removeChild(ta); return ok;
+  } catch { return false; }
+}
+
 /**
- * 独立「意见反馈」页 /feedback/ —— 无整站导航/页脚，聚焦单卡片，适合 App 内 H5 打开。
+ * 独立「意见反馈」页 /feedback/ —— 无整站外壳，聚焦单卡片，适合 App 内 H5 打开。
+ * 参考 TraceApp 原生反馈：邮件 + 官方社群（QQ 群直达 / 微信复制号并打开）+ 应用商店评价。
  * App 端打开示例：
  *   /feedback/?app=timetrails&lang=en&appv=1.2.0&build=45&os=iOS%2018&device=iPhone15,2
  *   /feedback/?app=memoria&platform=harmony&lang=zh-Hans   （鸿蒙版 → 华为应用市场评价）
@@ -23,19 +35,30 @@ export default function FeedbackPage() {
   const [t, setT] = useState<FbStrings>(FEEDBACK_FALLBACK);
   const [app, setApp] = useState<FeedbackApp>(FEEDBACK_GENERIC);
   const [store, setStore] = useState<StoreEntry | undefined>(undefined);
+  const [contacts, setContacts] = useState<Contacts>({});
   const [diag, setDiag] = useState('');
   const [fromApp, setFromApp] = useState(false);
   const [msg, setMsg] = useState('');
+  const [copied, setCopied] = useState('');
 
   useEffect(() => {
     const strings = resolveFeedbackStrings();
     const resolved = resolveFeedbackApp();
     const collected = collectFeedbackDiagnostics(strings);
-    setT(strings); setApp(resolved.app); setStore(resolved.store);
+    setT(strings); setApp(resolved.app); setStore(resolved.store); setContacts(contactsFor(resolved.app));
     setDiag(collected.text); setFromApp(collected.fromApp);
   }, []);
 
-  const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, diag, msg);
+  function copyAnd(key: string, text: string, openUrl?: string) {
+    copyText(text).then((ok) => {
+      if (ok) { setCopied(key); window.setTimeout(() => setCopied((c) => (c === key ? '' : c)), 1600); }
+      if (openUrl) window.setTimeout(() => { window.location.href = openUrl; }, 380);
+    });
+  }
+
+  const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, fromApp ? diag : '', msg);
+  const hasContacts = !!((contacts.qq && contacts.qq.length) || contacts.wechat || contacts.telegram);
+  const copyMark = (key: string) => (copied === key ? `✓ ${t.copied}` : '⧉');
 
   return <div className="fb-page">
     <ThemeToggle />
@@ -53,7 +76,13 @@ export default function FeedbackPage() {
           aria-label={t.title}
           rows={6}
         />
-        <div className="fb-email"><span>{t.emailLabel}</span><a className="linkish" href={`mailto:${app.email}`}>{app.email}</a></div>
+        <div className="fb-email">
+          <span className="fb-email-key">{t.emailLabel}</span>
+          <span className="fb-email-val">
+            <a className="linkish" href={`mailto:${app.email}`}>{app.email}</a>
+            <button type="button" className="fb-copy" onClick={() => copyAnd('email', app.email)} aria-label={app.email}>{copied === 'email' ? `✓ ${t.copied}` : '⧉'}</button>
+          </span>
+        </div>
         {fromApp && diag && <pre className="fb-diag" aria-label={t.deviceLabel}>{diag}</pre>}
       </div>
 
@@ -61,6 +90,21 @@ export default function FeedbackPage() {
         <a className="btn-primary fb-send" href={mailto}>{t.button}</a>
         {store && <a className="btn-ghost fb-rate" href={store.url} target="_blank" rel="noreferrer">{t.rate} · {store.name} ↗</a>}
       </div>
+
+      {hasContacts ? <div className="fb-community">
+        <p className="fb-community-title">{t.community}</p>
+        <div className="fb-chips">
+          {contacts.qq?.map((g, i) => <div className="fb-chip-pair" key={g.label}>
+            <a className="fb-chip" href={g.joinUrl || '#'} {...(/^https?:/.test(g.joinUrl || '') ? { target: '_blank', rel: 'noreferrer' } : {})}>QQ 群 · {g.label} ↗</a>
+            <button type="button" className="fb-copy-chip" onClick={() => copyAnd(`qq${i}`, g.link || g.label)} aria-label={g.link || g.label}>{copyMark(`qq${i}`)}</button>
+          </div>)}
+          {contacts.wechat && <button type="button" className="fb-chip" onClick={() => copyAnd('wechat', contacts.wechat!.id, contacts.wechat!.url)}>微信 · {contacts.wechat.id} <em>{copyMark('wechat')}</em></button>}
+          {contacts.telegram && <div className="fb-chip-pair">
+            <a className="fb-chip" href={contacts.telegram.url} target="_blank" rel="noreferrer">Telegram ↗</a>
+            <button type="button" className="fb-copy-chip" onClick={() => copyAnd('tg', contacts.telegram!.url)} aria-label={contacts.telegram.url}>{copyMark('tg')}</button>
+          </div>}
+        </div>
+      </div> : <a className="fb-support-link" href="/support/">{t.community} →</a>}
 
       <a className="fb-foot" href="/">sxxw.site</a>
     </main>
