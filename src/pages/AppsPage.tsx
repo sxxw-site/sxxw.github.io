@@ -12,7 +12,7 @@ export default function AppsPage() {
   const { t } = useI18n();
   return <><ThemeToggle />
     <header className="navbar"><div className="container nav-inner">
-      <a className="brand" href="/" aria-label={t('home.common.company')}><span className="brand-icon" aria-hidden="true">✦</span><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">Products · Support · Privacy</span></span></a>
+      <a className="brand" href="/" aria-label={t('home.common.company')}><img className="brand-logo" src="/logo.png" alt="" aria-hidden="true" width={36} height={36} /><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">Products · Support · Privacy</span></span></a>
       <nav className="nav-menu nav-menu-static"><a className="nav-link" href="/">{t('home.nav.home')}</a><a className="nav-link" href="/support/">{t('nav.support')}</a><a className="nav-link cta-nav" href="/contact/">{t('home.nav.contact')}</a><LanguageSelect /></nav>
     </div></header>
     <main className="product-page"><div className="container product-page-inner">

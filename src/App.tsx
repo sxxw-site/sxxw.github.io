@@ -16,7 +16,7 @@ const HOME_APPS = [
 ];
 
 function BrandMark() {
-  return <span className="brand-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" role="img"><circle cx="11" cy="10" r="6" fill="url(#gradTree)" /><rect x="9.5" y="14" width="3" height="6" rx="1" fill="#e5e5e5" /><path d="M20 15 L26 19 L26 27 L14 27 L14 19 Z" fill="#18181b" stroke="#e5e5e5" strokeWidth="1.5" /><path d="M14 19 L20 15 L26 19" fill="#18181b" stroke="#e5e5e5" strokeWidth="1.5" /><rect x="18" y="21" width="4" height="6" fill="#0a0a0b" stroke="#e5e5e5" strokeWidth="1" rx="0.5" /><defs><radialGradient id="gradTree" cx="0" cy="0" r="1" gradientTransform="translate(9 8) rotate(45) scale(10)" gradientUnits="userSpaceOnUse"><stop stopColor="#e5e5e5" /><stop offset="1" stopColor="#52525b" /></radialGradient></defs></svg></span>;
+  return <img className="brand-logo" src="/logo.png" alt="" aria-hidden="true" width={36} height={36} />;
 }
 
 function HtmlText({ value }: { value: string }) {
