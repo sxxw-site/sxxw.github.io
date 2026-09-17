@@ -1448,3 +1448,11 @@ html[data-theme="light"] .fb-diag { background: rgba(0,0,0,.03); }
 
 /* 品牌 logo（树下小屋徽章） */
 .brand-logo { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 0 0 1px var(--accent-soft); background: #f7f2e6; }
+
+/* 嵌入 App 展示（URL 带 ?embed=1）：隐藏站点外壳，仅保留正文，便于 App 内嵌 WebView 呈现 */
+html.embed .theme-toggle,
+html.embed .navbar,
+html.embed .breadcrumbs,
+html.embed .platform-tabs,
+html.embed .site-footer { display: none !important; }
+html.embed .product-page { min-height: 0; padding-top: clamp(1.25rem, 4vw, 2rem); }

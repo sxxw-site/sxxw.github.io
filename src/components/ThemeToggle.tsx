@@ -26,5 +26,5 @@ export default function ThemeToggle() {
     window.localStorage.setItem('sxxw-theme', theme);
   }, [theme]);
 
-  return <button className="theme-toggle" type="button" aria-label={theme === 'dark' ? '切换到浅色主题' : '切换到深色主题'} onClick={() => setTheme((value) => value === 'dark' ? 'light' : 'dark')}><span aria-hidden="true">{theme === 'dark' ? '☀' : '◐'}</span><span>{theme === 'dark' ? '浅色' : '深色'}</span></button>;
+  return <button className="theme-toggle" type="button" aria-label={theme === 'dark' ? '切换到浅色主题' : '切换到深色主题'} onClick={() => setTheme((value) => value === 'dark' ? 'light' : 'dark')}><span aria-hidden="true">{theme === 'dark' ? '☀' : '◐'}</span></button>;
 }
