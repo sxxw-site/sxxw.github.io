@@ -1454,5 +1454,8 @@ html.embed .theme-toggle,
 html.embed .navbar,
 html.embed .breadcrumbs,
 html.embed .platform-tabs,
-html.embed .site-footer { display: none !important; }
+html.embed .site-footer,
+html.embed .fb-brand,
+html.embed .fb-foot { display: none !important; }
 html.embed .product-page { min-height: 0; padding-top: clamp(1.25rem, 4vw, 2rem); }
+html.embed .fb-page { padding-top: clamp(1rem, 4vw, 1.75rem); }
