@@ -76,8 +76,10 @@ export default function FeedbackPage() {
   const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, fromApp ? diag : '', ratingLine + msg);
 
   // 有附件时走系统分享（可把截屏/录屏 + 预填正文一起交给邮件/微信等）；不支持或用户取消则回退纯邮件。
+  // 注意：Web Share 无「收件人」字段，分享到邮件会新建空收件人邮件——故把反馈邮箱写进正文首行，便于用户复制/知道发往何处。
   async function shareWithFiles() {
-    const body = buildFeedbackBody(t, fromApp ? diag : '', ratingLine + msg);
+    const recipient = `${t.emailLabel}${t.colon}${app.email}\n\n`;
+    const body = recipient + buildFeedbackBody(t, fromApp ? diag : '', ratingLine + msg);
     try {
       if (files.length && navigator.canShare?.({ files }) && navigator.share) {
         await navigator.share({ files, title: subjectFor(app, t), text: body });
