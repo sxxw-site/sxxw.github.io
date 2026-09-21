@@ -5,7 +5,7 @@ export interface FbStrings {
   title: string; intro: string; emailLabel: string; deviceLabel: string; button: string;
   subject: string; problem: string; steps: string; diagHeader: string;
   dApp: string; dDevice: string; dOS: string; dLang: string; na: string; colon: string; rate: string;
-  community: string; copied: string; attach: string;
+  community: string; copied: string; attach: string; emailOnly: string;
 }
 
 export const FEEDBACK_I18N: Record<string, FbStrings> = feedbackI18n as Record<string, FbStrings>;

@@ -18,7 +18,8 @@
     "rate": "Rate this app",
     "community": "Community",
     "copied": "Copied",
-    "attach": "Add screenshot / recording"
+    "attach": "Add screenshot / recording",
+    "emailOnly": "Email only (no attachment)"
   },
   "zh-hans": {
     "title": "意见反馈",
@@ -39,7 +40,8 @@
     "rate": "去应用商店评价",
     "community": "官方社群",
     "copied": "已复制",
-    "attach": "添加截屏 / 录屏"
+    "attach": "添加截屏 / 录屏",
+    "emailOnly": "仅用邮件发送（不含附件）"
   },
   "zh-hant": {
     "title": "意見反饋",
@@ -60,7 +62,8 @@
     "rate": "前往應用商店評價",
     "community": "官方社群",
     "copied": "已複製",
-    "attach": "新增截圖 / 錄影"
+    "attach": "新增截圖 / 錄影",
+    "emailOnly": "僅以郵件傳送（不含附件）"
   },
   "af": {
     "title": "Terugvoer",
@@ -81,7 +84,8 @@
     "rate": "Beoordeel hierdie app",
     "community": "Gemeenskap",
     "copied": "Gekopieer",
-    "attach": "Voeg skermkiekie / opname by"
+    "attach": "Voeg skermkiekie / opname by",
+    "emailOnly": "Slegs e-pos (geen aanhangsel)"
   },
   "ar": {
     "title": "الملاحظات",
@@ -102,7 +106,8 @@
     "rate": "قيّم هذا التطبيق",
     "community": "المجتمع",
     "copied": "تم النسخ",
-    "attach": "إضافة لقطة شاشة / تسجيل"
+    "attach": "إضافة لقطة شاشة / تسجيل",
+    "emailOnly": "بريد فقط (بدون مرفق)"
   },
   "be": {
     "title": "Зваротная сувязь",
@@ -123,7 +128,8 @@
     "rate": "Ацаніце праграму",
     "community": "Супольнасць",
     "copied": "Скапіравана",
-    "attach": "Дадаць скрыншот / запіс"
+    "attach": "Дадаць скрыншот / запіс",
+    "emailOnly": "Толькі пошта (без укладання)"
   },
   "bg": {
     "title": "Обратна връзка",
@@ -144,7 +150,8 @@
     "rate": "Оценете това приложение",
     "community": "Общност",
     "copied": "Копирано",
-    "attach": "Добавяне на екранна снимка / запис"
+    "attach": "Добавяне на екранна снимка / запис",
+    "emailOnly": "Само имейл (без прикачен файл)"
   },
   "bn": {
     "title": "মতামত",
@@ -165,7 +172,8 @@
     "rate": "এই অ্যাপটি রেট করুন",
     "community": "কমিউনিটি",
     "copied": "কপি হয়েছে",
-    "attach": "স্ক্রিনশট / রেকর্ডিং যোগ করুন"
+    "attach": "স্ক্রিনশট / রেকর্ডিং যোগ করুন",
+    "emailOnly": "শুধু ইমেল (সংযুক্তি ছাড়া)"
   },
   "cs": {
     "title": "Zpětná vazba",
@@ -186,7 +194,8 @@
     "rate": "Ohodnotit aplikaci",
     "community": "Komunita",
     "copied": "Zkopírováno",
-    "attach": "Přidat snímek / záznam obrazovky"
+    "attach": "Přidat snímek / záznam obrazovky",
+    "emailOnly": "Jen e-mail (bez přílohy)"
   },
   "da": {
     "title": "Feedback",
@@ -207,7 +216,8 @@
     "rate": "Bedøm denne app",
     "community": "Fællesskab",
     "copied": "Kopieret",
-    "attach": "Tilføj skærmbillede / optagelse"
+    "attach": "Tilføj skærmbillede / optagelse",
+    "emailOnly": "Kun e-mail (ingen vedhæftning)"
   },
   "de": {
     "title": "Feedback",
@@ -228,7 +238,8 @@
     "rate": "App bewerten",
     "community": "Community",
     "copied": "Kopiert",
-    "attach": "Screenshot / Aufnahme hinzufügen"
+    "attach": "Screenshot / Aufnahme hinzufügen",
+    "emailOnly": "Nur E-Mail (ohne Anhang)"
   },
   "el": {
     "title": "Σχόλια",
@@ -249,7 +260,8 @@
     "rate": "Αξιολόγηση εφαρμογής",
     "community": "Κοινότητα",
     "copied": "Αντιγράφηκε",
-    "attach": "Προσθήκη στιγμιότυπου / εγγραφής"
+    "attach": "Προσθήκη στιγμιότυπου / εγγραφής",
+    "emailOnly": "Μόνο email (χωρίς συνημμένο)"
   },
   "es": {
     "title": "Comentarios",
@@ -270,7 +282,8 @@
     "rate": "Valorar esta app",
     "community": "Comunidad",
     "copied": "Copiado",
-    "attach": "Añadir captura / grabación"
+    "attach": "Añadir captura / grabación",
+    "emailOnly": "Solo correo (sin adjunto)"
   },
   "et": {
     "title": "Tagasiside",
@@ -291,7 +304,8 @@
     "rate": "Hinda rakendust",
     "community": "Kogukond",
     "copied": "Kopeeritud",
-    "attach": "Lisa kuvatõmmis / salvestus"
+    "attach": "Lisa kuvatõmmis / salvestus",
+    "emailOnly": "Ainult e-post (ilma manuseta)"
   },
   "fa": {
     "title": "بازخورد",
@@ -312,7 +326,8 @@
     "rate": "به این برنامه امتیاز دهید",
     "community": "انجمن",
     "copied": "کپی شد",
-    "attach": "افزودن اسکرین‌شات / ضبط صفحه"
+    "attach": "افزودن اسکرین‌شات / ضبط صفحه",
+    "emailOnly": "فقط ایمیل (بدون پیوست)"
   },
   "fi": {
     "title": "Palaute",
@@ -333,7 +348,8 @@
     "rate": "Arvioi sovellus",
     "community": "Yhteisö",
     "copied": "Kopioitu",
-    "attach": "Lisää kuvakaappaus / tallenne"
+    "attach": "Lisää kuvakaappaus / tallenne",
+    "emailOnly": "Vain sähköposti (ei liitettä)"
   },
   "fr": {
     "title": "Commentaires",
@@ -354,7 +370,8 @@
     "rate": "Noter cette app",
     "community": "Communauté",
     "copied": "Copié",
-    "attach": "Ajouter capture / enregistrement"
+    "attach": "Ajouter capture / enregistrement",
+    "emailOnly": "E-mail seul (sans pièce jointe)"
   },
   "gu": {
     "title": "પ્રતિસાદ",
@@ -375,7 +392,8 @@
     "rate": "આ ઍપને રેટ કરો",
     "community": "સમુદાય",
     "copied": "કૉપિ થયું",
-    "attach": "સ્ક્રીનશોટ / રેકોર્ડિંગ ઉમેરો"
+    "attach": "સ્ક્રીનશોટ / રેકોર્ડિંગ ઉમેરો",
+    "emailOnly": "ફક્ત ઇમેઇલ (જોડાણ વિના)"
   },
   "he": {
     "title": "משוב",
@@ -396,7 +414,8 @@
     "rate": "דרגו את האפליקציה",
     "community": "קהילה",
     "copied": "הועתק",
-    "attach": "הוספת צילום מסך / הקלטה"
+    "attach": "הוספת צילום מסך / הקלטה",
+    "emailOnly": "אימייל בלבד (ללא צירוף)"
   },
   "hi": {
     "title": "फ़ीडबैक",
@@ -417,7 +436,8 @@
     "rate": "इस ऐप को रेट करें",
     "community": "समुदाय",
     "copied": "कॉपी किया गया",
-    "attach": "स्क्रीनशॉट / रिकॉर्डिंग जोड़ें"
+    "attach": "स्क्रीनशॉट / रिकॉर्डिंग जोड़ें",
+    "emailOnly": "केवल ईमेल (बिना अटैचमेंट)"
   },
   "hr": {
     "title": "Povratne informacije",
@@ -438,7 +458,8 @@
     "rate": "Ocijenite aplikaciju",
     "community": "Zajednica",
     "copied": "Kopirano",
-    "attach": "Dodaj snimku zaslona / zapis"
+    "attach": "Dodaj snimku zaslona / zapis",
+    "emailOnly": "Samo e-pošta (bez privitka)"
   },
   "hu": {
     "title": "Visszajelzés",
@@ -459,7 +480,8 @@
     "rate": "Értékeld az alkalmazást",
     "community": "Közösség",
     "copied": "Másolva",
-    "attach": "Képernyőkép / felvétel hozzáadása"
+    "attach": "Képernyőkép / felvétel hozzáadása",
+    "emailOnly": "Csak e-mail (melléklet nélkül)"
   },
   "id": {
     "title": "Masukan",
@@ -480,7 +502,8 @@
     "rate": "Beri rating aplikasi",
     "community": "Komunitas",
     "copied": "Disalin",
-    "attach": "Tambahkan tangkapan layar / rekaman"
+    "attach": "Tambahkan tangkapan layar / rekaman",
+    "emailOnly": "Email saja (tanpa lampiran)"
   },
   "it": {
     "title": "Feedback",
@@ -501,7 +524,8 @@
     "rate": "Valuta questa app",
     "community": "Community",
     "copied": "Copiato",
-    "attach": "Aggiungi screenshot / registrazione"
+    "attach": "Aggiungi screenshot / registrazione",
+    "emailOnly": "Solo email (senza allegato)"
   },
   "ja": {
     "title": "フィードバック",
@@ -522,7 +546,8 @@
     "rate": "このアプリを評価",
     "community": "コミュニティ",
     "copied": "コピーしました",
-    "attach": "スクリーンショット / 録画を追加"
+    "attach": "スクリーンショット / 録画を追加",
+    "emailOnly": "メールのみ（添付なし）"
   },
   "kk": {
     "title": "Кері байланыс",
@@ -543,7 +568,8 @@
     "rate": "Қолданбаны бағалау",
     "community": "Қауымдастық",
     "copied": "Көшірілді",
-    "attach": "Скриншот / жазба қосу"
+    "attach": "Скриншот / жазба қосу",
+    "emailOnly": "Тек пошта (тіркемесіз)"
   },
   "kn": {
     "title": "ಪ್ರತಿಕ್ರಿಯೆ",
@@ -564,7 +590,8 @@
     "rate": "ಈ ಆ್ಯಪ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ",
     "community": "ಸಮುದಾಯ",
     "copied": "ನಕಲಿಸಲಾಗಿದೆ",
-    "attach": "ಸ್ಕ್ರೀನ್‌ಶಾಟ್ / ರೆಕಾರ್ಡಿಂಗ್ ಸೇರಿಸಿ"
+    "attach": "ಸ್ಕ್ರೀನ್‌ಶಾಟ್ / ರೆಕಾರ್ಡಿಂಗ್ ಸೇರಿಸಿ",
+    "emailOnly": "ಇಮೇಲ್ ಮಾತ್ರ (ಲಗತ್ತಿಲ್ಲದೆ)"
   },
   "ko": {
     "title": "피드백",
@@ -585,7 +612,8 @@
     "rate": "이 앱 평가하기",
     "community": "커뮤니티",
     "copied": "복사됨",
-    "attach": "스크린샷 / 녹화 추가"
+    "attach": "스크린샷 / 녹화 추가",
+    "emailOnly": "이메일만 (첨부 없음)"
   },
   "lt": {
     "title": "Atsiliepimai",
@@ -606,7 +634,8 @@
     "rate": "Įvertinkite programėlę",
     "community": "Bendruomenė",
     "copied": "Nukopijuota",
-    "attach": "Pridėti ekrano nuotrauką / įrašą"
+    "attach": "Pridėti ekrano nuotrauką / įrašą",
+    "emailOnly": "Tik el. paštas (be priedo)"
   },
   "lv": {
     "title": "Atsauksmes",
@@ -627,7 +656,8 @@
     "rate": "Novērtējiet lietotni",
     "community": "Kopiena",
     "copied": "Nokopēts",
-    "attach": "Pievienot ekrānuzņēmumu / ierakstu"
+    "attach": "Pievienot ekrānuzņēmumu / ierakstu",
+    "emailOnly": "Tikai e-pasts (bez pielikuma)"
   },
   "ml": {
     "title": "ഫീഡ്‌ബാക്ക്",
@@ -648,7 +678,8 @@
     "rate": "ഈ ആപ്പ് റേറ്റ് ചെയ്യുക",
     "community": "കമ്മ്യൂണിറ്റി",
     "copied": "പകർത്തി",
-    "attach": "സ്ക്രീൻഷോട്ട് / റെക്കോർഡിംഗ് ചേർക്കുക"
+    "attach": "സ്ക്രീൻഷോട്ട് / റെക്കോർഡിംഗ് ചേർക്കുക",
+    "emailOnly": "ഇമെയിൽ മാത്രം (അറ്റാച്ച്‌മെന്റ് ഇല്ലാതെ)"
   },
   "mr": {
     "title": "अभिप्राय",
@@ -669,7 +700,8 @@
     "rate": "या ॲपला रेट करा",
     "community": "समुदाय",
     "copied": "कॉपी केले",
-    "attach": "स्क्रीनशॉट / रेकॉर्डिंग जोडा"
+    "attach": "स्क्रीनशॉट / रेकॉर्डिंग जोडा",
+    "emailOnly": "फक्त ईमेल (संलग्नकाशिवाय)"
   },
   "ms": {
     "title": "Maklum Balas",
@@ -690,7 +722,8 @@
     "rate": "Nilai aplikasi ini",
     "community": "Komuniti",
     "copied": "Disalin",
-    "attach": "Tambah tangkapan skrin / rakaman"
+    "attach": "Tambah tangkapan skrin / rakaman",
+    "emailOnly": "E-mel sahaja (tanpa lampiran)"
   },
   "nb": {
     "title": "Tilbakemelding",
@@ -711,7 +744,8 @@
     "rate": "Vurder denne appen",
     "community": "Fellesskap",
     "copied": "Kopiert",
-    "attach": "Legg til skjermbilde / opptak"
+    "attach": "Legg til skjermbilde / opptak",
+    "emailOnly": "Bare e-post (uten vedlegg)"
   },
   "nl": {
     "title": "Feedback",
@@ -732,7 +766,8 @@
     "rate": "Beoordeel deze app",
     "community": "Community",
     "copied": "Gekopieerd",
-    "attach": "Screenshot / opname toevoegen"
+    "attach": "Screenshot / opname toevoegen",
+    "emailOnly": "Alleen e-mail (zonder bijlage)"
   },
   "pa": {
     "title": "ਫੀਡਬੈਕ",
@@ -753,7 +788,8 @@
     "rate": "ਇਸ ਐਪ ਨੂੰ ਰੇਟ ਕਰੋ",
     "community": "ਭਾਈਚਾਰਾ",
     "copied": "ਕਾਪੀ ਕੀਤਾ",
-    "attach": "ਸਕ੍ਰੀਨਸ਼ਾਟ / ਰਿਕਾਰਡਿੰਗ ਸ਼ਾਮਲ ਕਰੋ"
+    "attach": "ਸਕ੍ਰੀਨਸ਼ਾਟ / ਰਿਕਾਰਡਿੰਗ ਸ਼ਾਮਲ ਕਰੋ",
+    "emailOnly": "ਸਿਰਫ਼ ਈਮੇਲ (ਅਟੈਚਮੈਂਟ ਤੋਂ ਬਿਨਾਂ)"
   },
   "pl": {
     "title": "Opinie",
@@ -774,7 +810,8 @@
     "rate": "Oceń tę aplikację",
     "community": "Społeczność",
     "copied": "Skopiowano",
-    "attach": "Dodaj zrzut ekranu / nagranie"
+    "attach": "Dodaj zrzut ekranu / nagranie",
+    "emailOnly": "Tylko e-mail (bez załącznika)"
   },
   "pt": {
     "title": "Comentários",
@@ -795,7 +832,8 @@
     "rate": "Avaliar este app",
     "community": "Comunidade",
     "copied": "Copiado",
-    "attach": "Adicionar captura / gravação"
+    "attach": "Adicionar captura / gravação",
+    "emailOnly": "Só e-mail (sem anexo)"
   },
   "ro": {
     "title": "Feedback",
@@ -816,7 +854,8 @@
     "rate": "Evaluează aplicația",
     "community": "Comunitate",
     "copied": "Copiat",
-    "attach": "Adaugă captură / înregistrare"
+    "attach": "Adaugă captură / înregistrare",
+    "emailOnly": "Doar e-mail (fără atașament)"
   },
   "ru": {
     "title": "Обратная связь",
@@ -837,7 +876,8 @@
     "rate": "Оценить приложение",
     "community": "Сообщество",
     "copied": "Скопировано",
-    "attach": "Добавить скриншот / запись"
+    "attach": "Добавить скриншот / запись",
+    "emailOnly": "Только e-mail (без вложения)"
   },
   "sk": {
     "title": "Spätná väzba",
@@ -858,7 +898,8 @@
     "rate": "Ohodnotiť aplikáciu",
     "community": "Komunita",
     "copied": "Skopírované",
-    "attach": "Pridať snímku / záznam obrazovky"
+    "attach": "Pridať snímku / záznam obrazovky",
+    "emailOnly": "Len e-mail (bez prílohy)"
   },
   "sl": {
     "title": "Povratne informacije",
@@ -879,7 +920,8 @@
     "rate": "Ocenite aplikacijo",
     "community": "Skupnost",
     "copied": "Kopirano",
-    "attach": "Dodaj posnetek zaslona / snemanje"
+    "attach": "Dodaj posnetek zaslona / snemanje",
+    "emailOnly": "Samo e-pošta (brez priloge)"
   },
   "sv": {
     "title": "Feedback",
@@ -900,7 +942,8 @@
     "rate": "Betygsätt appen",
     "community": "Gemenskap",
     "copied": "Kopierat",
-    "attach": "Lägg till skärmbild / inspelning"
+    "attach": "Lägg till skärmbild / inspelning",
+    "emailOnly": "Endast e-post (ingen bilaga)"
   },
   "ta": {
     "title": "கருத்து",
@@ -921,7 +964,8 @@
     "rate": "இந்த ஆப்பை மதிப்பிடுங்கள்",
     "community": "சமூகம்",
     "copied": "நகலெடுக்கப்பட்டது",
-    "attach": "ஸ்கிரீன்ஷாட் / பதிவை சேர்க்கவும்"
+    "attach": "ஸ்கிரீன்ஷாட் / பதிவை சேர்க்கவும்",
+    "emailOnly": "மின்னஞ்சல் மட்டும் (இணைப்பு இல்லாமல்)"
   },
   "te": {
     "title": "అభిప్రాయం",
@@ -942,7 +986,8 @@
     "rate": "ఈ యాప్‌ను రేట్ చేయండి",
     "community": "సంఘం",
     "copied": "కాపీ చేయబడింది",
-    "attach": "స్క్రీన్‌షాట్ / రికార్డింగ్ జోడించండి"
+    "attach": "స్క్రీన్‌షాట్ / రికార్డింగ్ జోడించండి",
+    "emailOnly": "ఇమెయిల్ మాత్రమే (జోడింపు లేకుండా)"
   },
   "th": {
     "title": "ข้อเสนอแนะ",
@@ -963,7 +1008,8 @@
     "rate": "ให้คะแนนแอปนี้",
     "community": "ชุมชน",
     "copied": "คัดลอกแล้ว",
-    "attach": "เพิ่มภาพหน้าจอ / การบันทึกหน้าจอ"
+    "attach": "เพิ่มภาพหน้าจอ / การบันทึกหน้าจอ",
+    "emailOnly": "อีเมลเท่านั้น (ไม่มีไฟล์แนบ)"
   },
   "tr": {
     "title": "Geri Bildirim",
@@ -984,7 +1030,8 @@
     "rate": "Uygulamayı değerlendir",
     "community": "Topluluk",
     "copied": "Kopyalandı",
-    "attach": "Ekran görüntüsü / kayıt ekle"
+    "attach": "Ekran görüntüsü / kayıt ekle",
+    "emailOnly": "Sadece e-posta (eksiz)"
   },
   "uk": {
     "title": "Зворотний зв'язок",
@@ -1005,7 +1052,8 @@
     "rate": "Оцінити застосунок",
     "community": "Спільнота",
     "copied": "Скопійовано",
-    "attach": "Додати знімок екрана / запис"
+    "attach": "Додати знімок екрана / запис",
+    "emailOnly": "Лише e-mail (без вкладення)"
   },
   "vi": {
     "title": "Phản hồi",
@@ -1026,6 +1074,7 @@
     "rate": "Đánh giá ứng dụng",
     "community": "Cộng đồng",
     "copied": "Đã sao chép",
-    "attach": "Thêm ảnh chụp / bản ghi màn hình"
+    "attach": "Thêm ảnh chụp / bản ghi màn hình",
+    "emailOnly": "Chỉ email (không đính kèm)"
   }
 }

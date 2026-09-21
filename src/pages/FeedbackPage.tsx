@@ -145,6 +145,7 @@ export default function FeedbackPage() {
           : <a className="btn-primary fb-send" href={mailto}>{t.button}</a>}
         {store && <a className="btn-ghost fb-rate" href={store.url} target="_blank" rel="noreferrer">{t.rate} · {store.name} ↗</a>}
       </div>
+      {useShare && <a className="fb-email-only" href={mailto}>{t.emailOnly}</a>}
 
       {hasContacts ? <div className="fb-community">
         <p className="fb-community-title">{t.community}</p>

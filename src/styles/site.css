@@ -1413,6 +1413,8 @@ html[data-theme="light"] .fb-file { background: rgba(0,0,0,.03); }
 .fb-file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .fb-file-x { flex: none; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 6px; background: transparent; color: var(--text-dim); font-size: 1.05rem; line-height: 1; cursor: pointer; }
 .fb-file-x:hover { background: var(--accent-soft); color: var(--accent); }
+.fb-email-only { display: block; margin: 12px 0 0; text-align: center; font-size: .82rem; color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
+.fb-email-only:hover { color: var(--accent); }
 .fb-email { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: .86rem; color: var(--text-dim); }
 .fb-email span { font-family: var(--pixel); font-size: .54rem; letter-spacing: .05em; text-transform: uppercase; }
 .fb-diag { margin: 0; padding: 12px 14px; border: 1px dashed var(--card-stroke); border-radius: 10px; background: rgba(0,0,0,.18); color: var(--text-dim); font-family: var(--mono); font-size: .78rem; line-height: 1.7; white-space: pre-wrap; overflow-x: auto; }
