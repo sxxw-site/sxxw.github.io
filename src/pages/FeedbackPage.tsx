@@ -80,6 +80,11 @@ export default function FeedbackPage() {
   async function shareWithFiles() {
     const recipient = `${t.emailLabel}${t.colon}${app.email}\n\n`;
     const body = recipient + buildFeedbackBody(t, fromApp ? diag : '', ratingLine + msg);
+    // Web Share 无收件人字段：发送时顺手把反馈邮箱复制到剪贴板，用户可直接粘贴到「收件人」。
+    // 不 await，保持在用户手势内同步发起 share（clipboard 写入已同步触发）。
+    void copyText(app.email).then((ok) => {
+      if (ok) { setCopied('email'); window.setTimeout(() => setCopied((c) => (c === 'email' ? '' : c)), 2500); }
+    });
     try {
       if (files.length && navigator.canShare?.({ files }) && navigator.share) {
         await navigator.share({ files, title: subjectFor(app, t), text: body });
