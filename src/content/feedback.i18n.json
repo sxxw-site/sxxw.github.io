@@ -17,7 +17,8 @@
     "colon": ": ",
     "rate": "Rate this app",
     "community": "Community",
-    "copied": "Copied"
+    "copied": "Copied",
+    "attach": "Add screenshot / recording"
   },
   "zh-hans": {
     "title": "意见反馈",
@@ -37,7 +38,8 @@
     "colon": "：",
     "rate": "去应用商店评价",
     "community": "官方社群",
-    "copied": "已复制"
+    "copied": "已复制",
+    "attach": "添加截屏 / 录屏"
   },
   "zh-hant": {
     "title": "意見反饋",
@@ -57,7 +59,8 @@
     "colon": "：",
     "rate": "前往應用商店評價",
     "community": "官方社群",
-    "copied": "已複製"
+    "copied": "已複製",
+    "attach": "新增截圖 / 錄影"
   },
   "af": {
     "title": "Terugvoer",
@@ -77,7 +80,8 @@
     "colon": ": ",
     "rate": "Beoordeel hierdie app",
     "community": "Gemeenskap",
-    "copied": "Gekopieer"
+    "copied": "Gekopieer",
+    "attach": "Voeg skermkiekie / opname by"
   },
   "ar": {
     "title": "الملاحظات",
@@ -97,7 +101,8 @@
     "colon": ": ",
     "rate": "قيّم هذا التطبيق",
     "community": "المجتمع",
-    "copied": "تم النسخ"
+    "copied": "تم النسخ",
+    "attach": "إضافة لقطة شاشة / تسجيل"
   },
   "be": {
     "title": "Зваротная сувязь",
@@ -117,7 +122,8 @@
     "colon": ": ",
     "rate": "Ацаніце праграму",
     "community": "Супольнасць",
-    "copied": "Скапіравана"
+    "copied": "Скапіравана",
+    "attach": "Дадаць скрыншот / запіс"
   },
   "bg": {
     "title": "Обратна връзка",
@@ -137,7 +143,8 @@
     "colon": ": ",
     "rate": "Оценете това приложение",
     "community": "Общност",
-    "copied": "Копирано"
+    "copied": "Копирано",
+    "attach": "Добавяне на екранна снимка / запис"
   },
   "bn": {
     "title": "মতামত",
@@ -157,7 +164,8 @@
     "colon": ": ",
     "rate": "এই অ্যাপটি রেট করুন",
     "community": "কমিউনিটি",
-    "copied": "কপি হয়েছে"
+    "copied": "কপি হয়েছে",
+    "attach": "স্ক্রিনশট / রেকর্ডিং যোগ করুন"
   },
   "cs": {
     "title": "Zpětná vazba",
@@ -177,7 +185,8 @@
     "colon": ": ",
     "rate": "Ohodnotit aplikaci",
     "community": "Komunita",
-    "copied": "Zkopírováno"
+    "copied": "Zkopírováno",
+    "attach": "Přidat snímek / záznam obrazovky"
   },
   "da": {
     "title": "Feedback",
@@ -197,7 +206,8 @@
     "colon": ": ",
     "rate": "Bedøm denne app",
     "community": "Fællesskab",
-    "copied": "Kopieret"
+    "copied": "Kopieret",
+    "attach": "Tilføj skærmbillede / optagelse"
   },
   "de": {
     "title": "Feedback",
@@ -217,7 +227,8 @@
     "colon": ": ",
     "rate": "App bewerten",
     "community": "Community",
-    "copied": "Kopiert"
+    "copied": "Kopiert",
+    "attach": "Screenshot / Aufnahme hinzufügen"
   },
   "el": {
     "title": "Σχόλια",
@@ -237,7 +248,8 @@
     "colon": ": ",
     "rate": "Αξιολόγηση εφαρμογής",
     "community": "Κοινότητα",
-    "copied": "Αντιγράφηκε"
+    "copied": "Αντιγράφηκε",
+    "attach": "Προσθήκη στιγμιότυπου / εγγραφής"
   },
   "es": {
     "title": "Comentarios",
@@ -257,7 +269,8 @@
     "colon": ": ",
     "rate": "Valorar esta app",
     "community": "Comunidad",
-    "copied": "Copiado"
+    "copied": "Copiado",
+    "attach": "Añadir captura / grabación"
   },
   "et": {
     "title": "Tagasiside",
@@ -277,7 +290,8 @@
     "colon": ": ",
     "rate": "Hinda rakendust",
     "community": "Kogukond",
-    "copied": "Kopeeritud"
+    "copied": "Kopeeritud",
+    "attach": "Lisa kuvatõmmis / salvestus"
   },
   "fa": {
     "title": "بازخورد",
@@ -297,7 +311,8 @@
     "colon": ": ",
     "rate": "به این برنامه امتیاز دهید",
     "community": "انجمن",
-    "copied": "کپی شد"
+    "copied": "کپی شد",
+    "attach": "افزودن اسکرین‌شات / ضبط صفحه"
   },
   "fi": {
     "title": "Palaute",
@@ -317,7 +332,8 @@
     "colon": ": ",
     "rate": "Arvioi sovellus",
     "community": "Yhteisö",
-    "copied": "Kopioitu"
+    "copied": "Kopioitu",
+    "attach": "Lisää kuvakaappaus / tallenne"
   },
   "fr": {
     "title": "Commentaires",
@@ -337,7 +353,8 @@
     "colon": ": ",
     "rate": "Noter cette app",
     "community": "Communauté",
-    "copied": "Copié"
+    "copied": "Copié",
+    "attach": "Ajouter capture / enregistrement"
   },
   "gu": {
     "title": "પ્રતિસાદ",
@@ -357,7 +374,8 @@
     "colon": ": ",
     "rate": "આ ઍપને રેટ કરો",
     "community": "સમુદાય",
-    "copied": "કૉપિ થયું"
+    "copied": "કૉપિ થયું",
+    "attach": "સ્ક્રીનશોટ / રેકોર્ડિંગ ઉમેરો"
   },
   "he": {
     "title": "משוב",
@@ -377,7 +395,8 @@
     "colon": ": ",
     "rate": "דרגו את האפליקציה",
     "community": "קהילה",
-    "copied": "הועתק"
+    "copied": "הועתק",
+    "attach": "הוספת צילום מסך / הקלטה"
   },
   "hi": {
     "title": "फ़ीडबैक",
@@ -397,7 +416,8 @@
     "colon": ": ",
     "rate": "इस ऐप को रेट करें",
     "community": "समुदाय",
-    "copied": "कॉपी किया गया"
+    "copied": "कॉपी किया गया",
+    "attach": "स्क्रीनशॉट / रिकॉर्डिंग जोड़ें"
   },
   "hr": {
     "title": "Povratne informacije",
@@ -417,7 +437,8 @@
     "colon": ": ",
     "rate": "Ocijenite aplikaciju",
     "community": "Zajednica",
-    "copied": "Kopirano"
+    "copied": "Kopirano",
+    "attach": "Dodaj snimku zaslona / zapis"
   },
   "hu": {
     "title": "Visszajelzés",
@@ -437,7 +458,8 @@
     "colon": ": ",
     "rate": "Értékeld az alkalmazást",
     "community": "Közösség",
-    "copied": "Másolva"
+    "copied": "Másolva",
+    "attach": "Képernyőkép / felvétel hozzáadása"
   },
   "id": {
     "title": "Masukan",
@@ -457,7 +479,8 @@
     "colon": ": ",
     "rate": "Beri rating aplikasi",
     "community": "Komunitas",
-    "copied": "Disalin"
+    "copied": "Disalin",
+    "attach": "Tambahkan tangkapan layar / rekaman"
   },
   "it": {
     "title": "Feedback",
@@ -477,7 +500,8 @@
     "colon": ": ",
     "rate": "Valuta questa app",
     "community": "Community",
-    "copied": "Copiato"
+    "copied": "Copiato",
+    "attach": "Aggiungi screenshot / registrazione"
   },
   "ja": {
     "title": "フィードバック",
@@ -497,7 +521,8 @@
     "colon": "：",
     "rate": "このアプリを評価",
     "community": "コミュニティ",
-    "copied": "コピーしました"
+    "copied": "コピーしました",
+    "attach": "スクリーンショット / 録画を追加"
   },
   "kk": {
     "title": "Кері байланыс",
@@ -517,7 +542,8 @@
     "colon": ": ",
     "rate": "Қолданбаны бағалау",
     "community": "Қауымдастық",
-    "copied": "Көшірілді"
+    "copied": "Көшірілді",
+    "attach": "Скриншот / жазба қосу"
   },
   "kn": {
     "title": "ಪ್ರತಿಕ್ರಿಯೆ",
@@ -537,7 +563,8 @@
     "colon": ": ",
     "rate": "ಈ ಆ್ಯಪ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ",
     "community": "ಸಮುದಾಯ",
-    "copied": "ನಕಲಿಸಲಾಗಿದೆ"
+    "copied": "ನಕಲಿಸಲಾಗಿದೆ",
+    "attach": "ಸ್ಕ್ರೀನ್‌ಶಾಟ್ / ರೆಕಾರ್ಡಿಂಗ್ ಸೇರಿಸಿ"
   },
   "ko": {
     "title": "피드백",
@@ -557,7 +584,8 @@
     "colon": ": ",
     "rate": "이 앱 평가하기",
     "community": "커뮤니티",
-    "copied": "복사됨"
+    "copied": "복사됨",
+    "attach": "스크린샷 / 녹화 추가"
   },
   "lt": {
     "title": "Atsiliepimai",
@@ -577,7 +605,8 @@
     "colon": ": ",
     "rate": "Įvertinkite programėlę",
     "community": "Bendruomenė",
-    "copied": "Nukopijuota"
+    "copied": "Nukopijuota",
+    "attach": "Pridėti ekrano nuotrauką / įrašą"
   },
   "lv": {
     "title": "Atsauksmes",
@@ -597,7 +626,8 @@
     "colon": ": ",
     "rate": "Novērtējiet lietotni",
     "community": "Kopiena",
-    "copied": "Nokopēts"
+    "copied": "Nokopēts",
+    "attach": "Pievienot ekrānuzņēmumu / ierakstu"
   },
   "ml": {
     "title": "ഫീഡ്‌ബാക്ക്",
@@ -617,7 +647,8 @@
     "colon": ": ",
     "rate": "ഈ ആപ്പ് റേറ്റ് ചെയ്യുക",
     "community": "കമ്മ്യൂണിറ്റി",
-    "copied": "പകർത്തി"
+    "copied": "പകർത്തി",
+    "attach": "സ്ക്രീൻഷോട്ട് / റെക്കോർഡിംഗ് ചേർക്കുക"
   },
   "mr": {
     "title": "अभिप्राय",
@@ -637,7 +668,8 @@
     "colon": ": ",
     "rate": "या ॲपला रेट करा",
     "community": "समुदाय",
-    "copied": "कॉपी केले"
+    "copied": "कॉपी केले",
+    "attach": "स्क्रीनशॉट / रेकॉर्डिंग जोडा"
   },
   "ms": {
     "title": "Maklum Balas",
@@ -657,7 +689,8 @@
     "colon": ": ",
     "rate": "Nilai aplikasi ini",
     "community": "Komuniti",
-    "copied": "Disalin"
+    "copied": "Disalin",
+    "attach": "Tambah tangkapan skrin / rakaman"
   },
   "nb": {
     "title": "Tilbakemelding",
@@ -677,7 +710,8 @@
     "colon": ": ",
     "rate": "Vurder denne appen",
     "community": "Fellesskap",
-    "copied": "Kopiert"
+    "copied": "Kopiert",
+    "attach": "Legg til skjermbilde / opptak"
   },
   "nl": {
     "title": "Feedback",
@@ -697,7 +731,8 @@
     "colon": ": ",
     "rate": "Beoordeel deze app",
     "community": "Community",
-    "copied": "Gekopieerd"
+    "copied": "Gekopieerd",
+    "attach": "Screenshot / opname toevoegen"
   },
   "pa": {
     "title": "ਫੀਡਬੈਕ",
@@ -717,7 +752,8 @@
     "colon": ": ",
     "rate": "ਇਸ ਐਪ ਨੂੰ ਰੇਟ ਕਰੋ",
     "community": "ਭਾਈਚਾਰਾ",
-    "copied": "ਕਾਪੀ ਕੀਤਾ"
+    "copied": "ਕਾਪੀ ਕੀਤਾ",
+    "attach": "ਸਕ੍ਰੀਨਸ਼ਾਟ / ਰਿਕਾਰਡਿੰਗ ਸ਼ਾਮਲ ਕਰੋ"
   },
   "pl": {
     "title": "Opinie",
@@ -737,7 +773,8 @@
     "colon": ": ",
     "rate": "Oceń tę aplikację",
     "community": "Społeczność",
-    "copied": "Skopiowano"
+    "copied": "Skopiowano",
+    "attach": "Dodaj zrzut ekranu / nagranie"
   },
   "pt": {
     "title": "Comentários",
@@ -757,7 +794,8 @@
     "colon": ": ",
     "rate": "Avaliar este app",
     "community": "Comunidade",
-    "copied": "Copiado"
+    "copied": "Copiado",
+    "attach": "Adicionar captura / gravação"
   },
   "ro": {
     "title": "Feedback",
@@ -777,7 +815,8 @@
     "colon": ": ",
     "rate": "Evaluează aplicația",
     "community": "Comunitate",
-    "copied": "Copiat"
+    "copied": "Copiat",
+    "attach": "Adaugă captură / înregistrare"
   },
   "ru": {
     "title": "Обратная связь",
@@ -797,7 +836,8 @@
     "colon": ": ",
     "rate": "Оценить приложение",
     "community": "Сообщество",
-    "copied": "Скопировано"
+    "copied": "Скопировано",
+    "attach": "Добавить скриншот / запись"
   },
   "sk": {
     "title": "Spätná väzba",
@@ -817,7 +857,8 @@
     "colon": ": ",
     "rate": "Ohodnotiť aplikáciu",
     "community": "Komunita",
-    "copied": "Skopírované"
+    "copied": "Skopírované",
+    "attach": "Pridať snímku / záznam obrazovky"
   },
   "sl": {
     "title": "Povratne informacije",
@@ -837,7 +878,8 @@
     "colon": ": ",
     "rate": "Ocenite aplikacijo",
     "community": "Skupnost",
-    "copied": "Kopirano"
+    "copied": "Kopirano",
+    "attach": "Dodaj posnetek zaslona / snemanje"
   },
   "sv": {
     "title": "Feedback",
@@ -857,7 +899,8 @@
     "colon": ": ",
     "rate": "Betygsätt appen",
     "community": "Gemenskap",
-    "copied": "Kopierat"
+    "copied": "Kopierat",
+    "attach": "Lägg till skärmbild / inspelning"
   },
   "ta": {
     "title": "கருத்து",
@@ -877,7 +920,8 @@
     "colon": ": ",
     "rate": "இந்த ஆப்பை மதிப்பிடுங்கள்",
     "community": "சமூகம்",
-    "copied": "நகலெடுக்கப்பட்டது"
+    "copied": "நகலெடுக்கப்பட்டது",
+    "attach": "ஸ்கிரீன்ஷாட் / பதிவை சேர்க்கவும்"
   },
   "te": {
     "title": "అభిప్రాయం",
@@ -897,7 +941,8 @@
     "colon": ": ",
     "rate": "ఈ యాప్‌ను రేట్ చేయండి",
     "community": "సంఘం",
-    "copied": "కాపీ చేయబడింది"
+    "copied": "కాపీ చేయబడింది",
+    "attach": "స్క్రీన్‌షాట్ / రికార్డింగ్ జోడించండి"
   },
   "th": {
     "title": "ข้อเสนอแนะ",
@@ -917,7 +962,8 @@
     "colon": ": ",
     "rate": "ให้คะแนนแอปนี้",
     "community": "ชุมชน",
-    "copied": "คัดลอกแล้ว"
+    "copied": "คัดลอกแล้ว",
+    "attach": "เพิ่มภาพหน้าจอ / การบันทึกหน้าจอ"
   },
   "tr": {
     "title": "Geri Bildirim",
@@ -937,7 +983,8 @@
     "colon": ": ",
     "rate": "Uygulamayı değerlendir",
     "community": "Topluluk",
-    "copied": "Kopyalandı"
+    "copied": "Kopyalandı",
+    "attach": "Ekran görüntüsü / kayıt ekle"
   },
   "uk": {
     "title": "Зворотний зв'язок",
@@ -957,7 +1004,8 @@
     "colon": ": ",
     "rate": "Оцінити застосунок",
     "community": "Спільнота",
-    "copied": "Скопійовано"
+    "copied": "Скопійовано",
+    "attach": "Додати знімок екрана / запис"
   },
   "vi": {
     "title": "Phản hồi",
@@ -977,6 +1025,7 @@
     "colon": ": ",
     "rate": "Đánh giá ứng dụng",
     "community": "Cộng đồng",
-    "copied": "Đã sao chép"
+    "copied": "Đã sao chép",
+    "attach": "Thêm ảnh chụp / bản ghi màn hình"
   }
 }

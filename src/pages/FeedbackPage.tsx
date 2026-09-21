@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ThemeToggle from '../components/ThemeToggle';
 import {
   FEEDBACK_FALLBACK, FEEDBACK_GENERIC,
-  buildFeedbackMailto, collectFeedbackDiagnostics, contactsFor, resolveFeedbackApp, resolveFeedbackStrings,
+  buildFeedbackBody, buildFeedbackMailto, collectFeedbackDiagnostics, contactsFor, resolveFeedbackApp, resolveFeedbackStrings,
   type Contacts, type FbStrings, type FeedbackApp, type StoreEntry,
 } from '../lib/feedback';
 
@@ -41,6 +41,9 @@ export default function FeedbackPage() {
   const [msg, setMsg] = useState('');
   const [rating, setRating] = useState(0);
   const [copied, setCopied] = useState('');
+  const [files, setFiles] = useState<File[]>([]);
+  const [canShareFiles, setCanShareFiles] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const strings = resolveFeedbackStrings();
@@ -48,7 +51,19 @@ export default function FeedbackPage() {
     const collected = collectFeedbackDiagnostics(strings);
     setT(strings); setApp(resolved.app); setStore(resolved.store); setContacts(contactsFor(resolved.app));
     setDiag(collected.text); setFromApp(collected.fromApp);
+    // 能力探测：系统分享是否支持「带文件」（iOS 15+/Android Chrome）。不支持则不展示附件入口，避免附件被静默丢弃。
+    try {
+      const probe = new File([''], 'probe.png', { type: 'image/png' });
+      setCanShareFiles(typeof navigator.share === 'function' && typeof navigator.canShare === 'function' && navigator.canShare({ files: [probe] }));
+    } catch { /* 不支持则保持 false */ }
   }, []);
+
+  function onPickFiles(event: React.ChangeEvent<HTMLInputElement>) {
+    const picked = Array.from(event.target.files ?? []);
+    if (picked.length) setFiles((prev) => [...prev, ...picked]);
+    event.target.value = ''; // 允许再次选择同一文件
+  }
+  function removeFile(idx: number) { setFiles((prev) => prev.filter((_, i) => i !== idx)); }
 
   function copyAnd(key: string, text: string, openUrl?: string) {
     copyText(text).then((ok) => {
@@ -59,6 +74,21 @@ export default function FeedbackPage() {
 
   const ratingLine = rating ? `${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)\n\n` : '';
   const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, fromApp ? diag : '', ratingLine + msg);
+
+  // 有附件时走系统分享（可把截屏/录屏 + 预填正文一起交给邮件/微信等）；不支持或用户取消则回退纯邮件。
+  async function shareWithFiles() {
+    const body = buildFeedbackBody(t, fromApp ? diag : '', ratingLine + msg);
+    try {
+      if (files.length && navigator.canShare?.({ files }) && navigator.share) {
+        await navigator.share({ files, title: subjectFor(app, t), text: body });
+        return;
+      }
+    } catch (err) {
+      if ((err as { name?: string })?.name === 'AbortError') return; // 用户主动取消，不回退
+    }
+    window.location.href = mailto;
+  }
+  const useShare = canShareFiles && files.length > 0;
   const hasContacts = !!((contacts.qq && contacts.qq.length) || contacts.wechat || contacts.telegram);
   const copyMark = (key: string) => (copied === key ? `✓ ${t.copied}` : '⧉');
 
@@ -85,6 +115,18 @@ export default function FeedbackPage() {
           aria-label={t.title}
           rows={6}
         />
+        {canShareFiles && <div className="fb-attach">
+          <input ref={fileRef} type="file" accept="image/*,video/*" multiple onChange={onPickFiles} hidden />
+          <button type="button" className="fb-attach-btn" onClick={() => fileRef.current?.click()}>
+            <span aria-hidden="true">📎</span> {t.attach}
+          </button>
+          {files.length > 0 && <ul className="fb-files">
+            {files.map((f, i) => <li className="fb-file" key={`${f.name}-${i}`}>
+              <span className="fb-file-name">{f.name}</span>
+              <button type="button" className="fb-file-x" onClick={() => removeFile(i)} aria-label={`× ${f.name}`}>×</button>
+            </li>)}
+          </ul>}
+        </div>}
         <div className="fb-email">
           <span className="fb-email-key">{t.emailLabel}</span>
           <span className="fb-email-val">
@@ -96,7 +138,9 @@ export default function FeedbackPage() {
       </div>
 
       <div className="fb-actions">
-        <a className="btn-primary fb-send" href={mailto}>{t.button}</a>
+        {useShare
+          ? <button type="button" className="btn-primary fb-send" onClick={shareWithFiles}>{t.button}</button>
+          : <a className="btn-primary fb-send" href={mailto}>{t.button}</a>}
         {store && <a className="btn-ghost fb-rate" href={store.url} target="_blank" rel="noreferrer">{t.rate} · {store.name} ↗</a>}
       </div>
 

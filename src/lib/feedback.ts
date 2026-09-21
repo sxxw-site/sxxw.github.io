@@ -5,7 +5,7 @@ export interface FbStrings {
   title: string; intro: string; emailLabel: string; deviceLabel: string; button: string;
   subject: string; problem: string; steps: string; diagHeader: string;
   dApp: string; dDevice: string; dOS: string; dLang: string; na: string; colon: string; rate: string;
-  community: string; copied: string;
+  community: string; copied: string; attach: string;
 }
 
 export const FEEDBACK_I18N: Record<string, FbStrings> = feedbackI18n as Record<string, FbStrings>;
@@ -49,12 +49,17 @@ export function collectFeedbackDiagnostics(t: FbStrings): { text: string; fromAp
   return { text: lines.join('\n'), fromApp: !!appv };
 }
 
-export function buildFeedbackMailto(email: string, subject: string, t: FbStrings, diag: string, message?: string): string {
+/** 反馈正文纯文本：用户已输入则用其内容，否则给出问题/步骤模板；带上诊断信息。邮件与系统分享共用。 */
+export function buildFeedbackBody(t: FbStrings, diag: string, message?: string): string {
   const typed = (message ?? '').trim();
-  const body = (typed
+  return (typed
     ? `${typed}\n\n`
     : `${t.problem}\n\n\n${t.steps}\n\n\n`) +
     (diag ? `${t.diagHeader}\n${diag}\n` : '');
+}
+
+export function buildFeedbackMailto(email: string, subject: string, t: FbStrings, diag: string, message?: string): string {
+  const body = buildFeedbackBody(t, diag, message);
   return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
