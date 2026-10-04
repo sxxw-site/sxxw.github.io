@@ -15,8 +15,8 @@ const FAQ = {
     { q: '提醒没有出现怎么办？', a: '请确认记录已设置提醒，并在系统设置中允许本应用发送通知。关闭通知只影响提醒，不影响记录本身。' },
   ],
   '/apps/timetrails/support/': [
-    { q: '时光轨迹会一直定位我吗？', a: '记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。' },
-    { q: '定位没有被记录？', a: '请在“设置 → 隐私与安全性 → 定位服务”中为时光轨迹选择“始终”，并开启“精确位置”与后台 App 刷新。' },
+    { q: '足迹|TimeTrails 会一直定位我吗？', a: '记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。' },
+    { q: '定位没有被记录？', a: '请在“设置 → 隐私与安全性 → 定位服务”中为足迹选择“始终”，并开启“精确位置”与后台 App 刷新。' },
     { q: 'iCloud 备份如何恢复？', a: '使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。' },
     { q: '如何彻底清除数据？', a: '可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。' },
   ],
@@ -117,7 +117,7 @@ function appInfo(path) {
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',
     };
   }
-  if (path.startsWith('/apps/timetrails/')) return { name: '时光轨迹 TimeTrails', applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
+  if (path.startsWith('/apps/timetrails/')) return { name: '足迹|TimeTrails', applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
   if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
   return null;
 }

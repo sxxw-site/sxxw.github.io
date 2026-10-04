@@ -16,7 +16,7 @@
   - 页面: https://sxxw.site/apps/memoria/harmony/ · 隐私: https://sxxw.site/apps/memoria/harmony/privacy · 下载: https://appgallery.huawei.com/app/C6917613545100329502
 - 技术支持: https://sxxw.site/apps/memoria/support/
 
-### 时光轨迹 TimeTrails(GPS 轨迹记录)
+### 足迹|TimeTrails(GPS 轨迹记录)
 隐私优先的 GPS 轨迹记录应用。自动记录出行、跑步、骑行、徒步与驾车路线,在地图上呈现足迹。无需账号、无广告、无第三方追踪,轨迹默认仅存本机;iCloud 备份可选。
 - 平台: iOS、Apple Watch
 - 页面: https://sxxw.site/apps/timetrails/ · 隐私: https://sxxw.site/apps/timetrails/privacy · 支持: https://sxxw.site/apps/timetrails/support/
