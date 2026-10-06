@@ -118,7 +118,7 @@
   "mem.ios.guide.3.t": "依需要開啟同步",
   "mem.ios.guide.3.b": "如需在自己的 iPhone、iPad 與 Apple Watch 之間同步，可在登入 iCloud 的狀態下開啟同步。同步會進入你的 CloudKit 私人資料庫，開發者無法讀取。",
   "mem.hm.tagline": "在裝置本機記錄生日、紀念日與重要的日子。",
-  "mem.hm.desc": "紀念日 · 倒數 HarmonyOS 版為純本機版本。不設帳號、不連網、不提供雲端同步，資料只保存在你裝置的 App 沙盒中。",
+  "mem.hm.desc": "紀念日·倒數 HarmonyOS 版為純本機版本。不設帳號、不連網、不提供雲端同步，資料只保存在你裝置的 App 沙盒中。",
   "mem.hm.feat.0": "生日、紀念日、節日和自訂事件",
   "mem.hm.feat.1": "公曆與農曆日期",
   "mem.hm.feat.2": "倒數、正計時與人生進度",

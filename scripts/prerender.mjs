@@ -111,7 +111,7 @@ function appInfo(path) {
   if (path.startsWith('/apps/memoria/')) {
     const harmony = path.includes('/harmony/');
     return {
-      name: '纪念日 · 倒数',
+      name: '纪念日·倒数',
       applicationCategory: 'LifestyleApplication',
       operatingSystem: harmony ? 'HarmonyOS' : 'iOS, iPadOS, watchOS',
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',
