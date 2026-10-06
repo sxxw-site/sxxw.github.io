@@ -29,6 +29,7 @@ export const siteRoutes: SiteRoute[] = [
   { path: '/apps/traceapp/support/', title: 'TraceApp 技术支持', description: 'TraceApp 的常见问题与技术支持。' },
   { path: '/support/', title: '客户服务中心｜树下小屋', description: '树下小屋旗下所有应用的官方服务渠道：意见反馈与邮件、各应用商店评价，以及微信 / QQ / Telegram 官方交流群。' },
   { path: '/feedback/', title: '意见反馈｜树下小屋', description: '树下小屋各应用共用的意见反馈页：邮件反馈自动附带版本与设备信息，并可前往对应应用商店评价。' },
+  { path: '/migrate/', title: '数据迁移｜出行轨迹 → 足迹', description: '把「出行轨迹」记录的轨迹迁移到新版「足迹|TimeTrails」的引导说明：几步完成，全程本地处理、不上传。' },
   { path: '/about/', title: '关于我们｜上海树下小屋网络科技有限公司', description: '了解上海树下小屋网络科技有限公司。' },
   { path: '/contact/', title: '联系我们｜上海树下小屋网络科技有限公司', description: '联系上海树下小屋网络科技有限公司。' },
 ];

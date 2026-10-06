@@ -7,6 +7,7 @@ import TraceAppPage from './pages/TraceAppPage';
 import AppsPage from './pages/AppsPage';
 import SupportPage from './pages/SupportPage';
 import FeedbackPage from './pages/FeedbackPage';
+import MigratePage from './pages/MigratePage';
 import ThemeToggle from './components/ThemeToggle';
 
 const HOME_APPS = [
@@ -66,6 +67,7 @@ export default function App({ path }: { path?: string }) {
     if (pathname === '/apps/') return <AppsPage />;
     if (pathname === '/support/') return <SupportPage />;
     if (pathname === '/feedback/') return <FeedbackPage />;
+    if (pathname === '/migrate/') return <MigratePage />;
     if (pathname.startsWith('/apps/memoria/')) return <MemoriaPage path={pathname} />;
     if (pathname.startsWith('/apps/timetrails/')) return <TimeTrailsPage path={pathname} />;
     if (pathname.startsWith('/apps/traceapp/')) return <TraceAppPage path={pathname} />;
