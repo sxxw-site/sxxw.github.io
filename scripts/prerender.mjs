@@ -10,7 +10,7 @@ const buildDate = new Date().toISOString().slice(0, 10);
 // 支持页常见问题(用于 FAQPage 结构化数据 / GEO)
 const FAQ = {
   '/apps/memoria/support/': [
-    { q: '数据会同步到其他设备吗？', a: '登录 iCloud 并开启同步后，数据会通过你的 iCloud 私有库在 iPhone、iPad 与 Apple Watch 间同步。华为应用市场的拾忆为纯本地版本，不联网、不同步。' },
+    { q: '数据会同步到其他设备吗？', a: '登录 iCloud 并开启同步后，数据会通过你的 iCloud 私有库在 iPhone、iPad 与 Apple Watch 间同步。华为应用市场版为纯本地版本，不联网、不同步。' },
     { q: '如何删除数据？', a: '你可以在应用内删除记录；卸载应用会删除本地数据，iCloud 数据可在系统“设置 → iCloud”中管理。' },
     { q: '提醒没有出现怎么办？', a: '请确认记录已设置提醒，并在系统设置中允许本应用发送通知。关闭通知只影响提醒，不影响记录本身。' },
   ],
@@ -111,7 +111,7 @@ function appInfo(path) {
   if (path.startsWith('/apps/memoria/')) {
     const harmony = path.includes('/harmony/');
     return {
-      name: 'Memoria · 拾忆',
+      name: '纪念日 · 倒数',
       applicationCategory: 'LifestyleApplication',
       operatingSystem: harmony ? 'HarmonyOS' : 'iOS, iPadOS, watchOS',
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',

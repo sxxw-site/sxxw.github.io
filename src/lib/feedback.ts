@@ -91,7 +91,7 @@ export interface FeedbackApp {
 
 export const FEEDBACK_APPS: Record<string, FeedbackApp> = {
   memoria: {
-    name: 'Memoria · 拾忆',
+    name: '纪念日 · 倒数',
     email: 'neverfall@foxmail.com',
     stores: {
       appstore: { name: 'App Store', url: 'https://apps.apple.com/app/id6760106574?action=write-review' },

@@ -6,7 +6,7 @@ import { useI18n } from '../i18n/I18nProvider';
 type Platform = 'ios' | 'harmony';
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
 type T = (key: string) => string;
-const BRAND = memoria.appName; // Memoria · 拾忆
+const BRAND = memoria.appName; // 纪念日 · 倒数
 const cprefix = (p: Platform) => (p === 'ios' ? 'mem.ios' : 'mem.hm');
 const descKey = (s: Section) => `mem.ui.desc.${s === 'getting-started' ? 'start' : s}`;
 const tabWord = (t: T, s: Section) => t(`app.tab.${s === 'getting-started' ? 'start' : s}`);
@@ -43,7 +43,7 @@ function PlatformChooser() {
       <section className="product-hero"><p className="route-eyebrow">{BRAND}</p><h1>{t('mem.ui.pc.title')}</h1><p>{t('mem.ui.pc.desc')}</p></section>
       <div className="platform-cards">
         <PlatformCard title={BRAND} eyebrow="App Store · iPhone / iPad / Apple Watch" description={t('mem.ui.pc.ios.desc')} href="/apps/memoria/ios/" cta={t('mem.ui.pc.ios.cta')} />
-        <PlatformCard title="拾忆" eyebrow="HarmonyOS · 华为应用市场" description={t('mem.ui.pc.hm.desc')} href="/apps/memoria/harmony/" cta={t('mem.ui.pc.hm.cta')} />
+        <PlatformCard title="纪念日 · 倒数" eyebrow="HarmonyOS · 华为应用市场" description={t('mem.ui.pc.hm.desc')} href="/apps/memoria/harmony/" cta={t('mem.ui.pc.hm.cta')} />
       </div>
     </div></main>
     <ProductFooter />
@@ -73,7 +73,7 @@ function PageBody({ product, section, base, platform }: { product: typeof memori
 
 function PlatformTabs({ active, section }: { active: Platform; section: Section }) {
   const route = (platform: Platform) => section === 'overview' ? `/apps/memoria/${platform}/` : `/apps/memoria/${platform}/${section}/`;
-  return <div className="platform-tabs" aria-label={BRAND}><a href={route('ios')} className={active === 'ios' ? 'active' : ''}>App Store · Memoria · 拾忆</a><a href={route('harmony')} className={active === 'harmony' ? 'active' : ''}>华为应用市场 · 拾忆</a></div>;
+  return <div className="platform-tabs" aria-label={BRAND}><a href={route('ios')} className={active === 'ios' ? 'active' : ''}>App Store · 纪念日 · 倒数</a><a href={route('harmony')} className={active === 'harmony' ? 'active' : ''}>华为应用市场 · 纪念日 · 倒数</a></div>;
 }
 
 function PlatformCard({ title, eyebrow, description, href, cta }: { title: string; eyebrow: string; description: string; href: string; cta: string }) {
