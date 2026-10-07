@@ -10,7 +10,7 @@ export interface MigrateStrings {
 export const MIGRATE_I18N: Record<string, MigrateStrings> = migrateI18n as Record<string, MigrateStrings>;
 export const MIGRATE_FALLBACK: MigrateStrings = MIGRATE_I18N['zh-hans'];
 
-// 足迹|TimeTrails 的 App Store 地址
+// 足迹·TimeTrails 的 App Store 地址
 export const TIMETRAILS_APPSTORE_URL = 'https://apps.apple.com/app/id6752662508';
 
 // 旧式/别名代码 → 词条键

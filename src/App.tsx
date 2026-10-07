@@ -12,7 +12,7 @@ import ThemeToggle from './components/ThemeToggle';
 
 const HOME_APPS = [
   { name: '纪念日·倒数', en: 'App Store · HarmonyOS', tagline: '记录生日、纪念日与重要日子的倒数与提醒；数据本地优先。', href: '/apps/memoria/' },
-  { name: '足迹|TimeTrails', en: 'App Store · iPhone / Apple Watch', tagline: '隐私优先的 GPS 轨迹记录，把走过的路留在自己的时间里。', href: '/apps/timetrails/' },
+  { name: '足迹·TimeTrails', en: 'App Store · iPhone / Apple Watch', tagline: '隐私优先的 GPS 轨迹记录，把走过的路留在自己的时间里。', href: '/apps/timetrails/' },
   { name: '出行轨迹 TraceApp', en: 'App Store · iPhone', tagline: '本地优先的出行轨迹记录，路径、里程与配速一目了然。', href: '/apps/traceapp/' },
 ];
 

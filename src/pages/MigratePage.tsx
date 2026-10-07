@@ -3,7 +3,7 @@ import ThemeToggle from '../components/ThemeToggle';
 import { MIGRATE_FALLBACK, TIMETRAILS_APPSTORE_URL, resolveMigrateStrings, type MigrateStrings } from '../lib/migrate';
 
 /**
- * 独立「数据迁移」引导页 /migrate/ —— 引导「出行轨迹」用户把数据迁移到新版「足迹|TimeTrails」。
+ * 独立「数据迁移」引导页 /migrate/ —— 引导「出行轨迹」用户把数据迁移到新版「足迹·TimeTrails」。
  * 无整站外壳，聚焦单卡片，适合 App 内 H5 打开（出行轨迹「更多」里打开）。
  * App 端示例：/migrate/?from=traceapp&lang=zh-Hans&embed=1
  * 纯说明页，不读取任何用户数据；迁移动作在「足迹」App 内完成。

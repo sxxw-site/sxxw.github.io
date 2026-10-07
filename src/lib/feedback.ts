@@ -100,7 +100,7 @@ export const FEEDBACK_APPS: Record<string, FeedbackApp> = {
     defaultStore: 'appstore',
   },
   timetrails: {
-    name: '足迹|TimeTrails',
+    name: '足迹·TimeTrails',
     email: 'neverfall@foxmail.com',
     stores: { appstore: { name: 'App Store', url: 'https://apps.apple.com/app/id6752662508?action=write-review' } },
     defaultStore: 'appstore',

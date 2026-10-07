@@ -1,11 +1,11 @@
 {
-  "appName": "足迹|TimeTrails",
+  "appName": "足迹·TimeTrails",
   "supportEmail": "neverfall@foxmail.com",
   "platformName": "iPhone / Apple Watch",
   "storeName": "App Store",
   "storeUrl": "https://apps.apple.com/app/id6752662508",
   "tagline": "GPS 轨迹记录，把走过的路留在自己的时间里。",
-  "description": "足迹|TimeTrails 是一款隐私优先的 GPS 轨迹记录应用。自动记录出行、跑步、骑行、徒步与驾车路线，在地图上生动呈现足迹、点亮走过的城市。无需注册账号，不接入广告或第三方追踪，轨迹数据默认仅保存在你的设备本地。",
+  "description": "足迹·TimeTrails 是一款隐私优先的 GPS 轨迹记录应用。自动记录出行、跑步、骑行、徒步与驾车路线，在地图上生动呈现足迹、点亮走过的城市。无需注册账号，不接入广告或第三方追踪，轨迹数据默认仅保存在你的设备本地。",
   "features": [
     "自动记录日常移动轨迹与里程",
     "按当地时间生成每日轨迹与活动摘要",
@@ -34,7 +34,7 @@
   ],
   "privacy": {
     "effectiveDate": "2026 年 8 月 9 日",
-    "intro": "你的轨迹，只属于你。以下政策适用于 App Store 中的足迹|TimeTrails。",
+    "intro": "你的轨迹，只属于你。以下政策适用于 App Store 中的足迹·TimeTrails。",
     "sections": [
       {
         "title": "一、我们处理的信息",
@@ -93,7 +93,7 @@
       {
         "title": "一、协议范围与主体",
         "body": [
-          "欢迎使用足迹|TimeTrails（以下简称“本应用”）。本应用由上海树下小屋网络科技有限公司开发与运营。下载、安装、启动或使用本应用，即表示你已阅读并同意本协议；如不同意，请停止使用并卸载。"
+          "欢迎使用足迹·TimeTrails（以下简称“本应用”）。本应用由上海树下小屋网络科技有限公司开发与运营。下载、安装、启动或使用本应用，即表示你已阅读并同意本协议；如不同意，请停止使用并卸载。"
         ]
       },
       {

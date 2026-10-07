@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18nProvider';
 
 const apps = [
   { name: '纪念日·倒数', platform: 'App Store · HarmonyOS', descKey: 'apps.memoria.desc', href: '/apps/memoria/', tagKey: 'apps.memoria.tag' },
-  { name: '足迹|TimeTrails', platform: 'App Store · iPhone / Apple Watch', descKey: 'apps.timetrails.desc', href: '/apps/timetrails/', tagKey: 'apps.timetrails.tag' },
+  { name: '足迹·TimeTrails', platform: 'App Store · iPhone / Apple Watch', descKey: 'apps.timetrails.desc', href: '/apps/timetrails/', tagKey: 'apps.timetrails.tag' },
   { name: '出行轨迹 TraceApp', platform: 'App Store · iPhone', descKey: 'apps.traceapp.desc', href: '/apps/traceapp/', tagKey: 'apps.traceapp.tag' },
 ];
 
