@@ -747,6 +747,8 @@ svg {
 .action-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
 .store-link, .store-hint { display: inline-block; margin-top: 1.25rem; color: var(--accent); }
 .store-link { text-decoration: none; }
+.hero-store { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.4rem 0 0; }
+.hero-store .store-btn { text-decoration: none; }
 .guide-list { display: grid; gap: 1rem; padding: 0; list-style: none; }
 .guide-list li { display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255,.12); }
 .guide-list li:last-child { border-bottom: 0; }

@@ -17,7 +17,7 @@ export default function TraceAppPage({ path }: { path: string }) {
   const desc = section === 'overview' ? t('trace.desc') : t(descKey(section));
   return <><ThemeToggle /><TraceHeader /><main className="product-page"><div className="container product-page-inner">
     <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><span>{APP}</span></nav>
-    <section className="product-hero"><p className="route-eyebrow">{traceapp.platformName} · {STORE}</p><h1>{title}</h1><p>{desc}</p><TraceTabs active={section} /></section>
+    <section className="product-hero"><p className="route-eyebrow">{traceapp.platformName} · {STORE}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && traceapp.storeUrl && <p className="hero-store"><a className="btn-primary store-btn" href={traceapp.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', APP)}</a></p>}<TraceTabs active={section} /></section>
     <TraceBody section={section} />
   </div></main><TraceFooter /></>;
 }
@@ -28,7 +28,6 @@ function TraceBody({ section }: { section: Section }) {
     <section className="content-section"><h2>{t('trace.ui.ovTitle')}</h2><div className="feature-grid">{traceapp.features.map((_, i) => <div className="feature-card" key={i}>{t(`trace.feat.${i}`)}</div>)}</div></section>
     <section className="privacy-facts"><h2>{t('trace.ui.privTitle')}</h2><p>{t('trace.ui.privBody')}</p><div className="action-row"><a className="btn-primary" href="/apps/traceapp/getting-started/">{t('app.cta.start')}</a><a className="btn-ghost" href="/apps/traceapp/privacy/">{t('app.cta.readPrivacy')}</a></div></section>
     <ScreenshotGallery />
-    {traceapp.storeUrl && <a className="store-link" href={traceapp.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', APP)}</a>}
   </>;
   if (section === 'getting-started') return <section className="content-section"><h2>{t('trace.ui.guideTitle')}</h2><ol className="guide-list">{traceapp.guide.map((_, i) => <li key={i}><span>{i + 1}</span><div><h3>{t(`trace.guide.${i}.t`)}</h3><p>{t(`trace.guide.${i}.b`)}</p></div></li>)}</ol></section>;
   if (section === 'privacy' || section === 'terms') { const document = traceapp[section]; return <article className="legal-document"><p className="legal-meta">生效日期：{document.effectiveDate} · 适用平台：{traceapp.platformName} · 应用名称：{traceapp.appName}</p>{'intro' in document && <p className="legal-intro">{document.intro}</p>}{document.sections.map((item) => <section key={item.title}><h2>{item.title}</h2>{item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}<section><h2>联系我们</h2><p>如有疑问，请联系：<a href={`mailto:${document.contactEmail}`}>{document.contactEmail}</a></p></section></article>; }

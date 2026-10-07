@@ -28,7 +28,7 @@ export default function MemoriaPage({ path }: { path: string }) {
   return <><ThemeToggle /><MemoriaHeader />
     <main className="product-page"><div className="container product-page-inner">
       <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><a href="/apps/memoria/">{BRAND}</a><span>／</span><span>{name}</span></nav>
-      <section className="product-hero"><p className="route-eyebrow">{product.platformName} · {product.storeName}</p><h1>{title}</h1><p>{desc}</p><PlatformTabs active={platform} section={section} /></section>
+      <section className="product-hero"><p className="route-eyebrow">{product.platformName} · {product.storeName}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && (product.storeUrl ? <p className="hero-store"><a className="btn-primary store-btn" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a></p> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>)}<PlatformTabs active={platform} section={section} /></section>
       <PageBody product={product} section={section} base={base} platform={platform} />
     </div></main>
     <ProductFooter />
@@ -59,7 +59,6 @@ function PageBody({ product, section, base, platform }: { product: typeof memori
     <section className="content-section"><h2>{t('mem.ui.ovTitle')}</h2><div className="feature-grid">{product.features.map((_, i) => <div className="feature-card" key={i}>{t(`${cp}.feat.${i}`)}</div>)}</div></section>
     <section className="privacy-facts"><h2>{t('mem.ui.privTitle')}</h2><p>{t(isIOS ? 'mem.ui.priv.ios' : 'mem.ui.priv.hm')}</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>{t('app.cta.start')}</a><a className="btn-ghost" href={`${base}/privacy/`}>{t('app.cta.readPrivacy')}</a></div></section>
     <ScreenshotGallery appName={name} images={isIOS ? ['/apps/memoria/ios/shot-01.png', '/apps/memoria/ios/shot-02.png', '/apps/memoria/ios/shot-03.png', '/apps/memoria/ios/shot-04.png', '/apps/memoria/ios/shot-05.png'] : ['/apps/memoria/harmony/shot-01.jpg', '/apps/memoria/harmony/shot-02.jpg', '/apps/memoria/harmony/shot-03.jpg', '/apps/memoria/harmony/shot-04.jpg']} />
-    {product.storeUrl ? <a className="store-link" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>}
   </>;
   if (section === 'getting-started') return <section className="content-section"><h2>{t('mem.ui.guideTitle')}</h2><ol className="guide-list">{product.guide.map((_, i) => <li key={i}><span>{i + 1}</span><div><h3>{t(`${cp}.guide.${i}.t`)}</h3><p>{t(`${cp}.guide.${i}.b`)}</p></div></li>)}</ol></section>;
   if (section === 'privacy' || section === 'terms') {
