@@ -47,6 +47,7 @@ for (const route of sourceRoutes) {
   const structuredData = JSON.stringify(structuredDataFor(route, canonical));
   const t = escapeHtml(route.title);
   const d = escapeHtml(route.description);
+  const kw = route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
   const head = [
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -54,6 +55,7 @@ for (const route of sourceRoutes) {
     `<script>(function(){try{var t=localStorage.getItem('sxxw-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}try{if(location.search.indexOf('embed=1')>-1){document.documentElement.classList.add('embed');}}catch(e){}document.documentElement.classList.add('js');})();</script>`,
     `<title>${t}</title>`,
     `<meta name="description" content="${d}">`,
+    kw,
     '<meta name="robots" content="index,follow,max-image-preview:large">',
     `<link rel="canonical" href="${canonical}">`,
     '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">',
