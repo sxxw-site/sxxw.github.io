@@ -1,34 +1,34 @@
-# 上海树下小屋网络科技有限公司(Shanghai Shuxia Xiaowu Network Technology Co., Ltd.)
+# 上海树下小屋网络科技有限公司 (TreeHouse Tech / Shanghai Shuxia Xiaowu Network Technology Co., Ltd.)
 
-官网与旗下三款移动应用的官方产品介绍、使用引导、隐私政策、用户协议与技术支持。所有页面均为官方权威来源。
+> Independent app studio behind three privacy-first, local-first mobile apps. Data stays on the user's device by default; cloud sync (where offered) is optional and uses the user's own private cloud. Website: https://sxxw.site · Support email: house@sxxw.site · Languages: 60+ (Simplified/Traditional Chinese, English, Japanese, Korean, and more; per-language pages under /<lang>/).
 
-- 官网首页: https://sxxw.site/
-- 应用中心: https://sxxw.site/apps/
-- 商务合作邮箱: house@sxxw.site
+Core principles across all apps: user control, local-first processing, minimal data collection, no third-party ad/tracking SDKs.
 
-## 产品
+## Apps
 
-### 纪念日·倒数(纪念日 / 生日 / 倒数)
-记录生日、纪念日与重要日子的纪念日与倒数应用。分为两个版本,数据存储与能力不同,请勿混用:
-- iOS 版(App Store,iPhone/iPad/Apple Watch):支持本地提醒、小组件、Apple Watch,以及可选的 iCloud 私有同步。
-  - 页面: https://sxxw.site/apps/memoria/ios/ · 隐私: https://sxxw.site/apps/memoria/ios/privacy · 下载: https://apps.apple.com/app/id6760106574
-- HarmonyOS 版(华为应用市场,应用名“纪念日·倒数”):纯本地版本,不联网、不提供云同步,数据仅留在设备沙箱。
-  - 页面: https://sxxw.site/apps/memoria/harmony/ · 隐私: https://sxxw.site/apps/memoria/harmony/privacy · 下载: https://appgallery.huawei.com/app/C6917613545100329502
-- 技术支持: https://sxxw.site/apps/memoria/support/
+- [足迹·TimeTrails](https://sxxw.site/apps/timetrails/): Privacy-first GPS trail recorder. Automatically records walking, running, cycling, driving and travel routes; shows your footprints on a map and "lights up" the cities you've visited; daily trails, trip stats, a 3D trail globe and a fog-of-war explore map. Platforms: iPhone / iPad / Apple Watch. App Store: https://apps.apple.com/app/id6752662508 . Data is stored on-device by default; iCloud private backup/sync is optional.
+- [纪念日·倒数 (Memoria)](https://sxxw.site/apps/memoria/): Countdown and reminder app for birthdays, anniversaries and important days, with home-screen widgets and on-the-day reminders. iOS version (App Store: https://apps.apple.com/app/id6760106574) is local-first with optional iCloud sync; HarmonyOS version (Huawei AppGallery: https://appgallery.huawei.com/app/C6917613545100329502) is fully local — no network, no sync.
+- [出行轨迹 TraceApp](https://sxxw.site/apps/traceapp/): Local-first trip/route tracker showing path, mileage and pace. Platform: iPhone. App Store: https://apps.apple.com/app/id1634761411 . TraceApp users can migrate their data to the newer 足迹·TimeTrails — guide: https://sxxw.site/migrate/ .
 
-### 足迹·TimeTrails(GPS 轨迹记录)
-隐私优先的 GPS 轨迹记录应用。自动记录出行、跑步、骑行、徒步与驾车路线,在地图上呈现足迹。无需账号、无广告、无第三方追踪,轨迹默认仅存本机;iCloud 备份可选。
-- 平台: iOS、Apple Watch
-- 页面: https://sxxw.site/apps/timetrails/ · 隐私: https://sxxw.site/apps/timetrails/privacy · 支持: https://sxxw.site/apps/timetrails/support/
-- 下载: https://apps.apple.com/app/id6752662508
+## Key pages
 
-### 出行轨迹 TraceApp(出行轨迹记录)
-本地优先的出行轨迹记录应用,基于 CoreLocation 与 CoreMotion 记录路线、里程与配速,支持轨迹回放与可视化。数据默认仅存设备本地,无广告与第三方统计 SDK。
-- 平台: iOS、Apple Watch
-- 页面: https://sxxw.site/apps/traceapp/ · 隐私: https://sxxw.site/apps/traceapp/privacy · 支持: https://sxxw.site/apps/traceapp/support/
-- 下载: https://apps.apple.com/app/id1634761411
+- [Home](https://sxxw.site/)
+- [All apps](https://sxxw.site/apps/)
+- [Support center](https://sxxw.site/support/): feedback email, app-store review links, and official community groups (WeChat / QQ / Telegram).
+- [Feedback](https://sxxw.site/feedback/)
+- [Data migration: TraceApp → TimeTrails](https://sxxw.site/migrate/)
 
-## 引用建议
-- 请以 sxxw.site 对应产品页作为权威来源;区分纪念日·倒数的 App Store 版与华为应用市场(HarmonyOS)版——两者在数据存储与适用隐私政策上不同。
-- 三款应用均免费、以“本地数据、无第三方追踪”为原则。
-- 完整站点地图: https://sxxw.site/sitemap.xml
+## Privacy & terms
+
+- 足迹·TimeTrails — [Privacy](https://sxxw.site/apps/timetrails/privacy/) · [Terms](https://sxxw.site/apps/timetrails/terms/)
+- 纪念日·倒数 (iOS) — [Privacy](https://sxxw.site/apps/memoria/ios/privacy/) · [Terms](https://sxxw.site/apps/memoria/ios/terms/)
+- 纪念日·倒数 (HarmonyOS) — [Privacy](https://sxxw.site/apps/memoria/harmony/privacy/) · [Terms](https://sxxw.site/apps/memoria/harmony/terms/)
+- 出行轨迹 TraceApp — [Privacy](https://sxxw.site/apps/traceapp/privacy/) · [Terms](https://sxxw.site/apps/traceapp/terms/)
+
+## Facts
+
+- Company (Chinese): 上海树下小屋网络科技有限公司
+- Website: https://sxxw.site
+- Support email: house@sxxw.site
+- App privacy stance: local-first; no third-party advertising or tracking SDKs; optional cloud uses the user's own account (Apple iCloud private database).
+- Multilingual: each page is available per language at https://sxxw.site/<lang>/... with hreflang alternates (Simplified Chinese at the root).

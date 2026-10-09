@@ -88,7 +88,7 @@ for (const route of sourceRoutes) {
     const kw = isDefault && route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
     const canonical = `${SITE}${langHref(L.code, route.path)}`;
     const ogLocale = L.htmlLang.replace('-', '_');
-    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, L.htmlLang));
+    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, L.htmlLang, dict));
     const body = ssr.renderRoute(route.path, L.code, isDefault ? undefined : dict);
 
     const head = [
@@ -161,13 +161,14 @@ function appInfo(path) {
     const harmony = path.includes('/harmony/');
     return {
       name: '纪念日·倒数',
+      alternateName: ['纪念日', '倒数日', 'Memoria'],
       applicationCategory: 'LifestyleApplication',
       operatingSystem: harmony ? 'HarmonyOS' : 'iOS, iPadOS, watchOS',
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',
     };
   }
-  if (path.startsWith('/apps/timetrails/')) return { name: '足迹·TimeTrails', applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
-  if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
+  if (path.startsWith('/apps/timetrails/')) return { name: '足迹·TimeTrails', alternateName: ['足迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
+  if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', alternateName: ['出行轨迹', 'TraceApp'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
   return null;
 }
 
@@ -199,14 +200,46 @@ function faqNode(path) {
   };
 }
 
-function structuredDataFor(route, canonical, title, description, inLang) {
+function featureListFor(path, dict) {
+  const pfx = path.startsWith('/apps/timetrails/') ? 'tt.feat.'
+    : path.startsWith('/apps/traceapp/') ? 'trace.feat.'
+      : path.startsWith('/apps/memoria/') ? (path.includes('/harmony/') ? 'mem.hm.feat.' : 'mem.ios.feat.') : null;
+  if (!pfx) return null;
+  const out = [];
+  for (let i = 0; i < 12; i++) { const v = dict[`${pfx}${i}`]; if (v) out.push(v); }
+  return out.length ? out : null;
+}
+
+function screenshotsFor(path) {
+  const S = (dir, names) => names.map((n) => `${SITE}${dir}${n}`);
+  if (path.startsWith('/apps/timetrails/')) return S('/apps/timetrails/', ['shot-01.png', 'shot-02.png', 'shot-03.png', 'shot-04.png', 'shot-05.png', 'shot-06.png']);
+  if (path.startsWith('/apps/traceapp/')) return S('/apps/traceapp/', ['shot-01.png', 'shot-02.png', 'shot-03.png']);
+  if (path.startsWith('/apps/memoria/')) {
+    return path.includes('/harmony/')
+      ? S('/apps/memoria/harmony/', ['shot-01.jpg', 'shot-02.jpg', 'shot-03.jpg', 'shot-04.jpg'])
+      : S('/apps/memoria/ios/', ['shot-01.png', 'shot-02.png', 'shot-03.png', 'shot-04.png', 'shot-05.png']);
+  }
+  return null;
+}
+
+function structuredDataFor(route, canonical, title, description, inLang, dict = {}) {
   const nodes = [organizationNode()];
   if (route.path === '/') {
     nodes.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: ORG_NAME, url: `${SITE}/`, inLanguage: inLang, publisher: { '@type': 'Organization', name: ORG_NAME } });
   }
   const app = appInfo(route.path);
   if (app) {
-    nodes.push({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app, url: canonical, description, inLanguage: inLang, offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' }, publisher: { '@type': 'Organization', name: ORG_NAME } });
+    const featureList = featureListFor(route.path, dict);
+    const screenshot = screenshotsFor(route.path);
+    nodes.push({
+      '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app,
+      url: canonical, description, inLanguage: inLang,
+      image: `${SITE}/logo.png`,
+      ...(screenshot ? { screenshot } : {}),
+      ...(featureList ? { featureList } : {}),
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+      publisher: { '@type': 'Organization', name: ORG_NAME },
+    });
   } else if (route.path !== '/') {
     nodes.push({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical, inLanguage: inLang });
   }
