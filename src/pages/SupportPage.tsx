@@ -61,10 +61,10 @@ export default function SupportPage() {
     {
       kicker: '02', label: 'Reviews', title: t('support.g2.title'), note: t('support.g2.note'),
       items: [
-        { name: '纪念日·倒数 · App Store', desc: 'iPhone / iPad / Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id6760106574?action=write-review' },
-        { name: '纪念日·倒数 · Huawei AppGallery', desc: t('support.g2.memoria.huawei.platform'), meta: 'Huawei AppGallery', cta: t('support.g2.cta.goto'), href: 'https://appgallery.huawei.com/app/C6917613545100329502' },
-        { name: '足迹·TimeTrails · App Store', desc: 'iPhone / iPad / Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id6752662508?action=write-review' },
-        { name: '出行轨迹 TraceApp · App Store', desc: 'iPhone', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id1634761411?action=write-review' },
+        { name: '纪念日·倒数·App Store', desc: 'iPhone·iPad·Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id6760106574?action=write-review' },
+        { name: '纪念日·倒数·Huawei AppGallery', desc: t('support.g2.memoria.huawei.platform'), meta: 'Huawei AppGallery', cta: t('support.g2.cta.goto'), href: 'https://appgallery.huawei.com/app/C6917613545100329502' },
+        { name: '足迹·TimeTrails·App Store', desc: 'iPhone·iPad·Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id6752662508?action=write-review' },
+        { name: '出行轨迹 TraceApp·App Store', desc: 'iPhone', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id1634761411?action=write-review' },
       ],
     },
     {

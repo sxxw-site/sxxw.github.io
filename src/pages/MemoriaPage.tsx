@@ -28,7 +28,7 @@ export default function MemoriaPage({ path }: { path: string }) {
   return <><ThemeToggle /><MemoriaHeader />
     <main className="product-page"><div className="container product-page-inner">
       <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><a href="/apps/memoria/">{BRAND}</a><span>／</span><span>{name}</span></nav>
-      <section className="product-hero"><p className="route-eyebrow">{product.platformName} · {product.storeName}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && (product.storeUrl ? <p className="hero-store"><a className="btn-primary store-btn" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a></p> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>)}<PlatformTabs active={platform} section={section} /></section>
+      <section className="product-hero"><p className="route-eyebrow">{product.platformName}·{product.storeName}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && (product.storeUrl ? <p className="hero-store"><a className="btn-primary store-btn" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a></p> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>)}<PlatformTabs active={platform} section={section} /></section>
       <PageBody product={product} section={section} base={base} platform={platform} />
     </div></main>
     <ProductFooter />
@@ -42,8 +42,8 @@ function PlatformChooser() {
       <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><span>{BRAND}</span></nav>
       <section className="product-hero"><p className="route-eyebrow">{BRAND}</p><h1>{t('mem.ui.pc.title')}</h1><p>{t('mem.ui.pc.desc')}</p></section>
       <div className="platform-cards">
-        <PlatformCard title={BRAND} eyebrow="App Store · iPhone / iPad / Apple Watch" description={t('mem.ui.pc.ios.desc')} href="/apps/memoria/ios/" cta={t('mem.ui.pc.ios.cta')} />
-        <PlatformCard title="纪念日·倒数" eyebrow="HarmonyOS · 华为应用市场" description={t('mem.ui.pc.hm.desc')} href="/apps/memoria/harmony/" cta={t('mem.ui.pc.hm.cta')} />
+        <PlatformCard title={BRAND} eyebrow="App Store·iPhone·iPad·Apple Watch" description={t('mem.ui.pc.ios.desc')} href="/apps/memoria/ios/" cta={t('mem.ui.pc.ios.cta')} />
+        <PlatformCard title="纪念日·倒数" eyebrow="HarmonyOS·华为应用市场" description={t('mem.ui.pc.hm.desc')} href="/apps/memoria/harmony/" cta={t('mem.ui.pc.hm.cta')} />
       </div>
     </div></main>
     <ProductFooter />
@@ -72,7 +72,7 @@ function PageBody({ product, section, base, platform }: { product: typeof memori
 
 function PlatformTabs({ active, section }: { active: Platform; section: Section }) {
   const route = (platform: Platform) => section === 'overview' ? `/apps/memoria/${platform}/` : `/apps/memoria/${platform}/${section}/`;
-  return <div className="platform-tabs" aria-label={BRAND}><a href={route('ios')} className={active === 'ios' ? 'active' : ''}>App Store · 纪念日·倒数</a><a href={route('harmony')} className={active === 'harmony' ? 'active' : ''}>华为应用市场 · 纪念日·倒数</a></div>;
+  return <div className="platform-tabs" aria-label={BRAND}><a href={route('ios')} className={active === 'ios' ? 'active' : ''}>App Store·纪念日·倒数</a><a href={route('harmony')} className={active === 'harmony' ? 'active' : ''}>华为应用市场·纪念日·倒数</a></div>;
 }
 
 function PlatformCard({ title, eyebrow, description, href, cta }: { title: string; eyebrow: string; description: string; href: string; cta: string }) {

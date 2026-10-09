@@ -17,7 +17,7 @@ export default function TraceAppPage({ path }: { path: string }) {
   const desc = section === 'overview' ? t('trace.desc') : t(descKey(section));
   return <><ThemeToggle /><TraceHeader /><main className="product-page"><div className="container product-page-inner">
     <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><span>{APP}</span></nav>
-    <section className="product-hero"><p className="route-eyebrow">{traceapp.platformName} · {STORE}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && traceapp.storeUrl && <p className="hero-store"><a className="btn-primary store-btn" href={traceapp.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', APP)}</a></p>}<TraceTabs active={section} /></section>
+    <section className="product-hero"><p className="route-eyebrow">{traceapp.platformName}·{STORE}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && traceapp.storeUrl && <p className="hero-store"><a className="btn-primary store-btn" href={traceapp.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', APP)}</a></p>}<TraceTabs active={section} /></section>
     <TraceBody section={section} />
   </div></main><TraceFooter /></>;
 }

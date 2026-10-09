@@ -20,7 +20,7 @@ export default function TimeTrailsPage({ path }: { path: string }) {
   const desc = section === 'overview' ? t('tt.desc') : t(descKey(section));
   return <><ThemeToggle /><ProductHeader /><main className="product-page"><div className="container product-page-inner">
     <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><span>{APP}</span></nav>
-    <section className="product-hero"><p className="route-eyebrow">{timetrails.platformName} · {STORE}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && timetrails.storeUrl && <p className="hero-store"><a className="btn-primary store-btn" href={timetrails.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', APP)}</a></p>}<PageTabs active={section} /></section>
+    <section className="product-hero"><p className="route-eyebrow">{timetrails.platformName}·{STORE}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && timetrails.storeUrl && <p className="hero-store"><a className="btn-primary store-btn" href={timetrails.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', APP)}</a></p>}<PageTabs active={section} /></section>
     <TimeTrailsBody section={section} base={base} />
   </div></main><ProductFooter /></>;
 }
