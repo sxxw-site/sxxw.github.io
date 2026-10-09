@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Yerel hatırlatıcıları, widget'ları, Apple Watch'u ve isteğe bağlı özel iCloud eşitlemesini destekler.",
   "mem.ui.pc.ios.cta": "iOS sürümünü görüntüle",
   "mem.ui.pc.hm.desc": "Tamamen yerel sürüm: ağ yok, bulut eşitlemesi yok; veriler yalnızca cihazdaki uygulama korumalı alanında kalır.",
-  "mem.ui.pc.hm.cta": "HarmonyOS sürümünü görüntüle"
+  "mem.ui.pc.hm.cta": "HarmonyOS sürümünü görüntüle",
+  "search.title": "Ara",
+  "search.placeholder": "Uygulama ve destek ara…",
+  "search.empty": "Sonuç yok. Başka bir kelime deneyin.",
+  "search.count": "{n} sonuç",
+  "search.hint": "Deneyin: ayak izleri, yıl dönümü, rota, gizlilik",
+  "nav.search": "Ara"
 }

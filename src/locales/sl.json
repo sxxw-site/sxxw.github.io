@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Podpira lokalne opomnike, gradnike, Apple Watch in izbirno zasebno sinhronizacijo prek iCloud.",
   "mem.ui.pc.ios.cta": "Ogled različice za iOS",
   "mem.ui.pc.hm.desc": "Povsem lokalna različica: brez omrežja, brez sinhronizacije v oblaku; podatki ostanejo le v peskovniku aplikacije v napravi.",
-  "mem.ui.pc.hm.cta": "Ogled različice za HarmonyOS"
+  "mem.ui.pc.hm.cta": "Ogled različice za HarmonyOS",
+  "search.title": "Iskanje",
+  "search.placeholder": "Iščite aplikacije in podporo…",
+  "search.empty": "Ni rezultatov. Poskusite drugo besedo.",
+  "search.count": "{n} rezultatov",
+  "search.hint": "Poskusite: stopinje, obletnica, pot, zasebnost",
+  "nav.search": "Iskanje"
 }

@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "સ્થાનિક રિમાઇન્ડર, વિજેટ, Apple Watch અને વૈકલ્પિક iCloud ખાનગી સિંક સમર્થિત.",
   "mem.ui.pc.ios.cta": "iOS સંસ્કરણ જુઓ",
   "mem.ui.pc.hm.desc": "સંપૂર્ણ સ્થાનિક સંસ્કરણ: નેટવર્ક નહીં, ક્લાઉડ સિંક નહીં, ડેટા ફક્ત ડિવાઇસના એપ સેન્ડબોક્સમાં જ રહે છે.",
-  "mem.ui.pc.hm.cta": "HarmonyOS સંસ્કરણ જુઓ"
+  "mem.ui.pc.hm.cta": "HarmonyOS સંસ્કરણ જુઓ",
+  "search.title": "શોધો",
+  "search.placeholder": "ઍપ્સ અને સહાય શોધો…",
+  "search.empty": "કોઈ પરિણામ નથી. બીજો શબ્દ અજમાવો.",
+  "search.count": "{n} પરિણામ",
+  "search.hint": "અજમાવો: પગલાં, વર્ષગાંઠ, માર્ગ, ગોપનીયતા",
+  "nav.search": "શોધો"
 }

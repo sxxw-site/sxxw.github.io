@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Obsługuje lokalne przypomnienia, widżety, Apple Watch i opcjonalną prywatną synchronizację iCloud.",
   "mem.ui.pc.ios.cta": "Zobacz wersję iOS",
   "mem.ui.pc.hm.desc": "Wersja w pełni lokalna: bez połączenia z siecią, bez synchronizacji w chmurze, dane pozostają tylko w piaskownicy aplikacji na urządzeniu.",
-  "mem.ui.pc.hm.cta": "Zobacz wersję HarmonyOS"
+  "mem.ui.pc.hm.cta": "Zobacz wersję HarmonyOS",
+  "search.title": "Szukaj",
+  "search.placeholder": "Szukaj aplikacji i pomocy…",
+  "search.empty": "Brak wyników. Spróbuj innego słowa.",
+  "search.count": "{n} wyników",
+  "search.hint": "Spróbuj: ślady, rocznica, trasa, prywatność",
+  "nav.search": "Szukaj"
 }

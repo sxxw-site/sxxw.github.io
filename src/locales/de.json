@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Unterstützt lokale Erinnerungen, Widgets, Apple Watch und optionale private iCloud-Synchronisierung.",
   "mem.ui.pc.ios.cta": "iOS-Version ansehen",
   "mem.ui.pc.hm.desc": "Rein lokale Version: keine Netzwerkverbindung, keine Cloud-Synchronisierung, die Daten bleiben in der App-Sandbox auf dem Gerät.",
-  "mem.ui.pc.hm.cta": "HarmonyOS-Version ansehen"
+  "mem.ui.pc.hm.cta": "HarmonyOS-Version ansehen",
+  "search.title": "Suche",
+  "search.placeholder": "Apps & Support durchsuchen…",
+  "search.empty": "Keine Ergebnisse. Versuchen Sie ein anderes Stichwort.",
+  "search.count": "{n} Ergebnisse",
+  "search.hint": "Versuchen Sie: Fußspuren, Jahrestag, Route, Datenschutz",
+  "nav.search": "Suche"
 }

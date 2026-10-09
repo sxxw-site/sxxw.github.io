@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "תומך בתזכורות מקומיות, יישומונים, Apple Watch וסנכרון iCloud פרטי אופציונלי.",
   "mem.ui.pc.ios.cta": "צפה בגרסת iOS",
   "mem.ui.pc.hm.desc": "גרסה מקומית לחלוטין: ללא חיבור לרשת וללא סנכרון בענן, הנתונים נשארים בארגז החול של האפליקציה במכשיר.",
-  "mem.ui.pc.hm.cta": "צפה בגרסת HarmonyOS"
+  "mem.ui.pc.hm.cta": "צפה בגרסת HarmonyOS",
+  "search.title": "חיפוש",
+  "search.placeholder": "חיפוש באפליקציות ובתמיכה…",
+  "search.empty": "אין תוצאות. נסו מילה אחרת.",
+  "search.count": "{n} תוצאות",
+  "search.hint": "נסו: עקבות, יום שנה, מסלול, פרטיות",
+  "nav.search": "חיפוש"
 }

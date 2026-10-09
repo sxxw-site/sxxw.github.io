@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Acceptă mementouri locale, widgeturi, Apple Watch și sincronizare privată opțională prin iCloud.",
   "mem.ui.pc.ios.cta": "Vezi versiunea iOS",
   "mem.ui.pc.hm.desc": "Versiune complet locală: fără rețea, fără sincronizare în cloud; datele rămân doar în sandboxul aplicației de pe dispozitiv.",
-  "mem.ui.pc.hm.cta": "Vezi versiunea HarmonyOS"
+  "mem.ui.pc.hm.cta": "Vezi versiunea HarmonyOS",
+  "search.title": "Căutare",
+  "search.placeholder": "Caută aplicații și asistență…",
+  "search.empty": "Niciun rezultat. Încearcă alt cuvânt.",
+  "search.count": "{n} rezultate",
+  "search.hint": "Încearcă: urme, aniversare, traseu, confidențialitate",
+  "nav.search": "Căutare"
 }

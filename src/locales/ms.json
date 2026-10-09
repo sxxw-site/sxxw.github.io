@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Menyokong peringatan setempat, widget, Apple Watch dan penyegerakan peribadi iCloud pilihan.",
   "mem.ui.pc.ios.cta": "Lihat versi iOS",
   "mem.ui.pc.hm.desc": "Versi setempat sepenuhnya: tiada sambungan rangkaian, tiada penyegerakan awan, data kekal dalam kotak pasir aplikasi peranti sahaja.",
-  "mem.ui.pc.hm.cta": "Lihat versi HarmonyOS"
+  "mem.ui.pc.hm.cta": "Lihat versi HarmonyOS",
+  "search.title": "Cari",
+  "search.placeholder": "Cari apl & sokongan…",
+  "search.empty": "Tiada hasil. Cuba kata kunci lain.",
+  "search.count": "{n} hasil",
+  "search.hint": "Cuba: jejak, ulang tahun, laluan, privasi",
+  "nav.search": "Cari"
 }

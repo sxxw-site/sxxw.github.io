@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Palaiko vietinius priminimus, valdiklius, Apple Watch ir pasirenkamą privatų iCloud sinchronizavimą.",
   "mem.ui.pc.ios.cta": "Peržiūrėti iOS versiją",
   "mem.ui.pc.hm.desc": "Grynai vietinė versija: be interneto ryšio, be sinchronizavimo debesyje, duomenys lieka tik įrenginio programos smėlio dėžėje.",
-  "mem.ui.pc.hm.cta": "Peržiūrėti HarmonyOS versiją"
+  "mem.ui.pc.hm.cta": "Peržiūrėti HarmonyOS versiją",
+  "search.title": "Paieška",
+  "search.placeholder": "Ieškoti programėlių ir pagalbos…",
+  "search.empty": "Rezultatų nėra. Pabandykite kitą žodį.",
+  "search.count": "{n} rezultatų",
+  "search.hint": "Pabandykite: pėdsakai, sukaktis, maršrutas, privatumas",
+  "nav.search": "Paieška"
 }

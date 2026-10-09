@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Atbalsta lokālus atgādinājumus, logrīkus, Apple Watch un izvēles privātu iCloud sinhronizāciju.",
   "mem.ui.pc.ios.cta": "Skatīt iOS versiju",
   "mem.ui.pc.hm.desc": "Tīri lokāla versija: bez interneta savienojuma, bez mākoņa sinhronizācijas, dati paliek tikai ierīces lietotnes smilškastē.",
-  "mem.ui.pc.hm.cta": "Skatīt HarmonyOS versiju"
+  "mem.ui.pc.hm.cta": "Skatīt HarmonyOS versiju",
+  "search.title": "Meklēt",
+  "search.placeholder": "Meklēt lietotnes un atbalstu…",
+  "search.empty": "Nav rezultātu. Mēģiniet citu atslēgvārdu.",
+  "search.count": "{n} rezultāti",
+  "search.hint": "Mēģiniet: pēdas, gadadiena, maršruts, privātums",
+  "nav.search": "Meklēt"
 }

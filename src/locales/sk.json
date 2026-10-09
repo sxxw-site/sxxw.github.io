@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Podporuje lokálne pripomienky, widgety, Apple Watch a voliteľnú súkromnú synchronizáciu cez iCloud.",
   "mem.ui.pc.ios.cta": "Zobraziť verziu pre iOS",
   "mem.ui.pc.hm.desc": "Úplne lokálna verzia: bez siete, bez synchronizácie v cloude; dáta zostávajú len v sandboxe aplikácie v zariadení.",
-  "mem.ui.pc.hm.cta": "Zobraziť verziu pre HarmonyOS"
+  "mem.ui.pc.hm.cta": "Zobraziť verziu pre HarmonyOS",
+  "search.title": "Hľadať",
+  "search.placeholder": "Hľadať aplikácie a podporu…",
+  "search.empty": "Žiadne výsledky. Skúste iné kľúčové slovo.",
+  "search.count": "{n} výsledkov",
+  "search.hint": "Skúste: stopy, výročie, trasa, súkromie",
+  "nav.search": "Hľadať"
 }

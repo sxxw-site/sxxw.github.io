@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "로컬 알림, 위젯, Apple Watch, 선택형 iCloud 개인 동기화를 지원합니다.",
   "mem.ui.pc.ios.cta": "iOS 버전 보기",
   "mem.ui.pc.hm.desc": "순수 로컬 버전: 네트워크 연결과 클라우드 동기화가 없으며, 데이터는 기기의 앱 샌드박스에만 남습니다.",
-  "mem.ui.pc.hm.cta": "HarmonyOS 버전 보기"
+  "mem.ui.pc.hm.cta": "HarmonyOS 버전 보기",
+  "search.title": "검색",
+  "search.placeholder": "앱과 지원 검색…",
+  "search.empty": "결과가 없습니다. 다른 키워드로 검색해 보세요.",
+  "search.count": "결과 {n}개",
+  "search.hint": "예: 발자취, 기념일, 경로, 개인정보",
+  "nav.search": "검색"
 }

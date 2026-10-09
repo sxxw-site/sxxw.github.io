@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Tukee paikallisia muistutuksia, widgetejä, Apple Watchia ja valinnaista yksityistä iCloud-synkronointia.",
   "mem.ui.pc.ios.cta": "Näytä iOS-versio",
   "mem.ui.pc.hm.desc": "Täysin paikallinen versio: ei verkkoyhteyttä eikä pilvisynkronointia, tiedot pysyvät laitteen sovellusympäristössä.",
-  "mem.ui.pc.hm.cta": "Näytä HarmonyOS-versio"
+  "mem.ui.pc.hm.cta": "Näytä HarmonyOS-versio",
+  "search.title": "Haku",
+  "search.placeholder": "Hae sovelluksia ja tukea…",
+  "search.empty": "Ei tuloksia. Kokeile toista hakusanaa.",
+  "search.count": "{n} tulosta",
+  "search.hint": "Kokeile: jalanjäljet, vuosipäivä, reitti, yksityisyys",
+  "nav.search": "Haku"
 }

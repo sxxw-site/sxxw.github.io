@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Støtter lokale påminnelser, moduler, Apple Watch og valgfri privat iCloud-synkronisering.",
   "mem.ui.pc.ios.cta": "Se iOS-versjonen",
   "mem.ui.pc.hm.desc": "Ren lokal versjon: ingen nettverkstilkobling, ingen skysynkronisering, dataene blir bare i appens sandkasse på enheten.",
-  "mem.ui.pc.hm.cta": "Se HarmonyOS-versjonen"
+  "mem.ui.pc.hm.cta": "Se HarmonyOS-versjonen",
+  "search.title": "Søk",
+  "search.placeholder": "Søk i apper og støtte…",
+  "search.empty": "Ingen resultater. Prøv et annet søkeord.",
+  "search.count": "{n} resultater",
+  "search.hint": "Prøv: fotspor, jubileum, rute, personvern",
+  "nav.search": "Søk"
 }

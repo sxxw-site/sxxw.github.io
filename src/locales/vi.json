@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Hỗ trợ lời nhắc cục bộ, tiện ích, Apple Watch và đồng bộ riêng tùy chọn qua iCloud.",
   "mem.ui.pc.ios.cta": "Xem phiên bản iOS",
   "mem.ui.pc.hm.desc": "Phiên bản hoàn toàn cục bộ: không mạng, không đồng bộ đám mây; dữ liệu chỉ nằm trong hộp cát ứng dụng trên thiết bị.",
-  "mem.ui.pc.hm.cta": "Xem phiên bản HarmonyOS"
+  "mem.ui.pc.hm.cta": "Xem phiên bản HarmonyOS",
+  "search.title": "Tìm kiếm",
+  "search.placeholder": "Tìm ứng dụng và hỗ trợ…",
+  "search.empty": "Không có kết quả. Hãy thử từ khóa khác.",
+  "search.count": "{n} kết quả",
+  "search.hint": "Thử: dấu chân, kỷ niệm, hành trình, quyền riêng tư",
+  "nav.search": "Tìm kiếm"
 }

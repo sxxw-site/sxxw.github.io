@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "يدعم التذكيرات المحلية والأدوات وApple Watch ومزامنة iCloud الخاصة الاختيارية.",
   "mem.ui.pc.ios.cta": "عرض إصدار iOS",
   "mem.ui.pc.hm.desc": "إصدار محلي بالكامل: لا اتصال بالإنترنت ولا مزامنة سحابية، وتبقى البيانات في صندوق التطبيق الرملي على الجهاز.",
-  "mem.ui.pc.hm.cta": "عرض إصدار HarmonyOS"
+  "mem.ui.pc.hm.cta": "عرض إصدار HarmonyOS",
+  "search.title": "بحث",
+  "search.placeholder": "ابحث في التطبيقات والدعم…",
+  "search.empty": "لا توجد نتائج. جرّب كلمة أخرى.",
+  "search.count": "{n} نتيجة",
+  "search.hint": "جرّب: آثار الأقدام، ذكرى، مسار، الخصوصية",
+  "nav.search": "بحث"
 }

@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Stöder lokala påminnelser, widgetar, Apple Watch och valfri privat iCloud-synkronisering.",
   "mem.ui.pc.ios.cta": "Visa iOS-versionen",
   "mem.ui.pc.hm.desc": "Helt lokal version: inget nätverk, ingen molnsynkronisering; data stannar bara i appens sandlåda på enheten.",
-  "mem.ui.pc.hm.cta": "Visa HarmonyOS-versionen"
+  "mem.ui.pc.hm.cta": "Visa HarmonyOS-versionen",
+  "search.title": "Sök",
+  "search.placeholder": "Sök bland appar och support…",
+  "search.empty": "Inga resultat. Prova ett annat sökord.",
+  "search.count": "{n} resultat",
+  "search.hint": "Prova: fotspår, jubileum, rutt, integritet",
+  "nav.search": "Sök"
 }

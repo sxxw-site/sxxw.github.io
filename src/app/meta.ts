@@ -22,6 +22,7 @@ export function pageMeta(pathname: string, t: T): PageMeta | null {
   const p = pathname;
 
   if (p === '/') return { title: t('home.meta.title'), description: t('home.meta.description') };
+  if (p === '/search/') return { title: t('search.title'), description: t('search.placeholder') };
   if (p === '/apps/') return { title: t('apps.hero.title'), description: t('apps.hero.desc') };
   if (p === '/support/') return { title: t('support.hero.title'), description: t('support.hero.desc') };
 

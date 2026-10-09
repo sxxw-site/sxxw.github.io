@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Suporta lembretes locais, widgets, Apple Watch e sincronização privada opcional via iCloud.",
   "mem.ui.pc.ios.cta": "Ver versão iOS",
   "mem.ui.pc.hm.desc": "Versão totalmente local: sem rede, sem sincronização na nuvem; os dados ficam apenas na sandbox da aplicação no dispositivo.",
-  "mem.ui.pc.hm.cta": "Ver versão HarmonyOS"
+  "mem.ui.pc.hm.cta": "Ver versão HarmonyOS",
+  "search.title": "Pesquisar",
+  "search.placeholder": "Pesquisar apps e suporte…",
+  "search.empty": "Sem resultados. Tente outra palavra.",
+  "search.count": "{n} resultados",
+  "search.hint": "Tente: pegadas, aniversário, trajeto, privacidade",
+  "nav.search": "Pesquisar"
 }

@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Ondersteun plaaslike herinnerings, legstukke, Apple Watch en opsionele private iCloud-sinkronisering.",
   "mem.ui.pc.ios.cta": "Bekyk die iOS-weergawe",
   "mem.ui.pc.hm.desc": "Suiwer plaaslike weergawe: geen netwerk, geen wolksinkronisering nie, data bly in die program se sandput op die toestel.",
-  "mem.ui.pc.hm.cta": "Bekyk die HarmonyOS-weergawe"
+  "mem.ui.pc.hm.cta": "Bekyk die HarmonyOS-weergawe",
+  "search.title": "Soek",
+  "search.placeholder": "Soek apps en ondersteuning…",
+  "search.empty": "Geen resultate nie. Probeer 'n ander sleutelwoord.",
+  "search.count": "{n} resultate",
+  "search.hint": "Probeer: voetspore, herdenking, roete, privaatheid",
+  "nav.search": "Soek"
 }

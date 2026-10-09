@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "支持本地提醒、小组件、Apple Watch 与可选 iCloud 私有同步。",
   "mem.ui.pc.ios.cta": "查看 iOS 版本",
   "mem.ui.pc.hm.desc": "纯本地版本：不联网、不提供云同步，数据仅留在设备应用沙箱。",
-  "mem.ui.pc.hm.cta": "查看 HarmonyOS 版本"
+  "mem.ui.pc.hm.cta": "查看 HarmonyOS 版本",
+  "search.title": "站内搜索",
+  "search.placeholder": "搜索应用与支持内容…",
+  "search.empty": "没有找到相关内容，换个关键词试试。",
+  "search.count": "共 {n} 个结果",
+  "search.hint": "例如：足迹、纪念日、轨迹记录、隐私政策",
+  "nav.search": "搜索"
 }

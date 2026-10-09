@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Supports local reminders, widgets, Apple Watch, and optional iCloud private sync.",
   "mem.ui.pc.ios.cta": "View the iOS version",
   "mem.ui.pc.hm.desc": "Fully local version: no network, no cloud sync; data stays only in the app's sandbox on the device.",
-  "mem.ui.pc.hm.cta": "View the HarmonyOS version"
+  "mem.ui.pc.hm.cta": "View the HarmonyOS version",
+  "search.title": "Search",
+  "search.placeholder": "Search apps & support…",
+  "search.empty": "No results. Try another keyword.",
+  "search.count": "{n} results",
+  "search.hint": "Try: footprints, anniversary, trail, privacy",
+  "nav.search": "Search"
 }

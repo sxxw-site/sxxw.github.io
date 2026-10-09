@@ -225,7 +225,11 @@ function screenshotsFor(path) {
 function structuredDataFor(route, canonical, title, description, inLang, dict = {}) {
   const nodes = [organizationNode()];
   if (route.path === '/') {
-    nodes.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: ORG_NAME, url: `${SITE}/`, inLanguage: inLang, publisher: { '@type': 'Organization', name: ORG_NAME } });
+    nodes.push({
+      '@context': 'https://schema.org', '@type': 'WebSite', name: ORG_NAME, url: `${SITE}/`, inLanguage: inLang,
+      publisher: { '@type': 'Organization', name: ORG_NAME },
+      potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${SITE}/search/?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
+    });
   }
   const app = appInfo(route.path);
   if (app) {

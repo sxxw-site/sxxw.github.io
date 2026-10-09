@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "ਸਥਾਨਕ ਯਾਦ-ਦਹਾਨੀ, ਵਿਜੇਟ, Apple Watch ਅਤੇ ਵਿਕਲਪਿਕ iCloud ਨਿੱਜੀ ਸਿੰਕ ਸਮਰਥਿਤ।",
   "mem.ui.pc.ios.cta": "iOS ਵਰਜਨ ਦੇਖੋ",
   "mem.ui.pc.hm.desc": "ਪੂਰੀ ਤਰ੍ਹਾਂ ਸਥਾਨਕ ਵਰਜਨ: ਕੋਈ ਨੈੱਟਵਰਕ ਨਹੀਂ, ਕੋਈ ਕਲਾਊਡ ਸਿੰਕ ਨਹੀਂ, ਡਾਟਾ ਸਿਰਫ਼ ਡਿਵਾਈਸ ਦੇ ਐਪ ਸੈਂਡਬਾਕਸ ਵਿੱਚ ਹੀ ਰਹਿੰਦਾ ਹੈ।",
-  "mem.ui.pc.hm.cta": "HarmonyOS ਵਰਜਨ ਦੇਖੋ"
+  "mem.ui.pc.hm.cta": "HarmonyOS ਵਰਜਨ ਦੇਖੋ",
+  "search.title": "ਖੋਜੋ",
+  "search.placeholder": "ਐਪਾਂ ਅਤੇ ਸਹਾਇਤਾ ਖੋਜੋ…",
+  "search.empty": "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ। ਕੋਈ ਹੋਰ ਸ਼ਬਦ ਅਜ਼ਮਾਓ।",
+  "search.count": "{n} ਨਤੀਜੇ",
+  "search.hint": "ਅਜ਼ਮਾਓ: ਪੈੜਾਂ, ਵਰ੍ਹੇਗੰਢ, ਰਾਹ, ਨਿੱਜਤਾ",
+  "nav.search": "ਖੋਜੋ"
 }

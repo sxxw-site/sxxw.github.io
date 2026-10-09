@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Podržava lokalne podsjetnike, widgete, Apple Watch i neobaveznu privatnu sinkronizaciju s iCloudom.",
   "mem.ui.pc.ios.cta": "Pogledaj verziju za iOS",
   "mem.ui.pc.hm.desc": "Isključivo lokalna verzija: bez mreže, bez sinkronizacije u oblaku, podaci ostaju u sandboxu aplikacije na uređaju.",
-  "mem.ui.pc.hm.cta": "Pogledaj verziju za HarmonyOS"
+  "mem.ui.pc.hm.cta": "Pogledaj verziju za HarmonyOS",
+  "search.title": "Pretraživanje",
+  "search.placeholder": "Pretraži aplikacije i podršku…",
+  "search.empty": "Nema rezultata. Pokušajte s drugom riječi.",
+  "search.count": "{n} rezultata",
+  "search.hint": "Pokušajte: stope, godišnjica, ruta, privatnost",
+  "nav.search": "Pretraži"
 }

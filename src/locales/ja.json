@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "ローカル通知、ウィジェット、Apple Watch、任意の iCloud プライベート同期に対応。",
   "mem.ui.pc.ios.cta": "iOS 版を見る",
   "mem.ui.pc.hm.desc": "完全ローカル版：ネット接続やクラウド同期はなく、データはデバイス上のアプリのサンドボックスにのみ残ります。",
-  "mem.ui.pc.hm.cta": "HarmonyOS 版を見る"
+  "mem.ui.pc.hm.cta": "HarmonyOS 版を見る",
+  "search.title": "検索",
+  "search.placeholder": "アプリとサポートを検索…",
+  "search.empty": "結果がありません。別のキーワードをお試しください。",
+  "search.count": "{n}件の結果",
+  "search.hint": "例: 足あと、記念日、軌跡、プライバシー",
+  "nav.search": "検索"
 }

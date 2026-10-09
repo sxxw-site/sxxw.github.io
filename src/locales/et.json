@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Toetab kohalikke meeldetuletusi, vidinaid, Apple Watchi ja valikulist privaatset iCloudi sünkroonimist.",
   "mem.ui.pc.ios.cta": "Vaata iOS-i versiooni",
   "mem.ui.pc.hm.desc": "Puhtalt kohalik versioon: ei mingit võrku ega pilvesünkroonimist, andmed jäävad seadme rakenduse liivakasti.",
-  "mem.ui.pc.hm.cta": "Vaata HarmonyOS-i versiooni"
+  "mem.ui.pc.hm.cta": "Vaata HarmonyOS-i versiooni",
+  "search.title": "Otsing",
+  "search.placeholder": "Otsi rakendusi ja tuge…",
+  "search.empty": "Tulemusi pole. Proovi teist märksõna.",
+  "search.count": "{n} tulemust",
+  "search.hint": "Proovi: jäljed, aastapäev, rada, privaatsus",
+  "nav.search": "Otsing"
 }

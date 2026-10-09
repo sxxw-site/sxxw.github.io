@@ -9,6 +9,7 @@ import AppsPage from './pages/AppsPage';
 import SupportPage from './pages/SupportPage';
 import FeedbackPage from './pages/FeedbackPage';
 import MigratePage from './pages/MigratePage';
+import SearchPage from './pages/SearchPage';
 import ThemeToggle from './components/ThemeToggle';
 
 const HOME_APPS = [
@@ -71,6 +72,7 @@ export default function App({ path }: { path?: string }) {
     if (pathname === '/support/') return <SupportPage />;
     if (pathname === '/feedback/') return <FeedbackPage />;
     if (pathname === '/migrate/') return <MigratePage />;
+    if (pathname === '/search/') return <SearchPage />;
     if (pathname.startsWith('/apps/memoria/')) return <MemoriaPage path={pathname} />;
     if (pathname.startsWith('/apps/timetrails/')) return <TimeTrailsPage path={pathname} />;
     if (pathname.startsWith('/apps/traceapp/')) return <TraceAppPage path={pathname} />;
@@ -83,7 +85,7 @@ export default function App({ path }: { path?: string }) {
       <a className="brand" href="#hero" aria-label={t('home.meta.title')} onClick={handleAnchorClick}><BrandMark /><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">{t('home.brand.en')}</span></span></a>
       <button className={`nav-toggle${isMenuOpen ? ' open' : ''}`} aria-label={t('home.nav.toggle')} aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((open) => !open)}><span className="bar" /><span className="bar" /><span className="bar" /></button>
       <nav className={`nav-menu${isMenuOpen ? ' open' : ''}`}>
-        <a href="#hero" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.home')}</a><a href="/apps/" className="nav-link">应用中心</a><a href="#about" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.about')}</a><a href="#contact" className="nav-link cta-nav" onClick={handleAnchorClick}>{t('home.nav.contact')}</a>
+        <a href="#hero" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.home')}</a><a href="/apps/" className="nav-link">应用中心</a><a href="/search/" className="nav-link">{t('nav.search')}</a><a href="#about" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.about')}</a><a href="#contact" className="nav-link cta-nav" onClick={handleAnchorClick}>{t('home.nav.contact')}</a>
         <div className="lang-wrap" aria-label="Language switcher"><select className="lang-select" aria-label="Language" value={language.normalizedCode} onChange={(event) => setLanguage(event.target.value)}>{languages.map((item) => <option key={item.normalizedCode} value={item.normalizedCode}>{item.label}</option>)}</select><span className="lang-caret">▾</span></div>
       </nav>
     </div></header>

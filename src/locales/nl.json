@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Ondersteunt lokale herinneringen, widgets, Apple Watch en optionele privé iCloud-synchronisatie.",
   "mem.ui.pc.ios.cta": "iOS-versie bekijken",
   "mem.ui.pc.hm.desc": "Puur lokale versie: geen internetverbinding, geen cloudsynchronisatie, gegevens blijven alleen in de sandbox van de app op het toestel.",
-  "mem.ui.pc.hm.cta": "HarmonyOS-versie bekijken"
+  "mem.ui.pc.hm.cta": "HarmonyOS-versie bekijken",
+  "search.title": "Zoeken",
+  "search.placeholder": "Zoek in apps en ondersteuning…",
+  "search.empty": "Geen resultaten. Probeer een ander trefwoord.",
+  "search.count": "{n} resultaten",
+  "search.hint": "Probeer: voetsporen, jubileum, route, privacy",
+  "nav.search": "Zoeken"
 }

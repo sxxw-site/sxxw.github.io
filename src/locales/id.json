@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Mendukung pengingat lokal, widget, Apple Watch, dan sinkronisasi pribadi iCloud opsional.",
   "mem.ui.pc.ios.cta": "Lihat versi iOS",
   "mem.ui.pc.hm.desc": "Versi lokal murni: tanpa koneksi jaringan, tanpa sinkronisasi cloud, data hanya berada di sandbox aplikasi perangkat.",
-  "mem.ui.pc.hm.cta": "Lihat versi HarmonyOS"
+  "mem.ui.pc.hm.cta": "Lihat versi HarmonyOS",
+  "search.title": "Cari",
+  "search.placeholder": "Cari aplikasi & bantuan…",
+  "search.empty": "Tidak ada hasil. Coba kata kunci lain.",
+  "search.count": "{n} hasil",
+  "search.hint": "Coba: jejak, hari jadi, rute, privasi",
+  "nav.search": "Cari"
 }

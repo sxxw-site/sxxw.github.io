@@ -241,5 +241,11 @@
   "mem.ui.pc.ios.desc": "Támogatja a helyi emlékeztetőket, a widgeteket, az Apple Watchot és az opcionális privát iCloud-szinkronizálást.",
   "mem.ui.pc.ios.cta": "iOS-verzió megtekintése",
   "mem.ui.pc.hm.desc": "Tisztán helyi verzió: nincs hálózat, nincs felhőszinkronizálás, az adatok a készüléken az alkalmazás sandboxában maradnak.",
-  "mem.ui.pc.hm.cta": "HarmonyOS-verzió megtekintése"
+  "mem.ui.pc.hm.cta": "HarmonyOS-verzió megtekintése",
+  "search.title": "Keresés",
+  "search.placeholder": "Alkalmazások és súgó keresése…",
+  "search.empty": "Nincs találat. Próbáljon másik kulcsszót.",
+  "search.count": "{n} találat",
+  "search.hint": "Próbálja: nyomok, évforduló, útvonal, adatvédelem",
+  "nav.search": "Keresés"
 }
