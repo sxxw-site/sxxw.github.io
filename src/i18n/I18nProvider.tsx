@@ -16,6 +16,7 @@ import {
   type Language,
 } from './config';
 import defaultDictionary from '../locales/zh-hans.json';
+import { langHref, splitLangPath } from './path';
 
 const STORAGE_KEY = 'sxxw-site-language';
 const localeModules = import.meta.glob(['../locales/*.json', '!../locales/zh-hans.json']) as Record<
@@ -66,7 +67,7 @@ function initialLanguage(): string {
   return browserLanguage();
 }
 
-async function loadDictionary(code: string): Promise<Dictionary> {
+export async function loadDictionary(code: string): Promise<Dictionary> {
   const normalized = normalizeLanguageCode(code);
   const base = normalized.split('-')[0];
   const load = async (locale: string): Promise<Dictionary> => {
@@ -80,10 +81,10 @@ async function loadDictionary(code: string): Promise<Dictionary> {
   return { ...defaultDictionary, ...baseDictionary, ...regionalDictionary };
 }
 
-export function I18nProvider({ children, initialLanguage: initialLanguageCode }: PropsWithChildren<{ initialLanguage?: string }>) {
+export function I18nProvider({ children, initialLanguage: initialLanguageCode, dictionary: initialDictionary }: PropsWithChildren<{ initialLanguage?: string; dictionary?: Dictionary }>) {
   const [languageCode, setLanguageCode] = useState(initialLanguageCode ?? DEFAULT_LANGUAGE);
   const language = useMemo(() => languageFor(languageCode), [languageCode]);
-  const [dictionary, setDictionary] = useState<Dictionary>(defaultDictionary);
+  const [dictionary, setDictionary] = useState<Dictionary>(initialDictionary ?? defaultDictionary);
 
   useEffect(() => {
     let cancelled = false;
@@ -100,11 +101,10 @@ export function I18nProvider({ children, initialLanguage: initialLanguageCode }:
 
   const setLanguage = useCallback((code: string) => {
     const next = languageFor(code);
-    window.localStorage.setItem(STORAGE_KEY, next.normalizedCode);
-    const url = new URL(window.location.href);
-    url.searchParams.set('lang', next.normalizedCode);
-    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
-    setLanguageCode(next.normalizedCode);
+    try { window.localStorage.setItem(STORAGE_KEY, next.normalizedCode); } catch { /* ignore */ }
+    // 路径前缀多语言：切换语言 = 跳到该语言对应的独立页面(保证 URL 与收录一致)
+    const { path } = splitLangPath(window.location.pathname);
+    window.location.assign(`${langHref(next.normalizedCode, path)}${window.location.hash}`);
   }, []);
 
   useEffect(() => {

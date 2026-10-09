@@ -1,5 +1,6 @@
 import { useEffect, useState, type MouseEvent } from 'react';
 import { routeFor } from './app/routes';
+import { pageMeta } from './app/meta';
 import { useI18n } from './i18n/I18nProvider';
 import MemoriaPage from './pages/MemoriaPage';
 import TimeTrailsPage from './pages/TimeTrailsPage';
@@ -31,9 +32,11 @@ export default function App({ path }: { path?: string }) {
   const route = routeFor(pathname);
 
   useEffect(() => {
-    document.title = route?.title ?? t('home.meta.title');
-    document.querySelector('meta[name="description"]')?.setAttribute('content', route?.description ?? t('home.meta.description'));
-  }, [route, t]);
+    // 非中文:用本地化 pageMeta 覆盖(与按语言预渲染的 <title> 一致);中文:用 routes.ts 的精修文案
+    const localized = language.normalizedCode === 'zh-hans' ? null : pageMeta(pathname, t);
+    document.title = localized?.title ?? route?.title ?? t('home.meta.title');
+    document.querySelector('meta[name="description"]')?.setAttribute('content', localized?.description ?? route?.description ?? t('home.meta.description'));
+  }, [route, t, language, pathname]);
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));

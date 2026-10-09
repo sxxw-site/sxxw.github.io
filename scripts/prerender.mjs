@@ -5,6 +5,8 @@ import { pathToFileURL } from 'node:url';
 const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
 const SUPPORT_EMAIL = 'house@sxxw.site';
+const DEFAULT_LANG = 'zh-hans';
+const RTL = new Set(['ar', 'fa', 'he']);
 const buildDate = new Date().toISOString().slice(0, 10);
 
 // 支持页常见问题(用于 FAQPage 结构化数据 / GEO)
@@ -28,6 +30,7 @@ const FAQ = {
 };
 
 const outputDir = 'docs';
+const localesDir = 'src/locales';
 const manifest = JSON.parse(readFileSync(join(outputDir, '.vite', 'manifest.json'), 'utf8'));
 const entry = manifest['index.html'];
 if (!entry) throw new Error('Vite manifest is missing index.html.');
@@ -36,59 +39,103 @@ const ssr = await import(pathToFileURL(join(process.cwd(), '.ssr', 'entry-server
 const sourceRoutes = ssr.siteRoutes;
 if (!sourceRoutes) throw new Error('The prerender route manifest could not be loaded.');
 
+// ---- 语言与字典 ----
+const langCatalog = JSON.parse(readFileSync(join('src', 'i18n', 'languages.json'), 'utf8'));
+const norm = (c) => (c ?? '').trim().replace(/_/g, '-').toLowerCase();
+const LANGS = langCatalog.map((e) => ({
+  code: norm(e.code),
+  htmlLang: e.asc_code || e.code,
+  rtl: RTL.has(norm(e.code).split('-')[0]),
+}));
+// 多语言页面不含这些语言前缀页仅生成默认中文(App 嵌入类/独立 i18n 页)
+const NON_PREFIXED_ONLY = new Set(['/feedback/', '/migrate/']);
+
+const baseDict = JSON.parse(readFileSync(join(localesDir, 'zh-hans.json'), 'utf8'));
+const loadLocale = (code) => {
+  try { return JSON.parse(readFileSync(join(localesDir, `${code}.json`), 'utf8')); } catch { return {}; }
+};
+const dictCache = new Map([[DEFAULT_LANG, baseDict]]);
+function dictFor(code) {
+  if (dictCache.has(code)) return dictCache.get(code);
+  const b = code.split('-')[0];
+  const merged = { ...baseDict, ...(b !== code ? loadLocale(b) : {}), ...loadLocale(code) };
+  dictCache.set(code, merged);
+  return merged;
+}
+
+const langHref = (lang, path) => (lang === DEFAULT_LANG ? path : `/${lang}${path}`);
 const titleByPath = new Map(sourceRoutes.map((r) => [r.path, r.title]));
 const styles = (entry.css ?? []).map((file) => `<link rel="stylesheet" href="/${file}">`).join('');
 const script = `<script type="module" src="/${entry.file}"></script>`;
-const routeUrls = [];
+const sitemapEntries = [];
 
 for (const route of sourceRoutes) {
-  const body = ssr.renderRoute(route.path);
-  const canonical = `${SITE}${route.path}`;
-  const structuredData = JSON.stringify(structuredDataFor(route, canonical));
-  const t = escapeHtml(route.title);
-  const d = escapeHtml(route.description);
-  const kw = route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
-  const head = [
-    '<meta charset="UTF-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1">',
-    '<meta name="color-scheme" content="dark light">',
-    `<script>(function(){try{var t=localStorage.getItem('sxxw-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}try{if(location.search.indexOf('embed=1')>-1){document.documentElement.classList.add('embed');}}catch(e){}document.documentElement.classList.add('js');})();</script>`,
-    `<title>${t}</title>`,
-    `<meta name="description" content="${d}">`,
-    kw,
-    '<meta name="robots" content="index,follow,max-image-preview:large">',
-    `<link rel="canonical" href="${canonical}">`,
-    '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">',
-    '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap">',
-    '<meta property="og:type" content="website">',
-    `<meta property="og:site_name" content="${escapeHtml(ORG_NAME)}">`,
-    '<meta property="og:locale" content="zh_CN">',
-    `<meta property="og:title" content="${t}">`,
-    `<meta property="og:description" content="${d}">`,
-    `<meta property="og:url" content="${canonical}">`,
-    `<meta property="og:image" content="${SITE}/logo.png">`,
-    '<meta name="twitter:card" content="summary">',
-    `<meta name="twitter:title" content="${t}">`,
-    `<meta name="twitter:description" content="${d}">`,
-    `<meta name="twitter:image" content="${SITE}/logo.png">`,
-    `<script type="application/ld+json">${escapeScript(structuredData)}</script>`,
-    styles,
-  ].join('');
-  const html = `<!doctype html><html lang="zh-CN"><head>${head}</head><body><div id="root">${body}</div>${script}</body></html>`;
-  const file = route.path === '/' ? join(outputDir, 'index.html') : join(outputDir, route.path, 'index.html');
-  mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, html);
-  routeUrls.push(route.path);
+  const prefixed = !NON_PREFIXED_ONLY.has(route.path);
+  const langsForRoute = prefixed ? LANGS : LANGS.filter((l) => l.code === DEFAULT_LANG);
+  // 该路由的 hreflang 互指(仅多语言路由)
+  const alternates = prefixed
+    ? LANGS.map((l) => `<link rel="alternate" hreflang="${l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
+      + `<link rel="alternate" hreflang="x-default" href="${SITE}${route.path}">`
+    : '';
+
+  for (const L of langsForRoute) {
+    const isDefault = L.code === DEFAULT_LANG;
+    const dict = dictFor(L.code);
+    const t = (k) => dict[k] ?? k;
+    const meta = isDefault ? null : ssr.pageMeta(route.path, t);
+    const title = escapeHtml(meta?.title ?? route.title);
+    const description = escapeHtml(meta?.description ?? route.description);
+    const kw = isDefault && route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
+    const canonical = `${SITE}${langHref(L.code, route.path)}`;
+    const ogLocale = L.htmlLang.replace('-', '_');
+    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, L.htmlLang));
+    const body = ssr.renderRoute(route.path, L.code, isDefault ? undefined : dict);
+
+    const head = [
+      '<meta charset="UTF-8">',
+      '<meta name="viewport" content="width=device-width, initial-scale=1">',
+      '<meta name="color-scheme" content="dark light">',
+      `<script>(function(){try{var t=localStorage.getItem('sxxw-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}try{if(location.search.indexOf('embed=1')>-1){document.documentElement.classList.add('embed');}}catch(e){}document.documentElement.classList.add('js');})();</script>`,
+      `<title>${title}</title>`,
+      `<meta name="description" content="${description}">`,
+      kw,
+      '<meta name="robots" content="index,follow,max-image-preview:large">',
+      `<link rel="canonical" href="${canonical}">`,
+      alternates,
+      '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">',
+      '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+      '<link rel="preconnect" href="https://fonts.googleapis.com">',
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap">',
+      '<meta property="og:type" content="website">',
+      `<meta property="og:site_name" content="${escapeHtml(ORG_NAME)}">`,
+      `<meta property="og:locale" content="${ogLocale}">`,
+      `<meta property="og:title" content="${title}">`,
+      `<meta property="og:description" content="${description}">`,
+      `<meta property="og:url" content="${canonical}">`,
+      `<meta property="og:image" content="${SITE}/logo.png">`,
+      '<meta name="twitter:card" content="summary">',
+      `<meta name="twitter:title" content="${title}">`,
+      `<meta name="twitter:description" content="${description}">`,
+      `<meta name="twitter:image" content="${SITE}/logo.png">`,
+      `<script type="application/ld+json">${escapeScript(structuredData)}</script>`,
+      styles,
+    ].join('');
+    const htmlAttr = `lang="${L.htmlLang}"${L.rtl ? ' dir="rtl"' : ''}`;
+    const html = `<!doctype html><html ${htmlAttr}><head>${head}</head><body><div id="root">${body}</div>${script}</body></html>`;
+    const rel = langHref(L.code, route.path);
+    const file = rel === '/' ? join(outputDir, 'index.html') : join(outputDir, rel, 'index.html');
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, html);
+    sitemapEntries.push({ loc: `${SITE}${rel}`, path: route.path });
+  }
 }
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routeUrls
-  .map((path) => {
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries
+  .map(({ loc, path }) => {
     const priority = path === '/' ? '1.0' : path.split('/').filter(Boolean).length <= 1 ? '0.8' : '0.6';
     const changefreq = path.includes('/privacy') || path.includes('/terms') ? 'yearly' : 'monthly';
-    return `  <url><loc>${SITE}${path}</loc><lastmod>${buildDate}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
+    return `  <url><loc>${loc}</loc><lastmod>${buildDate}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
   })
   .join('\n')}\n</urlset>\n`;
 writeFileSync(join(outputDir, 'sitemap.xml'), sitemap);
@@ -152,16 +199,16 @@ function faqNode(path) {
   };
 }
 
-function structuredDataFor(route, canonical) {
+function structuredDataFor(route, canonical, title, description, inLang) {
   const nodes = [organizationNode()];
   if (route.path === '/') {
-    nodes.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: ORG_NAME, url: `${SITE}/`, inLanguage: 'zh-Hans', publisher: { '@type': 'Organization', name: ORG_NAME } });
+    nodes.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: ORG_NAME, url: `${SITE}/`, inLanguage: inLang, publisher: { '@type': 'Organization', name: ORG_NAME } });
   }
   const app = appInfo(route.path);
   if (app) {
-    nodes.push({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app, url: canonical, description: route.description, inLanguage: 'zh-Hans', offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' }, publisher: { '@type': 'Organization', name: ORG_NAME } });
+    nodes.push({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app, url: canonical, description, inLanguage: inLang, offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' }, publisher: { '@type': 'Organization', name: ORG_NAME } });
   } else if (route.path !== '/') {
-    nodes.push({ '@context': 'https://schema.org', '@type': 'WebPage', name: route.title, description: route.description, url: canonical, inLanguage: 'zh-Hans' });
+    nodes.push({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical, inLanguage: inLang });
   }
   const breadcrumb = breadcrumbNode(route.path);
   if (breadcrumb) nodes.push(breadcrumb);
