@@ -17,7 +17,7 @@ export default function TimeTrailsPage({ path }: { path: string }) {
   const { t } = useI18n();
   const section: Section = path.includes('/getting-started/') ? 'getting-started' : path.includes('/privacy/') ? 'privacy' : path.includes('/terms/') ? 'terms' : path.includes('/support/') ? 'support' : 'overview';
   const base = '/apps/timetrails';
-  const title = section === 'overview' ? t('tt.tagline') : `${APP} ${tabWord(t, section)}`;
+  const title = section === 'overview' ? `${APP} · ${t('tt.tagline')}` : `${APP} ${tabWord(t, section)}`;
   const desc = section === 'overview' ? t('tt.desc') : t(descKey(section));
   return <><ThemeToggle /><ProductHeader /><main className="product-page"><div className="container product-page-inner">
     <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><span>{APP}</span></nav>

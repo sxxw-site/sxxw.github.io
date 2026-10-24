@@ -20,7 +20,7 @@ export const siteRoutes: SiteRoute[] = [
   { path: '/apps/memoria/harmony/terms/', title: '纪念日·倒数 HarmonyOS 用户协议', description: '适用于纪念日·倒数 HarmonyOS / 华为应用市场版本的用户协议。' },
   { path: '/apps/memoria/support/', title: '纪念日·倒数技术支持', description: '纪念日·倒数的常见问题与技术支持：提醒、小组件、数据与同步。' },
 
-  { path: '/apps/timetrails/', title: '足迹-时光轨迹·每日轨迹·记录一生轨迹·GPS 路线记录', description: '足迹-时光轨迹，隐私优先的 GPS 轨迹记录应用。自动记录出行、跑步、骑行、徒步、驾车与旅行路线，在地图上呈现足迹、点亮走过的城市；数据默认仅存本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },
+  { path: '/apps/timetrails/', title: '足迹-时光轨迹｜记录一生轨迹的 GPS 足迹地图', description: '足迹-时光轨迹记录每日出行、徒步、骑行与驾车路线；通过足迹洞察和足迹星球回顾轨迹、里程与到访城市。支持 iPhone、iPad 和 Apple Watch，数据默认保存在本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },
   { path: '/apps/timetrails/getting-started/', title: '足迹-时光轨迹 新手引导', description: '足迹-时光轨迹 的新手使用引导：授权定位、开始记录与查看每日轨迹。' },
   { path: '/apps/timetrails/privacy/', title: '足迹-时光轨迹 隐私政策', description: '适用于足迹-时光轨迹 的隐私政策。' },
   { path: '/apps/timetrails/terms/', title: '足迹-时光轨迹 用户协议', description: '适用于足迹-时光轨迹 的用户协议。' },

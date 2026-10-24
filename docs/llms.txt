@@ -6,7 +6,7 @@ Core principles across all apps: user control, local-first processing, minimal d
 
 ## Apps
 
-- [足迹-时光轨迹](https://sxxw.site/apps/timetrails/): Privacy-first GPS trail recorder. Automatically records walking, running, cycling, driving and travel routes; shows your footprints on a map and "lights up" the cities you've visited; daily trails, trip stats, a 3D trail globe and a fog-of-war explore map. Platforms: iPhone / iPad / Apple Watch. App Store: https://apps.apple.com/app/id6752662508 . Data is stored on-device by default; iCloud private backup/sync is optional.
+- [足迹-时光轨迹 (TimeTrails)](https://sxxw.site/apps/timetrails/): GPS route recorder for daily travel, walking, running, cycling, hiking and driving. "足迹洞察" (Trail Insights) summarizes recorded points, distance and cities; "足迹星球" (Trail Planet) displays routes on a 3D globe. Platforms: iPhone / iPad / Apple Watch. App Store ID: 6752662508; current availability and pricing: https://apps.apple.com/app/id6752662508 . Route data stays on-device by default; iCloud private backup is optional.
 - [纪念日·倒数 (Memoria)](https://sxxw.site/apps/memoria/): Countdown and reminder app for birthdays, anniversaries and important days, with home-screen widgets and on-the-day reminders. iOS version (App Store: https://apps.apple.com/app/id6760106574) is local-first with optional iCloud sync; HarmonyOS version (Huawei AppGallery: https://appgallery.huawei.com/app/C6917613545100329502) is fully local — no network, no sync.
 - [出行轨迹 TraceApp](https://sxxw.site/apps/traceapp/): Local-first trip/route tracker showing path, mileage and pace. Platform: iPhone. App Store: https://apps.apple.com/app/id1634761411 . TraceApp users can migrate their data to the newer 足迹-时光轨迹 — guide: https://sxxw.site/migrate/ .
 
@@ -17,6 +17,8 @@ Core principles across all apps: user control, local-first processing, minimal d
 - [Support center](https://sxxw.site/support/): feedback email, app-store review links, and official community groups (WeChat / QQ / Telegram).
 - [Feedback](https://sxxw.site/feedback/)
 - [Data migration: TraceApp → TimeTrails](https://sxxw.site/migrate/)
+- [TimeTrails getting started](https://sxxw.site/apps/timetrails/getting-started/): location permission, recording and route review.
+- [TimeTrails support and FAQ](https://sxxw.site/apps/timetrails/support/): location recording, iCloud restore and data deletion.
 
 ## Privacy & terms
 

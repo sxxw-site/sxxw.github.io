@@ -7,27 +7,7 @@ const ORG_NAME = '上海树下小屋网络科技有限公司';
 const SUPPORT_EMAIL = 'house@sxxw.site';
 const DEFAULT_LANG = 'zh-hans';
 const RTL = new Set(['ar', 'fa', 'he']);
-const buildDate = new Date().toISOString().slice(0, 10);
-
-// 支持页常见问题(用于 FAQPage 结构化数据 / GEO)
-const FAQ = {
-  '/apps/memoria/support/': [
-    { q: '数据会同步到其他设备吗？', a: '登录 iCloud 并开启同步后，数据会通过你的 iCloud 私有库在 iPhone、iPad 与 Apple Watch 间同步。华为应用市场版为纯本地版本，不联网、不同步。' },
-    { q: '如何删除数据？', a: '你可以在应用内删除记录；卸载应用会删除本地数据，iCloud 数据可在系统“设置 → iCloud”中管理。' },
-    { q: '提醒没有出现怎么办？', a: '请确认记录已设置提醒，并在系统设置中允许本应用发送通知。关闭通知只影响提醒，不影响记录本身。' },
-  ],
-  '/apps/timetrails/support/': [
-    { q: '足迹-时光轨迹 会一直定位我吗？', a: '记录由你控制，可随时暂停。系统定位仅用于本机轨迹记录，数据默认只保存在设备上。' },
-    { q: '定位没有被记录？', a: '请在“设置 → 隐私与安全性 → 定位服务”中为足迹选择“始终”，并开启“精确位置”与后台 App 刷新。' },
-    { q: 'iCloud 备份如何恢复？', a: '使用同一 Apple ID、已开启 iCloud 且网络正常时，可在设置的“iCloud 数据备份”中恢复或手动同步。' },
-    { q: '如何彻底清除数据？', a: '可在应用设置中清除本机数据；如已开启 iCloud 备份，请同时删除云端副本。' },
-  ],
-  '/apps/traceapp/support/': [
-    { q: '如何调整定位权限？', a: '在“设置 → 隐私与安全性 → 定位服务 → 出行轨迹”中，选择“使用 App 期间”或“始终”，也可随时关闭。' },
-    { q: '如何删除数据？', a: '可在应用内删除单条或全部记录；卸载会删除本机数据。若启用 iCloud，同步副本需在 iCloud 中另行管理。' },
-    { q: '反馈问题时应提供什么？', a: '建议附上复现步骤、期望与实际结果、设备型号和系统版本；可附截图，便于定位。' },
-  ],
-};
+const APP_LANDING_PATHS = new Set(['/apps/timetrails/', '/apps/traceapp/', '/apps/memoria/ios/', '/apps/memoria/harmony/']);
 
 const outputDir = 'docs';
 const localesDir = 'src/locales';
@@ -90,7 +70,7 @@ for (const route of sourceRoutes) {
     const ogLocale = L.htmlLang.replace('-', '_');
     const isTimeTrails = route.path.startsWith('/apps/timetrails/');
     const shareImage = isTimeTrails ? `/apps/timetrails/${L.code.startsWith('zh') ? '' : 'en/'}cover.png` : '/logo.png';
-    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, L.htmlLang, dict));
+    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, L.htmlLang, L.code, dict));
     const body = ssr.renderRoute(route.path, L.code, isDefault ? undefined : dict);
 
     const head = [
@@ -130,16 +110,12 @@ for (const route of sourceRoutes) {
     const file = rel === '/' ? join(outputDir, 'index.html') : join(outputDir, rel, 'index.html');
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, html);
-    sitemapEntries.push({ loc: `${SITE}${rel}`, path: route.path });
+    sitemapEntries.push(`${SITE}${rel}`);
   }
 }
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries
-  .map(({ loc, path }) => {
-    const priority = path === '/' ? '1.0' : path.split('/').filter(Boolean).length <= 1 ? '0.8' : '0.6';
-    const changefreq = path.includes('/privacy') || path.includes('/terms') ? 'yearly' : 'monthly';
-    return `  <url><loc>${loc}</loc><lastmod>${buildDate}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
-  })
+  .map((loc) => `  <url><loc>${loc}</loc></url>`)
   .join('\n')}\n</urlset>\n`;
 writeFileSync(join(outputDir, 'sitemap.xml'), sitemap);
 
@@ -193,9 +169,18 @@ function breadcrumbNode(path) {
   };
 }
 
-function faqNode(path) {
-  const items = FAQ[path];
-  if (!items) return null;
+function faqNode(path, dict) {
+  const prefix = path === '/apps/timetrails/support/' ? 'tt.ui.faq'
+    : path === '/apps/traceapp/support/' ? 'trace.ui.faq'
+      : path === '/apps/memoria/support/' ? 'mem.ui.faq' : null;
+  if (!prefix) return null;
+  const items = [];
+  for (let i = 0; i < (prefix === 'tt.ui.faq' ? 4 : 3); i++) {
+    const q = dict[`${prefix}.${i}.q`];
+    const a = dict[`${prefix}.${i}.a${prefix === 'mem.ui.faq' && i < 2 ? '.ios' : ''}`];
+    if (q && a) items.push({ q, a });
+  }
+  if (!items.length) return null;
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -213,9 +198,15 @@ function featureListFor(path, dict) {
   return out.length ? out : null;
 }
 
-function screenshotsFor(path) {
+function screenshotsFor(path, language) {
   const S = (dir, names) => names.map((n) => `${SITE}${dir}${n}`);
-  if (path.startsWith('/apps/timetrails/')) return S('/apps/timetrails/', ['shot-01.png', 'shot-02.png', 'shot-03.png', 'shot-04.png', 'shot-05.png', 'shot-06.png']);
+  if (path === '/apps/timetrails/') {
+    const code = language.toLowerCase();
+    const base = code.split('-')[0];
+    const locale = code === 'zh-hant' || code === 'zh-hk' ? 'zh-hant'
+      : base === 'zh' ? '' : ['ja', 'ko', 'ru', 'ar'].includes(base) ? base : 'en';
+    return S(`/apps/timetrails/${locale ? `${locale}/` : ''}`, ['shot-02.webp', 'shot-03.webp']);
+  }
   if (path.startsWith('/apps/traceapp/')) return S('/apps/traceapp/', ['shot-01.png', 'shot-02.png', 'shot-03.png']);
   if (path.startsWith('/apps/memoria/')) {
     return path.includes('/harmony/')
@@ -225,7 +216,7 @@ function screenshotsFor(path) {
   return null;
 }
 
-function structuredDataFor(route, canonical, title, description, inLang, dict = {}) {
+function structuredDataFor(route, canonical, title, description, inLang, language, dict = {}) {
   const nodes = [organizationNode()];
   if (route.path === '/') {
     nodes.push({
@@ -235,16 +226,17 @@ function structuredDataFor(route, canonical, title, description, inLang, dict = 
     });
   }
   const app = appInfo(route.path);
-  if (app) {
+  if (app && APP_LANDING_PATHS.has(route.path)) {
     const featureList = featureListFor(route.path, dict);
-    const screenshot = screenshotsFor(route.path);
+    const screenshot = screenshotsFor(route.path, language);
+    const isTimeTrails = route.path === '/apps/timetrails/';
     nodes.push({
       '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app,
-      url: canonical, description, inLanguage: inLang,
-      image: `${SITE}/logo.png`,
+      '@id': isTimeTrails ? `${SITE}/apps/timetrails/#app` : `${canonical}#app`,
+      url: canonical, description, inLanguage: inLang, sameAs: app.downloadUrl,
+      image: isTimeTrails ? `${SITE}/apps/timetrails/${language.startsWith('zh') ? '' : 'en/'}cover.png` : `${SITE}/logo.png`,
       ...(screenshot ? { screenshot } : {}),
       ...(featureList ? { featureList } : {}),
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
       publisher: { '@type': 'Organization', name: ORG_NAME },
     });
   } else if (route.path !== '/') {
@@ -252,7 +244,7 @@ function structuredDataFor(route, canonical, title, description, inLang, dict = 
   }
   const breadcrumb = breadcrumbNode(route.path);
   if (breadcrumb) nodes.push(breadcrumb);
-  const faq = faqNode(route.path);
+  const faq = faqNode(route.path, dict);
   if (faq) nodes.push(faq);
   return nodes;
 }
