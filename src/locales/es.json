@@ -247,5 +247,9 @@
   "search.empty": "Sin resultados. Prueba otra palabra.",
   "search.count": "{n} resultados",
   "search.hint": "Prueba: huellas, aniversario, ruta, privacidad",
-  "nav.search": "Buscar"
+  "nav.search": "Buscar",
+  "tt.ui.insightsTitle": "Inspección de Huellas",
+  "tt.ui.planetTitle": "Planeta de Huellas",
+  "tt.feat.6": "Inspección de Huellas · Número de puntos registrados · Distribución de registros de ciudades",
+  "tt.feat.7": "Planeta de Huellas · Matriz de puntos / Contorno terrestre / Imágenes satelitales"
 }

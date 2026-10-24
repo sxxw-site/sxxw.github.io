@@ -247,5 +247,9 @@
   "search.empty": "Niciun rezultat. Încearcă alt cuvânt.",
   "search.count": "{n} rezultate",
   "search.hint": "Încearcă: urme, aniversare, traseu, confidențialitate",
-  "nav.search": "Căutare"
+  "nav.search": "Căutare",
+  "tt.ui.insightsTitle": "Informații despre traseu",
+  "tt.ui.planetTitle": "Planeta traseelor",
+  "tt.feat.6": "Informații despre traseu · Număr de puncte înregistrate · Distribuția înregistrărilor pe orașe",
+  "tt.feat.7": "Planeta traseelor · Puncte / Contururi terestre / Imagini satelitare"
 }

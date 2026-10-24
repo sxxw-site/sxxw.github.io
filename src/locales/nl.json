@@ -247,5 +247,9 @@
   "search.empty": "Geen resultaten. Probeer een ander trefwoord.",
   "search.count": "{n} resultaten",
   "search.hint": "Probeer: voetsporen, jubileum, route, privacy",
-  "nav.search": "Zoeken"
+  "nav.search": "Zoeken",
+  "tt.ui.insightsTitle": "Voetafdruk Inzichten",
+  "tt.ui.planetTitle": "Voetafdruk Wereld",
+  "tt.feat.6": "Voetafdruk Inzichten · Aantal punten · Steden rangschikking",
+  "tt.feat.7": "Voetafdruk Wereld · Pixel / Landcontour / Satellietbeeld"
 }

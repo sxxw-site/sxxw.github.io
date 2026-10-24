@@ -247,5 +247,9 @@
   "search.empty": "Inga resultat. Prova ett annat sökord.",
   "search.count": "{n} resultat",
   "search.hint": "Prova: fotspår, jubileum, rutt, integritet",
-  "nav.search": "Sök"
+  "nav.search": "Sök",
+  "tt.ui.insightsTitle": "Fotspårinsikter",
+  "tt.ui.planetTitle": "Fotspårens värld",
+  "tt.feat.6": "Fotspårinsikter · Antal registrerade punkter · Stadsregistreringsfördelning",
+  "tt.feat.7": "Fotspårens värld · Pixel / Landkontur / Satellitbild"
 }

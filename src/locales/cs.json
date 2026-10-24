@@ -247,5 +247,9 @@
   "search.empty": "Žádné výsledky. Zkuste jiné klíčové slovo.",
   "search.count": "{n} výsledků",
   "search.hint": "Zkuste: stopy, výročí, trasa, soukromí",
-  "nav.search": "Hledat"
+  "nav.search": "Hledat",
+  "tt.ui.insightsTitle": "Přehled stop",
+  "tt.ui.planetTitle": "Planeta stop",
+  "tt.feat.6": "Přehled stop · Počet záznamů · Rozložení záznamů měst",
+  "tt.feat.7": "Planeta stop · Bodová mapa / Obrys pevniny / Satelitní snímek"
 }

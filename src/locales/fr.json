@@ -247,5 +247,9 @@
   "search.empty": "Aucun résultat. Essayez un autre mot-clé.",
   "search.count": "{n} résultats",
   "search.hint": "Essayez : empreintes, anniversaire, parcours, confidentialité",
-  "nav.search": "Rechercher"
+  "nav.search": "Rechercher",
+  "tt.ui.insightsTitle": "Aperçu des empreintes",
+  "tt.ui.planetTitle": "Planète des empreintes",
+  "tt.feat.6": "Aperçu des empreintes · Nombre de points enregistrés · Répartition des enregistrements urbains",
+  "tt.feat.7": "Planète des empreintes · Pixel / Contour terrestre / Image satellite"
 }

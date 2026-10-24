@@ -247,5 +247,9 @@
   "search.empty": "Žiadne výsledky. Skúste iné kľúčové slovo.",
   "search.count": "{n} výsledkov",
   "search.hint": "Skúste: stopy, výročie, trasa, súkromie",
-  "nav.search": "Hľadať"
+  "nav.search": "Hľadať",
+  "tt.ui.insightsTitle": "Prehľad stôp",
+  "tt.ui.planetTitle": "Planéta stôp",
+  "tt.feat.6": "Prehľad stôp · Počet záznamov · Rozloženie záznamov miest",
+  "tt.feat.7": "Planéta stôp · Bodová mapa / Obrys pevniny / Satelitný obraz"
 }

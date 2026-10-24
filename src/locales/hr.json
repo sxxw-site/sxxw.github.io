@@ -247,5 +247,9 @@
   "search.empty": "Nema rezultata. Pokušajte s drugom riječi.",
   "search.count": "{n} rezultata",
   "search.hint": "Pokušajte: stope, godišnjica, ruta, privatnost",
-  "nav.search": "Pretraži"
+  "nav.search": "Pretraži",
+  "tt.ui.insightsTitle": "Pregled putovanja",
+  "tt.ui.planetTitle": "Putnička kugla",
+  "tt.feat.6": "Pregled putovanja · Broj zapisa · Raspodjela zapisa po gradovima",
+  "tt.feat.7": "Putnička kugla · Pikseli / Obris kopna / Satelitska slika"
 }

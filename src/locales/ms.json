@@ -247,5 +247,9 @@
   "search.empty": "Tiada hasil. Cuba kata kunci lain.",
   "search.count": "{n} hasil",
   "search.hint": "Cuba: jejak, ulang tahun, laluan, privasi",
-  "nav.search": "Cari"
+  "nav.search": "Cari",
+  "tt.ui.insightsTitle": "Jejak Wawasan",
+  "tt.ui.planetTitle": "Jejak Dunia",
+  "tt.feat.6": "Jejak Wawasan · Jumlah Titik · Taburan Rekod Bandar",
+  "tt.feat.7": "Jejak Dunia · Titik / Garis Besar / Imej Satelit"
 }

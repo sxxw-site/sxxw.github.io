@@ -247,5 +247,9 @@
   "search.empty": "Ni rezultatov. Poskusite drugo besedo.",
   "search.count": "{n} rezultatov",
   "search.hint": "Poskusite: stopinje, obletnica, pot, zasebnost",
-  "nav.search": "Iskanje"
+  "nav.search": "Iskanje",
+  "tt.ui.insightsTitle": "Sledi vpogled",
+  "tt.ui.planetTitle": "Svet sledi",
+  "tt.feat.6": "Sledi vpogled · Število točk · Porazdelitev mestnih zapisov",
+  "tt.feat.7": "Svet sledi · Piksel / Obris kopnega / Satelitski posnetek"
 }

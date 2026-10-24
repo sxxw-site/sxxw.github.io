@@ -247,5 +247,9 @@
   "search.empty": "Geen resultate nie. Probeer 'n ander sleutelwoord.",
   "search.count": "{n} resultate",
   "search.hint": "Probeer: voetspore, herdenking, roete, privaatheid",
-  "nav.search": "Soek"
+  "nav.search": "Soek",
+  "tt.ui.insightsTitle": "Voetspoor Inligting",
+  "tt.ui.planetTitle": "Voetspoor Wêreld",
+  "tt.feat.6": "Voetspoor Inligting · Totaal Punte · Stede Rekordverspreiding",
+  "tt.feat.7": "Voetspoor Wêreld · Piksel / Land Kontour / Satelliet Beeld"
 }

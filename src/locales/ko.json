@@ -247,5 +247,9 @@
   "search.empty": "결과가 없습니다. 다른 키워드로 검색해 보세요.",
   "search.count": "결과 {n}개",
   "search.hint": "예: 발자취, 기념일, 경로, 개인정보",
-  "nav.search": "검색"
+  "nav.search": "검색",
+  "tt.ui.insightsTitle": "발자취 인사이트",
+  "tt.ui.planetTitle": "발자취 지구",
+  "tt.feat.6": "발자취 인사이트 · 기록된 위치 수 · 도시 기록 분포",
+  "tt.feat.7": "발자취 지구 · 픽셀 / 육지 윤곽 / 위성 이미지"
 }

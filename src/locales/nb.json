@@ -247,5 +247,9 @@
   "search.empty": "Ingen resultater. Prøv et annet søkeord.",
   "search.count": "{n} resultater",
   "search.hint": "Prøv: fotspor, jubileum, rute, personvern",
-  "nav.search": "Søk"
+  "nav.search": "Søk",
+  "tt.ui.insightsTitle": "Reiseinnsikt",
+  "tt.ui.planetTitle": "Reiseverden",
+  "tt.feat.6": "Reiseinnsikt · Antall punkter · Byfordeling",
+  "tt.feat.7": "Reiseverden · Piksel / Landkontur / Satellittbilde"
 }

@@ -247,5 +247,9 @@
   "search.empty": "Tidak ada hasil. Coba kata kunci lain.",
   "search.count": "{n} hasil",
   "search.hint": "Coba: jejak, hari jadi, rute, privasi",
-  "nav.search": "Cari"
+  "nav.search": "Cari",
+  "tt.ui.insightsTitle": "Jejak Wawasan",
+  "tt.ui.planetTitle": "Jejak Dunia",
+  "tt.feat.6": "Jejak Wawasan · Jumlah Titik · Distribusi Catatan Kota",
+  "tt.feat.7": "Jejak Dunia · Piksel / Kontur Daratan / Citra Satelit"
 }

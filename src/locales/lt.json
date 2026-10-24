@@ -247,5 +247,9 @@
   "search.empty": "Rezultatų nėra. Pabandykite kitą žodį.",
   "search.count": "{n} rezultatų",
   "search.hint": "Pabandykite: pėdsakai, sukaktis, maršrutas, privatumas",
-  "nav.search": "Paieška"
+  "nav.search": "Paieška",
+  "tt.ui.insightsTitle": "Kelionių įžvalgos",
+  "tt.ui.planetTitle": "Kelionių planeta",
+  "tt.feat.6": "Kelionių įžvalgos · Įrašų taškai · Miestų įrašų pasiskirstymas",
+  "tt.feat.7": "Kelionių planeta · Taškų režimas / Žemės kontūras / Palydovinis vaizdas"
 }

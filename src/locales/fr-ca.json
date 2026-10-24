@@ -241,5 +241,9 @@
   "mem.ui.pc.ios.desc": "Prend en charge les rappels locaux, les widgets, l'Apple Watch et la synchronisation iCloud privée en option.",
   "mem.ui.pc.ios.cta": "Voir la version iOS",
   "mem.ui.pc.hm.desc": "Version 100 % locale : aucune connexion réseau, aucune synchronisation cloud, les données restent dans le bac à sable de l'application sur l'appareil.",
-  "mem.ui.pc.hm.cta": "Voir la version HarmonyOS"
+  "mem.ui.pc.hm.cta": "Voir la version HarmonyOS",
+  "tt.ui.insightsTitle": "Aperçu des empreintes",
+  "tt.ui.planetTitle": "Planète des empreintes",
+  "tt.feat.6": "Aperçu des empreintes · Nombre de points enregistrés · Répartition des enregistrements de villes",
+  "tt.feat.7": "Planète des empreintes · Pixel / Contour terrestre / Image satellite"
 }

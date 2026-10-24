@@ -247,5 +247,9 @@
   "search.empty": "Nincs találat. Próbáljon másik kulcsszót.",
   "search.count": "{n} találat",
   "search.hint": "Próbálja: nyomok, évforduló, útvonal, adatvédelem",
-  "nav.search": "Keresés"
+  "nav.search": "Keresés",
+  "tt.ui.insightsTitle": "Lábnyomok áttekintése",
+  "tt.ui.planetTitle": "Lábnyomok bolygója",
+  "tt.feat.6": "Lábnyomok áttekintése · Rögzített pontok száma · Városlátogatások eloszlása",
+  "tt.feat.7": "Lábnyomok bolygója · Pontmátrix / Kontúrvonal / Műholdkép"
 }

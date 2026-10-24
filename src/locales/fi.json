@@ -247,5 +247,9 @@
   "search.empty": "Ei tuloksia. Kokeile toista hakusanaa.",
   "search.count": "{n} tulosta",
   "search.hint": "Kokeile: jalanjäljet, vuosipäivä, reitti, yksityisyys",
-  "nav.search": "Haku"
+  "nav.search": "Haku",
+  "tt.ui.insightsTitle": "Jälkien Yhteenveto",
+  "tt.ui.planetTitle": "Jälkien Maapallo",
+  "tt.feat.6": "Jälkien Yhteenveto · Merkintöjen määrä · Kaupunkien jakautuminen",
+  "tt.feat.7": "Jälkien Maapallo · Pikseli / Maan ääriviivat / Satelliittikuva"
 }

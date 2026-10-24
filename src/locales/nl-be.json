@@ -241,5 +241,9 @@
   "mem.ui.pc.ios.desc": "Ondersteunt lokale herinneringen, widgets, Apple Watch en optionele privé iCloud-synchronisatie.",
   "mem.ui.pc.ios.cta": "iOS-versie bekijken",
   "mem.ui.pc.hm.desc": "Puur lokale versie: geen internetverbinding, geen cloudsynchronisatie, gegevens blijven alleen in de sandbox van de app op het toestel.",
-  "mem.ui.pc.hm.cta": "HarmonyOS-versie bekijken"
+  "mem.ui.pc.hm.cta": "HarmonyOS-versie bekijken",
+  "tt.ui.insightsTitle": "Reisoverzicht",
+  "tt.ui.planetTitle": "Wereldkaart",
+  "tt.feat.6": "Reisoverzicht · Aantal punten · Stedenrangschikking",
+  "tt.feat.7": "Wereldkaart · Pixelweergave / Landcontouren / Satellietbeeld"
 }

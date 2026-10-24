@@ -247,5 +247,9 @@
   "search.empty": "結果がありません。別のキーワードをお試しください。",
   "search.count": "{n}件の結果",
   "search.hint": "例: 足あと、記念日、軌跡、プライバシー",
-  "nav.search": "検索"
+  "nav.search": "検索",
+  "tt.ui.insightsTitle": "足跡インサイト",
+  "tt.ui.planetTitle": "足跡地球",
+  "tt.feat.6": "足跡インサイト · 記録ポイント数 · 都市記録分布",
+  "tt.feat.7": "足跡地球 · ピクセル / 陸地輪郭 / 衛星画像"
 }

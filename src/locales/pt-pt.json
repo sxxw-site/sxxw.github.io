@@ -247,5 +247,9 @@
   "search.empty": "Sem resultados. Tente outra palavra.",
   "search.count": "{n} resultados",
   "search.hint": "Tente: pegadas, aniversário, trajeto, privacidade",
-  "nav.search": "Pesquisar"
+  "nav.search": "Pesquisar",
+  "tt.ui.insightsTitle": "Visão Geral dos Percursos",
+  "tt.ui.planetTitle": "Planeta dos Percursos",
+  "tt.feat.6": "Visão Geral dos Percursos · Número de Pontos · Distribuição de Registos por Cidade",
+  "tt.feat.7": "Planeta dos Percursos · Pontos / Contorno da Terra / Imagem de Satélite"
 }

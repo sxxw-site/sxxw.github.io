@@ -247,5 +247,9 @@
   "search.empty": "Nessun risultato. Prova un'altra parola.",
   "search.count": "{n} risultati",
   "search.hint": "Prova: impronte, anniversario, percorso, privacy",
-  "nav.search": "Cerca"
+  "nav.search": "Cerca",
+  "tt.ui.insightsTitle": "Tracce di Viaggio",
+  "tt.ui.planetTitle": "Mondo delle Tracce",
+  "tt.feat.6": "Tracce di Viaggio · Numero di punti · Distribuzione delle città registrate",
+  "tt.feat.7": "Mondo delle Tracce · Pixel / Contorno / Immagine satellitare"
 }

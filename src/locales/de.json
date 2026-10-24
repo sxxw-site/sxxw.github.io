@@ -247,5 +247,9 @@
   "search.empty": "Keine Ergebnisse. Versuchen Sie ein anderes Stichwort.",
   "search.count": "{n} Ergebnisse",
   "search.hint": "Versuchen Sie: Fußspuren, Jahrestag, Route, Datenschutz",
-  "nav.search": "Suche"
+  "nav.search": "Suche",
+  "tt.ui.insightsTitle": "Fußabdruck-Einblicke",
+  "tt.ui.planetTitle": "Fußabdruck-Planet",
+  "tt.feat.6": "Fußabdruck-Einblicke · Anzahl der Aufzeichnungspunkte · Verteilung der Städteaufzeichnungen",
+  "tt.feat.7": "Fußabdruck-Planet · Pixel / Landkontur / Satellitenbild"
 }

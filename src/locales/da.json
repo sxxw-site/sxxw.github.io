@@ -247,5 +247,9 @@
   "search.empty": "Ingen resultater. Prøv et andet søgeord.",
   "search.count": "{n} resultater",
   "search.hint": "Prøv: fodspor, jubilæum, rute, privatliv",
-  "nav.search": "Søg"
+  "nav.search": "Søg",
+  "tt.ui.insightsTitle": "Rejseindsigt",
+  "tt.ui.planetTitle": "Rejseklode",
+  "tt.feat.6": "Rejseindsigt · Antal punkter · Byfordeling",
+  "tt.feat.7": "Rejseklode · Pixel / Landkontur / Satellitbillede"
 }

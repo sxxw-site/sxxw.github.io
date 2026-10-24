@@ -247,5 +247,9 @@
   "search.empty": "No results. Try another keyword.",
   "search.count": "{n} results",
   "search.hint": "Try: footprints, anniversary, trail, privacy",
-  "nav.search": "Search"
+  "nav.search": "Search",
+  "tt.ui.insightsTitle": "Trail Insights",
+  "tt.ui.planetTitle": "Trail Planet",
+  "tt.feat.6": "Trail Insights · Recorded points · Records by city",
+  "tt.feat.7": "Trail Planet · Dots / Land outline / Satellite"
 }

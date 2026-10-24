@@ -241,5 +241,9 @@
   "mem.ui.pc.ios.desc": "Admite recordatorios locales, widgets, Apple Watch y sincronización privada opcional por iCloud.",
   "mem.ui.pc.ios.cta": "Ver la versión de iOS",
   "mem.ui.pc.hm.desc": "Versión puramente local: sin conexión ni sincronización en la nube; los datos solo permanecen en el entorno aislado de la app en el dispositivo.",
-  "mem.ui.pc.hm.cta": "Ver la versión de HarmonyOS"
+  "mem.ui.pc.hm.cta": "Ver la versión de HarmonyOS",
+  "tt.ui.insightsTitle": "Inspección de Huellas",
+  "tt.ui.planetTitle": "Planeta de Huellas",
+  "tt.feat.6": "Inspección de Huellas · Número de puntos registrados · Distribución de registros de ciudades",
+  "tt.feat.7": "Planeta de Huellas · Matriz de puntos / Contorno terrestre / Imagen satelital"
 }

@@ -247,5 +247,9 @@
   "search.empty": "Brak wyników. Spróbuj innego słowa.",
   "search.count": "{n} wyników",
   "search.hint": "Spróbuj: ślady, rocznica, trasa, prywatność",
-  "nav.search": "Szukaj"
+  "nav.search": "Szukaj",
+  "tt.ui.insightsTitle": "Ślady podróży",
+  "tt.ui.planetTitle": "Planeta śladów",
+  "tt.feat.6": "Ślady podróży · Liczba punktów · Rozkład zapisów miast",
+  "tt.feat.7": "Planeta śladów · Pikselowy / Kontur lądu / Obraz satelitarny"
 }

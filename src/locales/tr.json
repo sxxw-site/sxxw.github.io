@@ -247,5 +247,9 @@
   "search.empty": "Sonuç yok. Başka bir kelime deneyin.",
   "search.count": "{n} sonuç",
   "search.hint": "Deneyin: ayak izleri, yıl dönümü, rota, gizlilik",
-  "nav.search": "Ara"
+  "nav.search": "Ara",
+  "tt.ui.insightsTitle": "Ayak İzi İçgörüleri",
+  "tt.ui.planetTitle": "Ayak İzi Küresi",
+  "tt.feat.6": "Ayak İzi İçgörüleri · Kayıt Noktası Sayısı · Şehir Kayıt Dağılımı",
+  "tt.feat.7": "Ayak İzi Küresi · Piksel / Kara Hatları / Uydu Görüntüsü"
 }

@@ -247,5 +247,9 @@
   "search.empty": "Nav rezultātu. Mēģiniet citu atslēgvārdu.",
   "search.count": "{n} rezultāti",
   "search.hint": "Mēģiniet: pēdas, gadadiena, maršruts, privātums",
-  "nav.search": "Meklēt"
+  "nav.search": "Meklēt",
+  "tt.ui.insightsTitle": "Ceļojumu ieskats",
+  "tt.ui.planetTitle": "Ceļojumu planēta",
+  "tt.feat.6": "Ceļojumu ieskats · Ierakstu punkti · Pilsētu ierakstu sadalījums",
+  "tt.feat.7": "Ceļojumu planēta · Punktu režģis / Kontūras / Satelītattēls"
 }

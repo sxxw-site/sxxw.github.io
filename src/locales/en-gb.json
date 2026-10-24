@@ -241,5 +241,9 @@
   "mem.ui.pc.ios.desc": "Supports local reminders, widgets, Apple Watch, and optional iCloud private sync.",
   "mem.ui.pc.ios.cta": "View the iOS version",
   "mem.ui.pc.hm.desc": "Fully local version: no network, no cloud sync; data stays only in the app's sandbox on the device.",
-  "mem.ui.pc.hm.cta": "View the HarmonyOS version"
+  "mem.ui.pc.hm.cta": "View the HarmonyOS version",
+  "tt.ui.insightsTitle": "Trail Insights",
+  "tt.ui.planetTitle": "Trail Planet",
+  "tt.feat.6": "Trail Insights · Recorded points · Records by city",
+  "tt.feat.7": "Trail Planet · Dots / Land outline / Satellite"
 }

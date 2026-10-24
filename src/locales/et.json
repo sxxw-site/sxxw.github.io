@@ -247,5 +247,9 @@
   "search.empty": "Tulemusi pole. Proovi teist märksõna.",
   "search.count": "{n} tulemust",
   "search.hint": "Proovi: jäljed, aastapäev, rada, privaatsus",
-  "nav.search": "Otsing"
+  "nav.search": "Otsing",
+  "tt.ui.insightsTitle": "Jälgede ülevaade",
+  "tt.ui.planetTitle": "Jälgede planeet",
+  "tt.feat.6": "Jälgede ülevaade · Kirjete arv · Linnade kirjete jaotus",
+  "tt.feat.7": "Jälgede planeet · Punktmaatriks / Mandrite kontuur / Satelliidipilt"
 }

@@ -4,6 +4,7 @@ import ThemeToggle from '../components/ThemeToggle';
 import LanguageSelect from '../components/LanguageSelect';
 import { useI18n } from '../i18n/I18nProvider';
 import { FEEDBACK_FALLBACK, buildFeedbackMailto, collectFeedbackDiagnostics, resolveFeedbackStrings, type FbStrings } from '../lib/feedback';
+import { timeTrailsScreenshot } from '../lib/timetrails';
 
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
 type T = (key: string) => string;
@@ -28,6 +29,7 @@ export default function TimeTrailsPage({ path }: { path: string }) {
 function TimeTrailsBody({ section, base }: { section: Section; base: string }) {
   const { t } = useI18n();
   if (section === 'overview') return <>
+    <TimeTrailsCover />
     <section className="content-section"><h2>{t('tt.ui.ovTitle')}</h2><div className="feature-grid">{timetrails.features.map((_, i) => <div className="feature-card" key={i}>{t(`tt.feat.${i}`)}</div>)}</div></section>
     <section className="privacy-facts"><h2>{t('tt.ui.privTitle')}</h2><p>{t('tt.ui.privBody')}</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>{t('app.cta.start')}</a><a className="btn-ghost" href={`${base}/privacy/`}>{t('app.cta.readPrivacy')}</a></div></section>
     <FeedbackSection /><ScreenshotGallery />
@@ -55,7 +57,32 @@ function FeedbackSection() {
   return <section className="content-section feedback-section" id="feedback"><h2>{t.title}</h2><p>{t.intro}</p><div className="contact-card" style={{ maxWidth: 760 }}><div className="contact-row"><div className="contact-label">{t.emailLabel}</div><div className="contact-value"><a className="linkish" href={`mailto:${email}`}>{email}</a></div></div>{fromApp && diag && <div className="contact-row"><div className="contact-label">{t.deviceLabel}</div><div className="contact-value" style={{ whiteSpace: 'pre-line', opacity: 0.85 }}>{diag}</div></div>}</div><div className="action-row"><a className="btn-primary" href={mailto}>{t.button}</a></div></section>;
 }
 
-function ScreenshotGallery() { const { t } = useI18n(); return <section className="screenshot-section"><div><p className="route-eyebrow">{t('app.shots')}</p><h2>{t('tt.ui.galleryTitle')}</h2></div><div className="screenshot-strip">{['/apps/timetrails/shot-01.png', '/apps/timetrails/shot-02.png', '/apps/timetrails/shot-03.png', '/apps/timetrails/shot-04.png', '/apps/timetrails/shot-05.png', '/apps/timetrails/shot-06.png'].map((image, index) => <img src={image} alt={`${APP} ${index + 1}`} key={image} loading="lazy" />)}</div></section>; }
+function TimeTrailsCover() {
+  const { t, language } = useI18n();
+  return <section className="tt-cover" aria-label={t('app.shots')}>
+    <div className="tt-cover-heading"><p className="route-eyebrow">TimeTrails</p><h2>{t('tt.ui.galleryTitle')}</h2><div className="tt-device-labels"><span>iPhone</span><span>iPhone Duo</span><span>iPad</span></div></div>
+    <div className="tt-cover-phones">{(['overview', 'globe'] as const).map(page => <figure key={page}>
+      <figcaption>{t(page === 'overview' ? 'tt.ui.insightsTitle' : 'tt.ui.planetTitle')}</figcaption>
+      <a href={timeTrailsScreenshot(language.normalizedCode, page)} target="_blank" rel="noreferrer"><img src={timeTrailsScreenshot(language.normalizedCode, page)} alt={`${APP} · ${t(page === 'overview' ? 'tt.ui.insightsTitle' : 'tt.ui.planetTitle')}`} width={1320} height={2868} decoding="async" /></a>
+    </figure>)}</div>
+  </section>;
+}
+
+function ScreenshotGallery() {
+  const { t, language } = useI18n();
+  const lang = language.normalizedCode;
+  const images = ['/apps/timetrails/shot-01.png', timeTrailsScreenshot(lang, 'overview'), timeTrailsScreenshot(lang, 'globe'), '/apps/timetrails/shot-04.png', '/apps/timetrails/shot-05.png', '/apps/timetrails/shot-06.png'];
+  return <section className="screenshot-section"><div><p className="route-eyebrow">{t('app.shots')}</p><h2>{t('tt.ui.galleryTitle')}</h2></div>
+    <div className="screenshot-strip">{images.map((image, index) => <img src={image} alt={`${APP} ${index + 1}`} key={image} loading="lazy" />)}</div>
+    {(['duo', 'ipad'] as const).map(device => <details className="tt-device-gallery" key={device} open={device === 'duo'}>
+      <summary>{device === 'duo' ? 'iPhone Duo' : 'iPad'}</summary>
+      <div className={`tt-device-screens tt-device-screens-${device}`}>{(['overview', 'globe'] as const).map(page => <figure key={page}>
+        <figcaption>{t(page === 'overview' ? 'tt.ui.insightsTitle' : 'tt.ui.planetTitle')}</figcaption>
+        <a href={timeTrailsScreenshot(lang, page, device)} target="_blank" rel="noreferrer"><img src={timeTrailsScreenshot(lang, page, device)} alt={`${device === 'duo' ? 'iPhone Duo' : 'iPad'} · ${t(page === 'overview' ? 'tt.ui.insightsTitle' : 'tt.ui.planetTitle')}`} loading="lazy" width={device === 'duo' ? 2853 : 2064} height={device === 'duo' ? 2007 : 2752} /></a>
+      </figure>)}</div>
+    </details>)}
+  </section>;
+}
 
 function PageTabs({ active }: { active: Section }) { const { t } = useI18n(); const routes: Section[] = ['overview', 'getting-started', 'privacy', 'terms', 'support']; return <nav className="platform-tabs page-tabs" aria-label={APP}>{routes.map((s) => <a key={s} className={active === s ? 'active' : ''} href={s === 'overview' ? '/apps/timetrails/' : `/apps/timetrails/${s}/`}>{tabWord(t, s)}</a>)}</nav>; }
 function ProductHeader() { const { t } = useI18n(); return <header className="navbar"><div className="container nav-inner"><a className="brand" href="/" aria-label={APP}><img className="brand-logo" src="/logo.png" alt="" aria-hidden="true" width={36} height={36} /><span className="brand-text"><span className="cn">{APP}</span><span className="en">{t('tt.ui.headerSub')}</span></span></a><nav className="nav-menu nav-menu-static"><a href="/apps/" className="nav-link">{t('nav.apps')}</a><a href="/apps/timetrails/support/" className="nav-link cta-nav">{t('app.tab.support')}</a><LanguageSelect /></nav></div></header>; }

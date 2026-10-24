@@ -247,5 +247,9 @@
   "search.empty": "Không có kết quả. Hãy thử từ khóa khác.",
   "search.count": "{n} kết quả",
   "search.hint": "Thử: dấu chân, kỷ niệm, hành trình, quyền riêng tư",
-  "nav.search": "Tìm kiếm"
+  "nav.search": "Tìm kiếm",
+  "tt.ui.insightsTitle": "Nhật ký hành trình",
+  "tt.ui.planetTitle": "Hành tinh hành trình",
+  "tt.feat.6": "Nhật ký hành trình · Số điểm đã ghi · Phân bố thành phố đã ghi",
+  "tt.feat.7": "Hành tinh hành trình · Điểm ảnh / Đường viền đất liền / Ảnh vệ tinh"
 }
