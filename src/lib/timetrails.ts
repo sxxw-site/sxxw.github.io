@@ -4,7 +4,6 @@ export function timeTrailsScreenshot(language: string, page: 'overview' | 'globe
   const base = code.split('-')[0];
   const locale = code === 'zh-hant' || code === 'zh-hk' ? 'zh-hant'
     : base === 'zh' ? '' : ['ja', 'ko', 'ru', 'ar'].includes(base) ? base : 'en';
-  const extension = !locale && device === 'iphone' ? 'png' : 'webp';
-  const file = device === 'iphone' ? `shot-0${page === 'overview' ? 2 : 3}.${extension}` : `${device}-${page}.${extension}`;
+  const file = device === 'iphone' ? `shot-0${page === 'overview' ? 2 : 3}.webp` : `${device}-${page}.webp`;
   return `/apps/timetrails/${locale ? `${locale}/` : ''}${file}`;
 }
