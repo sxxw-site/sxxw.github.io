@@ -76,8 +76,11 @@ for (const route of sourceRoutes) {
     const head = [
       '<meta charset="UTF-8">',
       '<meta name="viewport" content="width=device-width, initial-scale=1">',
-      '<meta name="color-scheme" content="dark light">',
-      `<script>(function(){try{var t=localStorage.getItem('sxxw-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}try{if(location.search.indexOf('embed=1')>-1){document.documentElement.classList.add('embed');}}catch(e){}document.documentElement.classList.add('js');})();</script>`,
+      '<meta name="page-type" content="software">',
+      '<meta name="site-kind" content="software">',
+      '<meta name="color-scheme" content="light">',
+      '<meta name="theme-color" content="#f7f5ef">',
+      `<script>(function(){var s='paper',v=null,p=null,a=['paper','minimal','forest'];try{v=localStorage.getItem('sxxw-site-style');}catch(e){}try{p=new URLSearchParams(location.search).get('style');}catch(e){}s=a.indexOf(p)>-1?p:a.indexOf(v)>-1?v:'paper';document.documentElement.dataset.siteStyle=s;document.documentElement.dataset.theme='light';var m=document.querySelector('meta[name="theme-color"]');if(m)m.content={paper:'#f7f5ef',minimal:'#ffffff',forest:'#f4f5ed'}[s];try{if(location.search.indexOf('embed=1')>-1){document.documentElement.classList.add('embed');}}catch(e){}document.documentElement.classList.add('js');})();</script>`,
       `<title>${title}</title>`,
       `<meta name="description" content="${description}">`,
       kw,
@@ -88,7 +91,7 @@ for (const route of sourceRoutes) {
       '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
       '<link rel="preconnect" href="https://fonts.googleapis.com">',
       '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap">',
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap">',
       '<meta property="og:type" content="website">',
       `<meta property="og:site_name" content="${escapeHtml(ORG_NAME)}">`,
       `<meta property="og:locale" content="${ogLocale}">`,
@@ -104,7 +107,7 @@ for (const route of sourceRoutes) {
       `<script type="application/ld+json">${escapeScript(structuredData)}</script>`,
       styles,
     ].join('');
-    const htmlAttr = `lang="${L.htmlLang}"${L.rtl ? ' dir="rtl"' : ''}`;
+    const htmlAttr = `lang="${L.htmlLang}" data-type="software"${L.rtl ? ' dir="rtl"' : ''}`;
     const html = `<!doctype html><html ${htmlAttr}><head>${head}</head><body><div id="root">${body}</div>${script}</body></html>`;
     const rel = langHref(L.code, route.path);
     const file = rel === '/' ? join(outputDir, 'index.html') : join(outputDir, rel, 'index.html');
@@ -139,8 +142,8 @@ function appInfo(path) {
   if (path.startsWith('/apps/memoria/')) {
     const harmony = path.includes('/harmony/');
     return {
-      name: '纪念日·倒数',
-      alternateName: ['纪念日', '倒数日', 'Memoria'],
+      name: '纪念日',
+      alternateName: ['纪念日·倒数', 'Memoria', 'Anniversary Countdown'],
       applicationCategory: 'LifestyleApplication',
       operatingSystem: harmony ? 'HarmonyOS' : 'iOS, iPadOS, watchOS',
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',

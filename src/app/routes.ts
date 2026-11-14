@@ -6,19 +6,19 @@ export type SiteRoute = {
 };
 
 export const siteRoutes: SiteRoute[] = [
-  { path: '/', title: '足迹-时光轨迹、纪念日·倒数、出行轨迹 TraceApp｜上海树下小屋', description: '上海树下小屋网络科技有限公司出品：足迹-时光轨迹(GPS 轨迹记录 App)、纪念日·倒数(生日纪念日倒数提醒 App)、出行轨迹 TraceApp。隐私优先、本地优先，含产品介绍、隐私政策与用户支持。', keywords: '足迹,足迹App,纪念日,纪念日App,倒数日,出行轨迹,树下小屋,TimeTrails,Memoria,TraceApp,GPS轨迹记录,生日纪念日提醒' },
-  { path: '/apps/', title: '应用中心·上海树下小屋网络科技有限公司', description: '树下小屋旗下应用：足迹-时光轨迹(隐私优先的 GPS 轨迹记录)、纪念日·倒数(生日纪念日倒数提醒)、出行轨迹 TraceApp(出行轨迹与里程配速)。', keywords: '树下小屋,应用中心,足迹,TimeTrails,纪念日倒数,出行轨迹,TraceApp' },
+  { path: '/', title: '足迹-时光轨迹、纪念日、出行轨迹 TraceApp｜上海树下小屋', description: '上海树下小屋网络科技有限公司出品：足迹-时光轨迹(GPS 轨迹记录 App)、纪念日(生日纪念日倒数提醒 App)、出行轨迹 TraceApp。隐私优先、本地优先，含产品介绍、隐私政策与用户支持。', keywords: '足迹,足迹App,纪念日,纪念日App,倒数日,出行轨迹,树下小屋,TimeTrails,Memoria,TraceApp,GPS轨迹记录,生日纪念日提醒' },
+  { path: '/apps/', title: '应用中心·上海树下小屋网络科技有限公司', description: '树下小屋旗下应用：足迹-时光轨迹(隐私优先的 GPS 轨迹记录)、纪念日(生日纪念日倒数提醒)、出行轨迹 TraceApp(出行轨迹与里程配速)。', keywords: '树下小屋,应用中心,足迹,TimeTrails,纪念日倒数,出行轨迹,TraceApp' },
 
-  { path: '/apps/memoria/', title: '纪念日·倒数·生日纪念日倒数日提醒·恋爱倒计时', description: '纪念日·倒数帮你记录生日、纪念日、恋爱与重要日子，倒数与到日提醒不错过；本地优先，支持主屏小组件。iOS 与 HarmonyOS 双平台。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,恋爱倒计时,倒计时App,重要日子,人生进度,小组件' },
-  { path: '/apps/memoria/ios/', title: '纪念日·倒数 iOS 版·倒数日·生日纪念日提醒', description: '纪念日·倒数 App Store 版：记录生日、纪念日与重要日子，主屏小组件与到日提醒，数据本地优先、可选 iCloud 同步，支持 iPhone/iPad/Apple Watch。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,iOS,小组件,Apple Watch' },
-  { path: '/apps/memoria/harmony/', title: '纪念日·倒数 HarmonyOS 版·倒数日·生日纪念日提醒', description: '纪念日·倒数 华为应用市场版：记录生日、纪念日与重要日子，桌面卡片与到日提醒；纯本地、不联网、不同步。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,HarmonyOS,鸿蒙,华为应用市场' },
-  { path: '/apps/memoria/ios/getting-started/', title: '纪念日·倒数 iOS 新手引导', description: '纪念日·倒数 iOS 版的新手使用引导：创建纪念日、设置提醒与添加主屏小组件。' },
-  { path: '/apps/memoria/harmony/getting-started/', title: '纪念日·倒数 HarmonyOS 新手引导', description: '纪念日·倒数 HarmonyOS 版的新手使用引导：创建纪念日、设置提醒与添加桌面卡片。' },
-  { path: '/apps/memoria/ios/privacy/', title: '纪念日·倒数 iOS 隐私政策', description: '适用于 纪念日·倒数 App Store 版本的隐私政策。' },
-  { path: '/apps/memoria/harmony/privacy/', title: '纪念日·倒数 HarmonyOS 隐私政策', description: '适用于纪念日·倒数 HarmonyOS / 华为应用市场版本的隐私政策。' },
-  { path: '/apps/memoria/ios/terms/', title: '纪念日·倒数 iOS 用户协议', description: '适用于 纪念日·倒数 App Store 版本的用户协议。' },
-  { path: '/apps/memoria/harmony/terms/', title: '纪念日·倒数 HarmonyOS 用户协议', description: '适用于纪念日·倒数 HarmonyOS / 华为应用市场版本的用户协议。' },
-  { path: '/apps/memoria/support/', title: '纪念日·倒数技术支持', description: '纪念日·倒数的常见问题与技术支持：提醒、小组件、数据与同步。' },
+  { path: '/apps/memoria/', title: '纪念日 App 官网｜倒数日、生日提醒与恋爱天数', description: '纪念日 App 帮你记录农历生日、恋爱纪念日、结婚周年和重要日子，支持倒数日、正计时与提前提醒。查看 iOS 和 HarmonyOS 版本介绍、下载入口与使用指南。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,恋爱倒计时,倒计时App,重要日子,人生进度,小组件' },
+  { path: '/apps/memoria/ios/', title: '纪念日 iOS 版｜农历生日提醒、倒数日与小组件', description: '纪念日 iOS 版支持倒数日、农历生日提醒、恋爱天数与结婚纪念日记录，提供桌面和锁屏倒计时小组件。支持 iPhone、iPad、Apple Watch 与可选 iCloud 私密同步。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,iOS,小组件,Apple Watch' },
+  { path: '/apps/memoria/harmony/', title: '纪念日鸿蒙版｜倒数日、农历生日与纪念日提醒', description: '纪念日鸿蒙版支持倒数日、农历生日提醒、恋爱天数与结婚纪念日记录，查看还有多少天或已经多少天，提前提醒重要日子。前往华为应用市场下载。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,HarmonyOS,鸿蒙,华为应用市场' },
+  { path: '/apps/memoria/ios/getting-started/', title: '纪念日 iOS 新手引导', description: '纪念日 iOS 版的新手使用引导：创建纪念日、设置提醒与添加主屏小组件。' },
+  { path: '/apps/memoria/harmony/getting-started/', title: '纪念日 HarmonyOS 新手引导', description: '纪念日 HarmonyOS 版的新手使用引导：创建纪念日、设置提醒与添加桌面卡片。' },
+  { path: '/apps/memoria/ios/privacy/', title: '纪念日 iOS 隐私政策', description: '适用于 纪念日 App Store 版本的隐私政策。' },
+  { path: '/apps/memoria/harmony/privacy/', title: '纪念日 HarmonyOS 隐私政策', description: '适用于纪念日 HarmonyOS / 华为应用市场版本的隐私政策。' },
+  { path: '/apps/memoria/ios/terms/', title: '纪念日 iOS 用户协议', description: '适用于 纪念日 App Store 版本的用户协议。' },
+  { path: '/apps/memoria/harmony/terms/', title: '纪念日 HarmonyOS 用户协议', description: '适用于纪念日 HarmonyOS / 华为应用市场版本的用户协议。' },
+  { path: '/apps/memoria/support/', title: '纪念日技术支持', description: '纪念日的常见问题与技术支持：提醒、小组件、数据与同步。' },
 
   { path: '/apps/timetrails/', title: '足迹-时光轨迹｜记录一生轨迹的 GPS 足迹地图', description: '足迹-时光轨迹记录每日出行、徒步、骑行与驾车路线；通过足迹洞察和足迹星球回顾轨迹、里程与到访城市。支持 iPhone、iPad 和 Apple Watch，数据默认保存在本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },
   { path: '/apps/timetrails/getting-started/', title: '足迹-时光轨迹 新手引导', description: '足迹-时光轨迹 的新手使用引导：授权定位、开始记录与查看每日轨迹。' },
@@ -32,11 +32,11 @@ export const siteRoutes: SiteRoute[] = [
   { path: '/apps/traceapp/terms/', title: '出行轨迹 TraceApp 用户协议', description: '适用于 出行轨迹 TraceApp 的用户协议。' },
   { path: '/apps/traceapp/support/', title: '出行轨迹 TraceApp 技术支持', description: '出行轨迹 TraceApp 的常见问题与技术支持。' },
 
-  { path: '/search/', title: '站内搜索·树下小屋', description: '在树下小屋站内按关键词查找应用与支持内容：足迹-时光轨迹、纪念日·倒数、出行轨迹 TraceApp。' },
+  { path: '/search/', title: '站内搜索·树下小屋', description: '在树下小屋站内按关键词查找应用与支持内容：足迹-时光轨迹、纪念日、出行轨迹 TraceApp。' },
   { path: '/support/', title: '客户服务中心·树下小屋', description: '树下小屋旗下所有应用的官方服务渠道：意见反馈与邮件、各应用商店评价，以及微信·QQ·Telegram 官方交流群。' },
   { path: '/feedback/', title: '意见反馈·树下小屋', description: '树下小屋各应用共用的意见反馈页：邮件反馈自动附带版本与设备信息，并可前往对应应用商店评价。' },
   { path: '/migrate/', title: '数据迁移·出行轨迹 → 足迹', description: '把「出行轨迹」记录的轨迹迁移到新版「足迹-时光轨迹」的引导说明：几步完成，全程本地处理、不上传。' },
-  { path: '/about/', title: '关于我们·上海树下小屋网络科技有限公司', description: '了解上海树下小屋网络科技有限公司：以隐私优先、本地优先打造足迹-时光轨迹、纪念日·倒数、出行轨迹 TraceApp。' },
+  { path: '/about/', title: '关于我们·上海树下小屋网络科技有限公司', description: '了解上海树下小屋网络科技有限公司：以隐私优先、本地优先打造足迹-时光轨迹、纪念日、出行轨迹 TraceApp。' },
   { path: '/contact/', title: '联系我们·上海树下小屋网络科技有限公司', description: '联系上海树下小屋网络科技有限公司：邮件与官方交流群。' },
 ];
 

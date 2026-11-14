@@ -1,24 +1,42 @@
-import ThemeToggle from '../components/ThemeToggle';
-import LanguageSelect from '../components/LanguageSelect';
+import { SiteHeader, SiteFooter } from '../components/SiteChrome';
 import { useI18n } from '../i18n/I18nProvider';
+import { langHref } from '../i18n/path';
+import { timeTrailsScreenshot } from '../lib/timetrails';
+import { previewImage } from '../lib/app-preview';
+import '../styles/apps-directory.css';
 
 const apps = [
-  { name: '纪念日·倒数', platform: 'App Store·HarmonyOS', descKey: 'apps.memoria.desc', href: '/apps/memoria/', tagKey: 'apps.memoria.tag' },
-  { name: '足迹-时光轨迹', platform: 'App Store·iPhone·iPad·Apple Watch', descKey: 'apps.timetrails.desc', href: '/apps/timetrails/', tagKey: 'apps.timetrails.tag' },
-  { name: '出行轨迹 TraceApp', platform: 'App Store·iPhone', descKey: 'apps.traceapp.desc', href: '/apps/traceapp/', tagKey: 'apps.traceapp.tag' },
+  { id: 'memoria', name: '纪念日', platform: 'App Store · HarmonyOS', descKey: 'apps.memoria.desc', href: '/apps/memoria/', tagKey: 'apps.memoria.tag', documents: [{ platform: 'App Store', base: '/apps/memoria/ios' }, { platform: 'HarmonyOS', base: '/apps/memoria/harmony' }] },
+  { id: 'timetrails', name: '足迹-时光轨迹', platform: 'iPhone · iPad · Apple Watch', descKey: 'apps.timetrails.desc', href: '/apps/timetrails/', tagKey: 'apps.timetrails.tag', documents: [{ platform: 'App Store', base: '/apps/timetrails' }] },
+  { id: 'traceapp', name: '出行轨迹 TraceApp', platform: 'App Store · iPhone', descKey: 'apps.traceapp.desc', href: '/apps/traceapp/', tagKey: 'apps.traceapp.tag', documents: [{ platform: 'App Store', base: '/apps/traceapp' }] },
 ];
 
 export default function AppsPage() {
-  const { t } = useI18n();
-  return <><ThemeToggle />
-    <header className="navbar"><div className="container nav-inner">
-      <a className="brand" href="/" aria-label={t('home.common.company')}><img className="brand-logo" src="/logo.png" alt="" aria-hidden="true" width={36} height={36} /><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">Products · Support · Privacy</span></span></a>
-      <nav className="nav-menu nav-menu-static"><a className="nav-link" href="/">{t('home.nav.home')}</a><a className="nav-link" href="/support/">{t('nav.support')}</a><a className="nav-link cta-nav" href="/contact/">{t('home.nav.contact')}</a><LanguageSelect /></nav>
-    </div></header>
-    <main className="product-page"><div className="container product-page-inner">
-      <section className="product-hero apps-hero"><p className="route-eyebrow">{t('apps.hero.eyebrow')}</p><h1>{t('apps.hero.title')}</h1><p>{t('apps.hero.desc')}</p></section>
-      <section className="app-directory" aria-label={t('nav.apps')}>{apps.map((app, index) => <article className="app-directory-card" key={app.name}><span className="app-index">0{index + 1}</span><div className="app-main"><p>{app.platform}</p><h2>{app.name}</h2><span>{t(app.descKey)}</span></div><div className="app-actions"><em>{t(app.tagKey)}</em><a className="btn-ghost" href={app.href}>{t('apps.card.cta')}</a></div></article>)}</section>
+  const { t, language } = useI18n();
+  const href = (path: string) => langHref(language.normalizedCode, path);
+
+  return <><SiteHeader active="apps" />
+    <main className="apps-directory-page" id="page-content" tabIndex={-1}><div className="container">
+      <header className="directory-intro"><p className="directory-eyebrow">{t('nav.apps')}</p><h1>{t('apps.hero.title')}</h1><p className="directory-description">{t('apps.hero.desc')}</p></header>
+      <div className="directory-products">{apps.map((app) => <article className={`directory-product directory-product-${app.id}`} key={app.id} aria-labelledby={`directory-${app.id}`}>
+        <div className="directory-product-copy">
+          <p className="directory-category">{t(app.tagKey)}</p>
+          <h2 id={`directory-${app.id}`}>{app.name}</h2>
+          <p className="directory-platform">{app.platform}</p>
+          <p className="directory-product-description">{t(app.descKey)}</p>
+          <a className="btn-primary directory-product-link" href={href(app.href)}>{t('apps.card.cta')}<span aria-hidden="true">↗</span></a>
+          <div className="directory-documents">{app.documents.map((document) => <nav className="directory-document-group" aria-label={`${app.name} · ${document.platform} · ${t('app.tab.support')}`} key={document.base}>
+            {app.documents.length > 1 && <span className="directory-document-platform">{document.platform}</span>}
+            <div><a href={href(`${document.base}/getting-started/`)}>{t('app.tab.start')}</a><a href={href(`${document.base}/privacy/`)}>{t('app.tab.privacy')}</a><a href={href(`${document.base}/terms/`)}>{t('app.tab.terms')}</a></div>
+          </nav>)}</div>
+        </div>
+        <a className={`directory-preview directory-preview-${app.id}`} href={href(app.href)} aria-label={`${app.name} · ${t('apps.card.cta')}`}>
+          {app.id === 'memoria' && <img className="directory-phone" {...previewImage('/apps/memoria/ios/shot-01.png', '(max-width: 620px) 40vw, 192px')} alt={`${app.name} · ${t('app.shots')}`} width={1080} height={2346} loading="lazy" decoding="async" />}
+          {app.id === 'timetrails' && <img className="directory-landscape" src={timeTrailsScreenshot(language.normalizedCode, 'overview', 'duo')} alt={`${app.name} · ${t('tt.ui.insightsTitle')}`} width={2853} height={2007} loading="lazy" decoding="async" />}
+          {app.id === 'traceapp' && <div className="directory-map-pair"><img src="/apps/traceapp/shot-01.png" alt={`${app.name} · ${t('trace.feat.0')}`} width={392} height={250} loading="lazy" decoding="async" /><img src="/apps/traceapp/shot-03.png" alt={`${app.name} · ${t('trace.feat.2')}`} width={294} height={216} loading="lazy" decoding="async" /></div>}
+        </a>
+      </article>)}</div>
     </div></main>
-    <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">{t('home.common.company')}</div><div className="footer-slogan">{t('apps.footer.slogan')}</div></div></div></footer>
+    <SiteFooter />
   </>;
 }

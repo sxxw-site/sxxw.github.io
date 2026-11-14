@@ -1,0 +1,15 @@
+/* A: the current TreeHouse identity, the default appearance. */
+html[data-site-style="paper"] {
+    color-scheme: light;
+    --page-bg: #f7f5ef;
+    --surface: #eeeae1;
+    --card-bg: #fffdfa;
+    --card-stroke: #d9d4ca;
+    --hairline: #d9d4ca;
+    --text-main: #29251f;
+    --text-dim: #6d655c;
+    --accent: #9b481f;
+    --accent-2: #7c3617;
+    --accent-soft: #f1e3d5;
+    --action-ink: #fffdfa;
+}

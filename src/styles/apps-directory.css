@@ -1,0 +1,247 @@
+.apps-directory-page {
+    padding-bottom: 6rem;
+}
+
+.apps-directory-page .directory-intro {
+    padding: clamp(3.5rem, 7vw, 7rem) 0 clamp(3rem, 5vw, 5rem);
+    max-width: 780px;
+}
+
+.apps-directory-page .directory-eyebrow,
+.apps-directory-page .directory-category {
+    color: var(--text-dim);
+    font-size: .85rem;
+    line-height: 1.5;
+    margin: 0 0 1.25rem;
+}
+
+.apps-directory-page .directory-intro h1 {
+    margin: 0;
+    font-size: clamp(2.35rem, 4.4vw, 4rem);
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+.apps-directory-page .directory-description {
+    max-width: 620px;
+    margin: 1.5rem 0 0;
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.apps-directory-page .directory-product {
+    display: grid;
+    grid-template-columns: 1fr 1.08fr;
+    gap: clamp(2rem, 5vw, 5.5rem);
+    align-items: center;
+    padding: clamp(2.5rem, 5vw, 5rem) 0;
+    border-top: 1px solid var(--card-stroke);
+}
+
+.apps-directory-page .directory-category {
+    margin-bottom: .75rem;
+}
+
+.apps-directory-page .directory-product h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+    line-height: 1.3;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+.apps-directory-page .directory-platform {
+    margin: 1rem 0 0;
+    font-size: .8rem;
+    color: var(--text-dim);
+}
+
+.apps-directory-page .directory-product-description {
+    max-width: 38ch;
+    margin: 1.25rem 0 1.75rem;
+    color: var(--text-dim);
+    line-height: 1.85;
+    font-size: 1rem;
+}
+
+.apps-directory-page .directory-product-link {
+    display: inline-flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.apps-directory-page .directory-product-link span {
+    transition: transform 180ms ease;
+}
+
+.apps-directory-page .directory-product-link:hover span {
+    transform: translate(2px, -2px);
+}
+
+.apps-directory-page .directory-documents {
+    margin-top: 1.5rem;
+}
+
+.apps-directory-page .directory-document-group + .directory-document-group {
+    margin-top: .25rem;
+}
+
+.apps-directory-page .directory-document-platform {
+    display: block;
+    color: var(--text-dim);
+    font-size: .75rem;
+    line-height: 1.5;
+}
+
+.apps-directory-page .directory-document-group > div {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+}
+
+.apps-directory-page .directory-document-group a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--text-main);
+    font-size: .8rem;
+    text-decoration-color: transparent;
+    text-underline-offset: 5px;
+    transition: text-decoration-color 180ms ease;
+}
+
+.apps-directory-page .directory-document-group a:hover {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+}
+
+.apps-directory-page .directory-preview {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    min-height: 440px;
+    padding: 2rem;
+    background: color-mix(in srgb, var(--text-main) 4%, var(--page-bg));
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 180ms ease;
+}
+
+.apps-directory-page .directory-preview:hover {
+    transform: translateY(-2px);
+}
+
+.apps-directory-page .directory-preview img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: transform 240ms ease;
+}
+
+.apps-directory-page .directory-preview:hover img {
+    transform: scale(1.02);
+}
+
+.apps-directory-page .directory-phone {
+    width: 192px;
+    border: 1px solid color-mix(in srgb, var(--text-main) 18%, transparent);
+    border-radius: 24px;
+}
+
+.apps-directory-page .directory-landscape {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.apps-directory-page .directory-map-pair {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+}
+
+.apps-directory-page .directory-map-pair > img:first-child {
+    width: min(100%, 392px);
+}
+
+.apps-directory-page .directory-map-pair > img:last-child {
+    width: min(75%, 294px);
+}
+
+@media (max-width: 820px) {
+    .apps-directory-page .directory-product {
+        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .apps-directory-page .directory-preview {
+        min-height: 360px;
+        padding: 1.25rem;
+    }
+
+    .apps-directory-page .directory-phone {
+        width: 160px;
+    }
+}
+
+@media (max-width: 620px) {
+    .apps-directory-page {
+        padding-bottom: 2rem;
+    }
+
+    .apps-directory-page .directory-intro {
+        padding: 3rem 0;
+    }
+
+    .apps-directory-page .directory-product {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.75rem;
+        padding: 2.5rem 0;
+    }
+
+    .apps-directory-page .directory-product-description {
+        max-width: none;
+    }
+
+    .apps-directory-page .directory-product-link {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .apps-directory-page .directory-preview {
+        min-height: 0;
+        padding: 1.5rem;
+    }
+
+    .apps-directory-page .directory-preview-memoria {
+        padding: 2rem;
+    }
+
+    .apps-directory-page .directory-phone {
+        width: min(60%, 192px);
+    }
+
+    .apps-directory-page .directory-document-group > div {
+        column-gap: 1.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .apps-directory-page .directory-preview,
+    .apps-directory-page .directory-preview:hover,
+    .apps-directory-page .directory-preview img,
+    .apps-directory-page .directory-preview:hover img,
+    .apps-directory-page .directory-product-link span,
+    .apps-directory-page .directory-product-link:hover span {
+        transition: none;
+        transform: none;
+    }
+}

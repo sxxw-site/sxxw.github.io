@@ -1,113 +1,137 @@
-import { useState } from 'react';
-import ThemeToggle from '../components/ThemeToggle';
-import LanguageSelect from '../components/LanguageSelect';
+import { useEffect, useRef, useState } from 'react';
+import { SiteHeader, SiteFooter } from '../components/SiteChrome';
 import { useI18n } from '../i18n/I18nProvider';
-import { FEEDBACK_CONTACTS_DEFAULT } from '../lib/feedback';
+import { FEEDBACK_APPS, FEEDBACK_CONTACTS_DEFAULT } from '../lib/feedback';
+import { localizedSiteHref } from '../lib/site-navigation';
+import '../styles/service-pages.css';
 
 async function copyText(text: string): Promise<boolean> {
-  try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch { /* fall through */ }
   try {
-    const ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.focus(); ta.select();
-    const ok = document.execCommand('copy'); document.body.removeChild(ta); return ok;
+    if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; }
+  } catch { /* Try the fallback when clipboard access is unavailable. */ }
+  const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  const field = document.createElement('textarea');
+  try {
+    field.value = text;
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    document.body.appendChild(field);
+    field.focus();
+    field.select();
+    return document.execCommand('copy');
   } catch { return false; }
+  finally { field.remove(); previousFocus?.focus(); }
 }
 
-/*
- * 客户服务中心 /support/  （UI 文案走 i18n，可跟随站点语言切换）
- * 填链接：有链接的渠道填 href（外链自动新标签）；二维码渠道把 PNG 放 public/support/ 并填 qr；
- * 都留空则显示「筹备中」，可安全上线。
- */
+type Channel = {
+  name: string; desc: string; meta: string; cta: string;
+  href?: string; qr?: string; copy?: string; copyLabel?: string; full?: boolean;
+};
 
-type Channel = { name: string; desc: string; meta: string; cta: string; href?: string; qr?: string; copy?: string };
-type Group = { kicker: string; label: string; title: string; note: string; items: Channel[] };
-
-function ChannelAction({ item, pending, copied, onCopy }: { item: Channel; pending: string; copied: string; onCopy: (text: string) => void }) {
-  if (item.href) {
-    const external = /^https?:\/\//.test(item.href);
-    return <a className="btn-ghost support-btn" href={item.href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>{item.cta} {external ? '↗' : '→'}</a>;
-  }
-  if (item.copy) {
-    return <button type="button" className="btn-ghost support-btn support-copy" onClick={() => onCopy(item.copy!)}>{item.copy} <em>{copied === item.copy ? '✓' : '⧉'}</em></button>;
-  }
-  if (item.qr) {
-    return <div className="support-qr-wrap"><img className="support-qr" src={item.qr} alt={item.name} loading="lazy" /><span>{item.cta}</span></div>;
-  }
-  return <span className="support-pending" aria-label={pending}>{pending}</span>;
+function ChannelAction({ item, pending, copied, copyLabel, copiedLabel, fullLabel, href, onCopy }: {
+  item: Channel; pending: string; copied: string; copyLabel: string; copiedLabel: string; fullLabel: string;
+  href: (path: string) => string; onCopy: (text: string) => void;
+}) {
+  const external = !!item.href && /^https?:\/\//.test(item.href);
+  return <div className="service-channel-actions">
+    {item.full && <span className="service-channel-state">{fullLabel}</span>}
+    {item.href && !item.full && <a className="service-action" href={href(item.href)} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>{item.cta}<span aria-hidden="true">{external ? '↗' : '→'}</span></a>}
+    {item.copy && <button className="service-action service-copy-action" type="button" onClick={() => onCopy(item.copy!)} aria-label={`${copied === item.copy ? copiedLabel : item.copyLabel ?? copyLabel} · ${item.meta}`}>
+      {copied === item.copy ? copiedLabel : item.copyLabel ?? copyLabel}<span aria-hidden="true">{copied === item.copy ? '✓' : '⧉'}</span>
+    </button>}
+    {item.qr && <div className="service-channel-qr"><img src={item.qr} alt={`${item.name} · ${item.cta}`} width={132} height={132} loading="lazy" /><span>{item.cta}</span></div>}
+    {!item.href && !item.copy && !item.qr && <span className="service-channel-state">{pending}</span>}
+  </div>;
 }
 
 export default function SupportPage() {
-  const { t } = useI18n();
-  const pending = t('support.pending');
+  const { t, language } = useI18n();
+  const zh = language.normalizedCode.startsWith('zh') || language.normalizedCode === 'yue';
+  const href = (path: string) => localizedSiteHref(language.normalizedCode, path);
   const [copied, setCopied] = useState('');
+  const [copyStatus, setCopyStatus] = useState('');
+  const copyTimer = useRef<number>();
+  const copyLabel = zh ? '复制' : 'Copy';
+  const copiedLabel = zh ? '已复制' : 'Copied';
+  const technicalLabel = zh ? '各产品技术支持' : 'Product support';
   const cc = FEEDBACK_CONTACTS_DEFAULT;
-  const qqGroup = cc.qq?.find((g) => !g.full) ?? cc.qq?.[0];
 
-  function onCopy(text: string) {
-    copyText(text).then((ok) => {
-      if (ok) { setCopied(text); window.setTimeout(() => setCopied((c) => (c === text ? '' : c)), 1600); }
-    });
+  useEffect(() => () => window.clearTimeout(copyTimer.current), []);
+
+  async function onCopy(text: string) {
+    const ok = await copyText(text);
+    window.clearTimeout(copyTimer.current);
+    setCopied(ok ? text : '');
+    setCopyStatus(ok ? `${copiedLabel}：${text}` : zh ? '复制未完成，请手动复制上方联系信息。' : 'Could not copy. Please copy the contact details above manually.');
+    copyTimer.current = window.setTimeout(() => { setCopied(''); setCopyStatus(''); }, 2400);
   }
 
-  const groups: Group[] = [
-    {
-      kicker: '01', label: 'Feedback', title: t('support.g1.title'), note: t('support.g1.note'),
-      items: [
-        { name: t('support.g1.feedback.name'), desc: t('support.g1.feedback.desc'), meta: '纪念日·倒数 · TimeTrails · TraceApp', cta: t('support.g1.feedback.cta'), href: '/apps/' },
-        { name: t('support.g1.email.name'), desc: t('support.g1.email.desc'), meta: 'house@sxxw.site', cta: t('support.g1.email.cta'), href: 'mailto:house@sxxw.site' },
-      ],
-    },
-    {
-      kicker: '02', label: 'Reviews', title: t('support.g2.title'), note: t('support.g2.note'),
-      items: [
-        { name: '纪念日·倒数·App Store', desc: 'iPhone·iPad·Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id6760106574?action=write-review' },
-        { name: '纪念日·倒数·Huawei AppGallery', desc: t('support.g2.memoria.huawei.platform'), meta: 'Huawei AppGallery', cta: t('support.g2.cta.goto'), href: 'https://appgallery.huawei.com/app/C6917613545100329502' },
-        { name: '足迹-时光轨迹·App Store', desc: 'iPhone·iPad·Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id6752662508?action=write-review' },
-        { name: '出行轨迹 TraceApp·App Store', desc: 'iPhone', meta: 'App Store', cta: t('support.g2.cta.write'), href: 'https://apps.apple.com/app/id1634761411?action=write-review' },
-      ],
-    },
-    {
-      kicker: '03', label: 'Groups', title: t('support.g3.title'), note: t('support.g3.note'),
-      items: [
-        { name: t('support.g3.wechat.name'), desc: t('support.g3.wechat.desc'), meta: 'TreeHouse', cta: t('support.g3.join'), copy: cc.wechat?.id },
-        { name: t('support.g3.qq.name'), desc: t('support.g3.qq.desc'), meta: qqGroup?.label ?? 'TreeHouse', cta: t('support.g3.join'), href: qqGroup?.joinUrl },
-        { name: t('support.g3.tg.name'), desc: t('support.g3.tg.desc'), meta: 'TreeHouse Chat', cta: t('support.g3.join'), href: cc.telegram?.url },
-      ],
-    },
+  const feedback: Channel[] = [
+    { name: t('support.g1.title'), desc: t('support.g1.feedback.desc'), meta: '纪念日 · TimeTrails · TraceApp', cta: zh ? '打开反馈页' : 'Open feedback', href: '/feedback/' },
+    { name: t('support.g1.email.name'), desc: t('support.g1.email.desc'), meta: 'house@sxxw.site', cta: t('support.g1.email.cta'), href: 'mailto:house@sxxw.site' },
   ];
+  const community: Channel[] = [
+    { name: t('support.g3.wechat.name'), desc: t('support.g3.wechat.desc'), meta: cc.wechat?.id ?? 'TreeHouse', cta: t('support.g3.join'), copy: cc.wechat?.id, copyLabel: zh ? '复制微信号' : 'Copy WeChat ID' },
+    ...(cc.qq ?? []).map((group) => ({ name: t('support.g3.qq.name'), desc: t('support.g3.qq.desc'), meta: group.label, cta: t('support.g3.join'), href: group.joinUrl, copy: group.link ?? group.label, copyLabel: zh ? '复制加群链接' : 'Copy group link', full: group.full })),
+    { name: t('support.g3.tg.name'), desc: t('support.g3.tg.desc'), meta: 'TreeHouse Chat', cta: t('support.g3.join'), href: cc.telegram?.url },
+  ];
+  const products = [
+    { id: 'memoria', support: '/apps/memoria/support/', desc: t('mem.ui.desc.support').replace('{app}', FEEDBACK_APPS.memoria.name), guides: [{ label: 'iOS', href: '/apps/memoria/ios/getting-started/' }, { label: 'HarmonyOS', href: '/apps/memoria/harmony/getting-started/' }] },
+    { id: 'timetrails', support: '/apps/timetrails/support/', desc: t('tt.ui.desc.support'), guides: [{ label: '', href: '/apps/timetrails/getting-started/' }] },
+    { id: 'traceapp', support: '/apps/traceapp/support/', desc: t('trace.ui.desc.support'), guides: [{ label: '', href: '/apps/traceapp/getting-started/' }] },
+  ];
+  const reviews: Channel[] = [
+    { name: '纪念日 · App Store', desc: 'iPhone · iPad · Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: FEEDBACK_APPS.memoria.stores.appstore?.url },
+    { name: '纪念日 · Huawei AppGallery', desc: t('support.g2.memoria.huawei.platform'), meta: 'Huawei AppGallery', cta: t('support.g2.cta.goto'), href: FEEDBACK_APPS.memoria.stores.huawei?.url },
+    { name: '足迹-时光轨迹 · App Store', desc: 'iPhone · iPad · Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: FEEDBACK_APPS.timetrails.stores.appstore?.url },
+    { name: '出行轨迹 TraceApp · App Store', desc: 'iPhone', meta: 'App Store', cta: t('support.g2.cta.write'), href: FEEDBACK_APPS.traceapp.stores.appstore?.url },
+  ];
+  const action = (item: Channel) => <ChannelAction item={item} pending={t('support.pending')} copied={copied} copyLabel={copyLabel} copiedLabel={copiedLabel} fullLabel={zh ? '群已满' : 'Group full'} href={href} onCopy={onCopy} />;
+  const foot = t('support.foot').split('house@sxxw.site');
 
-  return <><ThemeToggle />
-    <header className="navbar"><div className="container nav-inner">
-      <a className="brand" href="/" aria-label={t('home.common.company')}><img className="brand-logo" src="/logo.png" alt="" aria-hidden="true" width={36} height={36} /><span className="brand-text"><span className="cn">树下小屋 · {t('support.brand')}</span><span className="en">Support · Community</span></span></a>
-      <nav className="nav-menu nav-menu-static"><a className="nav-link" href="/">{t('home.nav.home')}</a><a className="nav-link" href="/apps/">{t('nav.apps')}</a><a className="nav-link cta-nav" href="/contact/">{t('home.nav.contact')}</a><LanguageSelect /></nav>
-    </div></header>
-    <main className="product-page"><div className="container product-page-inner">
-      <section className="product-hero">
-        <p className="route-eyebrow">{t('support.hero.eyebrow')}</p>
-        <h1>{t('support.hero.title')}</h1>
-        <p>{t('support.hero.desc')}</p>
-      </section>
-
-      {groups.map((group) => <section className="support-group" key={group.kicker}>
-        <p className="kicker"><b>{group.kicker}</b> {group.label}</p>
-        <h2 className="section-title">{group.title}</h2>
-        <p className="support-group-note">{group.note}</p>
-        <div className="support-cards">{group.items.map((item) => <article className="support-card" key={item.name}>
-          <div className="support-card-top">
-            <span className="support-meta">{item.meta}</span>
-            <h3>{item.name}</h3>
-            <p>{item.desc}</p>
-          </div>
-          <div className="support-action"><ChannelAction item={item} pending={pending} copied={copied} onCopy={onCopy} /></div>
+  return <>
+    <SiteHeader active="support" subtitle="Support · Community" />
+    <main className="service-page service-support" id="page-content" tabIndex={-1}><div className="container service-container">
+      <header className="service-intro">
+        <p className="page-eyebrow">{t('support.hero.eyebrow')}</p>
+        <h1 className="page-title">{t('support.hero.title')}</h1>
+        <p className="page-lead">{t('support.hero.desc')}</p>
+        <nav className="service-section-nav" aria-label={zh ? '服务目录' : 'Support directory'}>
+          <a href="#feedback">{t('support.g1.title')}<span aria-hidden="true">↓</span></a>
+          <a href="#product-support">{technicalLabel}<span aria-hidden="true">↓</span></a>
+          <a href="#community">{zh ? '官方社群' : 'Community'}<span aria-hidden="true">↓</span></a>
+        </nav>
+      </header>
+      <section className="service-section" id="feedback" aria-labelledby="feedback-title">
+        <header className="service-section-heading"><p className="service-section-number" aria-hidden="true">01</p><h2 id="feedback-title">{t('support.g1.title')}</h2><p>{t('support.g1.note')}</p></header>
+        <div className="service-section-content service-channel-list">{feedback.map((item) => <article className="service-channel" key={item.name}>
+          <div className="service-channel-copy"><p className="service-channel-meta">{item.meta}</p><h3>{item.name}</h3><p>{item.desc}</p></div>{action(item)}
         </article>)}</div>
-      </section>)}
-
-      <p className="support-foot-note" dangerouslySetInnerHTML={{ __html: t('support.foot').replace('house@sxxw.site', '<a class="linkish" href="mailto:house@sxxw.site">house@sxxw.site</a>') }} />
+      </section>
+      <section className="service-section" id="product-support" aria-labelledby="product-support-title">
+        <header className="service-section-heading"><p className="service-section-number" aria-hidden="true">02</p><h2 id="product-support-title">{technicalLabel}</h2><p>{zh ? '按应用查看常见问题和使用指南。' : 'Find answers and getting-started guides for your app.'}</p></header>
+        <div className="service-section-content">
+          <div className="service-product-list">{products.map((product) => <article className="service-product" key={product.id}>
+            <div><h3>{FEEDBACK_APPS[product.id].name}</h3><p>{product.desc}</p></div>
+            <nav className="service-product-links" aria-label={`${FEEDBACK_APPS[product.id].name} · ${technicalLabel}`}>
+              <a className="service-action" href={href(product.support)}>{t('app.tab.support')}<span aria-hidden="true">→</span></a>
+              {product.guides.map((guide) => <a className="service-action" href={href(guide.href)} key={guide.href}>{guide.label && `${guide.label} · `}{t('app.tab.start')}<span aria-hidden="true">→</span></a>)}
+              <a className="service-action" href={href(`/feedback/?app=${product.id}`)}>{zh ? '提交反馈' : 'Send feedback'}<span aria-hidden="true">→</span></a>
+            </nav>
+          </article>)}</div>
+          <div className="service-reviews"><h3>{t('support.g2.title')}</h3><p>{t('support.g2.note')}</p>
+            <ul className="service-review-list">{reviews.map((item) => <li key={item.name}><div><h4>{item.name}</h4><p>{item.desc}</p></div>{action(item)}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+      <section className="service-section" id="community" aria-labelledby="community-title">
+        <header className="service-section-heading"><p className="service-section-number" aria-hidden="true">03</p><h2 id="community-title">{t('support.g3.title')}</h2><p>{t('support.g3.note')}</p></header>
+        <div className="service-section-content service-channel-list">{community.map((item) => <article className="service-channel" key={`${item.name}-${item.meta}`}>
+          <div className="service-channel-copy"><p className="service-channel-meta">{item.meta}</p><h3>{item.name}</h3><p>{item.desc}</p></div>{action(item)}
+        </article>)}</div>
+      </section>
+      <div className="service-afterword"><p>{foot.map((part, index) => <span key={index}>{index > 0 && <a href="mailto:house@sxxw.site">house@sxxw.site</a>}{part}</span>)}</p><p className="service-copy-status" role="status" aria-live="polite">{copyStatus}</p></div>
     </div></main>
-    <footer className="site-footer"><div className="container footer-inner">
-      <div className="footer-left"><div className="footer-brand">树下小屋 · {t('support.brand')}</div><div className="footer-slogan">{t('support.footer.slogan')}</div></div>
-      <div className="footer-right"><div className="footer-links"><a href="/">{t('home.nav.home')}</a><a href="/apps/">{t('nav.apps')}</a><a href="/contact/">{t('home.nav.contact')}</a></div></div>
-    </div></footer>
+    <SiteFooter />
   </>;
 }

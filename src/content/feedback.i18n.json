@@ -1,7 +1,7 @@
 {
   "en": {
     "title": "Feedback",
-    "intro": "Run into a problem or have a suggestion? Email us — we read every message. Your app version and device info are attached automatically so we can look into it faster.",
+    "intro": "Describe the issue or suggestion. When opened from an app, this page can include version and device details. Review and send your feedback in your email or sharing app.",
     "emailLabel": "Feedback email",
     "deviceLabel": "Device info",
     "button": "Send feedback email",
@@ -23,7 +23,7 @@
   },
   "zh-hans": {
     "title": "意见反馈",
-    "intro": "使用中遇到问题或有任何建议，欢迎邮件联系我们，我们会认真阅读每一条反馈。发送邮件时会自动附上你的 App 版本与设备信息，便于我们更快定位问题。",
+    "intro": "描述遇到的问题或建议。从 App 打开此页时，可附带版本和设备信息；请在邮件或分享应用中确认发送。",
     "emailLabel": "反馈邮箱",
     "deviceLabel": "设备信息",
     "button": "发送邮件反馈",
@@ -45,7 +45,7 @@
   },
   "zh-hant": {
     "title": "意見反饋",
-    "intro": "使用中遇到問題或有任何建議，歡迎郵件聯絡我們，我們會認真閱讀每一條反饋。傳送郵件時會自動附上你的 App 版本與裝置資訊，便於我們更快定位問題。",
+    "intro": "描述遇到的問題或建議。從 App 開啟此頁時，可附帶版本和裝置資訊；請在郵件或分享應用中確認傳送。",
     "emailLabel": "反饋信箱",
     "deviceLabel": "裝置資訊",
     "button": "傳送郵件反饋",

@@ -1,0 +1,52 @@
+.company-page { padding-block: 0 64px; }
+.company-page h2, .company-page h3 { font-family: var(--page-heading-font, var(--font-body)); font-weight: 500; letter-spacing: -.025em; }
+.company-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 80px; padding-block: 80px; }
+.company-hero .page-title { max-width: 12em; }
+.company-mark { display: grid; place-items: center; padding: 32px; background: var(--surface); border-radius: var(--radius-lg); }
+.company-mark img { width: min(100%, 320px); height: auto; border-radius: 50%; }
+.company-inline-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; color: var(--accent); font-size: 14px; text-decoration: none; }
+.company-inline-link:hover { text-decoration: underline; }
+.company-hero .company-inline-link { margin-top: 24px; }
+.company-products { padding-block: 64px; border-top: 1px solid var(--hairline); }
+.company-section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 32px; margin-bottom: 24px; }
+.company-section-head h2 { margin: 0; font-size: clamp(26px, 3vw, 36px); }
+.company-section-head p { margin: 0; color: var(--text-dim); font-size: 16px; }
+.company-product-list article { display: flex; justify-content: space-between; align-items: center; gap: 48px; padding-block: 32px; border-bottom: 1px solid var(--hairline); }
+.company-product-list h3 { margin: 0 0 12px; font-size: 24px; }
+.company-product-list h3 a { color: var(--text-main); text-decoration: none; }
+.company-product-list h3 a:hover { color: var(--accent); text-decoration: underline; }
+.company-product-list p { max-width: 46em; margin: 0; color: var(--text-dim); font-size: 16px; line-height: 1.85; }
+.company-product-list .company-inline-link { flex: none; }
+.company-close { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 40px; background: var(--surface); border-radius: var(--radius-lg); }
+.company-close h2 { margin: 0; font-size: clamp(26px, 3vw, 36px); }
+.company-contact-intro { max-width: 800px; padding-block: 80px 64px; }
+.company-contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 80px; padding-bottom: 64px; }
+.company-contact-grid h2 { margin: 0 0 32px; font-size: 26px; }
+.company-contact-main { padding: 32px; background: var(--surface); border-radius: var(--radius-lg); align-self: start; }
+.company-contact-main dl { margin: 0 0 32px; }
+.company-contact-main dl > div { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 20px; padding-block: 20px; border-bottom: 1px solid var(--hairline); }
+.company-contact-main dt { color: var(--text-dim); font-size: 14px; }
+.company-contact-main dd { margin: 0; overflow-wrap: anywhere; font-size: 16px; }
+.company-contact-main dd a { display: inline-flex; align-items: center; min-height: 44px; }
+.company-app-contacts article { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; padding-block: 24px; border-top: 1px solid var(--hairline); }
+.company-app-contacts h3 { grid-column: 1 / -1; margin: 0 0 12px; font-size: 21px; }
+.company-email-link { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; font-size: 16px; }
+@media (max-width: 1000px) {
+    .company-hero { gap: 40px; padding-block: 64px; }
+    .company-contact-grid { gap: 40px; }
+    .company-app-contacts article { grid-template-columns: minmax(0, 1fr); }
+    .company-contact-main dl > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+@media (max-width: 700px) {
+    .company-hero { grid-template-columns: minmax(0, 1fr); padding-block: 48px; gap: 32px; }
+    .company-mark { padding: 24px; }
+    .company-mark img { max-width: 240px; }
+    .company-section-head { align-items: flex-start; flex-direction: column; gap: 16px; }
+    .company-products { padding-block: 48px 32px; }
+    .company-product-list article { align-items: flex-start; flex-direction: column; gap: 16px; }
+    .company-close { align-items: flex-start; flex-direction: column; gap: 24px; padding: 24px; }
+    .company-contact-intro { padding-block: 48px 40px; }
+    .company-contact-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-bottom: 24px; }
+    .company-contact-main { padding: 24px; }
+    .company-contact-grid h2 { font-size: 24px; }
+}

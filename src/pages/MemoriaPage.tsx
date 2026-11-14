@@ -1,86 +1,83 @@
 import memoria from '../content/apps/memoria.zh.json';
-import ThemeToggle from '../components/ThemeToggle';
-import LanguageSelect from '../components/LanguageSelect';
+import { SiteHeader, SiteFooter } from '../components/SiteChrome';
+import DocumentLayout from '../components/DocumentLayout';
 import { useI18n } from '../i18n/I18nProvider';
+import { localizedSiteHref } from '../lib/site-navigation';
+import { previewImage } from '../lib/app-preview';
+import '../styles/product-pages.css';
 
 type Platform = 'ios' | 'harmony';
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
 type T = (key: string) => string;
-const BRAND = memoria.appName; // 纪念日·倒数
-const cprefix = (p: Platform) => (p === 'ios' ? 'mem.ios' : 'mem.hm');
-const descKey = (s: Section) => `mem.ui.desc.${s === 'getting-started' ? 'start' : s}`;
+const BRAND = memoria.appName;
+const cprefix = (p: Platform) => p === 'ios' ? 'mem.ios' : 'mem.hm';
 const tabWord = (t: T, s: Section) => t(`app.tab.${s === 'getting-started' ? 'start' : s}`);
+const screenshots = (platform: Platform) => Array.from({ length: platform === 'ios' ? 5 : 4 }, (_, i) => `/apps/memoria/${platform}/shot-0${i + 1}.${platform === 'ios' ? 'png' : 'jpg'}`);
 
 export default function MemoriaPage({ path }: { path: string }) {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  const href = (target: string) => localizedSiteHref(language.normalizedCode, target);
   const platform: Platform = path.includes('/harmony/') ? 'harmony' : 'ios';
-  const section: Section = path.includes('/getting-started/') ? 'getting-started'
-    : path.includes('/privacy/') ? 'privacy' : path.includes('/terms/') ? 'terms'
-      : path.includes('/support/') ? 'support' : 'overview';
-
-  if (path === '/apps/memoria/') return <PlatformChooser />;
+  const section: Section = path.includes('/getting-started/') ? 'getting-started' : path.includes('/privacy/') ? 'privacy' : path.includes('/terms/') ? 'terms' : path.includes('/support/') ? 'support' : 'overview';
+  const chooser = path === '/apps/memoria/';
   const product = memoria[platform];
-  const base = `/apps/memoria/${platform}`;
   const name = product.displayName;
-  const title = section === 'overview' ? name : `${name} ${tabWord(t, section)}`;
-  const desc = section === 'overview' ? t(`${cprefix(platform)}.desc`) : t(descKey(section)).replace('{app}', name);
-
-  return <><ThemeToggle /><MemoriaHeader />
-    <main className="product-page"><div className="container product-page-inner">
-      <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><a href="/apps/memoria/">{BRAND}</a><span>／</span><span>{name}</span></nav>
-      <section className="product-hero"><p className="route-eyebrow">{product.platformName}·{product.storeName}</p><h1>{title}</h1><p>{desc}</p>{section === 'overview' && (product.storeUrl ? <p className="hero-store"><a className="btn-primary store-btn" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a></p> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>)}<PlatformTabs active={platform} section={section} /></section>
-      <PageBody product={product} section={section} base={base} platform={platform} />
+  const title = chooser ? t('mem.ui.pc.title') : section === 'overview' ? name : `${name} ${tabWord(t, section)}`;
+  const desc = chooser ? t('mem.ui.pc.desc') : section === 'overview' ? t(`${cprefix(platform)}.desc`) : t(`mem.ui.desc.${section === 'getting-started' ? 'start' : section}`).replace('{app}', name);
+  const images = screenshots(platform);
+  return <>
+    <SiteHeader brand={BRAND} subtitle={t('mem.ui.headerSub')} active={section === 'support' ? 'support' : 'apps'} />
+    <main id="page-content" tabIndex={-1} className={`product-page product-editorial product-memoria${chooser ? ' product-chooser' : ''}`}><div className="container product-editorial-inner">
+      <nav className="breadcrumbs" aria-label="breadcrumb"><a href={href('/')}>{t('home.nav.home')}</a><span aria-hidden="true">/</span><a href={href('/apps/')}>{t('nav.apps')}</a><span aria-hidden="true">/</span>{chooser ? <span aria-current="page">{BRAND}</span> : <a href={href('/apps/memoria/')}>{BRAND}</a>}{!chooser && <><span aria-hidden="true">/</span><span aria-current="page">{section === 'support' ? tabWord(t, section) : product.platformName}</span></>}</nav>
+      <section className={`product-intro${!chooser && section === 'overview' ? ' product-intro-visual' : ''}`} data-enter>
+        <div className="product-intro-copy"><p className="page-eyebrow">{chooser ? BRAND : section === 'support' ? 'iOS · HarmonyOS' : `${product.platformName} · ${product.storeName}`}</p><h1 className="page-title">{title}</h1><p className="page-lead">{desc}</p>
+          {!chooser && section === 'overview' && <div className="action-row">{product.storeUrl ? <a className="btn-primary" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>}<a className="btn-ghost" href={href(`/apps/memoria/${platform}/getting-started/`)}>{t('app.cta.start')}</a></div>}
+        </div>
+        {!chooser && section === 'overview' && <div className="product-hero-screens" aria-label={t('app.shots')}>{images.slice(0, 2).map((src, index) => <img {...previewImage(src, '(max-width: 560px) 38vw, (max-width: 820px) 180px, 184px')} alt={`${name} · ${product.platformName} · ${index + 1}`} width={1080} height={platform === 'ios' ? 2346 : 2330} decoding="async" key={src} />)}</div>}
+      </section>
+      {chooser ? <PlatformChooser /> : <><ProductNavigation active={section} platform={platform} /><PageBody section={section} platform={platform} /></>}
     </div></main>
-    <ProductFooter />
+    <SiteFooter appName={BRAND} links={[{ href: '/apps/memoria/', label: BRAND }, { href: '/apps/memoria/ios/privacy/', label: `iOS ${t('app.tab.privacy')}` }, { href: '/apps/memoria/harmony/privacy/', label: `HarmonyOS ${t('app.tab.privacy')}` }, { href: '/apps/memoria/support/', label: t('app.tab.support') }]} />
   </>;
 }
 
 function PlatformChooser() {
-  const { t } = useI18n();
-  return <><ThemeToggle /><MemoriaHeader />
-    <main className="product-page"><div className="container product-page-inner">
-      <nav className="breadcrumbs" aria-label="breadcrumb"><a href="/">{t('home.nav.home')}</a><span>／</span><a href="/apps/">{t('nav.apps')}</a><span>／</span><span>{BRAND}</span></nav>
-      <section className="product-hero"><p className="route-eyebrow">{BRAND}</p><h1>{t('mem.ui.pc.title')}</h1><p>{t('mem.ui.pc.desc')}</p></section>
-      <div className="platform-cards">
-        <PlatformCard title={BRAND} eyebrow="App Store·iPhone·iPad·Apple Watch" description={t('mem.ui.pc.ios.desc')} href="/apps/memoria/ios/" cta={t('mem.ui.pc.ios.cta')} />
-        <PlatformCard title="纪念日·倒数" eyebrow="HarmonyOS·华为应用市场" description={t('mem.ui.pc.hm.desc')} href="/apps/memoria/harmony/" cta={t('mem.ui.pc.hm.cta')} />
-      </div>
-    </div></main>
-    <ProductFooter />
-  </>;
+  const { t, language } = useI18n();
+  const href = (target: string) => localizedSiteHref(language.normalizedCode, target);
+  return <div className="product-platform-list">{(['ios', 'harmony'] as const).map(platform => {
+    const product = memoria[platform];
+    return <article className="product-platform-row" key={platform}><div className="product-platform-copy"><p className="page-eyebrow">{product.platformName} · {product.storeName}</p><h2>{product.displayName}</h2><p>{t(`mem.ui.pc.${platform === 'ios' ? 'ios' : 'hm'}.desc`)}</p><div className="action-row"><a className="btn-primary" href={href(`/apps/memoria/${platform}/`)}>{t(`mem.ui.pc.${platform === 'ios' ? 'ios' : 'hm'}.cta`)}</a><a className="btn-ghost" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', product.displayName)}</a></div><nav className="product-inline-links" aria-label={`${product.platformName} ${t('nav.support')}`}><a href={href(`/apps/memoria/${platform}/getting-started/`)}>{t('app.tab.start')}</a><a href={href(`/apps/memoria/${platform}/privacy/`)}>{t('app.tab.privacy')}</a><a href={href(`/apps/memoria/${platform}/terms/`)}>{t('app.tab.terms')}</a></nav></div><div className="product-platform-screen"><img {...previewImage(screenshots(platform)[0], '(max-width: 560px) 160px, 172px')} alt={`${product.displayName} · ${product.platformName}`} width={1080} height={platform === 'ios' ? 2346 : 2330} loading="lazy" /></div></article>;
+  })}<SupportLink /></div>;
 }
 
-function PageBody({ product, section, base, platform }: { product: typeof memoria.ios; section: Section; base: string; platform: Platform }) {
-  const { t } = useI18n();
-  const isIOS = platform === 'ios';
+function ProductNavigation({ active, platform }: { active: Section; platform: Platform }) {
+  const { t, language } = useI18n();
+  const href = (target: string) => localizedSiteHref(language.normalizedCode, target);
+  const route = (section: Section) => section === 'support' ? '/apps/memoria/support/' : `/apps/memoria/${platform}/${section === 'overview' ? '' : `${section}/`}`;
+  return <div className="product-navigation-wrap"><nav className="product-navigation" aria-label={BRAND}>{(['overview', 'getting-started', 'privacy', 'terms', 'support'] as const).map(section => <a href={href(route(section))} aria-current={active === section ? 'page' : undefined} key={section}>{tabWord(t, section)}</a>)}</nav>{active !== 'support' && <nav className="product-platform-switch" aria-label="iOS / HarmonyOS">{(['ios', 'harmony'] as const).map(item => <a href={href(`/apps/memoria/${item}/${active === 'overview' ? '' : `${active}/`}`)} aria-current={platform === item ? 'true' : undefined} key={item}>{item === 'ios' ? 'iOS' : 'HarmonyOS'}</a>)}</nav>}</div>;
+}
+
+function PageBody({ section, platform }: { section: Section; platform: Platform }) {
+  const { t, language } = useI18n();
+  const href = (target: string) => localizedSiteHref(language.normalizedCode, target);
+  const product = memoria[platform];
   const cp = cprefix(platform);
-  const name = product.displayName;
   if (section === 'overview') return <>
-    <section className="content-section"><h2>{t('mem.ui.ovTitle')}</h2><div className="feature-grid">{product.features.map((_, i) => <div className="feature-card" key={i}>{t(`${cp}.feat.${i}`)}</div>)}</div></section>
-    <section className="privacy-facts"><h2>{t('mem.ui.privTitle')}</h2><p>{t(isIOS ? 'mem.ui.priv.ios' : 'mem.ui.priv.hm')}</p><div className="action-row"><a className="btn-primary" href={`${base}/getting-started/`}>{t('app.cta.start')}</a><a className="btn-ghost" href={`${base}/privacy/`}>{t('app.cta.readPrivacy')}</a></div></section>
-    <ScreenshotGallery appName={name} images={isIOS ? ['/apps/memoria/ios/shot-01.png', '/apps/memoria/ios/shot-02.png', '/apps/memoria/ios/shot-03.png', '/apps/memoria/ios/shot-04.png', '/apps/memoria/ios/shot-05.png'] : ['/apps/memoria/harmony/shot-01.jpg', '/apps/memoria/harmony/shot-02.jpg', '/apps/memoria/harmony/shot-03.jpg', '/apps/memoria/harmony/shot-04.jpg']} />
+    <section className="product-section product-feature-section"><div className="product-section-heading"><p className="page-eyebrow">{product.displayName}</p><h2>{t('mem.ui.ovTitle')}</h2></div><ul className="product-feature-list">{product.features.map((_, i) => <li key={i}><span className="product-list-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span>{t(`${cp}.feat.${i}`)}</span></li>)}</ul></section>
+    <section className="product-section product-privacy-note"><h2>{t('mem.ui.privTitle')}</h2><div><p>{t(platform === 'ios' ? 'mem.ui.priv.ios' : 'mem.ui.priv.hm')}</p><div className="product-inline-links"><a href={href(`/apps/memoria/${platform}/privacy/`)}>{t('app.cta.readPrivacy')} <span aria-hidden="true">↗</span></a><a href={href(`/apps/memoria/${platform}/terms/`)}>{t('app.tab.terms')}</a></div></div></section>
+    <section className="product-section product-gallery"><div className="product-section-heading"><p className="page-eyebrow">{t('app.shots')}</p><h2>{t('mem.ui.galleryTitle').replace('{app}', product.displayName)}</h2></div><div className="product-screen-grid">{screenshots(platform).slice(2).map((src, index) => <a href={src} target="_blank" rel="noreferrer" key={src}><img {...previewImage(src, '(max-width: 560px) 240px, (max-width: 820px) 28vw, 240px')} alt={`${product.displayName} · ${product.platformName} · ${index + 3}`} width={1080} height={platform === 'ios' ? 2346 : 2330} loading="lazy" /></a>)}</div></section><SupportLink />
   </>;
-  if (section === 'getting-started') return <section className="content-section"><h2>{t('mem.ui.guideTitle')}</h2><ol className="guide-list">{product.guide.map((_, i) => <li key={i}><span>{i + 1}</span><div><h3>{t(`${cp}.guide.${i}.t`)}</h3><p>{t(`${cp}.guide.${i}.b`)}</p></div></li>)}</ol></section>;
+  if (section === 'getting-started') return <><section className="product-section product-guide"><h2>{t('mem.ui.guideTitle')}</h2><ol className="product-guide-list">{product.guide.map((_, i) => <li key={i}><span className="product-step" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><div><h3>{t(`${cp}.guide.${i}.t`)}</h3><p>{t(`${cp}.guide.${i}.b`)}</p></div></li>)}</ol></section><SupportLink /></>;
   if (section === 'privacy' || section === 'terms') {
     const document = product[section];
     const contactEmail = 'contactEmail' in document ? document.contactEmail : memoria.supportEmail;
-    return <article className="legal-document"><p className="legal-meta">生效日期：{document.effectiveDate} · 适用平台：{product.platformName} · 应用名称：{name}</p>{'intro' in document && <p className="legal-intro">{document.intro}</p>}{document.sections.map((item) => <section key={item.title}><h2>{item.title}</h2>{item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}<section><h2>{section === 'privacy' ? '联系我们' : '十一、联系我们'}</h2><p>如有疑问，请联系：<a href={`mailto:${contactEmail}`}>{contactEmail}</a></p></section></article>;
+    return <DocumentLayout title={tabWord(t, section)} eyebrow={`${product.displayName} · ${product.platformName}`} meta={`生效日期：${document.effectiveDate} · 适用平台：${product.platformName} · 应用名称：${product.displayName}`} intro={'intro' in document ? document.intro : undefined} sections={document.sections}><h3>{section === 'privacy' ? '联系我们' : '十一、联系我们'}</h3><p>如有疑问，请联系：<a href={`mailto:${contactEmail}`}>{contactEmail}</a></p></DocumentLayout>;
   }
-  const faqA = (i: number) => (i < 2 ? t(`mem.ui.faq.${i}.a.${isIOS ? 'ios' : 'hm'}`) : t(`mem.ui.faq.${i}.a`));
-  return <section className="content-section"><h2>{t('app.faq')}</h2><div className="faq-list">{[0, 1, 2].map((i) => <details key={i} {...(i === 0 ? { open: true } : {})}><summary>{t(`mem.ui.faq.${i}.q`)}</summary><p>{faqA(i)}</p></details>)}</div><p className="support-contact" dangerouslySetInnerHTML={{ __html: t('app.supportContact').replace('{email}', `<a href="mailto:${memoria.supportEmail}">${memoria.supportEmail}</a>`) }} /></section>;
+  return <><div className="product-faq-platforms">{(['ios', 'harmony'] as const).map(item => <section className="product-section product-faq" id={`support-${item}`} key={item}><div className="product-section-heading"><p className="page-eyebrow">{memoria[item].storeName}</p><h2>{item === 'ios' ? 'iOS' : 'HarmonyOS'} · {t('app.faq')}</h2><p>{t(`mem.ui.pc.${item === 'ios' ? 'ios' : 'hm'}.desc`)}</p><a href={href(`/apps/memoria/${item}/getting-started/`)}>{t('app.cta.start')} <span aria-hidden="true">↗</span></a></div><div className="product-faq-list">{[0, 1, 2].map(i => <details key={i} open={i === 0}><summary>{t(`mem.ui.faq.${i}.q`)}</summary><p>{i < 2 ? t(`mem.ui.faq.${i}.a.${item === 'ios' ? 'ios' : 'hm'}`) : t(`mem.ui.faq.${i}.a`)}</p></details>)}</div></section>)}</div><SupportLink showFaq={false} /></>;
 }
 
-function PlatformTabs({ active, section }: { active: Platform; section: Section }) {
-  const route = (platform: Platform) => section === 'overview' ? `/apps/memoria/${platform}/` : `/apps/memoria/${platform}/${section}/`;
-  return <div className="platform-tabs" aria-label={BRAND}><a href={route('ios')} className={active === 'ios' ? 'active' : ''}>App Store·纪念日·倒数</a><a href={route('harmony')} className={active === 'harmony' ? 'active' : ''}>华为应用市场·纪念日·倒数</a></div>;
+function SupportLink({ showFaq = true }: { showFaq?: boolean }) {
+  const { t, language } = useI18n();
+  const zh = language.normalizedCode.startsWith('zh') || language.normalizedCode === 'yue';
+  return <section className="product-support-band"><div><h2>{t('app.tab.support')}</h2><p>{zh ? '说明你的设备平台、应用版本和遇到的问题。' : 'Include your platform, app version, and what happened.'}</p><p className="product-support-contact">{t('app.supportContact').split('{email}').map((part, index, parts) => <span key={index}>{part}{index < parts.length - 1 && <a href={`mailto:${memoria.supportEmail}`}>{memoria.supportEmail}</a>}</span>)}</p></div>{showFaq && <a className="btn-ghost" href={localizedSiteHref(language.normalizedCode, '/apps/memoria/support/')}>{t('app.faq')} <span aria-hidden="true">↗</span></a>}</section>;
 }
-
-function PlatformCard({ title, eyebrow, description, href, cta }: { title: string; eyebrow: string; description: string; href: string; cta: string }) {
-  return <article className="platform-card"><p>{eyebrow}</p><h2>{title}</h2><span>{description}</span><a className="btn-ghost" href={href}>{cta}</a></article>;
-}
-
-function MemoriaHeader() { const { t } = useI18n(); return <header className="navbar"><div className="container nav-inner"><a className="brand" href="/" aria-label={BRAND}><img className="brand-logo" src="/logo.png" alt="" aria-hidden="true" width={36} height={36} /><span className="brand-text"><span className="cn">{BRAND}</span><span className="en">{t('mem.ui.headerSub')}</span></span></a><nav className="nav-menu nav-menu-static"><a href="/apps/" className="nav-link">{t('nav.apps')}</a><a href="/apps/memoria/ios/support/" className="nav-link cta-nav">{t('app.tab.support')}</a><LanguageSelect /></nav></div></header>; }
-
-function ProductFooter() { const { t } = useI18n(); return <footer className="site-footer"><div className="container footer-inner"><div className="footer-left"><div className="footer-brand">{BRAND}</div><div className="footer-slogan">{t('app.footerSlogan')}</div></div><div className="footer-right"><div className="footer-links"><a href="/apps/memoria/ios/privacy/">iOS {t('app.tab.privacy')}</a><a href="/apps/memoria/harmony/privacy/">HarmonyOS {t('app.tab.privacy')}</a></div></div></div></footer>; }
-
-function ScreenshotGallery({ appName, images }: { appName: string; images: string[] }) { const { t } = useI18n(); return <section className="screenshot-section"><div><p className="route-eyebrow">{t('app.shots')}</p><h2>{t('mem.ui.galleryTitle').replace('{app}', appName)}</h2></div><div className="screenshot-strip">{images.map((image, index) => <img src={image} alt={`${appName} ${index + 1}`} key={image} loading="lazy" />)}</div></section>; }

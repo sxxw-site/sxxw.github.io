@@ -7,7 +7,7 @@ Core principles across all apps: user control, local-first processing, minimal d
 ## Apps
 
 - [足迹-时光轨迹 (TimeTrails)](https://sxxw.site/apps/timetrails/): GPS route recorder for daily travel, walking, running, cycling, hiking and driving. "足迹洞察" (Trail Insights) summarizes recorded points, distance and cities; "足迹星球" (Trail Planet) displays routes on a 3D globe. Platforms: iPhone / iPad / Apple Watch. App Store ID: 6752662508; current availability and pricing: https://apps.apple.com/app/id6752662508 . Route data stays on-device by default; iCloud private backup is optional.
-- [纪念日·倒数 (Memoria)](https://sxxw.site/apps/memoria/): Countdown and reminder app for birthdays, anniversaries and important days, with home-screen widgets and on-the-day reminders. iOS version (App Store: https://apps.apple.com/app/id6760106574) is local-first with optional iCloud sync; HarmonyOS version (Huawei AppGallery: https://appgallery.huawei.com/app/C6917613545100329502) is fully local — no network, no sync.
+- [纪念日 (Memoria)](https://sxxw.site/apps/memoria/): Countdown and reminder app for birthdays, anniversaries and important days, with home-screen widgets and on-the-day reminders. iOS version (App Store: https://apps.apple.com/app/id6760106574) is local-first with optional iCloud sync; HarmonyOS version (Huawei AppGallery: https://appgallery.huawei.com/app/C6917613545100329502) is fully local — no network, no sync.
 - [出行轨迹 TraceApp](https://sxxw.site/apps/traceapp/): Local-first trip/route tracker showing path, mileage and pace. Platform: iPhone. App Store: https://apps.apple.com/app/id1634761411 . TraceApp users can migrate their data to the newer 足迹-时光轨迹 — guide: https://sxxw.site/migrate/ .
 
 ## Key pages
@@ -23,8 +23,8 @@ Core principles across all apps: user control, local-first processing, minimal d
 ## Privacy & terms
 
 - 足迹-时光轨迹 — [Privacy](https://sxxw.site/apps/timetrails/privacy/) · [Terms](https://sxxw.site/apps/timetrails/terms/)
-- 纪念日·倒数 (iOS) — [Privacy](https://sxxw.site/apps/memoria/ios/privacy/) · [Terms](https://sxxw.site/apps/memoria/ios/terms/)
-- 纪念日·倒数 (HarmonyOS) — [Privacy](https://sxxw.site/apps/memoria/harmony/privacy/) · [Terms](https://sxxw.site/apps/memoria/harmony/terms/)
+- 纪念日 (iOS) — [Privacy](https://sxxw.site/apps/memoria/ios/privacy/) · [Terms](https://sxxw.site/apps/memoria/ios/terms/)
+- 纪念日 (HarmonyOS) — [Privacy](https://sxxw.site/apps/memoria/harmony/privacy/) · [Terms](https://sxxw.site/apps/memoria/harmony/terms/)
 - 出行轨迹 TraceApp — [Privacy](https://sxxw.site/apps/traceapp/privacy/) · [Terms](https://sxxw.site/apps/traceapp/terms/)
 
 ## Facts

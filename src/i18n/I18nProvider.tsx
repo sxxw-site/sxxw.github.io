@@ -17,6 +17,7 @@ import {
 } from './config';
 import defaultDictionary from '../locales/zh-hans.json';
 import { langHref, splitLangPath } from './path';
+import { withSiteStyle } from '../lib/site-style';
 
 const STORAGE_KEY = 'sxxw-site-language';
 const localeModules = import.meta.glob(['../locales/*.json', '!../locales/zh-hans.json']) as Record<
@@ -60,7 +61,8 @@ function initialLanguage(): string {
     return normalizeLanguageCode(fromUrl);
   }
 
-  const saved = window.localStorage.getItem(STORAGE_KEY);
+  let saved: string | null = null;
+  try { saved = window.localStorage.getItem(STORAGE_KEY); } catch { /* Storage may be unavailable in an embedded view. */ }
   if (saved && languages.some((language) => language.normalizedCode === normalizeLanguageCode(saved))) {
     return normalizeLanguageCode(saved);
   }
@@ -103,8 +105,14 @@ export function I18nProvider({ children, initialLanguage: initialLanguageCode, d
     const next = languageFor(code);
     try { window.localStorage.setItem(STORAGE_KEY, next.normalizedCode); } catch { /* ignore */ }
     // 路径前缀多语言：切换语言 = 跳到该语言对应的独立页面(保证 URL 与收录一致)
-    const { path } = splitLangPath(window.location.pathname);
-    window.location.assign(`${langHref(next.normalizedCode, path)}${window.location.hash}`);
+    const url = new URL(window.location.href);
+    const current = splitLangPath(url.pathname);
+    const path = current.path.endsWith('/') ? current.path : `${current.path}/`;
+    const utility = path === '/feedback/' || path === '/migrate/';
+    url.pathname = utility ? path : langHref(next.normalizedCode, path);
+    if (utility) url.searchParams.set('lang', next.normalizedCode);
+    else url.searchParams.delete('lang');
+    window.location.assign(withSiteStyle(`${url.pathname}${url.search}${url.hash}`));
   }, []);
 
   useEffect(() => {
