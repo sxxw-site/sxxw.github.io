@@ -12,16 +12,18 @@ html[data-site-style="minimal"]:root {
     --accent-2: #414741;
     --accent-soft: #f0f1ed;
     --action-ink: #ffffff;
+    --studio-hairline: #eeeeea;
+    --studio-image-stroke: #dadcd6;
     --radius-lg: 8px;
     --radius-md: 6px;
 }
 
 html[data-site-style="minimal"] .studio-home {
-    --studio-panel: #f7f7f5;
+    --studio-panel: var(--surface);
 }
 
 html[data-site-style="minimal"] .studio-home .navbar {
-    border-bottom-color: #eeeeea;
+    border-bottom-color: var(--studio-hairline);
 }
 
 html[data-site-style="minimal"] .studio-hero {
@@ -80,16 +82,16 @@ html[data-site-style="minimal"] .studio-hero-media {
     margin-inline: auto;
     padding: 32px 48px;
     gap: 40px;
-    border: 1px solid #eeeeea;
+    border: 1px solid var(--studio-hairline);
     border-radius: 8px;
-    background: #f7f7f5;
+    background: var(--studio-panel);
 }
 
 html[data-site-style="minimal"] .studio-hero-media img {
     width: min(32%, 176px);
     max-width: calc(50% - 20px);
     height: auto;
-    border-color: #dadcd6;
+    border-color: var(--studio-image-stroke);
     border-radius: 16px;
 }
 
@@ -98,8 +100,8 @@ html[data-site-style="minimal"] .studio-section {
 }
 
 html[data-site-style="minimal"] .studio-products {
-    background: #ffffff;
-    border-top: 1px solid #eeeeea;
+    background: var(--page-bg);
+    border-top: 1px solid var(--studio-hairline);
 }
 
 html[data-site-style="minimal"] .studio-section-head {
@@ -164,8 +166,8 @@ html[data-site-style="minimal"] .studio-product-body > p:last-child {
 }
 
 html[data-site-style="minimal"] .studio-about {
-    border-top: 1px solid #eeeeea;
-    background: #ffffff;
+    border-top: 1px solid var(--studio-hairline);
+    background: var(--page-bg);
 }
 
 html[data-site-style="minimal"] .studio-about-grid {
@@ -175,7 +177,25 @@ html[data-site-style="minimal"] .studio-about-grid {
 
 html[data-site-style="minimal"] .studio-contact {
     padding-block: 72px 32px;
-    background: #f7f7f5;
+    background: var(--surface);
+}
+
+/* Neutral greys carry the same layout and screenshots in dark mode. */
+html[data-site-style="minimal"][data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg: #141414;
+    --surface: #202020;
+    --card-bg: #1b1b1b;
+    --card-stroke: #4a4a4a;
+    --hairline: #4a4a4a;
+    --text-main: #f1f1f1;
+    --text-dim: #b3b3b3;
+    --accent: #e7e7e7;
+    --accent-2: #ffffff;
+    --accent-soft: #303030;
+    --action-ink: #171717;
+    --studio-hairline: #3b3b3b;
+    --studio-image-stroke: #545454;
 }
 
 html[data-site-style="minimal"] .studio-email {

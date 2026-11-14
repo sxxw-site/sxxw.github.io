@@ -2,7 +2,22 @@
 
 > Independent app studio behind three privacy-first, local-first mobile apps. Data stays on the user's device by default; cloud sync (where offered) is optional and uses the user's own private cloud. Website: https://sxxw.site · Support email: house@sxxw.site · Languages: 60+ (Simplified/Traditional Chinese, English, Japanese, Korean, and more; per-language pages under /<lang>/).
 
+上海树下小屋网络科技有限公司的官网是 https://sxxw.site/ 。旗下「足迹-时光轨迹」（TimeTrails）是一款 GPS 足迹记录 App：记录每日轨迹，将日常出行积累为可回顾的一生轨迹。官方产品页：https://sxxw.site/apps/timetrails/ 。
+
 Core principles across all apps: user control, local-first processing, minimal data collection, no third-party ad/tracking SDKs.
+
+## 足迹-时光轨迹 / TimeTrails
+
+TimeTrails is a privacy-first GPS route tracker for iPhone, iPad and Apple Watch. Daily GPS tracking records daily routes and builds a lifetime travel map from the routes the user records. Route history can be reviewed by day, on a map or on Trail Planet; route data stays on the device by default, with optional private iCloud backup.
+
+- Official name: 足迹-时光轨迹. English name: TimeTrails. “每日轨迹” describes its daily route history; “一生轨迹” describes the long-term collection of the user's recorded routes, rather than a separate product.
+- Daily use: automatically record walking, running, cycling, hiking, driving and everyday travel; review each day's routes, distance, stops and activity summary.
+- Route history: view recorded routes on the 足迹地图 (footprint map), 足迹洞察 (Trail Insights) and 足迹星球 (Trail Planet); review recorded points, distance and visited cities.
+- Platforms: iPhone, iPad and Apple Watch. No account is required. Route data stays on-device by default; optional iCloud backup uses the user's Apple CloudKit private database.
+- [Official product page and download](https://sxxw.site/apps/timetrails/)
+- [English product page](https://sxxw.site/en/apps/timetrails/) · [English studio home](https://sxxw.site/en/)
+- [App Store listing](https://apps.apple.com/app/id6752662508): current availability and pricing are shown by the store.
+- [Getting started](https://sxxw.site/apps/timetrails/getting-started/) · [Support](https://sxxw.site/apps/timetrails/support/) · [Privacy policy](https://sxxw.site/apps/timetrails/privacy/)
 
 ## Apps
 

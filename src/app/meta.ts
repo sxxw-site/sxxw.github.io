@@ -28,8 +28,13 @@ export function pageMeta(pathname: string, t: T): PageMeta | null {
 
   if (p.startsWith('/apps/timetrails/')) {
     const s = sectionOf(p); const APP = timetrails.appName;
+    const metaTitle = t('tt.meta.title');
+    const metaDescription = t('tt.meta.description');
     return s === 'overview'
-      ? { title: `${APP}·${t('tt.tagline')}`, description: t('tt.desc') }
+      ? {
+        title: metaTitle === 'tt.meta.title' ? `${APP}·${t('tt.tagline')}` : metaTitle,
+        description: metaDescription === 'tt.meta.description' ? t('tt.desc') : metaDescription,
+      }
       : { title: `${APP} ${tab(t, s)}`, description: t(`tt.ui.desc.${seg(s)}`) };
   }
   if (p.startsWith('/apps/traceapp/')) {

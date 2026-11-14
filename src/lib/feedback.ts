@@ -15,9 +15,9 @@ export const FEEDBACK_FALLBACK: FbStrings = FEEDBACK_I18N['zh-hans'];
 const LANG_ALIAS: Record<string, string> = { iw: 'he', in: 'id', no: 'nb', nn: 'nb' };
 
 /** 由 App 传入的 lang（无则跟随中文站）解析反馈词条。 */
-export function resolveFeedbackStrings(): FbStrings {
-  if (typeof window === 'undefined') return FEEDBACK_FALLBACK;
-  const raw = (new URLSearchParams(window.location.search).get('lang') || '').trim().replace(/_/g, '-').toLowerCase();
+export function resolveFeedbackStrings(fallbackLanguage = ''): FbStrings {
+  const requested = typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('lang');
+  const raw = (requested || fallbackLanguage).trim().replace(/_/g, '-').toLowerCase();
   if (!raw) return FEEDBACK_FALLBACK;
   if (raw.startsWith('zh') || raw === 'yue') {
     return FEEDBACK_I18N[/hant|hk|tw|mo|yue/.test(raw) ? 'zh-hant' : 'zh-hans'];

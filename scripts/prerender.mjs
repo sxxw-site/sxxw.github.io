@@ -78,9 +78,9 @@ for (const route of sourceRoutes) {
       '<meta name="viewport" content="width=device-width, initial-scale=1">',
       '<meta name="page-type" content="software">',
       '<meta name="site-kind" content="software">',
-      '<meta name="color-scheme" content="light">',
+      '<meta name="color-scheme" content="light dark">',
       '<meta name="theme-color" content="#f7f5ef">',
-      `<script>(function(){var s='paper',v=null,p=null,a=['paper','minimal','forest'];try{v=localStorage.getItem('sxxw-site-style');}catch(e){}try{p=new URLSearchParams(location.search).get('style');}catch(e){}s=a.indexOf(p)>-1?p:a.indexOf(v)>-1?v:'paper';document.documentElement.dataset.siteStyle=s;document.documentElement.dataset.theme='light';var m=document.querySelector('meta[name="theme-color"]');if(m)m.content={paper:'#f7f5ef',minimal:'#ffffff',forest:'#f4f5ed'}[s];try{if(location.search.indexOf('embed=1')>-1){document.documentElement.classList.add('embed');}}catch(e){}document.documentElement.classList.add('js');})();</script>`,
+      `<script>${ssr.appearanceHeadScript}</script>`,
       `<title>${title}</title>`,
       `<meta name="description" content="${description}">`,
       kw,
@@ -131,6 +131,7 @@ function organizationNode() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE}/#organization`,
     name: ORG_NAME,
     url: `${SITE}/`,
     email: SUPPORT_EMAIL,
@@ -149,20 +150,24 @@ function appInfo(path) {
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',
     };
   }
-  if (path.startsWith('/apps/timetrails/')) return { name: '足迹-时光轨迹', alternateName: ['足迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
+  if (path.startsWith('/apps/timetrails/')) return { name: '足迹-时光轨迹', alternateName: ['足迹', '时光轨迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
   if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', alternateName: ['出行轨迹', 'TraceApp'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
   return null;
 }
 
-function breadcrumbNode(path) {
+function breadcrumbNode(path, language, dict) {
   if (path === '/') return null;
   const segments = path.split('/').filter(Boolean);
-  const items = [{ name: '首页', url: `${SITE}/` }];
+  const items = [{ name: dict['home.nav.home'] ?? '首页', url: `${SITE}${langHref(language, '/')}` }];
   let acc = '';
   for (const seg of segments) {
     acc += `/${seg}`;
-    const name = titleByPath.get(`${acc}/`);
-    if (name) items.push({ name, url: `${SITE}${acc}/` });
+    const logicalPath = `${acc}/`;
+    const routeTitle = titleByPath.get(logicalPath);
+    if (routeTitle) {
+      const name = language === DEFAULT_LANG ? routeTitle : ssr.pageMeta(logicalPath, (key) => dict[key] ?? key)?.title ?? routeTitle;
+      items.push({ name, url: `${SITE}${langHref(language, logicalPath)}` });
+    }
   }
   if (items.length < 2) return null;
   return {
@@ -223,9 +228,15 @@ function structuredDataFor(route, canonical, title, description, inLang, languag
   const nodes = [organizationNode()];
   if (route.path === '/') {
     nodes.push({
-      '@context': 'https://schema.org', '@type': 'WebSite', name: ORG_NAME, url: `${SITE}/`, inLanguage: inLang,
-      publisher: { '@type': 'Organization', name: ORG_NAME },
+      '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}/#website`, name: ORG_NAME, url: `${SITE}/`, inLanguage: inLang,
+      publisher: { '@id': `${SITE}/#organization` },
       potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${SITE}/search/?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
+    });
+    nodes.push({
+      '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${canonical}#webpage`,
+      name: title, description, url: canonical, inLanguage: inLang,
+      isPartOf: { '@id': `${SITE}/#website` },
+      about: { '@type': 'SoftwareApplication', '@id': `${SITE}/apps/timetrails/#app`, ...appInfo('/apps/timetrails/'), url: `${SITE}${langHref(language, '/apps/timetrails/')}` },
     });
   }
   const app = appInfo(route.path);
@@ -236,16 +247,16 @@ function structuredDataFor(route, canonical, title, description, inLang, languag
     nodes.push({
       '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app,
       '@id': isTimeTrails ? `${SITE}/apps/timetrails/#app` : `${canonical}#app`,
-      url: canonical, description, inLanguage: inLang, sameAs: app.downloadUrl,
+      url: canonical, description, inLanguage: inLang, sameAs: app.downloadUrl, mainEntityOfPage: canonical,
       image: isTimeTrails ? `${SITE}/apps/timetrails/${language.startsWith('zh') ? '' : 'en/'}cover.png` : `${SITE}/logo.png`,
       ...(screenshot ? { screenshot } : {}),
       ...(featureList ? { featureList } : {}),
-      publisher: { '@type': 'Organization', name: ORG_NAME },
+      publisher: { '@id': `${SITE}/#organization` },
     });
   } else if (route.path !== '/') {
-    nodes.push({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical, inLanguage: inLang });
+    nodes.push({ '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${canonical}#webpage`, name: title, description, url: canonical, inLanguage: inLang, isPartOf: { '@id': `${SITE}/#website` } });
   }
-  const breadcrumb = breadcrumbNode(route.path);
+  const breadcrumb = breadcrumbNode(route.path, language, dict);
   if (breadcrumb) nodes.push(breadcrumb);
   const faq = faqNode(route.path, dict);
   if (faq) nodes.push(faq);

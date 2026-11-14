@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { useI18n } from '../i18n/I18nProvider';
 import { localizedSiteHref } from '../lib/site-navigation';
 import LanguageSelect from './LanguageSelect';
+import StyleSwitcher from './StyleSwitcher';
 import '../styles/site-chrome.css';
 
 type Section = 'apps' | 'support' | 'search' | 'about' | 'contact';
@@ -59,7 +60,7 @@ export function SiteHeader({ brand, subtitle, active }: { brand?: string; subtit
   return <header className="navbar site-header" ref={header}><div className="container nav-inner">
     <a className="skip-link" href="#page-content">{zh ? '跳到正文' : 'Skip to content'}</a>
     <a className="brand" href={href('/')} aria-label={t('home.common.company')}><img className="brand-logo" src="/apple-touch-icon.png" alt="" width={38} height={38} /><span className="brand-text"><span className="cn">{brand ?? t('home.common.company')}</span><span className="en">{subtitle ?? t('home.brand.en')}</span></span></a>
-    <span className="site-appearance-slot" data-appearance-slot />
+    <span className="site-appearance-slot" data-appearance-slot><StyleSwitcher inHeader /></span>
     <button className="site-menu-toggle" ref={toggle} type="button" aria-label={t('home.nav.toggle')} aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}><span /><span /></button>
     <nav className={`site-header-nav${open ? ' is-open' : ''}`} id={menuId} ref={navigation} aria-label={zh ? '网站导航' : 'Site navigation'}>
       {links.map((link) => <a className="site-nav-link" href={href(link.href)} aria-current={active === link.key ? 'page' : undefined} onClick={() => setOpen(false)} key={link.key}>{link.label}</a>)}

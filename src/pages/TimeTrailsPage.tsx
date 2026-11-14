@@ -54,18 +54,19 @@ function TimeTrailsBody({ section }: { section: Section }) {
 function FeedbackSection() {
   const email = timetrails.supportEmail;
   const { t: pageT, language } = useI18n();
-  const [t, setT] = useState<FbStrings>(FEEDBACK_FALLBACK);
+  const initialStrings = resolveFeedbackStrings(language.normalizedCode);
+  const [t, setT] = useState<FbStrings>(initialStrings);
   const [diag, setDiag] = useState('');
   const [fromApp, setFromApp] = useState(false);
-  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, FEEDBACK_FALLBACK.subject, FEEDBACK_FALLBACK, ''));
+  const [mailto, setMailto] = useState(() => buildFeedbackMailto(email, initialStrings.subject, initialStrings, ''));
   useEffect(() => {
-    const strings = resolveFeedbackStrings();
+    const strings = resolveFeedbackStrings(language.normalizedCode);
     const { text, fromApp } = collectFeedbackDiagnostics(strings);
     setT(strings);
     setDiag(text);
     setFromApp(fromApp);
     setMailto(buildFeedbackMailto(email, strings.subject, strings, text));
-  }, [email]);
+  }, [email, language.normalizedCode]);
   return <section className="product-section product-feedback" id="feedback"><div className="product-section-heading"><p className="page-eyebrow">TimeTrails</p><h2>{t.title}</h2><p>{t.intro}</p><a href={localizedSiteHref(language.normalizedCode, `${BASE}support/`)}>{pageT('app.faq')} <span aria-hidden="true">↗</span></a></div><div className="product-feedback-body"><dl className="product-contact-list"><div><dt>{t.emailLabel}</dt><dd><a href={`mailto:${email}`}>{email}</a></dd></div>{fromApp && diag && <div><dt>{t.deviceLabel}</dt><dd className="product-diagnostics">{diag}</dd></div>}</dl><div className="action-row"><a className="btn-primary" href={mailto}>{t.button}</a></div></div></section>;
 }
 

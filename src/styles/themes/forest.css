@@ -12,11 +12,12 @@ html[data-site-style="forest"] {
     --accent-2: #193a2f;
     --accent-soft: #dce5d5;
     --action-ink: #f8f9f1;
+    --forest-panel: #dfe5d7;
     --radius-lg: 3px;
     --radius-md: 3px;
     --forest-display: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "STSong", Georgia, serif;
 }
-html[data-site-style="forest"] .studio-home { --studio-panel: #dfe5d7; }
+html[data-site-style="forest"] .studio-home { --studio-panel: var(--forest-panel); }
 html[data-site-style="forest"] .navbar { border-bottom: 1px solid var(--text-main); }
 html[data-site-style="forest"] .brand-text .cn { font-weight: 500; }
 html[data-site-style="forest"] .studio-hero-grid { align-items: start; gap: 64px; padding-block: 96px 72px; }
@@ -50,6 +51,26 @@ html[data-site-style="forest"] .product-page h3,
 html[data-site-style="forest"] .route-title,
 html[data-site-style="forest"] .fb-title { font-family: var(--forest-display); font-weight: 400; }
 html[data-site-style="forest"] .directory-preview { border-radius: 2px; }
+
+/* The forest palette keeps its serif headings and pale green accents. */
+html[data-site-style="forest"][data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg: #14221b;
+    --surface: #203027;
+    --card-bg: #19281f;
+    --card-stroke: #465c4d;
+    --hairline: #3b5043;
+    --text-main: #eaf0e6;
+    --text-dim: #adbfa8;
+    --accent: #afd19b;
+    --accent-2: #c7e5b6;
+    --accent-soft: #2b3f2d;
+    --action-ink: #152212;
+    --forest-panel: #26392c;
+}
+html[data-site-style="forest"][data-theme="dark"] .navbar {
+    border-bottom-color: var(--hairline);
+}
 
 @media (max-width: 1023px) {
     html[data-site-style="forest"] .studio-hero-grid { gap: 32px; padding-block: 64px; }

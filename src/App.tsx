@@ -13,6 +13,7 @@ import SearchPage from './pages/SearchPage';
 import CompanyPage from './pages/CompanyPage';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import LanguageSelect from './components/LanguageSelect';
+import StyleSwitcher from './components/StyleSwitcher';
 import { timeTrailsScreenshot } from './lib/timetrails';
 import { langHref } from './i18n/path';
 import { previewImage } from './lib/app-preview';
@@ -113,7 +114,7 @@ export default function App({ path }: { path?: string }) {
     <header className="navbar"><div className="container nav-inner">
       <a className="skip-link" href="#main">{language.normalizedCode.startsWith('zh') || language.normalizedCode === 'yue' ? '跳到正文' : 'Skip to content'}</a>
       <a className="brand" href="#hero" aria-label={t('home.meta.title')} onClick={handleAnchorClick}><BrandMark /><span className="brand-text"><span className="cn">{t('home.common.company')}</span><span className="en">{t('home.brand.en')}</span></span></a>
-      <span className="site-appearance-slot" data-appearance-slot />
+      <span className="site-appearance-slot" data-appearance-slot><StyleSwitcher inHeader /></span>
       <button ref={menuToggle} className={`nav-toggle${isMenuOpen ? ' open' : ''}`} aria-label={t('home.nav.toggle')} aria-expanded={isMenuOpen} aria-controls="home-navigation" onClick={() => setIsMenuOpen((open) => !open)}><span className="bar" /><span className="bar" /><span className="bar" /></button>
       <nav ref={navigation} id="home-navigation" className={`nav-menu${isMenuOpen ? ' open' : ''}`} aria-label={t('home.nav.toggle')}>
         <a href={href('/apps/')} className="nav-link">{t('nav.apps')}</a><a href="#about" className="nav-link" onClick={handleAnchorClick}>{t('home.nav.about')}</a><a href={href('/support/')} className="nav-link">{t('nav.support')}</a><a href={href('/search/')} className="nav-link">{t('nav.search')}</a><LanguageSelect />

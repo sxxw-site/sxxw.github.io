@@ -40,6 +40,7 @@
     .document-body h3 { font-size: 20px; }
 }
 @media print {
+    html[data-site-style][data-theme]:root { --page-bg: #fff; --surface: #fff; --card-bg: #fff; --text-main: #111; --text-dim: #444; --accent: #333; --card-stroke: #ccc; --hairline: #ccc; color-scheme: light !important; }
     .document-sidebar, .document-print { display: none !important; }
     .document-grid { display: block; padding: 0; }
     .document-header { border: none; }

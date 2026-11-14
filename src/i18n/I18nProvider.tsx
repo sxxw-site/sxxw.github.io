@@ -44,7 +44,7 @@ function languageFor(code: string): Language {
 }
 
 function browserLanguage(): string {
-  const candidates = navigator.languages.length > 0 ? navigator.languages : [navigator.language];
+  const candidates = navigator.languages?.length > 0 ? navigator.languages : [navigator.language || DEFAULT_LANGUAGE];
   for (const candidate of candidates) {
     const normalized = normalizeLanguageCode(candidate);
     if (languages.some((language) => language.normalizedCode === normalized)) return normalized;
@@ -112,6 +112,9 @@ export function I18nProvider({ children, initialLanguage: initialLanguageCode, d
     url.pathname = utility ? path : langHref(next.normalizedCode, path);
     if (utility) url.searchParams.set('lang', next.normalizedCode);
     else url.searchParams.delete('lang');
+    // Rebuild appearance from the active choice if a WebView kept stale URL parameters.
+    url.searchParams.delete('style');
+    url.searchParams.delete('theme');
     window.location.assign(withSiteStyle(`${url.pathname}${url.search}${url.hash}`));
   }, []);
 

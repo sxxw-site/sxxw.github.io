@@ -13,3 +13,19 @@ html[data-site-style="paper"] {
     --accent-soft: #f1e3d5;
     --action-ink: #fffdfa;
 }
+
+/* Colour mode is independent of the selected layout. */
+html[data-site-style="paper"][data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg: #1c1b18;
+    --surface: #27251f;
+    --card-bg: #23211d;
+    --card-stroke: #49453c;
+    --hairline: #49453c;
+    --text-main: #f1ede4;
+    --text-dim: #b6aea0;
+    --accent: #efac7e;
+    --accent-2: #ffc89f;
+    --accent-soft: #3d2d22;
+    --action-ink: #281d15;
+}

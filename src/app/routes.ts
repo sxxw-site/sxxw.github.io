@@ -6,7 +6,7 @@ export type SiteRoute = {
 };
 
 export const siteRoutes: SiteRoute[] = [
-  { path: '/', title: '足迹-时光轨迹、纪念日、出行轨迹 TraceApp｜上海树下小屋', description: '上海树下小屋网络科技有限公司出品：足迹-时光轨迹(GPS 轨迹记录 App)、纪念日(生日纪念日倒数提醒 App)、出行轨迹 TraceApp。隐私优先、本地优先，含产品介绍、隐私政策与用户支持。', keywords: '足迹,足迹App,纪念日,纪念日App,倒数日,出行轨迹,树下小屋,TimeTrails,Memoria,TraceApp,GPS轨迹记录,生日纪念日提醒' },
+  { path: '/', title: '树下小屋官网｜足迹-时光轨迹 TimeTrails、纪念日与 TraceApp', description: '上海树下小屋网络科技有限公司开发手机应用。足迹-时光轨迹（TimeTrails）记录每日轨迹，让日常出行积累为一生轨迹与足迹地图；纪念日提醒生日与重要日期，TraceApp 记录出行路线。查看官方产品介绍、下载入口与使用帮助。', keywords: '足迹,足迹App,纪念日,纪念日App,倒数日,出行轨迹,树下小屋,TimeTrails,Memoria,TraceApp,GPS轨迹记录,生日纪念日提醒' },
   { path: '/apps/', title: '应用中心·上海树下小屋网络科技有限公司', description: '树下小屋旗下应用：足迹-时光轨迹(隐私优先的 GPS 轨迹记录)、纪念日(生日纪念日倒数提醒)、出行轨迹 TraceApp(出行轨迹与里程配速)。', keywords: '树下小屋,应用中心,足迹,TimeTrails,纪念日倒数,出行轨迹,TraceApp' },
 
   { path: '/apps/memoria/', title: '纪念日 App 官网｜倒数日、生日提醒与恋爱天数', description: '纪念日 App 帮你记录农历生日、恋爱纪念日、结婚周年和重要日子，支持倒数日、正计时与提前提醒。查看 iOS 和 HarmonyOS 版本介绍、下载入口与使用指南。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,恋爱倒计时,倒计时App,重要日子,人生进度,小组件' },
@@ -20,7 +20,7 @@ export const siteRoutes: SiteRoute[] = [
   { path: '/apps/memoria/harmony/terms/', title: '纪念日 HarmonyOS 用户协议', description: '适用于纪念日 HarmonyOS / 华为应用市场版本的用户协议。' },
   { path: '/apps/memoria/support/', title: '纪念日技术支持', description: '纪念日的常见问题与技术支持：提醒、小组件、数据与同步。' },
 
-  { path: '/apps/timetrails/', title: '足迹-时光轨迹｜记录一生轨迹的 GPS 足迹地图', description: '足迹-时光轨迹记录每日出行、徒步、骑行与驾车路线；通过足迹洞察和足迹星球回顾轨迹、里程与到访城市。支持 iPhone、iPad 和 Apple Watch，数据默认保存在本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },
+  { path: '/apps/timetrails/', title: '足迹-时光轨迹 TimeTrails 官网｜每日轨迹与一生轨迹地图', description: '足迹-时光轨迹（TimeTrails）是一款 GPS 足迹记录 App。自动记录每日轨迹，通过足迹地图、足迹洞察与足迹星球回顾路线、里程和到访城市，让日常出行积累为一生轨迹。支持 iPhone、iPad 和 Apple Watch，轨迹数据默认保存在本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },
   { path: '/apps/timetrails/getting-started/', title: '足迹-时光轨迹 新手引导', description: '足迹-时光轨迹 的新手使用引导：授权定位、开始记录与查看每日轨迹。' },
   { path: '/apps/timetrails/privacy/', title: '足迹-时光轨迹 隐私政策', description: '适用于足迹-时光轨迹 的隐私政策。' },
   { path: '/apps/timetrails/terms/', title: '足迹-时光轨迹 用户协议', description: '适用于足迹-时光轨迹 的用户协议。' },
