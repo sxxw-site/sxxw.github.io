@@ -13,6 +13,7 @@ import SearchPage from './pages/SearchPage';
 import CompanyPage from './pages/CompanyPage';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import LanguageSelect from './components/LanguageSelect';
+import SiteLanguageLinks from './components/SiteLanguageLinks';
 import StyleSwitcher from './components/StyleSwitcher';
 import { timeTrailsScreenshot } from './lib/timetrails';
 import { langHref } from './i18n/path';
@@ -143,7 +144,7 @@ export default function App({ path }: { path?: string }) {
           <div className="studio-section-head"><div><p className="studio-label">{t('nav.apps')}</p><h2 id="products-heading">{t('home.products.title')}</h2></div><p>{t('home.products.description')}</p></div>
           <div className="studio-product-grid">{HOME_APPS.map((app) => <article className={`studio-product studio-product-${app.id}`} key={app.id}>
             <a className="studio-product-image" href={href(app.href)} tabIndex={-1} aria-hidden="true"><img {...(app.id === 'traceapp' ? { src: app.image } : previewImage(app.image || timeTrailsScreenshot(language.normalizedCode, 'globe'), '(max-width: 1023px) 112px, 126px'))} alt="" width={app.width} height={app.height} loading="lazy" /></a>
-            <div className="studio-product-body"><p className="studio-platform">{app.platform}</p><h3><a href={href(app.href)}>{app.name}<Arrow /></a></h3><p>{t(`apps.${app.id}.desc`)}</p></div>
+            <div className="studio-product-body"><p className="studio-platform">{app.platform}</p><h3><a href={href(app.href)}>{app.id === 'timetrails' && language.normalizedCode.startsWith('en') ? 'TimeTrails' : app.name}<Arrow /></a></h3><p>{t(`apps.${app.id}.desc`)}</p></div>
           </article>)}</div>
         </div>
       </section>
@@ -157,6 +158,7 @@ export default function App({ path }: { path?: string }) {
     <footer id="contact" className="studio-contact closing" tabIndex={-1}><div className="container">
       <div className="studio-contact-head"><div><p className="studio-label">{t('home.nav.contact')}</p><h2>{t('home.contact.title')}</h2><p>{t('home.contact.hint')}</p></div><a className="studio-email" href={t('home.common.email_mailto')}>{t('home.common.email')}<Arrow /></a></div>
       <div className="studio-footer-bottom"><div className="studio-footer-brand"><BrandMark /><div><p>{t('home.common.company')}</p><span>{t('home.common.city')}</span></div></div><div className="footer-links"><a href={href('/apps/')}>{t('nav.apps')}</a><a href={href('/support/')}>{t('nav.support')}</a><a href={href('/search/')}>{t('nav.search')}</a></div></div>
+      <SiteLanguageLinks />
       <p className="studio-legal">{t('home.footer.legal')}</p>
     </div></footer>
 

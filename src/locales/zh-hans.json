@@ -264,5 +264,12 @@
   "apps.card.privacy": "隐私政策",
   "apps.card.terms": "用户协议",
   "home.hero.memoriaAlt": "纪念日应用界面",
-  "home.hero.timetrailsAlt": "足迹-时光轨迹应用界面"
+  "home.hero.timetrailsAlt": "足迹-时光轨迹应用界面",
+  "tt.ui.recordingTitle": "从每日轨迹，到自己的一生轨迹",
+  "tt.ui.recording.0.q": "怎样查看某一天的每日轨迹？",
+  "tt.ui.recording.0.a": "开启记录并授予定位权限后，在日历或地图中选择日期，回看当天保存的路线、里程、停留与活动摘要。足迹-时光轨迹按当地时间整理每日轨迹。",
+  "tt.ui.recording.1.q": "一生轨迹地图是怎样积累的？",
+  "tt.ui.recording.1.a": "随着记录天数增加，出行历史和到访城市逐渐汇成自己的足迹地图。足迹洞察展示记录点数与城市记录分布，足迹星球提供点阵、陆地轮廓与卫星影像视图。需要换机恢复时，可主动开启 iCloud 私有数据库备份。",
+  "tt.ui.recording.2.q": "哪些设备支持 GPS 轨迹记录？",
+  "tt.ui.recording.2.a": "足迹-时光轨迹支持 iPhone、iPad 和 Apple Watch。需要后台连续记录时，请允许“始终”定位和“精确位置”；记录可随时暂停。路线完整程度会受到定位权限、设备与 GPS 信号影响。"
 }

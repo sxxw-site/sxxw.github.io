@@ -36,6 +36,9 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Check indexing signals
+        run: npm run seo:check
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

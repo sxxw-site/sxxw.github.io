@@ -27,7 +27,8 @@ export function normalizeLanguageCode(code: string | null | undefined): string {
 export const languages: Language[] = (catalog as CatalogEntry[]).map((entry) => ({
   code: entry.code,
   normalizedCode: normalizeLanguageCode(entry.code),
-  htmlLang: entry.asc_code || entry.code,
+  htmlLang: normalizeLanguageCode(entry.code) === 'en' ? 'en'
+    : normalizeLanguageCode(entry.code) === 'zh-hk' ? 'zh-HK' : entry.asc_code || entry.code,
   label: entry.displayName || entry.name || entry.code,
 }));
 

@@ -16,14 +16,18 @@ import './styles/themes/forest.css';
 initializeSiteStyle();
 
 const { lang, path, hasPrefix } = splitLangPath(window.location.pathname);
+const utilityPage = path === '/feedback/' || path === '/migrate/';
+const explicitLanguage = new URLSearchParams(window.location.search).get('lang');
+// Public URLs keep their authored language, regardless of saved/browser preferences.
+// Preserve explicit language parameters used by existing app WebViews and utility pages.
+const pageLanguage = hasPrefix ? lang : explicitLanguage || (utilityPage ? undefined : DEFAULT_LANGUAGE);
 
-// 带语言前缀的页面：先把该语言字典加载好再渲染，避免静态页(正确语言)被客户端默认中文覆盖闪烁。
-// 根路径(中文/自动识别)沿用原行为。
+// Load the URL's dictionary before rendering so the static page keeps its language.
 async function boot() {
-  const dictionary = hasPrefix ? await loadDictionary(lang).catch(() => undefined) : undefined;
+  const dictionary = pageLanguage ? await loadDictionary(pageLanguage).catch(() => undefined) : undefined;
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <I18nProvider initialLanguage={hasPrefix ? lang : undefined} dictionary={dictionary}>
+      <I18nProvider initialLanguage={pageLanguage} dictionary={dictionary}>
         <SiteAppearance><App path={path} /></SiteAppearance>
       </I18nProvider>
     </StrictMode>,
@@ -36,6 +40,7 @@ document.addEventListener('click', (event) => {
   if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   const anchor = (event.target as HTMLElement)?.closest?.('a');
   if (!anchor) return;
+  if (anchor.hasAttribute('hreflang')) return; // Language links already name their intended URL.
   if (anchor.target && anchor.target !== '_self') return;
   const href = anchor.getAttribute('href') || '';
   if (!href.startsWith('/') || href.startsWith('//')) return; // 仅处理站内根绝对路径

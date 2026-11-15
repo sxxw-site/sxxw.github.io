@@ -1,6 +1,9 @@
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { indexingPolicy } from './seo-policy.mjs';
+import { sitemapHistory } from './seo-history.mjs';
+import { searchVerificationHead } from './search-verification.mjs';
 
 const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
@@ -24,7 +27,7 @@ const langCatalog = JSON.parse(readFileSync(join('src', 'i18n', 'languages.json'
 const norm = (c) => (c ?? '').trim().replace(/_/g, '-').toLowerCase();
 const LANGS = langCatalog.map((e) => ({
   code: norm(e.code),
-  htmlLang: e.asc_code || e.code,
+  htmlLang: norm(e.code) === 'en' ? 'en' : norm(e.code) === 'zh-hk' ? 'zh-HK' : e.asc_code || e.code,
   rtl: RTL.has(norm(e.code).split('-')[0]),
 }));
 // 多语言页面不含这些语言前缀页仅生成默认中文(App 嵌入类/独立 i18n 页)
@@ -48,29 +51,32 @@ const titleByPath = new Map(sourceRoutes.map((r) => [r.path, r.title]));
 const styles = (entry.css ?? []).map((file) => `<link rel="stylesheet" href="/${file}">`).join('');
 const script = `<script type="module" src="/${entry.file}"></script>`;
 const sitemapEntries = [];
+const history = sitemapHistory(outputDir, SITE);
+const verificationHead = searchVerificationHead();
 
 for (const route of sourceRoutes) {
   const prefixed = !NON_PREFIXED_ONLY.has(route.path);
   const langsForRoute = prefixed ? LANGS : LANGS.filter((l) => l.code === DEFAULT_LANG);
   // 该路由的 hreflang 互指(仅多语言路由)
-  const alternates = prefixed
+  const alternates = prefixed && indexingPolicy(route.path, DEFAULT_LANG).alternates
     ? LANGS.map((l) => `<link rel="alternate" hreflang="${l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
       + `<link rel="alternate" hreflang="x-default" href="${SITE}${route.path}">`
     : '';
 
   for (const L of langsForRoute) {
     const isDefault = L.code === DEFAULT_LANG;
+    const policy = indexingPolicy(route.path, L.code);
     const dict = dictFor(L.code);
     const t = (k) => dict[k] ?? k;
     const meta = isDefault ? null : ssr.pageMeta(route.path, t);
     const title = escapeHtml(meta?.title ?? route.title);
     const description = escapeHtml(meta?.description ?? route.description);
     const kw = isDefault && route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
-    const canonical = `${SITE}${langHref(L.code, route.path)}`;
+    const canonical = `${SITE}${langHref(policy.canonicalLanguage, route.path)}`;
     const ogLocale = L.htmlLang.replace('-', '_');
     const isTimeTrails = route.path.startsWith('/apps/timetrails/');
     const shareImage = isTimeTrails ? `/apps/timetrails/${L.code.startsWith('zh') ? '' : 'en/'}cover.png` : '/logo.png';
-    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, L.htmlLang, L.code, dict));
+    const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, policy.contentLanguage ?? L.htmlLang, L.code, dict));
     const body = ssr.renderRoute(route.path, L.code, isDefault ? undefined : dict);
 
     const head = [
@@ -84,7 +90,8 @@ for (const route of sourceRoutes) {
       `<title>${title}</title>`,
       `<meta name="description" content="${description}">`,
       kw,
-      '<meta name="robots" content="index,follow,max-image-preview:large">',
+      verificationHead,
+      `<meta name="robots" content="${policy.index ? 'index' : 'noindex'},follow,max-image-preview:large">`,
       `<link rel="canonical" href="${canonical}">`,
       alternates,
       '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">',
@@ -113,14 +120,18 @@ for (const route of sourceRoutes) {
     const file = rel === '/' ? join(outputDir, 'index.html') : join(outputDir, rel, 'index.html');
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, html);
-    sitemapEntries.push(`${SITE}${rel}`);
+    if (policy.sitemap) {
+      const lastmod = history.record(canonical, html);
+      sitemapEntries.push({ loc: canonical, lastmod });
+    }
   }
 }
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries
-  .map((loc) => `  <url><loc>${loc}</loc></url>`)
+  .map(({ loc, lastmod }) => `  <url><loc>${escapeHtml(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`)
   .join('\n')}\n</urlset>\n`;
 writeFileSync(join(outputDir, 'sitemap.xml'), sitemap);
+writeFileSync(join(outputDir, history.filename), history.serialize());
 
 rmSync(join(outputDir, '.vite'), { force: true, recursive: true });
 rmSync('.ssr', { force: true, recursive: true });
@@ -139,7 +150,7 @@ function organizationNode() {
   };
 }
 
-function appInfo(path) {
+function appInfo(path, language = DEFAULT_LANG) {
   if (path.startsWith('/apps/memoria/')) {
     const harmony = path.includes('/harmony/');
     return {
@@ -150,7 +161,7 @@ function appInfo(path) {
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',
     };
   }
-  if (path.startsWith('/apps/timetrails/')) return { name: '足迹-时光轨迹', alternateName: ['足迹', '时光轨迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
+  if (path.startsWith('/apps/timetrails/')) return { name: language.startsWith('en') ? 'TimeTrails' : '足迹-时光轨迹', alternateName: ['足迹', '时光轨迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
   if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', alternateName: ['出行轨迹', 'TraceApp'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
   return null;
 }
@@ -236,10 +247,10 @@ function structuredDataFor(route, canonical, title, description, inLang, languag
       '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${canonical}#webpage`,
       name: title, description, url: canonical, inLanguage: inLang,
       isPartOf: { '@id': `${SITE}/#website` },
-      about: { '@type': 'SoftwareApplication', '@id': `${SITE}/apps/timetrails/#app`, ...appInfo('/apps/timetrails/'), url: `${SITE}${langHref(language, '/apps/timetrails/')}` },
+      about: { '@type': 'SoftwareApplication', '@id': `${SITE}/apps/timetrails/#app`, ...appInfo('/apps/timetrails/', language), url: `${SITE}${langHref(language, '/apps/timetrails/')}` },
     });
   }
-  const app = appInfo(route.path);
+  const app = appInfo(route.path, language);
   if (app && APP_LANDING_PATHS.has(route.path)) {
     const featureList = featureListFor(route.path, dict);
     const screenshot = screenshotsFor(route.path, language);

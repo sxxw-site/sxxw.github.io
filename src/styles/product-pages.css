@@ -81,6 +81,7 @@
 .product-editorial .product-contact-list > div:first-child { padding-top: 0; }
 .product-editorial .product-contact-list dt { margin-bottom: 8px; color: var(--text-dim); font-size: 14px; }
 .product-editorial .product-contact-list dd { margin: 0; font-size: 16px; overflow-wrap: anywhere; }
+.product-editorial .product-contact-list dd > a { display: inline-flex; align-items: center; min-height: 44px; }
 .product-editorial .product-contact-list .product-diagnostics { white-space: pre-line; font-size: 14px; line-height: 1.85; }
 .product-editorial .product-feedback .action-row { margin-top: 24px; }
 .product-editorial .product-platform-list { border-top: 1px solid var(--hairline); }

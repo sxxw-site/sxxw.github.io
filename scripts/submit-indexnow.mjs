@@ -7,7 +7,8 @@ const key = readFileSync(new URL('../public/indexnow.txt', import.meta.url), 'ut
 if (!/^[a-f0-9]{32}$/.test(key)) throw new Error('Invalid IndexNow verification file.');
 const args = process.argv.slice(2);
 const supplied = args.filter((arg) => arg !== '--dry-run');
-const priorityPages = ['/', '/apps/', '/apps/timetrails/', ...['en', 'en-au', 'en-ca', 'en-gb', 'en-in'].flatMap((language) => [`/${language}/`, `/${language}/apps/timetrails/`])];
+const productPages = ['/apps/timetrails/', '/apps/timetrails/getting-started/', '/apps/timetrails/support/'];
+const priorityPages = ['/', '/apps/', ...productPages, ...['en', 'en-au', 'en-ca', 'en-gb', 'en-in'].flatMap((language) => [`/${language}/`, ...productPages.map((path) => `/${language}${path}`)])];
 const urlList = [...new Set((supplied.length ? supplied : priorityPages).map((path) => {
   const url = new URL(path, origin);
   if (url.origin !== origin || url.username || url.password || url.search || url.hash) throw new Error('Submit canonical URLs from sxxw.site only.');

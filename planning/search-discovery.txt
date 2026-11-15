@@ -1,0 +1,43 @@
+Google / Bing 收录交接
+
+官网：https://sxxw.site/
+通用英文产品页：https://sxxw.site/en/apps/timetrails/
+Sitemap：https://sxxw.site/sitemap.xml
+
+公开内容与抓取
+- 公开页面按URL保持语言；显式lang参数及feedback/migrate的App语言流程保留。
+- 首页和页脚提供可抓取的中英文链接；产品页提供互指和真实使用说明。
+- 站内搜索noindex/follow；未翻译法律副本canonical归中文、不参与hreflang或sitemap。
+- 通用英文使用en，地区英文保持en-AU/CA/GB/IN。
+- sitemap-content-state.json记录语义指纹；lastmod仅随正文、元数据、内链、结构化事实更新。
+- 发布时一起提交生成的docs产物和docs/sitemap-content-state.json；历史读取Git HEAD，不要在只提交源码的流程中丢弃状态。
+- npm run build 后执行 npm run seo:check；CI也执行。
+
+站长平台（需要所有者账户）
+1. Google Search Console添加 https://sxxw.site/ 的URL前缀资源，或使用DNS验证域名资源。
+2. HTML标签验证时，将content值写入 config/search-verification.json 的google字段。
+3. Bing Webmaster Tools添加同域资源，msvalidate.01的content值写入同一文件bing字段；已通过DNS或导入Google验证时不需要再加标签。
+4. 两个字段均为公开所有权证明。不要写密码、OAuth access token、API secret或私钥。
+5. 重新构建发布后，所有者在平台完成验证，再提交上面的sitemap地址。
+6. Google URL Inspection检查英文产品URL的实时抓取、所选canonical、未收录原因，然后请求索引；无需重复请求。
+7. Bing查看URL Inspection、Sitemaps及IndexNow诊断；新增/实质更新发布后可执行npm run seo:submit，一次提交25个中英文重点URL。
+8. IndexNow 200/202只是接收回执，不能当作收录/排名。Google通用网页不使用只支持职位/直播的Indexing API，也不调用已停用的sitemap ping。
+
+外部英语入口
+若可管理App Store Connect，把英文Marketing URL设为 https://sxxw.site/en/apps/timetrails/。
+当前英文App Store的Developer Website指向中文产品页；需要在外部账户修改，仓库发布不会自动更新。
+
+验收范围
+静态HTML、robots、sitemap、canonical、hreflang和浏览器语言行为可直接验证。
+是否收录、真实Google/Bing展示、英文词排名需平台数据和后续搜索观察，不能由代码或提交回执保证。
+
+官方依据
+https://developers.google.com/search/docs/crawling-indexing/links-crawlable
+https://developers.google.com/search/docs/specialty/international/locale-adaptive-pages
+https://developers.google.com/search/docs/specialty/international/localized-versions
+https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+https://support.google.com/webmasters/answer/9008080
+https://support.google.com/webmasters/answer/9012289
+https://www.bing.com/webmasters/help/sitemaps-3b5cf6ed
+https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b
+https://www.indexnow.org/documentation

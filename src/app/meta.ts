@@ -25,9 +25,15 @@ export function pageMeta(pathname: string, t: T): PageMeta | null {
   if (p === '/search/') return { title: t('search.title'), description: t('search.placeholder') };
   if (p === '/apps/') return { title: t('apps.hero.title'), description: t('apps.hero.desc') };
   if (p === '/support/') return { title: t('support.hero.title'), description: t('support.hero.desc') };
+  if (p === '/about/') return { title: `${t('home.nav.about')} | ${t('home.brand.en')}`, description: t('home.about.desc.0') };
+  if (p === '/contact/') return { title: `${t('home.nav.contact')} | ${t('home.brand.en')}`, description: t('home.contact.hint') };
 
   if (p.startsWith('/apps/timetrails/')) {
-    const s = sectionOf(p); const APP = timetrails.appName;
+    const s = sectionOf(p);
+    const name = t('tt.name');
+    const APP = name === 'tt.name' || s === 'privacy' || s === 'terms' ? timetrails.appName : name;
+    const sectionTitleKey = `tt.meta.${seg(s)}.title`;
+    const sectionTitle = t(sectionTitleKey);
     const metaTitle = t('tt.meta.title');
     const metaDescription = t('tt.meta.description');
     return s === 'overview'
@@ -35,7 +41,7 @@ export function pageMeta(pathname: string, t: T): PageMeta | null {
         title: metaTitle === 'tt.meta.title' ? `${APP}·${t('tt.tagline')}` : metaTitle,
         description: metaDescription === 'tt.meta.description' ? t('tt.desc') : metaDescription,
       }
-      : { title: `${APP} ${tab(t, s)}`, description: t(`tt.ui.desc.${seg(s)}`) };
+      : { title: sectionTitle === sectionTitleKey ? `${APP} ${tab(t, s)}` : sectionTitle, description: t(`tt.ui.desc.${seg(s)}`) };
   }
   if (p.startsWith('/apps/traceapp/')) {
     const s = sectionOf(p); const APP = traceapp.appName;

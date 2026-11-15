@@ -1,0 +1,3 @@
+.site-language-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 24px; }
+.site-language-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-dim); font-size: 14px; text-underline-offset: 4px; }
+.site-language-links a:hover, .site-language-links a:focus-visible { color: var(--accent); }

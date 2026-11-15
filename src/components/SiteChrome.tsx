@@ -3,6 +3,7 @@ import { useI18n } from '../i18n/I18nProvider';
 import { localizedSiteHref } from '../lib/site-navigation';
 import LanguageSelect from './LanguageSelect';
 import StyleSwitcher from './StyleSwitcher';
+import SiteLanguageLinks from './SiteLanguageLinks';
 import '../styles/site-chrome.css';
 
 type Section = 'apps' | 'support' | 'search' | 'about' | 'contact';
@@ -77,6 +78,7 @@ export function SiteFooter({ appName, links }: { appName?: string; links?: Link[
   ];
   return <footer className="site-footer site-chrome-footer"><div className="container">
     <div className="site-footer-top"><a className="brand" href={localizedSiteHref(language.normalizedCode, '/')}><img className="brand-logo" src="/apple-touch-icon.png" alt="" width={38} height={38} loading="lazy" /><span className="brand-text"><span className="cn">{appName ?? t('home.common.company')}</span><span className="en">{t('home.brand.en')}</span></span></a><nav className="site-footer-nav" aria-label={language.normalizedCode.startsWith('zh') ? '页脚导航' : 'Footer navigation'}>{footerLinks.map((link) => <a href={localizedSiteHref(language.normalizedCode, link.href)} key={link.href}>{link.label}</a>)}</nav></div>
+    <SiteLanguageLinks />
     <div className="site-footer-bottom"><p>{t('home.footer.legal')}</p><p>{t('home.common.city')}</p></div>
   </div></footer>;
 }
