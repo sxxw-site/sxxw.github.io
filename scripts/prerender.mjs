@@ -59,8 +59,11 @@ for (const route of sourceRoutes) {
   const prefixed = !NON_PREFIXED_ONLY.has(route.path);
   const langsForRoute = prefixed ? LANGS : LANGS.filter((l) => l.code === DEFAULT_LANG);
   // 该路由的 hreflang 互指(仅多语言路由)
-  const alternates = prefixed && indexingPolicy(route.path, DEFAULT_LANG).alternates
-    ? LANGS.map((l) => `<link rel="alternate" hreflang="${l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
+  const routePolicy = indexingPolicy(route.path, DEFAULT_LANG);
+  const alternateLanguages = routePolicy.alternateLanguages
+    ? LANGS.filter((l) => routePolicy.alternateLanguages.includes(l.code)) : LANGS;
+  const alternates = prefixed && routePolicy.alternates
+    ? alternateLanguages.map((l) => `<link rel="alternate" hreflang="${l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
       + `<link rel="alternate" hreflang="x-default" href="${SITE}${route.path}">`
     : '';
 
@@ -94,7 +97,7 @@ for (const route of sourceRoutes) {
       verificationHead,
       `<meta name="robots" content="${policy.index ? 'index' : 'noindex'},follow,max-image-preview:large">`,
       `<link rel="canonical" href="${canonical}">`,
-      alternates,
+      policy.alternates ? alternates : '',
       '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">',
       '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
       '<link rel="preconnect" href="https://fonts.googleapis.com">',
