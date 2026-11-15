@@ -1,6 +1,7 @@
 import timetrails from '../content/apps/timetrails.zh.json';
 import traceapp from '../content/apps/traceapp.zh.json';
 import memoria from '../content/apps/memoria.zh.json';
+import { harborCopy, harborSection } from '../content/apps/harbor';
 
 export type PageMeta = { title: string; description: string };
 type T = (key: string) => string;
@@ -18,8 +19,9 @@ const tab = (t: T, s: Section) => t(`app.tab.${seg(s)}`);
  * 按语言字典计算页面 <title>/<description>（与各页面组件逻辑一致）。
  * 用于按语言预渲染时输出本地化元信息；覆盖主营销页，其余返回 null（回退到 routes.ts 的中文）。
  */
-export function pageMeta(pathname: string, t: T): PageMeta | null {
+export function pageMeta(pathname: string, t: T, language = 'zh-hans'): PageMeta | null {
   const p = pathname;
+  if (p.startsWith('/apps/harbor/')) return harborCopy(language).meta[harborSection(p)];
 
   if (p === '/') return { title: t('home.meta.title'), description: t('home.meta.description') };
   if (p === '/search/') return { title: t('search.title'), description: t('search.placeholder') };

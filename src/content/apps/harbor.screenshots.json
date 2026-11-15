@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "src": "/apps/harbor/demo-library.png",
+    "srcEn": "/apps/harbor/demo-library-en.png",
+    "width": 2064,
+    "height": 2752,
+    "alt": "Harbor 原创演示资料库",
+    "altEn": "Harbor original Demo Library"
+  },
+  "queue": {
+    "src": "/apps/harbor/queue.png",
+    "srcEn": "/apps/harbor/queue-en.png",
+    "width": 2064,
+    "height": 2752,
+    "alt": "Harbor 待播放列表",
+    "altEn": "Harbor playback queue"
+  },
+  "downloads": {
+    "src": "/apps/harbor/downloads.png",
+    "srcEn": "/apps/harbor/downloads-en.png",
+    "width": 2064,
+    "height": 2752,
+    "alt": "Harbor 已实际下载的本地演示视频",
+    "altEn": "Harbor original demo video downloaded for offline playback"
+  }
+}

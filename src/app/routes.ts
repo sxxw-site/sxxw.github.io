@@ -6,8 +6,13 @@ export type SiteRoute = {
 };
 
 export const siteRoutes: SiteRoute[] = [
-  { path: '/', title: '树下小屋官网｜足迹-时光轨迹 TimeTrails、纪念日与 TraceApp', description: '上海树下小屋网络科技有限公司开发手机应用。足迹-时光轨迹（TimeTrails）记录每日轨迹，让日常出行积累为一生轨迹与足迹地图；纪念日提醒生日与重要日期，TraceApp 记录出行路线。查看官方产品介绍、下载入口与使用帮助。', keywords: '足迹,足迹App,纪念日,纪念日App,倒数日,出行轨迹,树下小屋,TimeTrails,Memoria,TraceApp,GPS轨迹记录,生日纪念日提醒' },
-  { path: '/apps/', title: '应用中心·上海树下小屋网络科技有限公司', description: '树下小屋旗下应用：足迹-时光轨迹(隐私优先的 GPS 轨迹记录)、纪念日(生日纪念日倒数提醒)、出行轨迹 TraceApp(出行轨迹与里程配速)。', keywords: '树下小屋,应用中心,足迹,TimeTrails,纪念日倒数,出行轨迹,TraceApp' },
+  { path: '/', title: '树下小屋官网｜足迹-时光轨迹、纪念日、TraceApp 与 Harbor', description: '上海树下小屋网络科技有限公司开发手机与电脑应用。足迹-时光轨迹（TimeTrails）与 TraceApp 记录出行路线，纪念日提醒生日与重要日期，Harbor 播放 NAS 视频并支持离线下载。查看官方产品介绍、下载和测试入口与使用帮助。', keywords: '足迹,足迹App,纪念日,纪念日App,倒数日,出行轨迹,树下小屋,TimeTrails,Memoria,TraceApp,Harbor,NAS视频播放器,GPS轨迹记录,生日纪念日提醒' },
+  { path: '/apps/', title: '应用中心·上海树下小屋网络科技有限公司', description: '树下小屋旗下应用：足迹-时光轨迹与出行轨迹 TraceApp 记录 GPS 路线，纪念日提醒生日和重要日期，Harbor 播放 WebDAV / HTTP 视频并提供离线下载。查看下载、TestFlight 测试与使用指南。', keywords: '树下小屋,应用中心,足迹,TimeTrails,纪念日倒数,出行轨迹,TraceApp,Harbor,NAS,WebDAV' },
+
+  { path: '/apps/harbor/', title: 'Harbor 官网｜NAS 视频播放、待播与离线下载', description: 'Harbor 是 iPhone、iPad 和兼容 Apple 芯片 Mac 上的 WebDAV / HTTP 视频播放器，支持文件夹浏览、待播、续播与单视频离线下载。查看 TestFlight 测试、使用帮助与隐私说明。', keywords: 'Harbor,NAS,WebDAV,视频播放器,离线播放,视频下载,待播列表,TestFlight' },
+  { path: '/apps/harbor/privacy/', title: 'Harbor 隐私政策｜本机数据、NAS 连接与下载', description: '了解 Harbor 如何在本机保存连接、钥匙串密码、观看记录和下载，以及 NAS 网络请求、删除操作与 TestFlight 测试数据。' },
+  { path: '/apps/harbor/terms/', title: 'Harbor 使用条款｜应用与测试版使用说明', description: 'Harbor 的使用范围、用户媒体与服务器责任、测试版说明、功能限制及官方联系渠道。' },
+  { path: '/apps/harbor/support/', title: 'Harbor 使用帮助｜连接 NAS、播放与离线下载', description: '设置 WebDAV 连接，排查局域网发现与播放问题，了解视频下载、重复提示、离线播放、本地删除及后续功能。' },
 
   { path: '/apps/memoria/', title: '纪念日 App 官网｜倒数日、生日提醒与恋爱天数', description: '纪念日 App 帮你记录农历生日、恋爱纪念日、结婚周年和重要日子，支持倒数日、正计时与提前提醒。查看 iOS 和 HarmonyOS 版本介绍、下载入口与使用指南。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,恋爱倒计时,倒计时App,重要日子,人生进度,小组件' },
   { path: '/apps/memoria/ios/', title: '纪念日 iOS 版｜农历生日提醒、倒数日与小组件', description: '纪念日 iOS 版支持倒数日、农历生日提醒、恋爱天数与结婚纪念日记录，提供桌面和锁屏倒计时小组件。支持 iPhone、iPad、Apple Watch 与可选 iCloud 私密同步。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,iOS,小组件,Apple Watch' },

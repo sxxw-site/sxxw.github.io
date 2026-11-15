@@ -11,6 +11,7 @@ import FeedbackPage from './pages/FeedbackPage';
 import MigratePage from './pages/MigratePage';
 import SearchPage from './pages/SearchPage';
 import CompanyPage from './pages/CompanyPage';
+import HarborPage from './pages/HarborPage';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import LanguageSelect from './components/LanguageSelect';
 import SiteLanguageLinks from './components/SiteLanguageLinks';
@@ -18,12 +19,14 @@ import StyleSwitcher from './components/StyleSwitcher';
 import { timeTrailsScreenshot } from './lib/timetrails';
 import { langHref } from './i18n/path';
 import { previewImage } from './lib/app-preview';
+import { harborCopy } from './content/apps/harbor';
 import './styles/studio.css';
 
 const HOME_APPS = [
   { id: 'memoria', name: '纪念日', platform: 'iOS · HarmonyOS', image: '/apps/memoria/ios/shot-01.png', width: 1080, height: 2346, href: '/apps/memoria/' },
   { id: 'timetrails', name: '足迹-时光轨迹', platform: 'iPhone · iPad · Apple Watch', image: '', width: 1320, height: 2868, href: '/apps/timetrails/' },
   { id: 'traceapp', name: '出行轨迹 TraceApp', platform: 'iPhone', image: '/apps/traceapp/shot-01.png', width: 392, height: 250, href: '/apps/traceapp/' },
+  { id: 'harbor', name: 'Harbor', platform: 'TestFlight · iPhone · iPad · Mac', image: '/apps/harbor/icon.png', width: 1024, height: 1024, href: '/apps/harbor/' },
 ];
 
 function BrandMark() {
@@ -32,6 +35,7 @@ function BrandMark() {
 
 export default function App({ path }: { path?: string }) {
   const { language, t } = useI18n();
+  const harbor = harborCopy(language.normalizedCode);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuToggle = useRef<HTMLButtonElement>(null);
   const navigation = useRef<HTMLElement>(null);
@@ -42,7 +46,7 @@ export default function App({ path }: { path?: string }) {
 
   useEffect(() => {
     // 非中文:用本地化 pageMeta 覆盖(与按语言预渲染的 <title> 一致);中文:用 routes.ts 的精修文案
-    const localized = language.normalizedCode === 'zh-hans' ? null : pageMeta(pathname, t);
+    const localized = language.normalizedCode === 'zh-hans' ? null : pageMeta(pathname, t, language.normalizedCode);
     document.title = localized?.title ?? route?.title ?? t('home.meta.title');
     document.querySelector('meta[name="description"]')?.setAttribute('content', localized?.description ?? route?.description ?? t('home.meta.description'));
   }, [route, t, language, pathname]);
@@ -108,6 +112,7 @@ export default function App({ path }: { path?: string }) {
     if (pathname.startsWith('/apps/memoria/')) return <MemoriaPage path={pathname} />;
     if (pathname.startsWith('/apps/timetrails/')) return <TimeTrailsPage path={pathname} />;
     if (pathname.startsWith('/apps/traceapp/')) return <TraceAppPage path={pathname} />;
+    if (pathname.startsWith('/apps/harbor/')) return <HarborPage path={pathname} />;
     return <RouteScaffold />;
   }
 
@@ -130,7 +135,7 @@ export default function App({ path }: { path?: string }) {
             <h1 id="hero-heading">{t('home.hero.title')}</h1>
             <p className="studio-hero-lead">{t('home.hero.desc')}</p>
             <div className="hero-cta-row"><a className="btn-primary" href={href('/apps/')}>{t('home.products.action')}<Arrow /></a><a className="studio-text-link" href="#contact" onClick={handleAnchorClick}>{t('home.hero.cta.contact')}</a></div>
-            <p className="studio-availability">App Store <span aria-hidden="true">/</span> HarmonyOS</p>
+            <p className="studio-availability">App Store <span aria-hidden="true">/</span> HarmonyOS <span aria-hidden="true">/</span> TestFlight</p>
           </div>
           <div className="studio-hero-media" aria-label={t('home.hero.previewLabel')}>
             <img {...previewImage('/apps/memoria/ios/shot-01.png', '(max-width: 520px) 110px, (max-width: 820px) 130px, (max-width: 1023px) 180px, 208px')} alt={t('home.hero.memoriaAlt')} width={1080} height={2346} />
@@ -143,8 +148,8 @@ export default function App({ path }: { path?: string }) {
         <div className="container">
           <div className="studio-section-head"><div><p className="studio-label">{t('nav.apps')}</p><h2 id="products-heading">{t('home.products.title')}</h2></div><p>{t('home.products.description')}</p></div>
           <div className="studio-product-grid">{HOME_APPS.map((app) => <article className={`studio-product studio-product-${app.id}`} key={app.id}>
-            <a className="studio-product-image" href={href(app.href)} tabIndex={-1} aria-hidden="true"><img {...(app.id === 'traceapp' ? { src: app.image } : previewImage(app.image || timeTrailsScreenshot(language.normalizedCode, 'globe'), '(max-width: 1023px) 112px, 126px'))} alt="" width={app.width} height={app.height} loading="lazy" /></a>
-            <div className="studio-product-body"><p className="studio-platform">{app.platform}</p><h3><a href={href(app.href)}>{app.id === 'timetrails' && language.normalizedCode.startsWith('en') ? 'TimeTrails' : app.name}<Arrow /></a></h3><p>{t(`apps.${app.id}.desc`)}</p></div>
+            <a className="studio-product-image" href={href(app.href)} tabIndex={-1} aria-hidden="true"><img {...(app.id === 'traceapp' || app.id === 'harbor' ? { src: app.image } : previewImage(app.image || timeTrailsScreenshot(language.normalizedCode, 'globe'), '(max-width: 1023px) 112px, 126px'))} alt="" width={app.width} height={app.height} loading="lazy" /></a>
+            <div className="studio-product-body"><p className="studio-platform">{app.platform}</p><h3><a href={href(app.href)}>{app.id === 'timetrails' && language.normalizedCode.startsWith('en') ? 'TimeTrails' : app.name}<Arrow /></a></h3><p lang={app.id === 'harbor' ? harbor.lang : undefined}>{app.id === 'harbor' ? harbor.directoryDescription : t(`apps.${app.id}.desc`)}</p></div>
           </article>)}</div>
         </div>
       </section>

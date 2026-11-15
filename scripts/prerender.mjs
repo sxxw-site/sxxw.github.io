@@ -9,8 +9,9 @@ const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
 const SUPPORT_EMAIL = 'house@sxxw.site';
 const DEFAULT_LANG = 'zh-hans';
+const harborCaptures = JSON.parse(readFileSync('src/content/apps/harbor.screenshots.json', 'utf8'));
 const RTL = new Set(['ar', 'fa', 'he']);
-const APP_LANDING_PATHS = new Set(['/apps/timetrails/', '/apps/traceapp/', '/apps/memoria/ios/', '/apps/memoria/harmony/']);
+const APP_LANDING_PATHS = new Set(['/apps/timetrails/', '/apps/traceapp/', '/apps/memoria/ios/', '/apps/memoria/harmony/', '/apps/harbor/']);
 
 const outputDir = 'docs';
 const localesDir = 'src/locales';
@@ -68,14 +69,14 @@ for (const route of sourceRoutes) {
     const policy = indexingPolicy(route.path, L.code);
     const dict = dictFor(L.code);
     const t = (k) => dict[k] ?? k;
-    const meta = isDefault ? null : ssr.pageMeta(route.path, t);
+    const meta = isDefault ? null : ssr.pageMeta(route.path, t, L.code);
     const title = escapeHtml(meta?.title ?? route.title);
     const description = escapeHtml(meta?.description ?? route.description);
     const kw = isDefault && route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
     const canonical = `${SITE}${langHref(policy.canonicalLanguage, route.path)}`;
     const ogLocale = L.htmlLang.replace('-', '_');
     const isTimeTrails = route.path.startsWith('/apps/timetrails/');
-    const shareImage = isTimeTrails ? `/apps/timetrails/${L.code.startsWith('zh') ? '' : 'en/'}cover.png` : '/logo.png';
+    const shareImage = isTimeTrails ? `/apps/timetrails/${L.code.startsWith('zh') ? '' : 'en/'}cover.png` : route.path.startsWith('/apps/harbor/') ? '/apps/harbor/icon.png' : '/logo.png';
     const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, policy.contentLanguage ?? L.htmlLang, L.code, dict));
     const body = ssr.renderRoute(route.path, L.code, isDefault ? undefined : dict);
 
@@ -163,6 +164,7 @@ function appInfo(path, language = DEFAULT_LANG) {
   }
   if (path.startsWith('/apps/timetrails/')) return { name: language.startsWith('en') ? 'TimeTrails' : '足迹-时光轨迹', alternateName: ['足迹', '时光轨迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
   if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', alternateName: ['出行轨迹', 'TraceApp'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
+  if (path.startsWith('/apps/harbor/')) return { name: 'Harbor', applicationCategory: 'MultimediaApplication', operatingSystem: 'iOS 17+, iPadOS 17+, macOS 14+ (Apple silicon)', softwareVersion: '0.0.1 beta', downloadUrl: 'https://testflight.apple.com/join/pmT8CR8S' };
   return null;
 }
 
@@ -176,7 +178,7 @@ function breadcrumbNode(path, language, dict) {
     const logicalPath = `${acc}/`;
     const routeTitle = titleByPath.get(logicalPath);
     if (routeTitle) {
-      const name = language === DEFAULT_LANG ? routeTitle : ssr.pageMeta(logicalPath, (key) => dict[key] ?? key)?.title ?? routeTitle;
+      const name = language === DEFAULT_LANG ? routeTitle : ssr.pageMeta(logicalPath, (key) => dict[key] ?? key, language)?.title ?? routeTitle;
       items.push({ name, url: `${SITE}${langHref(language, logicalPath)}` });
     }
   }
@@ -188,7 +190,12 @@ function breadcrumbNode(path, language, dict) {
   };
 }
 
-function faqNode(path, dict) {
+function faqNode(path, dict, language) {
+  if (path === '/apps/harbor/support/') return {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    inLanguage: ssr.harborCopy(language).lang,
+    mainEntity: ssr.harborCopy(language).faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+  };
   const prefix = path === '/apps/timetrails/support/' ? 'tt.ui.faq'
     : path === '/apps/traceapp/support/' ? 'trace.ui.faq'
       : path === '/apps/memoria/support/' ? 'mem.ui.faq' : null;
@@ -207,7 +214,8 @@ function faqNode(path, dict) {
   };
 }
 
-function featureListFor(path, dict) {
+function featureListFor(path, dict, language) {
+  if (path === '/apps/harbor/') return ssr.harborCopy(language).features;
   const pfx = path.startsWith('/apps/timetrails/') ? 'tt.feat.'
     : path.startsWith('/apps/traceapp/') ? 'trace.feat.'
       : path.startsWith('/apps/memoria/') ? (path.includes('/harmony/') ? 'mem.hm.feat.' : 'mem.ios.feat.') : null;
@@ -219,6 +227,7 @@ function featureListFor(path, dict) {
 
 function screenshotsFor(path, language) {
   const S = (dir, names) => names.map((n) => `${SITE}${dir}${n}`);
+  if (path === '/apps/harbor/') return Object.values(harborCaptures).filter(Boolean).map((capture) => `${SITE}${capture.src}`);
   if (path === '/apps/timetrails/') {
     const code = language.toLowerCase();
     const base = code.split('-')[0];
@@ -236,6 +245,7 @@ function screenshotsFor(path, language) {
 }
 
 function structuredDataFor(route, canonical, title, description, inLang, language, dict = {}) {
+  if (route.path.startsWith('/apps/harbor/')) inLang = ssr.harborCopy(language).lang;
   const nodes = [organizationNode()];
   if (route.path === '/') {
     nodes.push({
@@ -252,14 +262,14 @@ function structuredDataFor(route, canonical, title, description, inLang, languag
   }
   const app = appInfo(route.path, language);
   if (app && APP_LANDING_PATHS.has(route.path)) {
-    const featureList = featureListFor(route.path, dict);
+    const featureList = featureListFor(route.path, dict, language);
     const screenshot = screenshotsFor(route.path, language);
     const isTimeTrails = route.path === '/apps/timetrails/';
     nodes.push({
       '@context': 'https://schema.org', '@type': 'SoftwareApplication', ...app,
       '@id': isTimeTrails ? `${SITE}/apps/timetrails/#app` : `${canonical}#app`,
       url: canonical, description, inLanguage: inLang, sameAs: app.downloadUrl, mainEntityOfPage: canonical,
-      image: isTimeTrails ? `${SITE}/apps/timetrails/${language.startsWith('zh') ? '' : 'en/'}cover.png` : `${SITE}/logo.png`,
+      image: isTimeTrails ? `${SITE}/apps/timetrails/${language.startsWith('zh') ? '' : 'en/'}cover.png` : route.path === '/apps/harbor/' ? `${SITE}/apps/harbor/icon.png` : `${SITE}/logo.png`,
       ...(screenshot ? { screenshot } : {}),
       ...(featureList ? { featureList } : {}),
       publisher: { '@id': `${SITE}/#organization` },
@@ -269,7 +279,7 @@ function structuredDataFor(route, canonical, title, description, inLang, languag
   }
   const breadcrumb = breadcrumbNode(route.path, language, dict);
   if (breadcrumb) nodes.push(breadcrumb);
-  const faq = faqNode(route.path, dict);
+  const faq = faqNode(route.path, dict, language);
   if (faq) nodes.push(faq);
   return nodes;
 }

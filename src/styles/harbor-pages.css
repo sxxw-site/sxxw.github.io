@@ -1,0 +1,36 @@
+/* Harbor extends the existing product-page system without changing other products. */
+.product-harbor .harbor-intro { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; }
+.product-harbor .harbor-beta-note { max-width: 42em; margin: 24px 0 0; color: var(--text-dim); font-size: 14px; line-height: 1.8; }
+.product-harbor .harbor-app-identity { display: grid; place-items: center; min-width: 0; padding: 48px; }
+.product-harbor .harbor-app-identity img { display: block; width: 240px; max-width: 100%; height: auto; border-radius: 24%; }
+.product-harbor .harbor-hero-screen { min-width: 0; }
+.product-harbor .harbor-hero-screen img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: 1px solid var(--card-stroke); }
+.product-harbor .harbor-feature-mark { color: var(--accent); }
+.product-harbor .harbor-screen-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; padding: 32px; background: var(--surface); border-radius: var(--radius-lg); }
+.product-harbor .harbor-screen-pair a { display: block; min-width: 0; max-width: 420px; margin-inline: auto; transition: transform var(--transition-base); }
+.product-harbor .harbor-screen-pair a:hover { transform: translateY(-2px); }
+.product-harbor .harbor-screen-pair img { display: block; max-width: 100%; height: auto; border-radius: var(--radius-md); border: 1px solid var(--card-stroke); }
+.product-harbor .harbor-inline-link { display: inline-flex; min-height: 44px; align-items: center; gap: 12px; }
+.product-harbor .product-support-band p:last-child a { display: inline-flex; min-height: 44px; align-items: center; }
+.product-harbor .product-support-band h2 { font-size: clamp(25px, 3vw, 34px); }
+.product-harbor #setup { scroll-margin-top: 32px; }
+.directory-preview-harbor img { display: block; width: 180px; max-width: 60%; height: auto; border-radius: 24%; }
+@media (max-width: 820px) {
+  .product-harbor .harbor-intro { grid-template-columns: minmax(0, 1fr); }
+  .product-harbor .harbor-app-identity { padding: 24px; }
+  .product-harbor .harbor-app-identity img { width: 160px; }
+  .product-harbor .harbor-screen-pair { gap: 20px; padding: 24px; }
+}
+@media (max-width: 560px) {
+  .product-harbor .harbor-screen-pair { grid-template-columns: minmax(0, 1fr); padding: 24px; }
+  .directory-preview-harbor img { width: 128px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-harbor .harbor-screen-pair a { transition: none; }
+  .product-harbor .harbor-screen-pair a:hover { transform: none; }
+}
+
+@media (min-width: 1024px) {
+  .studio-product-grid:has(.studio-product-harbor) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.studio-product-harbor .studio-product-image img { width: 160px; max-width: calc(100% - 48px); height: auto; border-radius: 24%; }

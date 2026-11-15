@@ -44,7 +44,7 @@ export default function SearchPage() {
   const index = useMemo<Item[]>(() => siteRoutes
     .filter((route) => !EXCLUDE.has(route.path))
     .map((route) => {
-      const meta = language.normalizedCode === 'zh-hans' ? null : pageMeta(route.path, t);
+      const meta = language.normalizedCode === 'zh-hans' ? null : pageMeta(route.path, t, language.normalizedCode);
       return { path: route.path, title: meta?.title ?? route.title, description: meta?.description ?? route.description, keywords: route.keywords ?? '' };
     }), [t, language.normalizedCode]);
 
@@ -60,10 +60,12 @@ export default function SearchPage() {
     { title: zh ? '应用与下载' : 'Apps and downloads', items: [
       { path: '/apps/', label: t('nav.apps') },
       ...['memoria', 'timetrails', 'traceapp'].map((id) => ({ path: `/apps/${id}/`, label: FEEDBACK_APPS[id].name })),
+      { path: '/apps/harbor/', label: 'Harbor' },
     ] },
     { title: zh ? '帮助与技术支持' : 'Help and support', items: [
       { path: '/support/', label: t('nav.support') },
       ...['memoria', 'timetrails', 'traceapp'].map((id) => ({ path: `/apps/${id}/support/`, label: `${FEEDBACK_APPS[id].name} · ${t('app.tab.support')}` })),
+      { path: '/apps/harbor/support/', label: `Harbor · ${t('app.tab.support')}` },
     ] },
     { title: zh ? '公司信息' : 'Company', items: [
       { path: '/', label: t('home.nav.home') },
