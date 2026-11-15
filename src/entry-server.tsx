@@ -14,4 +14,4 @@ export function renderRoute(path: string, lang = 'zh-hans', dictionary?: Diction
   );
 }
 
-export { harborCopy } from './content/apps/harbor';
+export { harborCopy, harborSection } from './content/apps/harbor';

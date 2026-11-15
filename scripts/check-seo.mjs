@@ -70,10 +70,41 @@ for (const locale of ['en', 'en-au', 'en-ca', 'en-gb', 'en-in']) {
 }
 assert.ok(pages.get(`${origin}/apps/timetrails/`).html.includes('href="/en/apps/timetrails/"'), 'Chinese product links to English product');
 assert.ok(pages.get(`${origin}/`).html.includes('href="/en/"'), 'Chinese home links to English home');
+const harborHeadings = {
+  'zh-hans': '家中 NAS 的视频播放器', en: 'A video player for your home NAS',
+  ja: '自宅の NAS 用動画プレーヤー', ko: '집 안의 NAS를 위한 동영상 플레이어',
+  fr: 'Un lecteur vidéo pour votre NAS domestique', ar: 'مشغّل فيديو لجهاز NAS المنزلي',
+};
+const harborLanguageTags = ['zh-Hans', 'en', 'ja', 'ko', 'fr', 'ar', 'x-default'];
+for (const [locale, heading] of Object.entries(harborHeadings)) {
+  const prefix = locale === 'zh-hans' ? '' : `/${locale}`;
+  const url = `${origin}${prefix}/apps/harbor/`;
+  const page = pages.get(url);
+  assert.ok(page.index && page.canonical === url, `Harbor authored product is self-canonical: ${locale}`);
+  assert.ok([...page.description].length >= 25 && [...page.description].length <= 160, `Harbor discovery description fits search snippets: ${locale}`);
+  assert.deepEqual(page.alternates.map((entry) => entry.language).sort(), [...harborLanguageTags].sort(), `Harbor has exactly six reciprocal product languages: ${locale}`);
+  const main = page.html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? '';
+  assert.ok(main.includes(`<h1 class="page-title">${heading}</h1>`), `Harbor real localized heading: ${locale}`);
+  assert.equal(attr(main.match(/<main\b[^>]*>/)?.[0] ?? '', 'lang'), locale === 'zh-hans' ? 'zh-Hans' : locale, `Harbor content language: ${locale}`);
+  if (['ja', 'ko', 'fr', 'ar'].includes(locale)) {
+    assert.equal((main.match(new RegExp(`src="/apps/harbor/${locale}/`, 'g')) ?? []).length, 3, `Harbor uses three genuine localized screenshots: ${locale}`);
+    for (const file of ['demo-library.png', 'queue.png', 'downloads.png']) assert.ok(existsSync(join(root, `apps/harbor/${locale}/${file}`)), `Harbor screenshot exists: ${locale}/${file}`);
+    assert.ok(main.includes('href="/en/apps/harbor/privacy/"'), `Harbor links to the actual English legal document: ${locale}`);
+  }
+  if (locale === 'ar') assert.equal(attr(main.match(/<main\b[^>]*>/)?.[0] ?? '', 'dir'), 'rtl', 'Harbor Arabic content reads right to left');
+  for (const section of ['privacy', 'terms', 'support']) {
+    const document = pages.get(`${origin}${prefix}/apps/harbor/${section}/`);
+    const realPrefix = locale === 'zh-hans' ? '' : '/en';
+    assert.equal(document.canonical, `${origin}${realPrefix}/apps/harbor/${section}/`, `Harbor document canonical: ${locale}/${section}`);
+    assert.equal(document.index, ['zh-hans', 'en'].includes(locale), `Harbor does not index untranslated documents: ${locale}/${section}`);
+    const schema = JSON.parse(document.html.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
+    assert.equal(schema.find((node) => node['@type'] === 'WebPage').inLanguage, locale === 'zh-hans' ? 'zh-Hans' : 'en', `Harbor legal/support schema uses its actual body language: ${locale}/${section}`);
+  }
+}
 assert.ok(read('robots.txt').includes('Sitemap: ' + origin + '/sitemap.xml'), 'Crawler sitemap entry');
 for (const match of sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)) {
   assert.match(match[1], /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(match[1] <= new Date().toISOString().slice(0, 10), 'No future lastmod');
 }
 assert.ok(existsSync(join(root, 'sitemap-content-state.json')), 'Persistent content history');
-console.log(`SEO checks passed: ${pages.size} HTML pages, ${listed.size} canonical sitemap URLs, reciprocal hreflang, 5 English product versions.`);
+console.log(`SEO checks passed: ${pages.size} HTML pages, ${listed.size} canonical sitemap URLs, reciprocal hreflang, 5 TimeTrails English and 6 Harbor discovery versions.`);

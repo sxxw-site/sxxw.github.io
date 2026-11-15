@@ -5,7 +5,13 @@
     "width": 2064,
     "height": 2752,
     "alt": "Harbor 原创演示资料库",
-    "altEn": "Harbor original Demo Library"
+    "altEn": "Harbor original Demo Library",
+    "srcByLanguage": {
+      "ja": "/apps/harbor/ja/demo-library.png",
+      "ko": "/apps/harbor/ko/demo-library.png",
+      "fr": "/apps/harbor/fr/demo-library.png",
+      "ar": "/apps/harbor/ar/demo-library.png"
+    }
   },
   "queue": {
     "src": "/apps/harbor/queue.png",
@@ -13,7 +19,13 @@
     "width": 2064,
     "height": 2752,
     "alt": "Harbor 待播放列表",
-    "altEn": "Harbor playback queue"
+    "altEn": "Harbor playback queue",
+    "srcByLanguage": {
+      "ja": "/apps/harbor/ja/queue.png",
+      "ko": "/apps/harbor/ko/queue.png",
+      "fr": "/apps/harbor/fr/queue.png",
+      "ar": "/apps/harbor/ar/queue.png"
+    }
   },
   "downloads": {
     "src": "/apps/harbor/downloads.png",
@@ -21,6 +33,12 @@
     "width": 2064,
     "height": 2752,
     "alt": "Harbor 已实际下载的本地演示视频",
-    "altEn": "Harbor original demo video downloaded for offline playback"
+    "altEn": "Harbor original demo video downloaded for offline playback",
+    "srcByLanguage": {
+      "ja": "/apps/harbor/ja/downloads.png",
+      "ko": "/apps/harbor/ko/downloads.png",
+      "fr": "/apps/harbor/fr/downloads.png",
+      "ar": "/apps/harbor/ar/downloads.png"
+    }
   }
 }

@@ -63,7 +63,7 @@ for (const route of sourceRoutes) {
   const alternateLanguages = routePolicy.alternateLanguages
     ? LANGS.filter((l) => routePolicy.alternateLanguages.includes(l.code)) : LANGS;
   const alternates = prefixed && routePolicy.alternates
-    ? alternateLanguages.map((l) => `<link rel="alternate" hreflang="${l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
+    ? alternateLanguages.map((l) => `<link rel="alternate" hreflang="${route.path === '/apps/harbor/' ? l.code === DEFAULT_LANG ? 'zh-Hans' : l.code : l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
       + `<link rel="alternate" hreflang="x-default" href="${SITE}${route.path}">`
     : '';
 
@@ -118,7 +118,8 @@ for (const route of sourceRoutes) {
       `<script type="application/ld+json">${escapeScript(structuredData)}</script>`,
       styles,
     ].join('');
-    const htmlAttr = `lang="${L.htmlLang}" data-type="software"${L.rtl ? ' dir="rtl"' : ''}`;
+    const htmlLanguage = route.path === '/apps/harbor/' ? policy.contentLanguage ?? L.htmlLang : L.htmlLang;
+    const htmlAttr = `lang="${htmlLanguage}" data-type="software"${L.rtl ? ' dir="rtl"' : ''}`;
     const html = `<!doctype html><html ${htmlAttr}><head>${head}</head><body><div id="root">${body}</div>${script}</body></html>`;
     const rel = langHref(L.code, route.path);
     const file = rel === '/' ? join(outputDir, 'index.html') : join(outputDir, rel, 'index.html');
@@ -196,8 +197,8 @@ function breadcrumbNode(path, language, dict) {
 function faqNode(path, dict, language) {
   if (path === '/apps/harbor/support/') return {
     '@context': 'https://schema.org', '@type': 'FAQPage',
-    inLanguage: ssr.harborCopy(language).lang,
-    mainEntity: ssr.harborCopy(language).faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+    inLanguage: ssr.harborCopy(language, 'support').lang,
+    mainEntity: ssr.harborCopy(language, 'support').faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
   };
   const prefix = path === '/apps/timetrails/support/' ? 'tt.ui.faq'
     : path === '/apps/traceapp/support/' ? 'trace.ui.faq'
@@ -230,7 +231,10 @@ function featureListFor(path, dict, language) {
 
 function screenshotsFor(path, language) {
   const S = (dir, names) => names.map((n) => `${SITE}${dir}${n}`);
-  if (path === '/apps/harbor/') return Object.values(harborCaptures).filter(Boolean).map((capture) => `${SITE}${capture.src}`);
+  if (path === '/apps/harbor/') {
+    const contentLanguage = ssr.harborCopy(language).lang;
+    return Object.values(harborCaptures).filter(Boolean).map((capture) => `${SITE}${contentLanguage === 'zh-Hans' ? capture.src : capture.srcByLanguage?.[contentLanguage] ?? capture.srcEn ?? capture.src}`);
+  }
   if (path === '/apps/timetrails/') {
     const code = language.toLowerCase();
     const base = code.split('-')[0];
@@ -248,7 +252,7 @@ function screenshotsFor(path, language) {
 }
 
 function structuredDataFor(route, canonical, title, description, inLang, language, dict = {}) {
-  if (route.path.startsWith('/apps/harbor/')) inLang = ssr.harborCopy(language).lang;
+  if (route.path.startsWith('/apps/harbor/')) inLang = ssr.harborCopy(language, ssr.harborSection(route.path)).lang;
   const nodes = [organizationNode()];
   if (route.path === '/') {
     nodes.push({

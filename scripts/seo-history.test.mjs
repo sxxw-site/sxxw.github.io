@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
 import { contentFingerprint, sitemapHistory } from './seo-history.mjs';
-import { indexingPolicy } from './seo-policy.mjs';
+import { HARBOR_DISCOVERY_LANGUAGES, indexingPolicy } from './seo-policy.mjs';
 
 const origin = 'https://sxxw.site';
 const html = (content = 'Daily routes', assets = 'first') => `<!doctype html><html lang="en"><head><title>TimeTrails</title><meta name="description" content="GPS route tracker"><link rel="canonical" href="${origin}/"><link rel="stylesheet" href="/${assets}.css"><script type="application/ld+json">{"@type":"WebPage","name":"TimeTrails"}</script></head><body><header>Menu</header><main class="${assets}"><h1>${content}</h1><a href="/apps/timetrails/">Product</a><img src="/map.png" alt="Route history"></main><footer>2026</footer><script src="/${assets}.js"></script></body></html>`;
@@ -68,5 +68,28 @@ test('search results are crawlable but excluded from indexing; untranslated lega
     assert.equal(indexingPolicy(path, 'en').canonicalLanguage, 'en');
     assert.equal(indexingPolicy(path, 'en').sitemap, true);
     assert.equal(indexingPolicy(path, 'en').alternates, true);
+  }
+});
+
+test('Harbor indexes six authored product pages while support and legal retain only their real Chinese/English versions', () => {
+  assert.deepEqual(HARBOR_DISCOVERY_LANGUAGES, ['zh-hans', 'en', 'ja', 'ko', 'fr', 'ar']);
+  for (const language of HARBOR_DISCOVERY_LANGUAGES) {
+    const product = indexingPolicy('/apps/harbor/', language);
+    assert.equal(product.index, true);
+    assert.equal(product.canonicalLanguage, language);
+    assert.deepEqual(product.alternateLanguages, HARBOR_DISCOVERY_LANGUAGES);
+    for (const section of ['support', 'privacy', 'terms']) {
+      const document = indexingPolicy(`/apps/harbor/${section}/`, language);
+      assert.equal(document.index, ['zh-hans', 'en'].includes(language));
+      assert.equal(document.canonicalLanguage, language === 'zh-hans' ? 'zh-hans' : 'en');
+      assert.deepEqual(document.alternateLanguages, ['zh-hans', 'en']);
+    }
+  }
+  for (const language of ['de', 'es', 'fr-ca', 'zh-hant']) {
+    const fallback = indexingPolicy('/apps/harbor/', language);
+    assert.equal(fallback.index, false);
+    assert.equal(fallback.alternates, false);
+    assert.equal(fallback.sitemap, false);
+    assert.equal(fallback.canonicalLanguage, language.startsWith('zh') ? 'zh-hans' : 'en');
   }
 });

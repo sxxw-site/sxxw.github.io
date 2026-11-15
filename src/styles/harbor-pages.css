@@ -1,6 +1,8 @@
 /* Harbor extends the existing product-page system without changing other products. */
 .product-harbor .harbor-intro { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; }
 .product-harbor .harbor-beta-note { max-width: 42em; margin: 24px 0 0; color: var(--text-dim); font-size: 14px; line-height: 1.8; }
+.product-harbor .harbor-document-language-note { margin-block: 16px 0; color: var(--text-dim); font-size: 14px; line-height: 1.8; }
+.product-harbor[dir="rtl"] h1, .product-harbor[dir="rtl"] h2, .product-harbor[dir="rtl"] h3 { letter-spacing: normal; }
 .product-harbor .harbor-app-identity { display: grid; place-items: center; min-width: 0; padding: 48px; }
 .product-harbor .harbor-app-identity img { display: block; width: 240px; max-width: 100%; height: auto; border-radius: 24%; }
 .product-harbor .harbor-hero-screen { min-width: 0; }

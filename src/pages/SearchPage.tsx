@@ -5,11 +5,12 @@ import { siteRoutes } from '../app/routes';
 import { pageMeta } from '../app/meta';
 import { FEEDBACK_APPS } from '../lib/feedback';
 import { localizedSiteHref } from '../lib/site-navigation';
+import { HARBOR_BASE, harborCopy, harborSection } from '../content/apps/harbor';
 import '../styles/service-pages.css';
 
 // The search page itself and app-embedded tools are not indexed.
 const EXCLUDE = new Set(['/search/', '/feedback/', '/migrate/']);
-type Item = { path: string; title: string; description: string; keywords: string };
+type Item = { path: string; title: string; description: string; keywords: string; contentLanguage?: string };
 
 function queryFromUrl() {
   return typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('q') ?? '';
@@ -45,7 +46,9 @@ export default function SearchPage() {
     .filter((route) => !EXCLUDE.has(route.path))
     .map((route) => {
       const meta = language.normalizedCode === 'zh-hans' ? null : pageMeta(route.path, t, language.normalizedCode);
-      return { path: route.path, title: meta?.title ?? route.title, description: meta?.description ?? route.description, keywords: route.keywords ?? '' };
+      const harbor = route.path.startsWith(HARBOR_BASE) ? harborCopy(language.normalizedCode, harborSection(route.path)) : null;
+      return { path: route.path, title: meta?.title ?? route.title, description: meta?.description ?? route.description,
+        keywords: route.path === HARBOR_BASE ? harbor!.searchKeywords : route.keywords ?? '', contentLanguage: harbor?.lang };
     }), [t, language.normalizedCode]);
 
   const results = useMemo(() => {
@@ -93,7 +96,7 @@ export default function SearchPage() {
       {query ? <section className="service-search-results" aria-labelledby="search-results-title" aria-live="polite">
         <div className="service-results-heading"><h2 id="search-results-title">{zh ? '搜索结果' : 'Search results'}</h2><p>{t('search.count').replace('{n}', String(results.length))}</p></div>
         {results.length > 0 ? <ul className="service-result-list">{results.map((item) => <li key={item.path}><a href={href(item.path)}>
-          <div><h3>{item.title}</h3><p>{item.description}</p><span className="service-result-path">{item.path}</span></div><span className="service-result-arrow" aria-hidden="true">↗</span>
+          <div lang={item.contentLanguage} dir={item.contentLanguage ? item.contentLanguage === 'ar' ? 'rtl' : 'ltr' : undefined}><h3>{item.title}</h3><p>{item.description}</p><span className="service-result-path" dir={item.contentLanguage ? 'ltr' : undefined}>{item.path}</span></div><span className="service-result-arrow" aria-hidden="true">↗</span>
         </a></li>)}</ul> : <div className="service-search-empty"><h3>{t('search.empty')}</h3><p>{zh ? '试试应用名称，或缩短关键词。也可以清除搜索，按分类浏览。' : 'Try an app name or fewer keywords. Clear the search to browse by category.'}</p><button className="service-action" type="button" onClick={clearQuery}>{zh ? '清除搜索，浏览分类' : 'Clear search and browse'}<span aria-hidden="true">→</span></button></div>}
       </section> : <section className="service-search-browse" aria-labelledby="search-browse-title">
         <div className="service-results-heading"><h2 id="search-browse-title">{zh ? '按分类浏览' : 'Browse by category'}</h2><p>{zh ? '从产品、支持或公司信息开始。' : 'Explore our apps, support and company information.'}</p></div>

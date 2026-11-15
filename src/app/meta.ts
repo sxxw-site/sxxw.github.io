@@ -21,7 +21,10 @@ const tab = (t: T, s: Section) => t(`app.tab.${seg(s)}`);
  */
 export function pageMeta(pathname: string, t: T, language = 'zh-hans'): PageMeta | null {
   const p = pathname;
-  if (p.startsWith('/apps/harbor/')) return harborCopy(language).meta[harborSection(p)];
+  if (p.startsWith('/apps/harbor/')) {
+    const section = harborSection(p);
+    return harborCopy(language, section).meta[section];
+  }
 
   if (p === '/') return { title: t('home.meta.title'), description: t('home.meta.description') };
   if (p === '/search/') return { title: t('search.title'), description: t('search.placeholder') };

@@ -1,4 +1,8 @@
+import { harborDiscoveryCopy } from './harbor.discovery';
+import discoveryLanguages from './harbor.discovery-languages.json';
+
 export const HARBOR_BASE = '/apps/harbor/';
+export const HARBOR_DISCOVERY_LANGUAGES = discoveryLanguages;
 export const HARBOR_BETA = 'https://testflight.apple.com/join/pmT8CR8S';
 export const HARBOR_CONTACT = 'neverfall@foxmail.com';
 export const HARBOR_COMPANY = 'Shanghai Shuxia Xiaowu Network Technology Co., Ltd.';
@@ -13,10 +17,19 @@ type Copy = {
   faqTitle: string; faq: Array<{ question: string; answer: string }>; contactTitle: string; contactNote: string;
   meta: Record<HarborSection, { title: string; description: string }>;
   privacy: Document; terms: Document; effective: string; appleTerms: string;
+  galleryTitle: string; breadcrumbLabel: string; englishDocumentsNote: string; searchKeywords: string;
+  screenshotAlt: Record<'hero' | 'queue' | 'downloads', string>;
 };
+export type HarborOverviewTranslation = Pick<Copy, 'lang' | 'tabs' | 'title' | 'lead' | 'beta' | 'betaNote' |
+  'directoryDescription' | 'category' | 'featuresTitle' | 'features' | 'privacyTitle' | 'privacyNote' |
+  'readPrivacy' | 'contactTitle' | 'contactNote' | 'galleryTitle' | 'breadcrumbLabel' | 'englishDocumentsNote' |
+  'searchKeywords' | 'screenshotAlt'> & { metaOverview: Copy['meta']['overview'] };
 
 const zh: Copy = {
   lang: 'zh-Hans', tabs: { overview: '产品介绍', privacy: '隐私政策', terms: '使用条款', support: '使用帮助' },
+  galleryTitle: '待播放与本地视频', breadcrumbLabel: '页面位置', englishDocumentsNote: '',
+  searchKeywords: 'Harbor NAS WebDAV HTTP 视频播放器 离线播放 下载 视频 待播 续播',
+  screenshotAlt: { hero: 'Harbor 原创演示资料库', queue: 'Harbor 待播放列表', downloads: 'Harbor 已下载的本地演示视频' },
   title: '家中 NAS 的视频播放器',
   lead: '在 iPhone、iPad 和 Mac 上连接 WebDAV，浏览视频、整理待播列表，或下载到本机离线观看。',
   beta: '加入 TestFlight 测试',
@@ -31,7 +44,7 @@ const zh: Copy = {
     '查看下载进度、取消与重试；已完成的视频可在重启后离线播放。',
   ],
   privacyTitle: '连接和观看记录留在本机',
-  privacyNote: 'Harbor 不设开发者账号，不含广告或分析 SDK。服务器密码保存在系统钥匙串。播放和下载直接连接你配置的服务器；TestFlight 的测试数据处理另有说明。',
+  privacyNote: 'Harbor 无需注册专用账号，不含广告或分析 SDK。服务器密码保存在系统钥匙串。播放和下载直接连接你配置的服务器；TestFlight 的测试数据处理另有说明。',
   readPrivacy: '阅读隐私政策', setupTitle: '连接家中的 WebDAV',
   setup: [
     { title: '开启 NAS 的 WebDAV 服务', body: '让设备与 NAS 连接同一可互通的家庭网络。群晖可在套件中心启用 WebDAV Server，并给使用的账号视频文件夹读取权限。' },
@@ -83,6 +96,9 @@ const zh: Copy = {
 
 const en: Copy = {
   lang: 'en', tabs: { overview: 'Overview', privacy: 'Privacy', terms: 'Terms', support: 'Support' },
+  galleryTitle: 'Your queue and local videos', breadcrumbLabel: 'Breadcrumbs', englishDocumentsNote: '',
+  searchKeywords: 'Harbor NAS WebDAV HTTP video player offline downloads queue resume',
+  screenshotAlt: { hero: 'Harbor original Demo Library', queue: 'Harbor playback queue', downloads: 'Harbor original demo video downloaded for offline playback' },
   title: 'A video player for your home NAS',
   lead: 'Connect to WebDAV on iPhone, iPad and Mac. Browse your videos, build a playback queue, or download them for offline viewing.',
   beta: 'Join the TestFlight beta',
@@ -97,7 +113,7 @@ const en: Copy = {
     'Track downloads, cancel or retry. Play completed files offline after restarting Harbor.',
   ],
   privacyTitle: 'Connections and history stay on your device',
-  privacyNote: 'Harbor has no developer account, ads or analytics SDK. Server passwords use the system Keychain. Playback and downloads connect directly to your server; TestFlight testing data is covered separately.',
+  privacyNote: 'Harbor does not require a separate account and contains no ads or analytics SDK. Server passwords use the system Keychain. Playback and downloads connect directly to your server; TestFlight testing data is covered separately.',
   readPrivacy: 'Read the privacy policy', setupTitle: 'Connect your home WebDAV server',
   setup: [
     { title: 'Enable WebDAV on your NAS', body: 'Connect your device and NAS to the same reachable home network. On Synology, enable WebDAV Server in Package Center and give your account read access to the video folder.' },
@@ -119,7 +135,7 @@ const en: Copy = {
   contactNote: 'Include your app version, device, system version, steps to reproduce, and a redacted screenshot. Do not send NAS passwords, full token-bearing links or private videos. Email is sent only when you choose to send it.',
   effective: 'Effective date', appleTerms: 'Read Apple’s TestFlight terms',
   meta: {
-    overview: { title: 'Harbor | NAS video playback, queues and offline downloads', description: 'Harbor is a WebDAV and HTTP video player for iPhone, iPad and compatible Apple silicon Macs, with folder browsing, queues, resume and individual video downloads. Join TestFlight and read support and privacy information.' },
+    overview: { title: 'Harbor | NAS video playback, queues and offline downloads', description: 'Harbor plays WebDAV and HTTP video on iPhone, iPad and compatible Apple silicon Macs, with queues, resume and individual offline downloads.' },
     privacy: { title: 'Harbor privacy policy | Device data, servers and downloads', description: 'How Harbor stores connections, Keychain passwords, history and downloads on your device, makes server requests, handles deletion, and works with TestFlight testing data.' },
     terms: { title: 'Harbor terms | App use and beta information', description: 'Harbor’s purpose, your media and server responsibilities, beta availability, feature limits and official contact information.' },
     support: { title: 'Harbor support | WebDAV, playback and offline downloads', description: 'Set up your NAS connection and troubleshoot discovery, playback, downloads, duplicate notices, offline viewing and local deletion. Check upcoming features.' },
@@ -147,10 +163,15 @@ const en: Copy = {
   },
 };
 
-// Product documentation is maintained in Chinese and English. Other site languages
-// use the English document with an explicit content language rather than a false translation.
-export function harborCopy(language: string): Copy {
-  return language.startsWith('zh') || language === 'yue' ? zh : en;
+// Six authored product pages support discovery. Full support and legal documents
+// remain Chinese/English, with their real content language and canonical URL.
+export function harborCopy(language: string, section: HarborSection = 'overview'): Copy {
+  const code = language.trim().replace(/_/g, '-').toLowerCase();
+  if (code.startsWith('zh') || code === 'yue') return zh;
+  const translation = section === 'overview' ? harborDiscoveryCopy[code] : undefined;
+  if (!translation) return en;
+  const { metaOverview, ...overview } = translation;
+  return { ...en, ...overview, meta: { ...en.meta, overview: metaOverview } };
 }
 export function harborSection(path: string): HarborSection {
   return path.includes('/privacy/') ? 'privacy' : path.includes('/terms/') ? 'terms' : path.includes('/support/') ? 'support' : 'overview';

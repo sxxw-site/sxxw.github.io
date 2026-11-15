@@ -1,20 +1,24 @@
+import { readFileSync } from 'node:fs';
+
 const DEFAULT_LANGUAGE = 'zh-hans';
+export const HARBOR_DISCOVERY_LANGUAGES = JSON.parse(readFileSync(new URL('../src/content/apps/harbor.discovery-languages.json', import.meta.url), 'utf8'));
 
 /** Legal documents are currently authored in Chinese in every UI language. */
 export function indexingPolicy(path, language) {
-  // Harbor has two authored versions, including its legal documents. Other
-  // language routes retain the site's translated navigation but reuse this copy.
+  // Harbor has six authored product overviews. Its full support and legal
+  // documents remain Chinese/English; untranslated bodies are never indexed.
   if (path.startsWith('/apps/harbor/')) {
     const chinese = language.startsWith('zh') || language === 'yue';
-    const canonicalLanguage = chinese ? DEFAULT_LANGUAGE : 'en';
+    const authoredLanguages = path === '/apps/harbor/' ? HARBOR_DISCOVERY_LANGUAGES : [DEFAULT_LANGUAGE, 'en'];
+    const canonicalLanguage = chinese ? DEFAULT_LANGUAGE : authoredLanguages.includes(language) ? language : 'en';
     const authoredVersion = language === canonicalLanguage;
     return {
       index: authoredVersion,
       canonicalLanguage,
       alternates: authoredVersion,
-      alternateLanguages: [DEFAULT_LANGUAGE, 'en'],
+      alternateLanguages: authoredLanguages,
       sitemap: authoredVersion,
-      contentLanguage: chinese ? 'zh-Hans' : 'en',
+      contentLanguage: canonicalLanguage === DEFAULT_LANGUAGE ? 'zh-Hans' : canonicalLanguage,
     };
   }
   const untranslatedLegalDocument = /\/(?:privacy|terms)\/$/.test(path);
