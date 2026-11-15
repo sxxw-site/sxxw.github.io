@@ -12,12 +12,18 @@ function htmlFiles(dir = root) {
   });
 }
 const attr = (tag, name) => tag.match(new RegExp(`\\b${name}="([^"]*)"`, 'i'))?.[1];
+// Prerender escapes these characters in attributes; count the displayed text.
+const decodeHtml = (value) => value.replace(/&(#x[0-9a-f]+|#\d+|amp|quot|apos|lt|gt|nbsp);/gi, (_, entity) => {
+  if (entity[0] === '#') return String.fromCodePoint(entity[1].toLowerCase() === 'x' ? parseInt(entity.slice(2), 16) : Number(entity.slice(1)));
+  return { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: '\u00a0' }[entity.toLowerCase()];
+});
 const pages = new Map(htmlFiles().map((file) => {
   const html = readFileSync(file, 'utf8');
   const url = origin + file.slice(root.length).replace(/index\.html$/, '');
   const links = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => m[0]);
   const canonical = attr(links.find((tag) => attr(tag, 'rel') === 'canonical') ?? '', 'href');
   const robots = attr(html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? '', 'content');
+  const description = decodeHtml(attr(html.match(/<meta\b[^>]*name="description"[^>]*>/)?.[0] ?? '', 'content') ?? '');
   const alternates = links.filter((tag) => attr(tag, 'rel') === 'alternate' && attr(tag, 'hreflang'))
     .map((tag) => ({ language: attr(tag, 'hreflang'), url: attr(tag, 'href') }));
   for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
@@ -25,7 +31,7 @@ const pages = new Map(htmlFiles().map((file) => {
   assert.ok(html.includes('class="style-switcher-trigger"'), `SSR appearance control: ${url}`);
   assert.ok(canonical?.startsWith(origin + '/'), `Own canonical: ${url}`);
   assert.ok(robots?.includes('follow'), `Explicit crawl policy: ${url}`);
-  return [url, { html, canonical, index: !robots.includes('noindex'), alternates }];
+  return [url, { html, canonical, description, index: !robots.includes('noindex'), alternates }];
 }));
 
 const sitemap = read('sitemap.xml');
@@ -51,6 +57,12 @@ for (const [url, page] of pages) {
   }
 }
 for (const locale of ['en', 'en-au', 'en-ca', 'en-gb', 'en-in']) {
+  // Bing Live URL flagged descriptions outside its 25–160 character range.
+  for (const path of ['/', '/apps/timetrails/', '/apps/timetrails/getting-started/', '/apps/timetrails/support/']) {
+    const target = pages.get(`${origin}/${locale}${path}`);
+    const length = [...target.description].length;
+    assert.ok(length >= 25 && length <= 160, `${locale}${path}: meta description has ${length} characters; expected 25–160`);
+  }
   const page = pages.get(`${origin}/${locale}/apps/timetrails/`);
   for (const phrase of ['TimeTrails', 'daily routes', 'lifetime travel map']) assert.ok(page.html.toLowerCase().includes(phrase.toLowerCase()), `${locale}: ${phrase}`);
   assert.ok(page.html.includes('id="route-history"'), `${locale}: useful recording questions`);
