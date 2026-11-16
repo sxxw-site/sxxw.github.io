@@ -3,372 +3,540 @@
   "origin": "https://sxxw.site",
   "pages": {
     "https://sxxw.site/af/": {
-      "hash": "2ace30827cbc51606d982d298e1fda01827047c9bcf30a076fb6f672bb0e18b1"
+      "hash": "989363c6918b7d52cb6cfa469b2927f7801b9f7df1d76a306b18702b459143ec",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ar/": {
-      "hash": "605f69a263177742a00d83542d6edf31cf21b211634e0d62b937f1ddad162ccf"
+      "hash": "b7d75fce874f7a0e8576e5a42721ab15229a6ad97ed38247d3a71b9ba1b09591",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/be/": {
-      "hash": "ec704d7d4a8ab9be65cda71dc1aa19a2c9490717e0cb6f860bf1f024b07e06cf"
+      "hash": "dd467451d90049d9911239dcb0b1e2a62b256e385e27989e82e096b8209ff716",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/bg/": {
-      "hash": "f25ef545b34667befe9672fdcf2f8d463bd4da30d0c0925e832fd98d6b0e789e"
+      "hash": "bd4d664556283ebee1ceb9664d21e4263c3f1ee1fb051e696384d4b071f680c7",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/bn/": {
-      "hash": "36e1ae6988b003ac30899173ecf5f0bddcbe9323db153c24920b08d122a75052"
+      "hash": "8313977a9e6f69d82fb8799e7d3f955fbb24c84e3f18eb6d136b627e30f16768",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/cs/": {
-      "hash": "37f6ce086eb2270955d1a191d9448df8c1adeb22f19e893fa3c68f4e3dfed458"
+      "hash": "116bd66bb900a405d1c44c57baf684124fbf320d29f8992f13163cbc3bb6ab76",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/da/": {
-      "hash": "52a77a05b51e9653b57ed3c61d5ff7be65d84ba2ad6f0051aaec147d53e73116"
+      "hash": "6c0f9d3bf8caaba10bcbc0593d970d1ddbd8f114f09eea3508f84a54078030ac",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/de/": {
-      "hash": "a47fa483c1ba79ecdc3cb5fad69393560cd7275e1ff1cd6093cb0033ac5bde46"
+      "hash": "a575583a63206c862ef8b73f080a3b56f74079262df9332e94d0c36dfe37dc80",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/el/": {
-      "hash": "9b1da2c121e5a2ac03eb4c657607dbe1703f98c4355464180d2460926de1c3e7"
+      "hash": "46d5274d18edfb92273d41d8e886e3c17a2d17716999732593a66110ffec7e83",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en/": {
-      "hash": "053e9bb7b08d7c77a4fd25078b3bdef6166eab0f294f0604ec52784654ee8da5",
-      "lastmod": "2026-11-15"
+      "hash": "c02644b51bdbaf2741c160cc3429dcc019692afb350e49f35093b7963a2ba0e0",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-au/": {
-      "hash": "b67b378ce3b301ba01f9addd2a55768edf9a2012b7e2a551d326f635e213340a",
-      "lastmod": "2026-11-15"
+      "hash": "52926e39f4cb9d0248d7d6fc5ce2e5cc4bd9878a38845a31ce13ee42a381b258",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-ca/": {
-      "hash": "0a95afd63ab28f79bf5fc65faea39f4b09fe1b05d84df84065466d1f7ccd3f76",
-      "lastmod": "2026-11-15"
+      "hash": "7bc68e150c24a5c77c5dab09e97db7f0071bbe039dc4670591b9b390dc318530",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-gb/": {
-      "hash": "9e78bf00c059858a5f2d56013b192c89d6a14dcbbd0c343b3082fe2d101962a4",
-      "lastmod": "2026-11-15"
+      "hash": "77a7f4770c28c51e0144de4748a19f69e5c25aa90352df7ff7243c3291a5b32a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-in/": {
-      "hash": "61ae17d6e03229085ecf0d245d794f27e501dd4b5aca89647a3e9ac953ea1caf",
-      "lastmod": "2026-11-15"
+      "hash": "e500bbe37477801ab72b58304c83e4152b5008f97e8928b08296c87c61e209bd",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/es/": {
-      "hash": "227c696c0babfb4a8021ddff0c12e87a024040c9a1d1f366c94078bd2d7e1b04"
+      "hash": "5210c1fcae2bcfd995d37150a6699cf54814e92a28f216a64c52132a7c20d3c6",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/es-419/": {
-      "hash": "fe0530624b49a2d35150e213dfae8af3d8081ae2d7fd4b64a57253605124556a"
+      "hash": "35e627bb2d56fe70fa3223f735b06c8dd30687a19d4731b575bca6b3b52460c7",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/es-mx/": {
-      "hash": "c2e9ed565378b8c81150172c35db057ecb1aa118f2eb20234c61db3bae779fa9"
+      "hash": "1b6023aff649dd4e3ff425c29a48fe9e3430344cfeb808f587811f697dfa6cc1",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/et/": {
-      "hash": "3acda213aa3a8fd66125420156be1b8af9f6490056b24c55dadaa3af0d4e0d77"
+      "hash": "18f321d0131682de559c9101697030f4ebf45953b0cff9ef750d118b177f5146",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fa/": {
-      "hash": "d1ca21cb23e140ac88e9484581b97f311c6e89010ccf1c12effd0096feaa76af"
+      "hash": "3f69121ca378eb049f8df169b625f0c5cbae059297df33150d03bcd538b15617",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fi/": {
-      "hash": "5aef992f2dc5fafa7c71e6a11615d98564ca1984eb6bf45c9865d53fd2f8382c"
+      "hash": "cc18312d24788ab88400ca1b158f2ebcf9dc24a7e997bde15dccc2f988072895",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fr/": {
-      "hash": "5a941ff2d9114ac9cf6c4797ba8e992f4c7e707e360cd9e5a089b6e3b6046f21"
+      "hash": "c3187f51442bee1f49e407a4e32deed4e7bc7fa1db5cde9345f8e079895f03f5",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fr-ca/": {
-      "hash": "17ea10312fba38a9083d6faf7e827e1e4f77cb86415640e64f51efe3b6fa2a70"
+      "hash": "a27313cb53e5b5502bdda45cd20001780f9139ddf6f66375baf0ec80e97f7176",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/gu/": {
-      "hash": "d836299781fbb43121ae8648918666c9c622d549fefb8a14f4d41d7c7ca7632d"
+      "hash": "972a39b9ff28fd14141024191fa132f965189143efd7dca63ba3390641d243ef",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/he/": {
-      "hash": "5fb70f471c13ceb1c98283a84ef1dec6706d126b618bdedca26a232706330704"
+      "hash": "ffb1c6a6ba117234e2f8038b0e4f960eeb90481d7d26c86cfed8a5e737d2c454",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/hi/": {
-      "hash": "d7a11a30d2ba9052ced0dc66a46b0b98b08678a9b0c7ebe7a7ba88a83052dadd"
+      "hash": "b62d5d641a8010c412af394b666ee7bd59503cb5c5a4c1bdb5cd5e67b7600803",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/hr/": {
-      "hash": "e82b09d9b499f99d0b3bbce1c60875625b0b0feba462a2551d8d36bff4a418d4"
+      "hash": "6f3759097f1bdf7a365c6266c2af0c0babc97ca9d53244317e7dfb655455f8b4",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/hu/": {
-      "hash": "23185c43239793427caac13af26892073b3f74833073fdcf92deafd4d89eb429"
+      "hash": "55e2b3a47958ad0ed980b23c29c9589daeb2d93a85bc19af83ca0500ebde877a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/id/": {
-      "hash": "ad53c15c3b7cf645ceb68e762951fd80d5b5bb608e844d67706b6977d4718147"
+      "hash": "196b3dfc18f9a4acc5393b3a9d6e25cfa442785ca5f0ad085007498e7547bad3",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/it/": {
-      "hash": "624d8001b6bce4e8295d89827b0b1eb0afa3de1310515523c327ccde92967a06"
+      "hash": "630842e76d1387c2078135e5cb4ded3494922942499b1d18e4b71dcd5f20d23b",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ja/": {
-      "hash": "cb801e41bbe03a9c16680d7eca95541ed5645a5809b8b9699b224462824bdd52"
+      "hash": "c810278a39864e895f5164ab1027ed4a209dec2b5079908951fe2c4a54eabca2",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/kk/": {
-      "hash": "4ea00cd243dc660ce263a3750f7dca4f2ef8614f5c6d4617f773e6e426a282fb"
+      "hash": "1f5b7031e1c62ec1747fa41e4773e8cb7e1b85fdfe1f61e635a42fae69ae45da",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/kn/": {
-      "hash": "9c3a767f4bc6173a19c306fb734bfd7eab8cf787b81d2bfef421eabab90368e8"
+      "hash": "c0b1d20a07830a849a4926e345a513db06c5a414c464daae2eb04ceed2289282",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ko/": {
-      "hash": "5a5d83b7626bc50cff7e4cb08d29014e52deb4cbca5b92a5c8eb5c9f54388569"
+      "hash": "19125dd0b5b2a7e9670b124f29c017830bb4a64e5332a5a73face3b2b05c8fd0",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/lt/": {
-      "hash": "1e40b7fac4f9a8c1352de64280be07b472f4777ca8c5a77923305909ffb39ec0"
+      "hash": "f1067c04b71b3ca72667b10c537776a71b556542b5cba85de6113e12235fee64",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/lv/": {
-      "hash": "684bcd91c264d25756d9a6fd15ff99960efa636e0b1734e9e4c5aaa98827e3f3"
+      "hash": "df7b16a14afdcac79fc7dcb979b28d6806e23326657c813b10684484aed39127",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ml/": {
-      "hash": "7b14d7f9786280442466550f0fcf215f9f3b63dfc0a66b3af48f45fe042089a6"
+      "hash": "bf84f512d9bad5aa35a3ef615c3772e7134e180d9d4ac9d6348d52d27bbfcb20",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/mr/": {
-      "hash": "0174c4954e4367f7ea701acc1553552ce8a915f9dd8bb3996848a4931ff64b89"
+      "hash": "d4392203e10b6d8973941a7448a4aec435aab4e1feb6aefe253d5d8bab3a632d",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ms/": {
-      "hash": "4ca20747b0a9edf27ec60e68e3f6e5a5ebe89ecc796e6b26e0606df9e647183d"
+      "hash": "e2884577d7e0d1661a08fc66f649fda252b9195b85d854838a4578e66c5adb81",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/nb/": {
-      "hash": "24887ad73ee46030be1e18442bc3ef2acec335546c58aa8d22d12deb5b9ca8dd"
+      "hash": "33f5b654a1a4739cad23f84f767cb8c539a0023c088793c18ef657b5bafc17c5",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/nl/": {
-      "hash": "d4d13fefeee8f21b0448c0e38541c87b80b8912e0ffc4d4db375528f88e9d9fd"
+      "hash": "86ec548fce57fb475a9a1922fc52cc790cdac4f3a6cf0c1b92240e409aa4d482",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/nl-be/": {
-      "hash": "a6ddbbae45d07169856ee333f6903eeef894a73c245ac0682ac744d1b5c05d39"
+      "hash": "68cce0c18bfd4fedce4712ea0261cc0f2ab0107327e11797b83658be89f22ee3",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pa/": {
-      "hash": "2c3bbf9ee0e6f1685dba0002c522d31fa351552185cc9e705bd0cc07dc406040"
+      "hash": "47e24dcbdcb7e91098059269427dd131f60a7518343ee08d9e6516abfeca27e4",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pl/": {
-      "hash": "bc0b2b50f21c6c41c10eb55638412d61e430548320b0f165903dce21a109145d"
+      "hash": "500b0e5c51bce138202bfbf53557d6ea383d119f5b60dae183165133a007b2ff",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pt-br/": {
-      "hash": "be54ee26d2e02168805641b69b7c9ba962f915e2b772cc31acc25c29267529a1"
+      "hash": "85a4da6a91e34a956372ebb4aee66236ca7e1eb51a8fdffcd01133860add8ab9",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pt-pt/": {
-      "hash": "2b4725637f2c9ceaabc052bcc1bad78c1f8a848dde7e61a7729d3467c71a49d6"
+      "hash": "8bb2ccbe007cbe11a50b172a2a0a9b27c7c519c1dac38c43be23e763f930c414",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ro/": {
-      "hash": "150e7f2c6cea5dfbcb3b8c73f476ee55518e321a6d11eaa0b7eee6908745bee9"
+      "hash": "9a297823f9c8db43f4b04721ddc6802eb6bb23642687bfebf7fa1dee809659cd",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ru/": {
-      "hash": "62c38797b23155b2d0efcbc40819ae80874d90d50008b16c98e7cb40afd0d55a"
+      "hash": "9dc0f2a356f2b5bbab570719abf6daa3581977e19a19933880bd852af98e8b79",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/sk/": {
-      "hash": "3d5a90aad58ce4536d7ed54d521b7c93f2a2927b31d4b96f2d9406e2793caf5a"
+      "hash": "0b4a8fb79b7bab3a1364e144095ae8b20143bc5c1bfacc0c840543372afa818e",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/sl/": {
-      "hash": "0ad8f1ffd4aec9d2e615d9814bb31a557427aa6178b4e06848006a3acdafbf18"
+      "hash": "1fdad05334a6db38ed6531200ab4ff129f2448acd7f2227be6cd0ece3d42530c",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/sv/": {
-      "hash": "2aa96c4b08e6d274906054ce3a5566febb51038d8c222c32cd4ab00620f61b58"
+      "hash": "cea6914481e3d35b5bdf4a17fa753d1fb4d3505183d0537f032c1d1fc658340a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ta/": {
-      "hash": "c74351ac6e16484200f6203fd91e256e787098c409dda7b254262a189d6428a5"
+      "hash": "c2240c75baf9269bc5b1ef45906ee58fb7d7d237709f1ca3524a32b85c5bdf9b",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/te/": {
-      "hash": "0ef979b3aedd6984286fd82959bb8332af7ee7e859ff55ff6143935213e59361"
+      "hash": "8c7b15a8416d0271010557afcd740e24d5b274828dc008b7ea708353eb75e5e7",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/th/": {
-      "hash": "6875684ea8bf9ef0d095fdd85899b09f9ef174de239eb7c63b637fcdaae94a24"
+      "hash": "4f706c0f33fbfb399a272f301a73899a21daff35417361ff9963e8b5daaeb73a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/tr/": {
-      "hash": "e5d2a21faaec5113fb766771e9d339dbb9ceca9c16376d8c807bb75e55c4258c"
+      "hash": "d1b220165b5ba92409403b0b2d820f3910fd587875eab732f6ed8f1c9f02c163",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/uk/": {
-      "hash": "983dbce30049b5a4a5e77dcb90f3923159d7748a30bf8d48944cfef817eb099b"
+      "hash": "bee6dd51c9db4275e667a0245fae8ccc6422289bb69ac7481159fa6d7bec09d1",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/vi/": {
-      "hash": "85e6a1768e8544637430270cdffcb8a678af3a42531ab9f23abc12b4955e97e7"
+      "hash": "8989961026f5537bc10b49a2caf2f57e2bef40381be16d285e6aecae927f09d7",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/yue/": {
-      "hash": "1de45458a1fd214702e71bcda7158f308d0af07d233a4624f036f7dc00d1665e"
+      "hash": "9cf875b8eb61971419d04c803a0f37091afab11e1f6b3a3fc6dc6be1fdc14162",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/zh-hk/": {
-      "hash": "326f9c62a9304a7189b1d46398713420318f0a74890b5a4faabe69b14a1fc880",
-      "lastmod": "2026-11-15"
+      "hash": "ddc6695e07b4b65a12d866afe5311bf8b42c5ad8cdb31164ef4813d2fcabe39e",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/": {
-      "hash": "7443c7e4e4b2003168b16d281592342b180a5627c65f9313b616d8cb597dd958"
+      "hash": "2d66cb7a2eb0cda60d9ee3268c658b3865ad03b0e618e12b310ab974fa45fa2d",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/zh-hant/": {
-      "hash": "0936b74513bcd5e418f8c40e5858a955500570595b93b762df00eaf6045cf595"
+      "hash": "d296065f70769dcd17af88e11ee254607a9663bcc6737d1186015f445226f6dc",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/af/apps/": {
-      "hash": "592c134290b94faedb087a41f9faaf4db34a49eadfd65a6dcc12c50ca642613a"
+      "hash": "1db14ef5c394cab3a0680bfd517add3da9e313faab6525e454e6824377a00963",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ar/apps/": {
-      "hash": "4901923aeb3d303ed9ec46ba9c5d2aecaae2502359880bd5565b37be191d028b"
+      "hash": "4db09f425f60064912eaf48c5be487ce9809ba20b0988f3c0d62cfefc8d6b474",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/be/apps/": {
-      "hash": "857c1558d349cd15b066dc367ab2c17f55fae3134ebef63aa962c34695b9bc4b"
+      "hash": "292f6dcc356add9aac48309a6ef1198827f678178afda9a902ce02e523173157",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/bg/apps/": {
-      "hash": "608b8d0c198ddd1b0d33fa8d8ffb513ebc1092407a831c746f51273a83f4a146"
+      "hash": "4f64ecdb8e9ec7dafd63efe142da539bcba7ff3727387c2c16c0e680b9aad618",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/bn/apps/": {
-      "hash": "2ab6470a4a5b8507a7d13a13b685ae1253569fd0c635e9baca14857bc6fc5b1c"
+      "hash": "93237d7f67383474fcc964f90f8c3afa7ea6c550227a50d4387d46d1ead25009",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/cs/apps/": {
-      "hash": "64b0a9ed415c8e4df7e0a94738d0a28e585a5b5280df89be8ae5b1a6f2052c15"
+      "hash": "7570ae200c1748da13e72d08fb85eaeeb6583d0afb5f5d97db2b2d1697c30758",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/da/apps/": {
-      "hash": "012d0bb635581822374c704f95231c83f2b2cb33bd39af186ca8956ea446df75"
+      "hash": "4a378104addc31b61789158840d3d6223ccc0cff27bb726b733c72d4d6b6c895",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/de/apps/": {
-      "hash": "237e2b4112b40d193cbeaf257cb2b34efccb727775c4c63b41c3fcafbd22e4ee"
+      "hash": "84ad3b5a78edf613a07f1f9bef2993bfed349d633b513a0273b2e33c4ea9e181",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/el/apps/": {
-      "hash": "2b86b2417e5a084a86b076994cf7a43d20a6057561b96fe92159009f0f7b81a2"
+      "hash": "00df610689180fa008fdc3ab79bb59fe2f891b01d7771b7836fca4e5b7bdfdc9",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en/apps/": {
-      "hash": "97f94f3563f3ba848029290744acd37b85319f995bd93e0b61369af4f1154614",
-      "lastmod": "2026-11-15"
+      "hash": "d5a2078ce769378b4c9710d89370445417b8a99afd50ac2fd0103930a6c42503",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-au/apps/": {
-      "hash": "2aa13f76ddb191ac113d2307426122cb7074769ceda09623586c9d24a4612229"
+      "hash": "c18ec443a83523b92972ea0a381320824782874f355ddcc06e54bdc4fd655952",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-ca/apps/": {
-      "hash": "db870048b1a1762f746540aaa92393e7ff917ed21e7b2a3cb65c50cc05a11251"
+      "hash": "bc640777f07d0d11ce4edf056c0f62990c1f296170a7825a3d28dd6299bd7604",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-gb/apps/": {
-      "hash": "2bf69bee4116123582d1505669f4156dfe75f61b5d5e6dfb0d94505832e0d7ba"
+      "hash": "396cbada04ff149607ec1d83f1de90f56462d9159e76b19e5c3886bd816b2b9f",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/en-in/apps/": {
-      "hash": "04e6a423a7a9bcf11d42645046b0d0d9de2d738ba037f3f5e6e377c4ac61a61b"
+      "hash": "76c2a2f07bcc4b58287f45f3f46f6d239934ba9eeac5efa43901cd3d5768bbe0",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/es/apps/": {
-      "hash": "e3a5d1cbde2d759819f7ce6b80e8c7ca046f605cdb4b92f53e82700fd6df9232"
+      "hash": "b81f58dbe018bb3337779092c94cc6d27d3a2c0034eb3ca55a2a165f8eabe2e1",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/es-419/apps/": {
-      "hash": "ad4f6e59b090673055c74d52474ce28604184c3f7e4357cc50c43de7e19d6882"
+      "hash": "c7e5e70ee40bfd49cf34a69c6930b37d77e962890b14d1a835b781f5d174732b",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/es-mx/apps/": {
-      "hash": "1c95fa2fb7369face6785a8b186e6a46efc7eb770b5302471f70ca8732b59b6b"
+      "hash": "05f6391f8ad892d759edefbfd0181d72a339da211a9ba7b65fa27dd3cd7782c6",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/et/apps/": {
-      "hash": "6aee87bfe653cac2b8ffa863ef371e9c845e844e0cb6035114a45a414be0b4dc"
+      "hash": "7d27f913ae9c2fb6318b508eccad2d79adbad33b6c0bacafd7a3ef5f352f6284",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fa/apps/": {
-      "hash": "f4579b8647103cb8d551410527c1330cbb02e70095c99e5687fc049eaad0870f"
+      "hash": "e4386bdc555d1eba24b6bc952f6fd97dfa1791ad6365ca13e032bd567a02ce0c",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fi/apps/": {
-      "hash": "b6cf3263d3505f265b077032345dd78fbe1936d663eb85fc7719c228534c8696"
+      "hash": "ad6dd08e15f49fa1bc93a53cdee74c1026d64987d00b058e8202a76538e50137",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fr/apps/": {
-      "hash": "7cd4a9acc810bb626b081d611f38c7743d1e172fb8e538ca4feaa0871ed19461"
+      "hash": "e82e74ce7fcc4ddb49ce772c303757f2b3ebdbb77b6d91259ca51b953cbaa6eb",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/fr-ca/apps/": {
-      "hash": "3281885983354f72f84c02b1660febf6e5caca6d4db15f384c803b93004896f6"
+      "hash": "cea79c274ae543c7f118d5cccbb8c1128a1a959dd7d9f9a9d585cb50b7fb1e6a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/gu/apps/": {
-      "hash": "fd109704d026147039cb32e0d4df9016ce911b8960bdea9cd676c8c860d2ebec"
+      "hash": "c6d9ac125eed429a6d6c3c2db04f4c090a104343d09172c90236ed86c3a15857",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/he/apps/": {
-      "hash": "486a0efeab5bcfb7ccef52518fd5a371c80ef26671fcd1aa444fc904b8a85e12"
+      "hash": "cbe5ac43a9ea67d6fa5e216ecae589518cce58e5c6d055f68b3a9f61763bfb23",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/hi/apps/": {
-      "hash": "1d19065811b3b7106de5836b928aa16767bb6dd6a9a4f3d99acb1e7d76fc5c02"
+      "hash": "79ba573c706e0e5e9fa603f8e0b6a33d01790cfc0f817d4be40b204ee8e95907",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/hr/apps/": {
-      "hash": "d616162c35351e15b00f4db4a851ee3e37bacb835d5b75ce766737413c398cf3"
+      "hash": "fdeaedb24910d796128512a15297aea2765f8d0a0836ea062f33294da87acdc7",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/hu/apps/": {
-      "hash": "8129c9b1f9af096af106994f078e64c06ec85019414345d46ac1e23e6452c8d1"
+      "hash": "76297a8b8f54d5daacb6417edc297780334c2d46f79db02374cbbfbc237efaf1",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/id/apps/": {
-      "hash": "bf0fd4c88e1e1123df33dfd9912b78a55026252e17ec2ec7692a36c436db08f3"
+      "hash": "76f76960d2452f413fbe94d695aacdc1eba54729536738a859e758f808d558ea",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/it/apps/": {
-      "hash": "021b3ed2c9e4c35687e3650de59ccea5f05d2ecdf96374262523f77ec05f49b4"
+      "hash": "abbc777f5cad8d2a7ff719bc5bc3568ca29b067d734a2e478e793b0e555f353b",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ja/apps/": {
-      "hash": "380396b3806da1647abf3342b63faeb9475ed4393a577a07540b202ab94809ab"
+      "hash": "b28d018759e3d730d7c508abc41b81040b011c097f3199f6a1408739a9ae967a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/kk/apps/": {
-      "hash": "726ed1ccf6d85f085a7f17a5f484820b85c0960d2f3bc1cf63f9fdb04a49ac67"
+      "hash": "2422010c8c57b9f75590c75e9c1bb7f123d5275a2698e08695194914e3975d9c",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/kn/apps/": {
-      "hash": "b89fc2241620b7f721b67880a8ae3e60200a1f1f129893dca432254b62da2c63"
+      "hash": "9772b6804bd6274447bfbd1d11cae68f2cdf7472e5adf2bc0a694d8635a7732c",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ko/apps/": {
-      "hash": "70a6d2440ef51697c45e88ac47504c1e11bf969aea5ffb7c0f4e93e8d71749a7"
+      "hash": "ae4a523360ea169601522495c82d648eb225b1b8f037e5b04060949eff5adc4b",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/lt/apps/": {
-      "hash": "c6ad33d01eebb90530fb31b0fda80108ba3a26d058b96ae75970b7df820f32ff"
+      "hash": "fe40744be43fb3fea0f453d48ce6bfdbcfee8c1cbdc2a490d115962442d249df",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/lv/apps/": {
-      "hash": "5ee445489159b8d11b545e8a0a92f8ba41be08c316ff1299aae02aeab60fabee"
+      "hash": "62ebdc73120f366e427aea6b5e37d4d51b0580dcb45ef559ae8c5f812720cd89",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ml/apps/": {
-      "hash": "7f36a4be408bf2efb6409729b21822fc10a7807365738d9fc350566524f8cbd6"
+      "hash": "05b96450feb737b1d5e1ebc744336eb9a75f02e274302042eb4b6169264867b2",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/mr/apps/": {
-      "hash": "74fad42e36f08323380128df261888b811a8dacfb42c4d2f1575b759dbbb6e22"
+      "hash": "3ef4cb1e6fd9047eab798ca2aa4f867c15dc2b2534d3712374eb831f466833b1",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ms/apps/": {
-      "hash": "a6f14652a4f1db4c2b2f78190fd13f7e9cc2dbd6a80f4bdd6798b3d31fc2627c"
+      "hash": "95d3196c7e57406fd3ff822c47cf2e2406225bde70bafb4acd3d411a6a1455dd",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/nb/apps/": {
-      "hash": "2c67a11231ca4cb932cfc96a931a5285e5fbd8f97cd707f2908eab3da8be2d97"
+      "hash": "e2ac09a26b5ddeb1515170d41261e91bf3081f2c4b23337e8a114eada340d5cd",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/nl/apps/": {
-      "hash": "b4f4bd604a228b2e49eeec20669795198b2e0ea70282a3364d1566d25631bd1d"
+      "hash": "142ccaa1c9cee8b6d75a952a631badc7ac4495358e02644a701b7a517bf3424c",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/nl-be/apps/": {
-      "hash": "1a3635beee5b03f951c998e8f1ee7fab9913ec65c7f60cd56bc54cd1e9d7c8e8"
+      "hash": "5eabc6c047f0970dade16d62dc4c85d962e91974b1ecc6daf00bacced2a2af18",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pa/apps/": {
-      "hash": "abf587216f2f9b56fc603398384124eaf1d1aa2cc2f144d2265d73ad142ea59e"
+      "hash": "a6d138631eb8a928c6b7e2d316fbdb82179db03e41c50da7b880b60bd8f0de05",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pl/apps/": {
-      "hash": "57a6263c6703d1db9e3ff4d5cf69ed1a15ccf42d50bd3933fb72644e0bae4905"
+      "hash": "4c9b8d220c0f8f697d0c4c22a7216b1a0436b9f7288541bc92084fb6ee0b2369",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pt-br/apps/": {
-      "hash": "a347c731b4425020d068179c11630e60413401689e209d1475bf01ad4b0146bd"
+      "hash": "c74e90a68bef4f8b1421de46444c02d9bb135457c6ea110c218765694754a2df",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/pt-pt/apps/": {
-      "hash": "55d4dac48821353d69ae336bdab6ba7ce2090d56b9a405169d17ce356cfbec40"
+      "hash": "f688544988ca3423556fde21ba6e708725412d67b1a9fac7706943cfc8fb3316",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ro/apps/": {
-      "hash": "d7291cd88ed58c9ec6feb5fff22133a90651ad1a7a7588ffe39c46c29f55917a"
+      "hash": "64f17818d794ad0d63f83a77190e66215cdc66b1455388ce03ec9aa21356ef35",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ru/apps/": {
-      "hash": "c8dc0eaca5b759d825f5f9601734c36abc134ffeac82096535ea032f08d5b2cc"
+      "hash": "aee9aa79ce9c3784d01355da6cfe84d490459b6fea96e23a938f10c79c92a9b3",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/sk/apps/": {
-      "hash": "5f7c3b7265b0a8f6ca06d40cb51fb0ea93fbec03d0be6ba79a082f9340a7f425"
+      "hash": "9896db2b866649847a55065c0851e47e7004542f84442cdbef755af6ff860fcb",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/sl/apps/": {
-      "hash": "a9ce5118d0b7628770d78ebad797ff92c3fd80a5960ec088c0a037a1d7bfcdac"
+      "hash": "7b927069c8a75f35b0176630edacfd65b1d0ff4edf856badd48ab0bdc4041d8d",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/sv/apps/": {
-      "hash": "6b20a2749df9f179afdde5c4259d8d91a8e5ecc1f3b51419da8956f57660e85e"
+      "hash": "c54d69b52f9cb7cafbc89421e23ff11095b9cb209e4a359da52129a715a5375c",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/ta/apps/": {
-      "hash": "c094e8735009e500a0f6dfad779d87ec794e664b39fd3e5bfe27b66c6164c40e"
+      "hash": "1eb4c692df91517c427404a09d2fb43c795dbc12dd7516b7d77f238fb48caaf9",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/te/apps/": {
-      "hash": "a41f6e077051dca08b9216c603af2ed353e191f6340af9249dbfccae0fafb03f"
+      "hash": "49460efca8c6e2e0a4ef03e88c5ef9953aca01873d9d293d7ae9488e3a2021ec",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/th/apps/": {
-      "hash": "27dc0f3a81efa24a5b41c312126b862fa646e52f9d730b724da654a6e6499cdb"
+      "hash": "f4b9da9463b9bcbe8c0ae0724c7d2feb101d5fe47b92117c1ad0fd87d77a6597",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/tr/apps/": {
-      "hash": "78aff9942691dc425ebac4ef59589a5e6ab935e3029e38ebfd66fd716553a2a3"
+      "hash": "041b9527cb26032260d8d84e403869ae961df188196516d1c56e45afbb5ee19a",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/uk/apps/": {
-      "hash": "724c52ff89e883e8087a756a2f6b507ed95abb36346ae8b4371541210860ac58"
+      "hash": "96f31ed524537179e636e0cc8173ff8aa06eb30b76ac797d109abe2d7e27bf5b",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/vi/apps/": {
-      "hash": "d31732caa05dbcdd609b40b5a5aeb44ea3181bf7f59cfd34334eeed568458039"
+      "hash": "3ee0b28edc1f2f87dfc53515b6f3f4a91227c39af07b70eba9cdd460e25ce208",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/yue/apps/": {
-      "hash": "93718916e0e09795aebd566636f39b41f480512b14d3eef056fe4dc1d329e644"
+      "hash": "61950ccba60f82b65c3d842fc4c737ae2df83ceadee014701a17d55d301ed7c9",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/zh-hk/apps/": {
-      "hash": "2f6ee393efe7e419ef3c621b3a2b358115a56fc968d05fde864eadd3e0f66447",
-      "lastmod": "2026-11-15"
+      "hash": "99d01eaeadc53f46261d787008e736da469a775db59218fb9a9063771f5eab19",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/apps/": {
-      "hash": "8f88b87182b22c61443fb0cbf8877de36bc5087019b8887df0dfe8f44b947a95"
+      "hash": "ab991d4f08ad14be72101e99d2b627caf4b20e552b3edf9635c7a2d47adb2c15",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/zh-hant/apps/": {
-      "hash": "fa37514a86538655a682f01226adc8ea1d4954ecc6092587bec9261d3c72124f"
+      "hash": "5027f5f458423cc937d925f9ba80925c573bd46bcf78c1dc0ad4ecf9bfb7f122",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/ar/apps/harbor/": {
+      "hash": "52b02b547cc3c325fd8e696d0f6104755ef8f6d0f56fc8ae6b43974034ec2dd8",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/en/apps/harbor/": {
+      "hash": "62b5f702f46a4733996f2dd3931bd8da4d87d8b076b146a873407f9fae0ee72f",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/fr/apps/harbor/": {
+      "hash": "9826e7d1d96e519b1398997d8339a601f2407076abb9cdd50692bd3b769807be",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/ja/apps/harbor/": {
+      "hash": "893cd72c80aaabed8e17da21b3b83e88723c40e41391761affea37a695e6cca7",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/ko/apps/harbor/": {
+      "hash": "60a69b9b55be99885d3d724085af7ab9e3bec95c53fa9a1ada88809360662787",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/apps/harbor/": {
+      "hash": "899d1b871aaf448da0c27c6244f5b259707d773014346993b5c48dd7e320a677",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/en/apps/harbor/open-source/": {
+      "hash": "c29fb5d4d7445732e72bdd92c4ede81e2291d5c0d81ec5ba0eab83f0ca68073d",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/apps/harbor/open-source/": {
+      "hash": "a53975571514784b4200367cbdf2530810ea6c9fb0e589709ccc3e6edeb5b45c",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/en/apps/harbor/privacy/": {
+      "hash": "7adb80c34c959e9f8ffab2bd6f94c32c581a562716b573e6a8ec68479485ce87",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/apps/harbor/privacy/": {
+      "hash": "4062691b06c4e946ab956f5bb5a5189d46e3505676152e38d99d58455ed43df8",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/en/apps/harbor/terms/": {
+      "hash": "bbb8835ec5ac1a9fdcdcbcb7e01f9b8d023eff7e317bb17f2ae9cc989c1db7f3",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/apps/harbor/terms/": {
+      "hash": "bd1e28ab41f711bc529d6e372fd06ac6c934853384ddd234328e5c59c2c6e94a",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/en/apps/harbor/support/": {
+      "hash": "278d67266c2fe2e42975c870d2a16a5d3a40e4c537107bdd966b7794185f846a",
+      "lastmod": "2026-11-16"
+    },
+    "https://sxxw.site/apps/harbor/support/": {
+      "hash": "8271bb2c2182e907e16f9b0752a6377db16c193e738ecc85ff085295164b3c97",
+      "lastmod": "2026-11-16"
     },
     "https://sxxw.site/af/apps/memoria/": {
       "hash": "14e271999a611fc5c6423ff88da7e5f6c4ff460e9f06e643f4e25b3ce44b2a35"

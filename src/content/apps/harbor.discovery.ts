@@ -3,7 +3,7 @@ import type { HarborOverviewTranslation } from './harbor';
 // Product copy only. Support and legal bodies are not represented as translated.
 export const harborDiscoveryCopy: Record<string, HarborOverviewTranslation> = {
   ja: {
-    lang: 'ja', tabs: { overview: '製品紹介', privacy: 'プライバシー', terms: '利用規約', support: '使い方' },
+    lang: 'ja', tabs: { overview: '製品紹介', privacy: 'プライバシー', terms: '利用規約', support: '使い方', 'open-source': 'オープンソース' },
     title: '自宅の NAS 用動画プレーヤー',
     lead: 'iPhone、iPad、Mac から WebDAV に接続。動画を探して再生キューに追加したり、ダウンロードしてオフラインで視聴できます。',
     beta: 'TestFlight ベータに参加',
@@ -29,7 +29,7 @@ export const harborDiscoveryCopy: Record<string, HarborOverviewTranslation> = {
     metaOverview: { title: 'Harbor｜NAS 動画プレーヤー・再生キュー・オフライン保存', description: 'Harbor は iPhone、iPad、対応する Apple シリコン搭載 Mac 向けの WebDAV・HTTP 動画プレーヤー。フォルダ閲覧、再生キュー、続きからの再生、動画の個別ダウンロードに対応。TestFlight、使い方、プライバシー情報を確認できます。' },
   },
   ko: {
-    lang: 'ko', tabs: { overview: '제품 소개', privacy: '개인정보 처리방침', terms: '이용약관', support: '사용 도움말' },
+    lang: 'ko', tabs: { overview: '제품 소개', privacy: '개인정보 처리방침', terms: '이용약관', support: '사용 도움말', 'open-source': '오픈 소스 구성 요소' },
     title: '집 안의 NAS를 위한 동영상 플레이어',
     lead: 'iPhone, iPad, Mac에서 WebDAV에 연결하세요. 동영상을 찾아 재생 대기열에 추가하거나 다운로드하여 오프라인으로 볼 수 있습니다.',
     beta: 'TestFlight 베타 참여',
@@ -55,7 +55,7 @@ export const harborDiscoveryCopy: Record<string, HarborOverviewTranslation> = {
     metaOverview: { title: 'Harbor | NAS 동영상 플레이어, 재생 대기열과 오프라인 다운로드', description: 'Harbor는 iPhone, iPad 및 호환 Apple Silicon Mac용 WebDAV·HTTP 동영상 플레이어입니다. 폴더 탐색, 재생 대기열, 이어보기와 동영상 개별 다운로드를 지원합니다. TestFlight, 도움말과 개인정보 안내를 확인하세요.' },
   },
   fr: {
-    lang: 'fr', tabs: { overview: 'Présentation', privacy: 'Confidentialité', terms: 'Conditions', support: 'Aide' },
+    lang: 'fr', tabs: { overview: 'Présentation', privacy: 'Confidentialité', terms: 'Conditions', support: 'Aide', 'open-source': 'Bibliothèques libres' },
     title: 'Un lecteur vidéo pour votre NAS domestique',
     lead: 'Connectez votre iPhone, iPad ou Mac à WebDAV. Parcourez vos vidéos, préparez une file de lecture ou téléchargez-les pour les regarder hors ligne.',
     beta: 'Rejoindre la bêta TestFlight',
@@ -81,7 +81,7 @@ export const harborDiscoveryCopy: Record<string, HarborOverviewTranslation> = {
     metaOverview: { title: 'Harbor | Lecteur vidéo NAS et téléchargements hors ligne', description: 'Lecteur WebDAV et HTTP pour iPhone, iPad et Mac à puce Apple compatibles : dossiers, file de lecture, reprise et téléchargements vidéo individuels.' },
   },
   ar: {
-    lang: 'ar', tabs: { overview: 'نبذة عن التطبيق', privacy: 'الخصوصية', terms: 'شروط الاستخدام', support: 'المساعدة' },
+    lang: 'ar', tabs: { overview: 'نبذة عن التطبيق', privacy: 'الخصوصية', terms: 'شروط الاستخدام', support: 'المساعدة', 'open-source': 'المكتبات مفتوحة المصدر' },
     title: 'مشغّل فيديو لجهاز NAS المنزلي',
     lead: 'اتصل بخادم WebDAV على iPhone وiPad وMac. تصفّح فيديوهاتك، وأنشئ قائمة تشغيل، أو نزّلها للمشاهدة دون اتصال.',
     beta: 'الانضمام إلى اختبار TestFlight',

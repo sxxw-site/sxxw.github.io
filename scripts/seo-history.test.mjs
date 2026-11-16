@@ -78,7 +78,7 @@ test('Harbor indexes six authored product pages while support and legal retain o
     assert.equal(product.index, true);
     assert.equal(product.canonicalLanguage, language);
     assert.deepEqual(product.alternateLanguages, HARBOR_DISCOVERY_LANGUAGES);
-    for (const section of ['support', 'privacy', 'terms']) {
+    for (const section of ['support', 'privacy', 'terms', 'open-source']) {
       const document = indexingPolicy(`/apps/harbor/${section}/`, language);
       assert.equal(document.index, ['zh-hans', 'en'].includes(language));
       assert.equal(document.canonicalLanguage, language === 'zh-hans' ? 'zh-hans' : 'en');

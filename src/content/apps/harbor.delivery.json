@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "libraryVariant": "3.7.3-harbor-20261116",
+  "vlckitVersion": "3.7.3",
+  "libvlcVersion": "3.0.23",
+  "vlckitCommit": "319ed2c0724e3d4c4d34889a62fef1ae269491bc",
+  "libvlcCommit": "79128878ddb2c280bbb6c89c76a46b31a80ade1c",
+  "releaseBase": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/",
+  "applicationBuilds": [
+    {
+      "version": "0.0.1",
+      "build": "611170140",
+      "offerIncluded": true
+    },
+    {
+      "version": "0.0.1",
+      "build": "611162339",
+      "offerIncluded": false
+    }
+  ],
+  "source": {
+    "filename": "harbor-vlc-sources-3.7.3-harbor-20261116.tar.gz",
+    "bytes": 301516107,
+    "sha256": "863745717585bf30f3e9ff25775a2ac658b2687cc2f11dcb2431b1e07c61dedf",
+    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/harbor-vlc-sources-3.7.3-harbor-20261116.tar.gz"
+  },
+  "notices": {
+    "filename": "VLC-THIRD-PARTY-NOTICES.txt",
+    "bytes": 6461173,
+    "sha256": "af99793a2c4baf1b87a831918bc4b79bcfa4d7257d6d60c2e17a8e30f9fad52e",
+    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/VLC-THIRD-PARTY-NOTICES.txt"
+  },
+  "checksums": {
+    "filename": "SHA256SUMS.txt",
+    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/SHA256SUMS.txt"
+  },
+  "relink": {
+    "route": "LGPL-2.1-section-6a",
+    "verified": true,
+    "artifacts": [
+      {
+        "platform": "macos",
+        "version": "0.0.1",
+        "build": "611170140",
+        "filename": "Harbor-0.0.1-611170140-macos-relink-kit.tar.gz",
+        "bytes": 5812067,
+        "sha256": "e10acc7d20bbc8b257f388b6b66a48602b276d040437dfa5e45257c3cc0da806",
+        "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/Harbor-0.0.1-611170140-macos-relink-kit.tar.gz"
+      },
+      {
+        "platform": "ios",
+        "version": "0.0.1",
+        "build": "611170140",
+        "filename": "Harbor-0.0.1-611170140-ios-relink-kit.tar.gz",
+        "bytes": 4430547,
+        "sha256": "e2e845eafcfc6577747fae37452e21bcbd1c9864bdd2ccdf88cecd2239433a24",
+        "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/Harbor-0.0.1-611170140-ios-relink-kit.tar.gz"
+      },
+      {
+        "platform": "macos",
+        "version": "0.0.1",
+        "build": "611162339",
+        "filename": "Harbor-0.0.1-611162339-macos-relink-kit.tar.gz",
+        "bytes": 5837224,
+        "sha256": "e90bba37d3281094b8ebb602c835aed240d78bf4035406beb96275ac87bd7367",
+        "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/Harbor-0.0.1-611162339-macos-relink-kit.tar.gz"
+      },
+      {
+        "platform": "ios",
+        "version": "0.0.1",
+        "build": "611162339",
+        "filename": "Harbor-0.0.1-611162339-ios-relink-kit.tar.gz",
+        "bytes": 4443923,
+        "sha256": "ab797a10458d13bb92d0776f001bb5901bcbd5af8dffe42197afb263234e4cac",
+        "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/Harbor-0.0.1-611162339-ios-relink-kit.tar.gz"
+      }
+    ],
+    "verifiedBuilds": [
+      "611170140",
+      "611162339"
+    ],
+    "macosRuntimeArchitectures": [
+      "arm64",
+      "x86_64"
+    ],
+    "iosDeviceRuntimeVerified": false,
+    "iosRuntimeLimitation": "device-locked"
+  },
+  "offer": {
+    "filename": "Harbor-LGPL-OFFER.txt",
+    "bytes": 3482,
+    "sha256": "ac68ed6faa68ba279bbbcf23f5a864b28ab85394d51b2cb8c27daf4eed2e84c9",
+    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/Harbor-LGPL-OFFER.txt"
+  },
+  "objectLicense": {
+    "filename": "HARBOR-OBJECT-MATERIALS-LICENSE.txt",
+    "bytes": 3903,
+    "sha256": "74570a314808232ac49c080bc317eed85699cea1ddb328fb9e5b02b5d7c42dca",
+    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/HARBOR-OBJECT-MATERIALS-LICENSE.txt"
+  },
+  "retention": {
+    "minimumYears": 3,
+    "contactEmail": "neverfall@foxmail.com"
+  }
+}

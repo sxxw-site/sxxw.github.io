@@ -1,10 +1,12 @@
 import { SiteHeader, SiteFooter } from '../components/SiteChrome';
 import DocumentLayout from '../components/DocumentLayout';
+import HarborOpenSourceContent from './HarborOpenSourceContent';
+import { harborOpenSourceCopy } from '../content/apps/harbor.open-source';
 import { useI18n } from '../i18n/I18nProvider';
 import { localizedSiteHref } from '../lib/site-navigation';
 import {
   APPLE_TESTFLIGHT_TERMS, HARBOR_BASE, HARBOR_BETA, HARBOR_COMPANY,
-  HARBOR_CONTACT, HARBOR_DATE, harborCopy, harborSection, type HarborSection,
+  HARBOR_CONTACT, HARBOR_DATE, HARBOR_TERMS_DATE, harborCopy, harborSection, type HarborSection,
 } from '../content/apps/harbor';
 import captures from '../content/apps/harbor.screenshots.json';
 import '../styles/product-pages.css';
@@ -13,7 +15,7 @@ import '../styles/harbor-pages.css';
 type CaptureKey = 'hero' | 'queue' | 'downloads';
 type Capture = { src: string; srcEn?: string; srcByLanguage?: Record<string, string>; width: number; height: number; alt: string; altEn?: string };
 const screenshots = captures as Record<CaptureKey, Capture | null>;
-const sections: HarborSection[] = ['overview', 'support', 'privacy', 'terms'];
+const sections: HarborSection[] = ['overview', 'support', 'privacy', 'terms', 'open-source'];
 
 export default function HarborPage({ path }: { path: string }) {
   const { t, language } = useI18n();
@@ -25,7 +27,7 @@ export default function HarborPage({ path }: { path: string }) {
     target === 'overview' ? language.normalizedCode : copy.lang === 'zh-Hans' ? 'zh-hans' : 'en', `${pathFor(target)}${hash}`,
   );
   const legal = section === 'privacy' || section === 'terms' ? copy[section] : null;
-  const email = `mailto:${HARBOR_CONTACT}?subject=${encodeURIComponent('Harbor support')}`;
+  const email = `mailto:${HARBOR_CONTACT}?subject=${encodeURIComponent(section === 'open-source' ? 'Harbor LGPL materials request' : 'Harbor support')}`;
   const captureProps = (key: CaptureKey, capture: Capture) => ({ width: capture.width, height: capture.height,
     src: copy.lang === 'zh-Hans' ? capture.src : capture.srcByLanguage?.[copy.lang] ?? capture.srcEn ?? capture.src,
     alt: copy.screenshotAlt[key],
@@ -78,13 +80,15 @@ export default function HarborPage({ path }: { path: string }) {
           <section className="product-section product-faq"><div className="product-section-heading"><h2>{copy.faqTitle}</h2></div><div className="product-faq-list">{copy.faq.map((item, index) => <details key={item.question} open={index === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></section>
         </>}
 
+        {section === 'open-source' && <HarborOpenSourceContent language={copy.lang} />}
+
         {legal && <DocumentLayout title={copy.tabs[section]} eyebrow="Harbor" contentLanguage={copy.lang}
-          meta={`${copy.effective}: ${HARBOR_DATE} · ${HARBOR_COMPANY}`} intro={legal.intro} sections={legal.sections}>
+          meta={`${copy.effective}: ${section === 'terms' ? HARBOR_TERMS_DATE : HARBOR_DATE} · ${HARBOR_COMPANY}`} intro={legal.intro} sections={legal.sections}>
           <h3>{copy.contactTitle}</h3><p><a href={email}>{HARBOR_CONTACT}</a></p>
           <p><a href={APPLE_TESTFLIGHT_TERMS} target="_blank" rel="noreferrer">{copy.appleTerms}<span aria-hidden="true"> ↗</span></a></p>
         </DocumentLayout>}
 
-        {!legal && <section className="product-support-band"><div><h2>{copy.contactTitle}</h2><p>{copy.contactNote}</p><p><a href={email} dir="ltr">{HARBOR_CONTACT}</a></p></div>{section === 'overview' && <a className="btn-ghost" href={sectionHref('support')}>{copy.tabs.support}<span aria-hidden="true">↗</span></a>}</section>}
+        {!legal && <section className="product-support-band"><div><h2>{copy.contactTitle}</h2><p>{section === 'open-source' ? harborOpenSourceCopy(copy.lang).requestNote : copy.contactNote}</p><p><a href={email} dir="ltr">{HARBOR_CONTACT}</a></p></div>{section === 'overview' && <a className="btn-ghost" href={sectionHref('support')}>{copy.tabs.support}<span aria-hidden="true">↗</span></a>}</section>}
       </div>
     </main>
     <SiteFooter appName="Harbor" links={sections.map((target) => ({ href: sectionHref(target), label: target === 'overview' ? 'Harbor' : copy.tabs[target] }))} />

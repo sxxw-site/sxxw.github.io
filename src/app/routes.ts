@@ -10,6 +10,7 @@ export const siteRoutes: SiteRoute[] = [
   { path: '/apps/', title: '应用中心·上海树下小屋网络科技有限公司', description: '树下小屋旗下应用：足迹-时光轨迹与出行轨迹 TraceApp 记录 GPS 路线，纪念日提醒生日和重要日期，Harbor 播放 WebDAV / HTTP 视频并提供离线下载。查看下载、TestFlight 测试与使用指南。', keywords: '树下小屋,应用中心,足迹,TimeTrails,纪念日倒数,出行轨迹,TraceApp,Harbor,NAS,WebDAV' },
 
   { path: '/apps/harbor/', title: 'Harbor 官网｜NAS 视频播放、待播与离线下载', description: 'Harbor 是 iPhone、iPad 和兼容 Apple 芯片 Mac 上的 WebDAV / HTTP 视频播放器，支持文件夹浏览、待播、续播与单视频离线下载。查看 TestFlight 测试、使用帮助与隐私说明。', keywords: 'Harbor,NAS,WebDAV,视频播放器,离线播放,视频下载,待播列表,TestFlight' },
+  { path: '/apps/harbor/open-source/', title: 'Harbor 开源组件｜VLC 对应源码、许可与重链接材料', description: '下载与 Harbor 指定版本对应的 VLCKit／libVLC 源码、修改、构建材料和许可，查阅替换及重链接步骤。Harbor 自有业务源码保持闭源。', keywords: 'Harbor,VLC,VLCKit,libVLC,LGPL,开源组件,源码,重链接,source,relink' },
   { path: '/apps/harbor/privacy/', title: 'Harbor 隐私政策｜本机数据、NAS 连接与下载', description: '了解 Harbor 如何在本机保存连接、钥匙串密码、观看记录和下载，以及 NAS 网络请求、删除操作与 TestFlight 测试数据。' },
   { path: '/apps/harbor/terms/', title: 'Harbor 使用条款｜应用与测试版使用说明', description: 'Harbor 的使用范围、用户媒体与服务器责任、测试版说明、功能限制及官方联系渠道。' },
   { path: '/apps/harbor/support/', title: 'Harbor 使用帮助｜连接 NAS、播放与离线下载', description: '设置 WebDAV 连接，排查局域网发现与播放问题，了解视频下载、重复提示、离线播放、本地删除及后续功能。' },

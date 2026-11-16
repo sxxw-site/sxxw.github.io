@@ -36,3 +36,40 @@
   .studio-product-grid:has(.studio-product-harbor) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .studio-product-harbor .studio-product-image img { width: 160px; max-width: calc(100% - 48px); height: auto; border-radius: 24%; }
+
+.harbor-delivery { display: block; }
+.harbor-delivery-version { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 32px 0 24px; }
+.harbor-delivery-version dt, .harbor-download-meta dt { color: var(--text-dim); font-size: 13px; line-height: 1.6; }
+.harbor-delivery-version dd { margin: 8px 0 0; line-height: 1.8; }
+.harbor-delivery-version dd span { display: block; }
+.harbor-delivery code { font-size: 0.86em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.harbor-delivery-note { max-width: 76ch; margin: 20px 0; color: var(--text-dim); font-size: 15px; line-height: 1.9; }
+.harbor-downloads { list-style: none; margin: 32px 0; padding: 0; }
+.harbor-download { padding: 28px 0; border-top: 1px solid var(--hairline); }
+.harbor-download:last-child { border-bottom: 1px solid var(--hairline); }
+.harbor-download-link { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; color: var(--text-main); font-size: 20px; line-height: 1.5; text-decoration: none; }
+.harbor-download-link span { color: var(--accent); transition: transform 160ms ease; }
+.harbor-download-link:hover { color: var(--accent); }
+.harbor-download-link:hover span { transform: translate(2px, -2px); }
+.harbor-download > p { max-width: 76ch; margin: 12px 0 20px; font-size: 15px; line-height: 1.9; color: var(--text-dim); }
+.harbor-download-meta { display: grid; gap: 10px; margin: 0; max-width: 76ch; }
+.harbor-download-meta > div { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; }
+.harbor-download-meta dd { min-width: 0; margin: 0; color: var(--text-main); font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.harbor-licence-links { list-style: none; padding: 0; margin: 0; }
+.harbor-licence-links a { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; line-height: 1.65; overflow-wrap: anywhere; }
+.harbor-licence-links code { font-size: 0.85em; }
+.harbor-relink-build { margin-top: 32px; }
+.harbor-relink-build h3, .harbor-verification-scope h3 { margin: 0; font-family: var(--page-heading-font, var(--font-body)); font-size: 21px; font-weight: 500; line-height: 1.5; }
+.harbor-relink-build > .harbor-delivery-note { margin-block: 12px 20px; }
+.harbor-relink-build .harbor-downloads { margin-top: 0; }
+.harbor-verification-scope { margin-top: 32px; padding: 24px; background: var(--surface); border-radius: var(--radius-md); }
+.harbor-verification-scope p { margin: 16px 0 0; max-width: 76ch; color: var(--text-dim); font-size: 15px; line-height: 1.9; }
+@media (max-width: 767px) {
+  .harbor-delivery-version { grid-template-columns: minmax(0, 1fr); }
+  .harbor-download-link { font-size: 18px; }
+  .harbor-download-meta > div { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .harbor-download-link span { transition: none; }
+  .harbor-download-link:hover span { transform: none; }
+}

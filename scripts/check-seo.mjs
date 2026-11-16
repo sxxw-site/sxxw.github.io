@@ -92,7 +92,7 @@ for (const [locale, heading] of Object.entries(harborHeadings)) {
     assert.ok(main.includes('href="/en/apps/harbor/privacy/"'), `Harbor links to the actual English legal document: ${locale}`);
   }
   if (locale === 'ar') assert.equal(attr(main.match(/<main\b[^>]*>/)?.[0] ?? '', 'dir'), 'rtl', 'Harbor Arabic content reads right to left');
-  for (const section of ['privacy', 'terms', 'support']) {
+  for (const section of ['privacy', 'terms', 'support', 'open-source']) {
     const document = pages.get(`${origin}${prefix}/apps/harbor/${section}/`);
     const realPrefix = locale === 'zh-hans' ? '' : '/en';
     assert.equal(document.canonical, `${origin}${realPrefix}/apps/harbor/${section}/`, `Harbor document canonical: ${locale}/${section}`);
