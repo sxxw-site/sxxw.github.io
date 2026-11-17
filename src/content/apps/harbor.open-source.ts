@@ -33,6 +33,8 @@ type Delivery = {
     artifacts: RelinkArtifact[];
     macosRuntimeArchitectures: string[];
     iosDeviceRuntimeVerified: boolean;
+    iosVerifiedBuilds: string[];
+    iosRuntimeCheckedAt: string | null;
     iosRuntimeLimitation: string | null;
   };
 };
@@ -62,8 +64,12 @@ const zh = {
   verifiedBuilds: '下列独立重链接验证记录适用于构建',
   macosScope: 'macOS：已使用接口兼容的修改版库重链接并实际运行；验证架构',
   iosScope: 'iOS arm64：已验证目标文件、重链接及开发签名；尚未完成实体设备上的修改库运行验证。',
-  iosRuntimeDone: 'iOS arm64：已完成修改版库的重链接、签名及设备实际运行验证，具体测试范围见材料内的 README。',
-  scopeNote: '完整操作与验证范围见各平台材料内的 README。链接或签名通过不等于真机播放通过。',
+  iosRuntimeDone: 'iOS arm64：以下构建已使用接口兼容的修改版库重链接、签名，并在实体 iPhone 上运行',
+  iosRuntimeCheckedAt: '本次真机验证完成时间（UTC）',
+  iosRuntimeDetail: 'MKV、FLAC 和 Ogg 本地样本均解码至结束（decodeEnded），使用 dummy 静默输出。本次未验证可听音频、可见画面或完整播放器界面流程。',
+  iosUnverifiedBuilds: '以下构建尚未完成实体设备上的修改库运行验证',
+  iosRuntimeAddendum: '本页记录的是材料发布后的补充验证；已发布压缩包及其中 README 保持原样，仍记录发布时的验证范围。',
+  scopeNote: '重链接操作与材料发布时的验证范围见各平台材料内的 README。链接或签名通过不等于真机播放通过。',
   pending: '此版本的下载尚未发布。发布后的文件与校验值会列在这里。',
   pendingRelink: '此版本的重链接材料尚未发布。请勿将源码包单独视为完整的应用重链接交付。',
   checksums: '下载 SHA-256 清单',
@@ -147,8 +153,12 @@ const en: typeof zh = {
   verifiedBuilds: 'The independent relinking checks below apply to builds',
   macosScope: 'macOS: relinked and actually run with an interface-compatible modified library; tested architectures',
   iosScope: 'iOS arm64: object materials, relinking and development signing were checked; execution with the modified library on a physical device remains unverified.',
-  iosRuntimeDone: 'iOS arm64: relinking, signing and actual device execution with the modified library were checked. See the kit’s README for the exact test scope.',
-  scopeNote: 'See each platform kit’s README for the complete procedure and verification scope. Linking or signing success is not a device playback result.',
+  iosRuntimeDone: 'iOS arm64: the following builds were relinked and signed with an interface-compatible modified library, then run on a physical iPhone',
+  iosRuntimeCheckedAt: 'Physical-device check completed (UTC)',
+  iosRuntimeDetail: 'Local MKV, FLAC and Ogg fixtures each reached decodeEnded using silent dummy output. This check did not verify audible output, visible video or the complete player UI flow.',
+  iosUnverifiedBuilds: 'Execution with the modified library on a physical device remains unverified for these builds',
+  iosRuntimeAddendum: 'This page records an additional check performed after the materials were published. The published archives and their READMEs remain unchanged and describe the scope verified at publication.',
+  scopeNote: 'See each platform kit’s README for the relinking procedure and the scope verified at publication. Linking or signing success is not a device playback result.',
   pending: 'Downloads for this version have not been published. Published files and checksums will appear here.',
   pendingRelink: 'Relinking materials for this version have not been published. The source archive alone is not a complete application relinking delivery.',
   checksums: 'Download SHA-256 checksums',

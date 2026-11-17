@@ -4,6 +4,8 @@ import { harborDelivery, harborOpenSourceCopy, type DeliveryArtifact } from '../
 export default function HarborOpenSourceContent({ language }: { language: string }) {
   const copy = harborOpenSourceCopy(language);
   const availableRelinks = harborDelivery.relink.verified ? harborDelivery.relink.artifacts.filter((artifact) => artifact.href) : [];
+  const iosRuntimeVerified = harborDelivery.relink.iosDeviceRuntimeVerified && harborDelivery.relink.iosVerifiedBuilds.length > 0;
+  const iosUnverifiedBuilds = harborDelivery.relink.verifiedBuilds.filter((build) => !harborDelivery.relink.iosVerifiedBuilds.includes(build));
   const artifact = (file: DeliveryArtifact, label: string, description: string, version?: string) => file.href ? <li key={file.filename} className="harbor-download">
     <a className="harbor-download-link" href={file.href} aria-label={version ? `${label} · Harbor ${version}` : undefined}>{label}<span aria-hidden="true">↗</span></a>
     <p>{description}</p>
@@ -49,7 +51,13 @@ export default function HarborOpenSourceContent({ language }: { language: string
         <h3>{copy.verifiedScope}</h3>
         <p>{copy.verifiedBuilds}: {harborDelivery.relink.verifiedBuilds.join(' / ')}</p>
         {harborDelivery.relink.macosRuntimeArchitectures.length > 0 && <p>{copy.macosScope}: {harborDelivery.relink.macosRuntimeArchitectures.join(' / ')}</p>}
-        <p>{harborDelivery.relink.iosDeviceRuntimeVerified ? copy.iosRuntimeDone : copy.iosScope}</p>
+        {iosRuntimeVerified ? <>
+          <p>{copy.iosRuntimeDone}: {harborDelivery.relink.iosVerifiedBuilds.join(' / ')}</p>
+          {harborDelivery.relink.iosRuntimeCheckedAt && <p>{copy.iosRuntimeCheckedAt}: <time dateTime={harborDelivery.relink.iosRuntimeCheckedAt}>{new Date(harborDelivery.relink.iosRuntimeCheckedAt).toISOString().slice(0, 19).replace('T', ' ')}</time></p>}
+          <p>{copy.iosRuntimeDetail}</p>
+          {iosUnverifiedBuilds.length > 0 && <p>{copy.iosUnverifiedBuilds}: {iosUnverifiedBuilds.join(' / ')}</p>}
+          <p>{copy.iosRuntimeAddendum}</p>
+        </> : <p>{copy.iosScope}</p>}
         <p>{copy.scopeNote}</p>
       </aside>
     </section>

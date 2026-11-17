@@ -83,8 +83,12 @@
       "arm64",
       "x86_64"
     ],
-    "iosDeviceRuntimeVerified": false,
-    "iosRuntimeLimitation": "device-locked"
+    "iosDeviceRuntimeVerified": true,
+    "iosVerifiedBuilds": [
+      "611170140"
+    ],
+    "iosRuntimeCheckedAt": "2026-11-17T02:12:28.959837+00:00",
+    "iosRuntimeLimitation": null
   },
   "offer": {
     "filename": "Harbor-LGPL-OFFER.txt",
