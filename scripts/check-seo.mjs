@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { legacyTimeTrailsRedirects, legacyTimeTrailsScript } from './legacy-timetrails.mjs';
+import { LEGACY_IMPORT_FRAGMENT, legacyTimeTrailsGuideRedirects, legacyTimeTrailsGuideScript, legacyTimeTrailsGuideTargets } from './legacy-timetrails-guides.mjs';
 
 const root = 'docs';
 const origin = 'https://sxxw.site';
@@ -9,6 +10,10 @@ const read = (file) => readFileSync(join(root, file), 'utf8');
 const languageCatalog = JSON.parse(readFileSync(new URL('../src/i18n/languages.json', import.meta.url), 'utf8'));
 const legacyRedirects = legacyTimeTrailsRedirects(languageCatalog.map((language) => language.code));
 const legacyFiles = new Map(legacyRedirects.map((entry) => [join(root, entry.sourcePath.slice(1), 'index.html'), entry]));
+const legacyGuideRedirects = legacyTimeTrailsGuideRedirects(languageCatalog.map((language) => language.code));
+// Historical guide.html documents are deliberately checked explicitly below;
+// they are not normal index.html pages collected by htmlFiles().
+const legacyGuideFiles = new Map(legacyGuideRedirects.map((entry) => [join(root, entry.outputPath), entry]));
 function htmlFiles(dir = root) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((item) => {
     const file = join(dir, item.name);
@@ -23,7 +28,7 @@ const decodeHtml = (value) => value.replace(/&(#x[0-9a-f]+|#\d+|amp|quot|apos|lt
 });
 // Only exact aliases in the historical manifest take the migration branch.
 // An unknown redirect document must still pass every normal content assertion.
-const pages = new Map(htmlFiles().filter((file) => !legacyFiles.has(file)).map((file) => {
+const pages = new Map(htmlFiles().filter((file) => !legacyFiles.has(file) && !legacyGuideFiles.has(file)).map((file) => {
   const html = readFileSync(file, 'utf8');
   const url = origin + file.slice(root.length).replace(/index\.html$/, '');
   const links = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => m[0]);
@@ -69,6 +74,35 @@ for (const [file, redirect] of legacyFiles) {
   assert.equal(attr(html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? '', 'content'), 'index,follow', `Migration remains crawlable for consolidation: ${url}`);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `One migration heading: ${url}`);
   assert.ok(!listed.has(url), `Migration aliases stay out of sitemap: ${url}`);
+}
+for (const [file, redirect] of legacyGuideFiles) {
+  assert.ok(existsSync(file), `Historical import guide has a migration file: ${redirect.sourcePath}`);
+  const html = readFileSync(file, 'utf8');
+  const url = origin + redirect.sourcePath;
+  const targetUrl = origin + redirect.targetPath;
+  for (const path of legacyTimeTrailsGuideTargets(redirect)) {
+    const target = pages.get(origin + path);
+    assert.ok(target?.index && target.canonical === origin + path, `Import migration points to a real indexable guide: ${url} -> ${path}`);
+    assert.equal((target.html.match(/id="data-import"/g) ?? []).length, 1, `Import migration has one authored destination section: ${url} -> ${path}`);
+  }
+  const linkTags = [...html.matchAll(/<link\b[^>]*>/g)].map((match) => match[0]);
+  const canonicalTags = linkTags.filter((tag) => attr(tag, 'rel') === 'canonical');
+  assert.equal(canonicalTags.length, 1, `One import migration canonical: ${url}`);
+  assert.equal(attr(canonicalTags[0], 'href'), targetUrl, `Import canonical is the clean formal guide without a fragment: ${url}`);
+  assert.ok(!linkTags.some((tag) => attr(tag, 'hreflang')), `Import migration is not a language variant: ${url}`);
+  const refreshTags = [...html.matchAll(/<meta\b[^>]*>/g)].map((match) => match[0]).filter((tag) => attr(tag, 'http-equiv')?.toLowerCase() === 'refresh');
+  assert.equal(refreshTags.length, 1, `One HTML import migration redirect: ${url}`);
+  assert.equal(attr(refreshTags[0], 'content'), `0; url=${targetUrl}${LEGACY_IMPORT_FRAGMENT}`, `Script-free migration opens the import section immediately: ${url}`);
+  const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)];
+  assert.equal(scripts.length, 1, `One fixed import migration script: ${url}`);
+  assert.equal(scripts[0][1], legacyTimeTrailsGuideScript(redirect.targetPath), `Import migration keeps query/hash and uses only fixed language targets: ${url}`);
+  assert.ok(!/\bsrc\s*=/.test(scripts[0][0]), `Import migration needs no external script: ${url}`);
+  const anchors = [...html.matchAll(/<a\b[^>]*>/g)].map((match) => match[0]);
+  assert.equal(anchors.length, 1, `One usable import migration fallback link: ${url}`);
+  assert.equal(attr(anchors[0], 'href'), targetUrl + LEGACY_IMPORT_FRAGMENT, `Import fallback opens the relevant guide section: ${url}`);
+  assert.equal(attr(html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? '', 'content'), 'index,follow', `Import migration remains crawlable for consolidation: ${url}`);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `One import migration heading: ${url}`);
+  assert.ok(!listed.has(url), `Import migration aliases stay out of sitemap: ${url}`);
 }
 for (const url of locations) {
   const page = pages.get(url);
@@ -139,4 +173,4 @@ for (const match of sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)) {
   assert.ok(match[1] <= new Date().toISOString().slice(0, 10), 'No future lastmod');
 }
 assert.ok(existsSync(join(root, 'sitemap-content-state.json')), 'Persistent content history');
-console.log(`SEO checks passed: ${pages.size} content HTML pages, ${legacyFiles.size} historical migration aliases, ${listed.size} canonical sitemap URLs, reciprocal hreflang, 5 TimeTrails English and 6 Harbor discovery versions.`);
+console.log(`SEO checks passed: ${pages.size} content HTML pages, ${legacyFiles.size} historical landing aliases, ${legacyGuideFiles.size} historical import-guide aliases, ${listed.size} canonical sitemap URLs, reciprocal hreflang, 5 TimeTrails English and 6 Harbor discovery versions.`);

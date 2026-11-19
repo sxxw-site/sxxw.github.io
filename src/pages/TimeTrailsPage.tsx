@@ -7,6 +7,7 @@ import { localizedSiteHref } from '../lib/site-navigation';
 import { previewImage } from '../lib/app-preview';
 import { buildFeedbackMailto, collectFeedbackDiagnostics, resolveFeedbackStrings, type FbStrings } from '../lib/feedback';
 import { timeTrailsScreenshot } from '../lib/timetrails';
+import TimeTrailsImportGuide from './TimeTrailsImportGuide';
 import '../styles/product-pages.css';
 
 type Section = 'overview' | 'getting-started' | 'privacy' | 'terms' | 'support';
@@ -47,7 +48,7 @@ function TimeTrailsBody({ section }: { section: Section }) {
     <section className="product-section product-privacy-note"><h2>{t('tt.ui.privTitle')}</h2><div><p>{t('tt.ui.privBody')}</p><div className="product-inline-links"><a href={href(`${BASE}privacy/`)}>{t('app.cta.readPrivacy')} <span aria-hidden="true">↗</span></a><a href={href(`${BASE}terms/`)}>{t('app.tab.terms')}</a></div></div></section>
     <ScreenshotGallery /><FeedbackSection />
   </>;
-  if (section === 'getting-started') return <><section className="product-section product-guide"><h2>{t('tt.ui.guideTitle')}</h2><ol className="product-guide-list">{timetrails.guide.map((_, i) => <li key={i}><span className="product-step" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><div><h3>{t(`tt.guide.${i}.t`)}</h3><p>{t(`tt.guide.${i}.b`)}</p></div></li>)}</ol></section><SupportLink /></>;
+  if (section === 'getting-started') return <><section className="product-section product-guide"><h2>{t('tt.ui.guideTitle')}</h2><ol className="product-guide-list">{timetrails.guide.map((_, i) => <li key={i}><span className="product-step" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><div><h3>{t(`tt.guide.${i}.t`)}</h3><p>{t(`tt.guide.${i}.b`)}</p></div></li>)}</ol></section><TimeTrailsImportGuide language={language.normalizedCode} /><SupportLink /></>;
   if (section === 'privacy' || section === 'terms') {
     const document = timetrails[section];
     const contactEmail = 'contactEmail' in document ? document.contactEmail : timetrails.supportEmail;

@@ -5,6 +5,7 @@ import { indexingPolicy } from './seo-policy.mjs';
 import { sitemapHistory } from './seo-history.mjs';
 import { searchVerificationHead } from './search-verification.mjs';
 import { writeLegacyTimeTrailsRedirects } from './legacy-timetrails.mjs';
+import { writeLegacyTimeTrailsGuideRedirects } from './legacy-timetrails-guides.mjs';
 
 const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
@@ -138,6 +139,8 @@ for (const route of sourceRoutes) {
 // than claiming a per-path HTTP 301 rule that this host does not provide.
 const legacyRedirects = writeLegacyTimeTrailsRedirects(outputDir, SITE, LANGS.map((language) => language.code));
 console.log(`Legacy TimeTrails migration: ${legacyRedirects.length} landing aliases; ${legacyRedirects.filter((entry) => entry.resolution !== 'exact').length} language fallbacks.`);
+const legacyGuideRedirects = writeLegacyTimeTrailsGuideRedirects(outputDir, SITE, LANGS.map((language) => language.code));
+console.log(`Legacy TimeTrails import guides: ${legacyGuideRedirects.length} aliases to authored data-import sections.`);
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries
   .map(({ loc, lastmod }) => `  <url><loc>${escapeHtml(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`)
