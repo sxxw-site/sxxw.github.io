@@ -4,6 +4,7 @@ const ENGLISH_LANGUAGES = new Set(['en', 'en-au', 'en-ca', 'en-gb', 'en-in']);
 
 const copy = {
   zh: {
+    contentsLabel: '本页内容',
     title: '局域网传输与文件导入',
     intro: '在电脑上传文件后，还需要回到手机确认导入。以下步骤适用于 iPhone 上的时光轨迹。',
     formatsLink: '查看文件要求和其他导入方式',
@@ -22,6 +23,7 @@ const copy = {
     ],
   },
   en: {
+    contentsLabel: 'On this page',
     title: 'Transfer and import files',
     intro: 'Uploading a file from your computer is the first step. Confirm its import on your iPhone to add the data to TimeTrails.',
     formatsLink: 'Check file requirements and other import options',
@@ -41,9 +43,23 @@ const copy = {
   },
 };
 
+export function supportsTimeTrailsImportGuide(language: string) {
+  return language === 'zh-hans' || ENGLISH_LANGUAGES.has(language);
+}
+
+export function TimeTrailsGuideContents({ language, setupLabel }: { language: string; setupLabel: string }) {
+  if (!supportsTimeTrailsImportGuide(language)) return null;
+  const content = language === 'zh-hans' ? copy.zh : copy.en;
+  return <nav className="product-inline-links" aria-label={content.contentsLabel}>
+    <a href="#route-setup">{setupLabel}</a>
+    <a href="#data-import">{content.title}</a>
+    <a href="#data-import-formats">{content.formatsTitle}</a>
+  </nav>;
+}
+
 export default function TimeTrailsImportGuide({ language }: { language: string }) {
   // These instructions are authored in Simplified Chinese and English only.
-  if (language !== 'zh-hans' && !ENGLISH_LANGUAGES.has(language)) return null;
+  if (!supportsTimeTrailsImportGuide(language)) return null;
   const chinese = language === 'zh-hans';
   const content = chinese ? copy.zh : copy.en;
   const contentLanguage = chinese ? 'zh-Hans' : 'en';

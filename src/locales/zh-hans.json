@@ -188,7 +188,7 @@
   "tt.ui.privBody": "无需账号、没有广告或第三方追踪。轨迹默认存于本机；iCloud 备份完全可选，仅进入你的 Apple CloudKit 私有数据库。",
   "tt.ui.guideTitle": "开始记录轨迹",
   "tt.ui.galleryTitle": "路线与足迹地图",
-  "tt.ui.desc.start": "从授权定位到查看每日轨迹，快速开始。",
+  "tt.ui.desc.start": "设置定位权限、记录与查看每日轨迹。在 iPhone 上，通过局域网传输兼容的时光轨迹数据库或带时间信息的 GPX 文件，再确认导入。",
   "tt.ui.desc.privacy": "了解位置、运动与 iCloud 备份如何在本应用中处理。",
   "tt.ui.desc.terms": "请在使用本应用前阅读用户协议。",
   "tt.ui.desc.support": "帮助你顺利记录和回顾每一段旅程。",

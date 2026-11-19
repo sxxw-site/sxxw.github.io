@@ -27,7 +27,7 @@ export const siteRoutes: SiteRoute[] = [
   { path: '/apps/memoria/support/', title: '纪念日技术支持', description: '纪念日的常见问题与技术支持：提醒、小组件、数据与同步。' },
 
   { path: '/apps/timetrails/', title: '足迹-时光轨迹 TimeTrails 官网｜每日轨迹与一生轨迹地图', description: '足迹-时光轨迹（TimeTrails）是一款 GPS 足迹记录 App。自动记录每日轨迹，通过足迹地图、足迹洞察与足迹星球回顾路线、里程和到访城市，让日常出行积累为一生轨迹。支持 iPhone、iPad 和 Apple Watch，轨迹数据默认保存在本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },
-  { path: '/apps/timetrails/getting-started/', title: '足迹-时光轨迹 新手引导', description: '足迹-时光轨迹 的新手使用引导：授权定位、开始记录与查看每日轨迹。' },
+  { path: '/apps/timetrails/getting-started/', title: '足迹-时光轨迹 使用指南｜轨迹记录与 DB、GPX 导入', description: '设置定位权限、记录与查看每日轨迹。在 iPhone 上，通过局域网传输兼容的时光轨迹数据库或带时间信息的 GPX 文件，再确认导入。' },
   { path: '/apps/timetrails/privacy/', title: '足迹-时光轨迹 隐私政策', description: '适用于足迹-时光轨迹 的隐私政策。' },
   { path: '/apps/timetrails/terms/', title: '足迹-时光轨迹 用户协议', description: '适用于足迹-时光轨迹 的用户协议。' },
   { path: '/apps/timetrails/support/', title: '足迹-时光轨迹 技术支持', description: '足迹-时光轨迹 的常见问题与技术支持：定位权限、轨迹记录与 iCloud 备份。' },

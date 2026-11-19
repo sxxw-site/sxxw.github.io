@@ -37,7 +37,7 @@ TimeTrails is a privacy-first GPS route tracker for iPhone, iPad and Apple Watch
 - [Support center](https://sxxw.site/support/): feedback email, app-store review links, and official community groups (WeChat / QQ / Telegram).
 - [Feedback](https://sxxw.site/feedback/)
 - [Data migration: TraceApp → TimeTrails](https://sxxw.site/migrate/)
-- [TimeTrails getting started](https://sxxw.site/apps/timetrails/getting-started/): location permission, recording and route review.
+- [TimeTrails getting started](https://sxxw.site/apps/timetrails/getting-started/) · [Guide in English](https://sxxw.site/en/apps/timetrails/getting-started/): location permissions, recording, route review, and importing compatible TimeTrails DB or timestamped GPX files over a local network on iPhone.
 - [TimeTrails support and FAQ](https://sxxw.site/apps/timetrails/support/): location recording, iCloud restore and data deletion.
 - [Harbor 使用帮助](https://sxxw.site/apps/harbor/support/) · [Harbor support in English](https://sxxw.site/en/apps/harbor/support/): WebDAV connections, playback, offline downloads and local data management.
 - [Harbor 开源组件](https://sxxw.site/apps/harbor/open-source/) · [Harbor open-source libraries in English](https://sxxw.site/en/apps/harbor/open-source/): version-matched VLC sources, licenses and relinking materials. Harbor's own business source remains closed.
