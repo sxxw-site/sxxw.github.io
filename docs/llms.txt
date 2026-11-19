@@ -1,10 +1,14 @@
 # 上海树下小屋网络科技有限公司 (TreeHouse Tech / Shanghai Shuxia Xiaowu Network Technology Co., Ltd.)
 
-> Independent app studio behind three privacy-first, local-first mobile apps. Data stays on the user's device by default; cloud sync (where offered) is optional and uses the user's own private cloud. Website: https://sxxw.site · Support email: house@sxxw.site · Languages: 60+ (Simplified/Traditional Chinese, English, Japanese, Korean, and more; per-language pages under /<lang>/).
+> Official website of an independent app studio in Shanghai, with four apps: TimeTrails, Memoria, TraceApp and Harbor. Website: https://sxxw.site · English home: https://sxxw.site/en/ · Support email: house@sxxw.site. Platforms, distribution, data handling and translated content differ by product; see the product pages below.
 
 上海树下小屋网络科技有限公司的官网是 https://sxxw.site/ 。旗下「足迹-时光轨迹」（TimeTrails）是一款 GPS 足迹记录 App：记录每日轨迹，将日常出行积累为可回顾的一生轨迹。官方产品页：https://sxxw.site/apps/timetrails/ 。
 
-Core principles across all apps: user control, local-first processing, minimal data collection, no third-party ad/tracking SDKs.
+TreeHouse Tech（树下小屋）是本网站使用的工作室名称。上海树下小屋网络科技有限公司提供本网站中的足迹-时光轨迹、纪念日、出行轨迹 TraceApp 与 Harbor；Harbor 当前通过 TestFlight 提供测试版。
+
+TreeHouse Tech is the studio name used on this website by 上海树下小屋网络科技有限公司. This is the official site for its TimeTrails, Memoria, TraceApp and Harbor apps, with official product details, download or beta links, and support.
+
+Data handling is product-specific. TimeTrails and Memoria for iOS keep personal records on-device by default, with optional private iCloud backup or sync. Memoria for HarmonyOS is local-only. Harbor connects directly to the user's configured server; its connection and watch-history data are local, it has no cross-device cloud sync, and Apple handles TestFlight testing data separately. See each product's privacy policy for the full scope.
 
 ## 足迹-时光轨迹 / TimeTrails
 
@@ -17,13 +21,14 @@ TimeTrails is a privacy-first GPS route tracker for iPhone, iPad and Apple Watch
 - [Official product page and download](https://sxxw.site/apps/timetrails/)
 - [English product page](https://sxxw.site/en/apps/timetrails/) · [English studio home](https://sxxw.site/en/)
 - [App Store listing](https://apps.apple.com/app/id6752662508): current availability and pricing are shown by the store.
-- [Getting started](https://sxxw.site/apps/timetrails/getting-started/) · [Support](https://sxxw.site/apps/timetrails/support/) · [Privacy policy](https://sxxw.site/apps/timetrails/privacy/)
+- [Getting started](https://sxxw.site/apps/timetrails/getting-started/) · [Guide in English](https://sxxw.site/en/apps/timetrails/getting-started/) · [Support](https://sxxw.site/apps/timetrails/support/) · [Support in English](https://sxxw.site/en/apps/timetrails/support/) · [Privacy policy](https://sxxw.site/apps/timetrails/privacy/)
 
 ## Apps
 
-- [足迹-时光轨迹 (TimeTrails)](https://sxxw.site/apps/timetrails/): GPS route recorder for daily travel, walking, running, cycling, hiking and driving. "足迹洞察" (Trail Insights) summarizes recorded points, distance and cities; "足迹星球" (Trail Planet) displays routes on a 3D globe. Platforms: iPhone / iPad / Apple Watch. App Store ID: 6752662508; current availability and pricing: https://apps.apple.com/app/id6752662508 . Route data stays on-device by default; iCloud private backup is optional.
-- [纪念日 (Memoria)](https://sxxw.site/apps/memoria/): Countdown and reminder app for birthdays, anniversaries and important days, with home-screen widgets and on-the-day reminders. iOS version (App Store: https://apps.apple.com/app/id6760106574) is local-first with optional iCloud sync; HarmonyOS version (Huawei AppGallery: https://appgallery.huawei.com/app/C6917613545100329502) is fully local — no network, no sync.
-- [出行轨迹 TraceApp](https://sxxw.site/apps/traceapp/): Local-first trip/route tracker showing path, mileage and pace. Platform: iPhone. App Store: https://apps.apple.com/app/id1634761411 . TraceApp users can migrate their data to the newer 足迹-时光轨迹 — guide: https://sxxw.site/migrate/ .
+- [足迹-时光轨迹 (TimeTrails)](https://sxxw.site/apps/timetrails/) · [English](https://sxxw.site/en/apps/timetrails/): GPS route recorder for daily travel, walking, running, cycling, hiking and driving. "足迹洞察" (Trail Insights) summarizes recorded points, distance and cities; "足迹星球" (Trail Planet) displays routes on a 3D globe. Platforms: iPhone / iPad / Apple Watch. App Store ID: 6752662508; current availability and pricing: https://apps.apple.com/app/id6752662508 . Route data stays on-device by default; iCloud private backup is optional.
+- [纪念日 (Memoria)](https://sxxw.site/apps/memoria/) · [English](https://sxxw.site/en/apps/memoria/): Countdown and reminder app for birthdays, anniversaries and important days, with home-screen widgets and on-the-day reminders. The iPhone / iPad / Apple Watch version (App Store: https://apps.apple.com/app/id6760106574) is local-first with optional iCloud sync; the HarmonyOS version (Huawei AppGallery: https://appgallery.huawei.com/app/C6917613545100329502) is fully local — no network, no sync.
+- [出行轨迹 TraceApp](https://sxxw.site/apps/traceapp/) · [English](https://sxxw.site/en/apps/traceapp/): Local-first trip/route tracker showing path, mileage and pace. Platform: iPhone. App Store: https://apps.apple.com/app/id1634761411 . TraceApp users can migrate their data to the newer 足迹-时光轨迹 — guide: https://sxxw.site/migrate/ .
+- [Harbor](https://sxxw.site/apps/harbor/) · [English](https://sxxw.site/en/apps/harbor/): A WebDAV / HTTP video player for the user's own NAS or server, with folder browsing, a playback queue, resume and offline downloads. The latest 0.0.1 builds support standalone audio/video files, multi-select and WebDAV folder downloads; features depend on the installed build. Currently distributed through the [public TestFlight beta](https://testflight.apple.com/join/pmT8CR8S), not as a production App Store release. The public beta provides an iPhone / iPad build that also runs on compatible Apple silicon Macs; a native Mac installer is not publicly available. Test eligibility, expiry and device requirements are shown in TestFlight. Server passwords use the system Keychain; playback and downloads connect directly to the configured server. Harbor currently has no cross-device cloud sync.
 
 ## Key pages
 
@@ -34,6 +39,8 @@ TimeTrails is a privacy-first GPS route tracker for iPhone, iPad and Apple Watch
 - [Data migration: TraceApp → TimeTrails](https://sxxw.site/migrate/)
 - [TimeTrails getting started](https://sxxw.site/apps/timetrails/getting-started/): location permission, recording and route review.
 - [TimeTrails support and FAQ](https://sxxw.site/apps/timetrails/support/): location recording, iCloud restore and data deletion.
+- [Harbor 使用帮助](https://sxxw.site/apps/harbor/support/) · [Harbor support in English](https://sxxw.site/en/apps/harbor/support/): WebDAV connections, playback, offline downloads and local data management.
+- [Harbor 开源组件](https://sxxw.site/apps/harbor/open-source/) · [Harbor open-source libraries in English](https://sxxw.site/en/apps/harbor/open-source/): version-matched VLC sources, licenses and relinking materials. Harbor's own business source remains closed.
 
 ## Privacy & terms
 
@@ -41,11 +48,19 @@ TimeTrails is a privacy-first GPS route tracker for iPhone, iPad and Apple Watch
 - 纪念日 (iOS) — [Privacy](https://sxxw.site/apps/memoria/ios/privacy/) · [Terms](https://sxxw.site/apps/memoria/ios/terms/)
 - 纪念日 (HarmonyOS) — [Privacy](https://sxxw.site/apps/memoria/harmony/privacy/) · [Terms](https://sxxw.site/apps/memoria/harmony/terms/)
 - 出行轨迹 TraceApp — [Privacy](https://sxxw.site/apps/traceapp/privacy/) · [Terms](https://sxxw.site/apps/traceapp/terms/)
+- Harbor — [隐私政策](https://sxxw.site/apps/harbor/privacy/) · [使用条款](https://sxxw.site/apps/harbor/terms/) · [Privacy in English](https://sxxw.site/en/apps/harbor/privacy/) · [Terms in English](https://sxxw.site/en/apps/harbor/terms/)
+
+## Languages and canonical pages
+
+- The site navigation catalog contains 60 languages and regional variants. A locale URL does not by itself mean that all page content has been translated.
+- Harbor product overviews are authored in Simplified Chinese, English, Japanese, Korean, French and Arabic: [中文](https://sxxw.site/apps/harbor/) · [English](https://sxxw.site/en/apps/harbor/) · [日本語](https://sxxw.site/ja/apps/harbor/) · [한국어](https://sxxw.site/ko/apps/harbor/) · [Français](https://sxxw.site/fr/apps/harbor/) · [العربية](https://sxxw.site/ar/apps/harbor/).
+- Harbor support, privacy, terms and open-source documents are authored in Simplified Chinese and English. Other Harbor locale URLs reuse a supported body language and canonical destination. The published canonical URL and visible body identify the actual content version.
+- Simplified Chinese pages use the site root. English pages use /en/. Untranslated privacy and terms copies for the other apps use the Chinese canonical document.
 
 ## Facts
 
 - Company (Chinese): 上海树下小屋网络科技有限公司
+- Studio name used on this site: 树下小屋 / TreeHouse Tech
 - Website: https://sxxw.site
 - Support email: house@sxxw.site
-- App privacy stance: local-first; no third-party advertising or tracking SDKs; optional cloud uses the user's own account (Apple iCloud private database).
-- Multilingual: each page is available per language at https://sxxw.site/<lang>/... with hreflang alternates (Simplified Chinese at the root).
+- App data handling: see each product's privacy policy. Optional private iCloud backup or sync applies to TimeTrails and Memoria for iOS; Harbor uses direct server connections and currently has no cross-device cloud sync.
