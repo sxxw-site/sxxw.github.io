@@ -1,10 +1,14 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { legacyTimeTrailsRedirects, legacyTimeTrailsScript } from './legacy-timetrails.mjs';
 
 const root = 'docs';
 const origin = 'https://sxxw.site';
 const read = (file) => readFileSync(join(root, file), 'utf8');
+const languageCatalog = JSON.parse(readFileSync(new URL('../src/i18n/languages.json', import.meta.url), 'utf8'));
+const legacyRedirects = legacyTimeTrailsRedirects(languageCatalog.map((language) => language.code));
+const legacyFiles = new Map(legacyRedirects.map((entry) => [join(root, entry.sourcePath.slice(1), 'index.html'), entry]));
 function htmlFiles(dir = root) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((item) => {
     const file = join(dir, item.name);
@@ -17,7 +21,9 @@ const decodeHtml = (value) => value.replace(/&(#x[0-9a-f]+|#\d+|amp|quot|apos|lt
   if (entity[0] === '#') return String.fromCodePoint(entity[1].toLowerCase() === 'x' ? parseInt(entity.slice(2), 16) : Number(entity.slice(1)));
   return { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: '\u00a0' }[entity.toLowerCase()];
 });
-const pages = new Map(htmlFiles().map((file) => {
+// Only exact aliases in the historical manifest take the migration branch.
+// An unknown redirect document must still pass every normal content assertion.
+const pages = new Map(htmlFiles().filter((file) => !legacyFiles.has(file)).map((file) => {
   const html = readFileSync(file, 'utf8');
   const url = origin + file.slice(root.length).replace(/index\.html$/, '');
   const links = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => m[0]);
@@ -38,6 +44,32 @@ const sitemap = read('sitemap.xml');
 const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 const listed = new Set(locations);
 assert.equal(listed.size, locations.length, 'Unique sitemap URLs');
+for (const [file, redirect] of legacyFiles) {
+  assert.ok(existsSync(file), `Historical landing has a migration file: ${redirect.sourcePath}`);
+  const html = readFileSync(file, 'utf8');
+  const url = origin + redirect.sourcePath;
+  const targetUrl = origin + redirect.targetPath;
+  const target = pages.get(targetUrl);
+  assert.ok(target?.index && target.canonical === targetUrl, `Migration points to a real indexable product page: ${url}`);
+  const linkTags = [...html.matchAll(/<link\b[^>]*>/g)].map((match) => match[0]);
+  const canonicalTags = linkTags.filter((tag) => attr(tag, 'rel') === 'canonical');
+  assert.equal(canonicalTags.length, 1, `One migration canonical: ${url}`);
+  assert.equal(attr(canonicalTags[0], 'href'), targetUrl, `Migration canonical matches destination: ${url}`);
+  assert.ok(!linkTags.some((tag) => attr(tag, 'hreflang')), `Migration is not a language variant: ${url}`);
+  const refreshTags = [...html.matchAll(/<meta\b[^>]*>/g)].map((match) => match[0]).filter((tag) => attr(tag, 'http-equiv')?.toLowerCase() === 'refresh');
+  assert.equal(refreshTags.length, 1, `One HTML migration redirect: ${url}`);
+  assert.equal(attr(refreshTags[0], 'content'), `0; url=${targetUrl}`, `Immediate script-free redirect matches destination: ${url}`);
+  const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)];
+  assert.equal(scripts.length, 1, `One fixed migration script: ${url}`);
+  assert.equal(scripts[0][1], legacyTimeTrailsScript(redirect.targetPath), `Migration preserves query/hash with a fixed local destination: ${url}`);
+  assert.ok(!/\bsrc\s*=/.test(scripts[0][0]), `Migration needs no external script: ${url}`);
+  const anchors = [...html.matchAll(/<a\b[^>]*>/g)].map((match) => match[0]);
+  assert.equal(anchors.length, 1, `One usable migration fallback link: ${url}`);
+  assert.equal(attr(anchors[0], 'href'), targetUrl, `Migration fallback matches destination: ${url}`);
+  assert.equal(attr(html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? '', 'content'), 'index,follow', `Migration remains crawlable for consolidation: ${url}`);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `One migration heading: ${url}`);
+  assert.ok(!listed.has(url), `Migration aliases stay out of sitemap: ${url}`);
+}
 for (const url of locations) {
   const page = pages.get(url);
   assert.ok(page, `Sitemap target exists: ${url}`);
@@ -107,4 +139,4 @@ for (const match of sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)) {
   assert.ok(match[1] <= new Date().toISOString().slice(0, 10), 'No future lastmod');
 }
 assert.ok(existsSync(join(root, 'sitemap-content-state.json')), 'Persistent content history');
-console.log(`SEO checks passed: ${pages.size} HTML pages, ${listed.size} canonical sitemap URLs, reciprocal hreflang, 5 TimeTrails English and 6 Harbor discovery versions.`);
+console.log(`SEO checks passed: ${pages.size} content HTML pages, ${legacyFiles.size} historical migration aliases, ${listed.size} canonical sitemap URLs, reciprocal hreflang, 5 TimeTrails English and 6 Harbor discovery versions.`);

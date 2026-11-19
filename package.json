@@ -15,7 +15,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "seo:submit": "node scripts/submit-indexnow.mjs",
-    "seo:check": "node scripts/check-seo.mjs"
+    "seo:check": "node --test scripts/legacy-timetrails.test.mjs && node scripts/check-seo.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

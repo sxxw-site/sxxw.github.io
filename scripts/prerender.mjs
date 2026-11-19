@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { indexingPolicy } from './seo-policy.mjs';
 import { sitemapHistory } from './seo-history.mjs';
 import { searchVerificationHead } from './search-verification.mjs';
+import { writeLegacyTimeTrailsRedirects } from './legacy-timetrails.mjs';
 
 const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
@@ -131,6 +132,12 @@ for (const route of sourceRoutes) {
     }
   }
 }
+
+// These are migration documents, not new content routes or language variants.
+// GitHub Pages serves static files, so use an immediate HTML redirect rather
+// than claiming a per-path HTTP 301 rule that this host does not provide.
+const legacyRedirects = writeLegacyTimeTrailsRedirects(outputDir, SITE, LANGS.map((language) => language.code));
+console.log(`Legacy TimeTrails migration: ${legacyRedirects.length} landing aliases; ${legacyRedirects.filter((entry) => entry.resolution !== 'exact').length} language fallbacks.`);
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries
   .map(({ loc, lastmod }) => `  <url><loc>${escapeHtml(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`)
