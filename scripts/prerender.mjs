@@ -159,6 +159,7 @@ function organizationNode() {
     '@type': 'Organization',
     '@id': `${SITE}/#organization`,
     name: ORG_NAME,
+    alternateName: ['树下小屋', 'TreeHouse Tech', 'Shanghai Shuxia Xiaowu Network Technology Co., Ltd.'],
     url: `${SITE}/`,
     email: SUPPORT_EMAIL,
     contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: SUPPORT_EMAIL, availableLanguage: ['zh-Hans', 'en'] },
