@@ -1,5 +1,6 @@
 import { harborDiscoveryCopy } from './harbor.discovery';
 import discoveryLanguages from './harbor.discovery-languages.json';
+import { harborMacCopy, harborMacRelease } from './harbor.mac';
 
 export const HARBOR_BASE = '/apps/harbor/';
 export const HARBOR_DISCOVERY_LANGUAGES = discoveryLanguages;
@@ -170,11 +171,20 @@ const en: Copy = {
 // remain Chinese/English, with their real content language and canonical URL.
 export function harborCopy(language: string, section: HarborSection = 'overview'): Copy {
   const code = language.trim().replace(/_/g, '-').toLowerCase();
-  if (code.startsWith('zh') || code === 'yue') return zh;
   const translation = section === 'overview' ? harborDiscoveryCopy[code] : undefined;
-  if (!translation) return en;
-  const { metaOverview, ...overview } = translation;
-  return { ...en, ...overview, meta: { ...en.meta, overview: metaOverview } };
+  let result = code.startsWith('zh') || code === 'yue' ? zh : en;
+  if (translation && result !== zh) {
+    const { metaOverview, ...overview } = translation;
+    result = { ...en, ...overview, meta: { ...en.meta, overview: metaOverview } };
+  }
+  if (!harborMacRelease) return result;
+  const mac = harborMacCopy(result.lang);
+  return {
+    ...result,
+    meta: { ...result.meta, overview: { ...result.meta.overview, description: mac.description } },
+    faq: result.faq.map((item, index) => index === result.faq.length - 1
+      ? { question: mac.faqQuestion, answer: mac.faqAnswer } : item),
+  };
 }
 export function harborSection(path: string): HarborSection {
   return path.includes('/open-source/') ? 'open-source' : path.includes('/privacy/') ? 'privacy' : path.includes('/terms/') ? 'terms' : path.includes('/support/') ? 'support' : 'overview';

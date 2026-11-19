@@ -179,7 +179,15 @@ function appInfo(path, language = DEFAULT_LANG) {
   }
   if (path.startsWith('/apps/timetrails/')) return { name: language.startsWith('en') ? 'TimeTrails' : '足迹-时光轨迹', alternateName: ['足迹', '时光轨迹', 'TimeTrails'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, iPadOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id6752662508' };
   if (path.startsWith('/apps/traceapp/')) return { name: '出行轨迹 TraceApp', alternateName: ['出行轨迹', 'TraceApp'], applicationCategory: 'TravelApplication', operatingSystem: 'iOS, watchOS', downloadUrl: 'https://apps.apple.com/app/id1634761411' };
-  if (path.startsWith('/apps/harbor/')) return { name: 'Harbor', applicationCategory: 'MultimediaApplication', operatingSystem: 'iOS 17+, iPadOS 17+, macOS 14+ (Apple silicon)', softwareVersion: '0.0.1 beta', downloadUrl: 'https://testflight.apple.com/join/pmT8CR8S' };
+  if (path.startsWith('/apps/harbor/')) {
+    const mac = ssr.harborMacRelease;
+    return {
+      name: 'Harbor', applicationCategory: 'MultimediaApplication',
+      operatingSystem: mac ? 'iOS 17+, iPadOS 17+, macOS 14+ (Apple silicon, Intel)' : 'iOS 17+, iPadOS 17+, macOS 14+ (Apple silicon)',
+      softwareVersion: mac ? `${mac.version} beta` : '0.0.1 beta',
+      downloadUrl: mac ? ['https://testflight.apple.com/join/pmT8CR8S', mac.href] : 'https://testflight.apple.com/join/pmT8CR8S',
+    };
+  }
   return null;
 }
 

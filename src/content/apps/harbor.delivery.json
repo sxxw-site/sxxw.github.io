@@ -9,6 +9,11 @@
   "applicationBuilds": [
     {
       "version": "0.0.1",
+      "build": "611200049",
+      "offerIncluded": true
+    },
+    {
+      "version": "0.0.1",
       "build": "611191502",
       "offerIncluded": true
     },
@@ -83,6 +88,15 @@
     "route": "LGPL-2.1-section-6a",
     "verified": true,
     "artifacts": [
+      {
+        "platform": "macos",
+        "version": "0.0.1",
+        "build": "611200049",
+        "filename": "Harbor-0.0.1-611200049-mac-relink-kit.tar.gz",
+        "bytes": 6565450,
+        "sha256": "c37df1c36fa1b8b60b8b5f26b4e399a0a64f009a346845cd5b17af7a28f687b2",
+        "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/Harbor-0.0.1-611200049-mac-relink-kit.tar.gz"
+      },
       {
         "platform": "ios",
         "version": "0.0.1",

@@ -9,6 +9,7 @@ import {
   HARBOR_CONTACT, HARBOR_DATE, HARBOR_TERMS_DATE, harborCopy, harborSection, type HarborSection,
 } from '../content/apps/harbor';
 import captures from '../content/apps/harbor.screenshots.json';
+import { harborMacCopy, harborMacRelease } from '../content/apps/harbor.mac';
 import '../styles/product-pages.css';
 import '../styles/harbor-pages.css';
 
@@ -21,6 +22,7 @@ export default function HarborPage({ path }: { path: string }) {
   const { t, language } = useI18n();
   const section = harborSection(path);
   const copy = harborCopy(language.normalizedCode, section);
+  const macCopy = harborMacCopy(copy.lang);
   const href = (target: string) => localizedSiteHref(language.normalizedCode, target);
   const pathFor = (target: HarborSection) => `${HARBOR_BASE}${target === 'overview' ? '' : `${target}/`}`;
   const sectionHref = (target: HarborSection, hash = '') => localizedSiteHref(
@@ -49,8 +51,19 @@ export default function HarborPage({ path }: { path: string }) {
             <h1 className="page-title">{section === 'overview' ? copy.title : `Harbor ${copy.tabs[section]}`}</h1>
             <p className="page-lead">{section === 'overview' ? copy.lead : copy.meta[section].description}</p>
             {section === 'overview' && <>
-              <div className="action-row"><a className="btn-primary" href={HARBOR_BETA} target="_blank" rel="noreferrer">{copy.beta}<span aria-hidden="true">↗</span></a><a className="btn-ghost" href={sectionHref('support', '#setup')}>{copy.tabs.support}</a></div>
+              <div className="action-row">
+                <a className="btn-primary" href={HARBOR_BETA} target="_blank" rel="noreferrer">{copy.beta}<span aria-hidden="true">↗</span></a>
+                {harborMacRelease
+                  ? <a className="btn-ghost" href={harborMacRelease.href} download={harborMacRelease.filename}>{macCopy.download}</a>
+                  : <a className="btn-ghost" href={sectionHref('support', '#setup')}>{copy.tabs.support}</a>}
+              </div>
               <p className="harbor-beta-note">{copy.betaNote}</p>
+              {harborMacRelease && <div className="harbor-mac-release">
+                <p><bdi>Harbor {harborMacRelease.version} ({harborMacRelease.build}) · {(harborMacRelease.bytes / 1_000_000).toFixed(1)} MB</bdi></p>
+                <p>{macCopy.requirements}</p>
+                <p>{macCopy.install}</p>
+                <details><summary>{macCopy.checksum}</summary><code dir="ltr">{harborMacRelease.sha256}</code></details>
+              </div>}
             </>}
           </div>
           {section === 'overview' && <div className={screenshots.hero ? 'harbor-hero-screen' : 'harbor-app-identity'}>
