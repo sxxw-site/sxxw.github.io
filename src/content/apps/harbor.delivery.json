@@ -9,6 +9,11 @@
   "applicationBuilds": [
     {
       "version": "0.0.1",
+      "build": "611201303",
+      "offerIncluded": true
+    },
+    {
+      "version": "0.0.1",
       "build": "611200155",
       "offerIncluded": true
     },
@@ -87,12 +92,21 @@
   },
   "checksums": {
     "filename": "SHA256SUMS.txt",
-    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-vlc-3.7.3-20261116/SHA256SUMS.txt"
+    "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-mac-0.0.1-611201303/SHA256SUMS.txt"
   },
   "relink": {
     "route": "LGPL-2.1-section-6a",
     "verified": true,
     "artifacts": [
+      {
+        "platform": "macos",
+        "version": "0.0.1",
+        "build": "611201303",
+        "filename": "Harbor-0.0.1-611201303-mac-relink-kit.tar.gz",
+        "bytes": 6604545,
+        "sha256": "b598ec66fe79e5f0a0c68a495c73819a7a030a62d477fb76efc9c6bd44d2fdfc",
+        "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-mac-0.0.1-611201303/Harbor-0.0.1-611201303-mac-relink-kit.tar.gz"
+      },
       {
         "platform": "macos",
         "version": "0.0.1",

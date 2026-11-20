@@ -1,14 +1,15 @@
 {
   "status": "published",
   "version": "0.0.1",
-  "build": "611200049",
+  "build": "611201303",
   "minimumSystemVersion": "14.0",
   "architectures": [
     "arm64",
     "x86_64"
   ],
   "filename": "harbo_0.0.1.dmg",
-  "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-mac-0.0.1/harbo_0.0.1.dmg",
-  "bytes": 39215644,
-  "sha256": "aebef4eb7d13dda8b3113683933e2539744251871b5db061cacc19076f93960a"
+  "href": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-mac-0.0.1-611201303/harbo_0.0.1.dmg",
+  "bytes": 39225341,
+  "sha256": "bcb31e5b8e15862b465e5b188fa16badf48f4c68a865c78ecdd53f3649894414",
+  "checksumsHref": "https://github.com/sxxw-site/sxxw.github.io/releases/download/harbor-mac-0.0.1-611201303/SHA256SUMS.txt"
 }
