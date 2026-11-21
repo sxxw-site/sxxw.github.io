@@ -15,6 +15,7 @@ type T = (key: string) => string;
 const APP = timetrails.appName;
 const STORE = timetrails.storeName;
 const BASE = '/apps/timetrails/';
+const ENGLISH_PUBLISHER = 'Shanghai Shuxia Xiaowu Network Technology Co., Ltd.';
 const tabWord = (t: T, s: Section) => t(`app.tab.${s === 'getting-started' ? 'start' : s}`);
 const appNameFor = (t: T) => {
   const name = t('tt.name');
@@ -32,7 +33,16 @@ export default function TimeTrailsPage({ path }: { path: string }) {
     <SiteHeader brand={appName} subtitle={t('tt.ui.headerSub')} active={section === 'support' ? 'support' : 'apps'} />
     <main id="page-content" tabIndex={-1} className="product-page product-editorial product-timetrails"><div className="container product-editorial-inner">
       <nav className="breadcrumbs" aria-label="breadcrumb"><a href={href('/')}>{t('home.nav.home')}</a><span aria-hidden="true">/</span><a href={href('/apps/')}>{t('nav.apps')}</a><span aria-hidden="true">/</span><span aria-current="page">{appName}</span></nav>
-      <section className={`product-intro${section === 'overview' ? ' product-intro-visual' : ''}`} data-enter><div className="product-intro-copy"><p className="page-eyebrow">{timetrails.platformName} · {STORE}</p><h1 className="page-title">{title}</h1><p className="page-lead">{desc}</p>{section === 'overview' && <div className="action-row"><a className="btn-primary" href={timetrails.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', appName)}</a><a className="btn-ghost" href={href(`${BASE}getting-started/`)}>{t('app.cta.start')}</a></div>}</div>{section === 'overview' && <div className="product-hero-screens" aria-label={t('app.shots')}>{(['overview', 'globe'] as const).map((page) => <a href={timeTrailsScreenshot(language.normalizedCode, page)} target="_blank" rel="noreferrer" key={page}><img {...previewImage(timeTrailsScreenshot(language.normalizedCode, page), '(max-width: 560px) 38vw, (max-width: 820px) 180px, 184px')} alt={`${appName} · ${t(page === 'overview' ? 'tt.ui.insightsTitle' : 'tt.ui.planetTitle')}`} width={1320} height={2868} decoding="async" /></a>)}</div>}</section>
+      <section className={`product-intro${section === 'overview' ? ' product-intro-visual' : ''}`} data-enter>
+        <div className="product-intro-copy">
+          <p className="page-eyebrow">{timetrails.platformName} · {STORE}</p>
+          <h1 className="page-title">{title}</h1>
+          <p className="page-lead">{desc}</p>
+          {section === 'overview' && <div className="action-row"><a className="btn-primary" href={timetrails.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', STORE).replace('{app}', appName)}</a><a className="btn-ghost" href={href(`${BASE}getting-started/`)}>{t('app.cta.start')}</a></div>}
+          {section === 'overview' && language.normalizedCode.split('-')[0] === 'en' && <p className="product-publisher" lang="en">Developed by <a href={href('/about/')}>{ENGLISH_PUBLISHER}</a> (TreeHouse Tech).</p>}
+        </div>
+        {section === 'overview' && <div className="product-hero-screens" aria-label={t('app.shots')}>{(['overview', 'globe'] as const).map((page) => <a href={timeTrailsScreenshot(language.normalizedCode, page)} target="_blank" rel="noreferrer" key={page}><img {...previewImage(timeTrailsScreenshot(language.normalizedCode, page), '(max-width: 560px) 38vw, (max-width: 820px) 180px, 184px')} alt={`${appName} · ${t(page === 'overview' ? 'tt.ui.insightsTitle' : 'tt.ui.planetTitle')}`} width={1320} height={2868} decoding="async" /></a>)}</div>}
+      </section>
       <PageTabs active={section} /><TimeTrailsBody section={section} />
     </div></main>
     <SiteFooter appName={appName} links={[{ href: BASE, label: appName }, { href: `${BASE}privacy/`, label: t('app.tab.privacy') }, { href: `${BASE}terms/`, label: t('app.tab.terms') }, { href: `${BASE}support/`, label: t('app.tab.support') }]} />
