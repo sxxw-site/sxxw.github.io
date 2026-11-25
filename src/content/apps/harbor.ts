@@ -5,15 +5,16 @@ import { harborMacCopy, harborMacRelease } from './harbor.mac';
 export const HARBOR_BASE = '/apps/harbor/';
 export const HARBOR_DISCOVERY_LANGUAGES = discoveryLanguages;
 export const HARBOR_BETA = 'https://testflight.apple.com/join/pmT8CR8S';
+export const HARBOR_APP_STORE = 'https://apps.apple.com/app/id6830230481';
 export const HARBOR_CONTACT = 'neverfall@foxmail.com';
 export const HARBOR_COMPANY = 'Shanghai Shuxia Xiaowu Network Technology Co., Ltd.';
 export const HARBOR_DATE = '2026-11-15';
-export const HARBOR_TERMS_DATE = '2026-11-17';
+export const HARBOR_TERMS_DATE = '2026-11-26';
 export const APPLE_TESTFLIGHT_TERMS = 'https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html';
 export type HarborSection = 'overview' | 'privacy' | 'terms' | 'support' | 'open-source';
 type Document = { intro: string; sections: Array<{ title: string; body: string[] }> };
 type Copy = {
-  lang: string; tabs: Record<HarborSection, string>; title: string; lead: string; beta: string; betaNote: string;
+  lang: string; tabs: Record<HarborSection, string>; title: string; lead: string; appStore: string; beta: string; betaNote: string;
   directoryDescription: string; category: string; featuresTitle: string; features: string[];
   privacyTitle: string; privacyNote: string; readPrivacy: string; setupTitle: string; setup: Array<{ title: string; body: string }>;
   faqTitle: string; faq: Array<{ question: string; answer: string }>; contactTitle: string; contactNote: string;
@@ -22,7 +23,7 @@ type Copy = {
   galleryTitle: string; breadcrumbLabel: string; englishDocumentsNote: string; searchKeywords: string;
   screenshotAlt: Record<'hero' | 'queue' | 'downloads', string>;
 };
-export type HarborOverviewTranslation = Pick<Copy, 'lang' | 'tabs' | 'title' | 'lead' | 'beta' | 'betaNote' |
+export type HarborOverviewTranslation = Pick<Copy, 'lang' | 'tabs' | 'title' | 'lead' | 'appStore' | 'beta' | 'betaNote' |
   'directoryDescription' | 'category' | 'featuresTitle' | 'features' | 'privacyTitle' | 'privacyNote' |
   'readPrivacy' | 'contactTitle' | 'contactNote' | 'galleryTitle' | 'breadcrumbLabel' | 'englishDocumentsNote' |
   'searchKeywords' | 'screenshotAlt'> & { metaOverview: Copy['meta']['overview'] };
@@ -34,9 +35,10 @@ const zh: Copy = {
   screenshotAlt: { hero: 'Harbor 原创演示资料库', queue: 'Harbor 待播放列表', downloads: 'Harbor 已下载的本地演示视频' },
   title: '家中 NAS 的视频播放器',
   lead: '在 iPhone、iPad 和 Mac 上连接 WebDAV，浏览视频、整理待播列表，或下载到本机离线观看。',
+  appStore: '在 App Store 下载',
   beta: '加入 TestFlight 测试',
-  betaNote: '0.0.1 的最新构建支持独立音视频、多选与 WebDAV 文件夹下载。TestFlight 的实际功能以所安装构建为准。公开链接提供 iPhone / iPad 包，也可在兼容的 Apple 芯片 Mac 上运行。',
-  directoryDescription: '连接家中 WebDAV 服务器，浏览文件夹、整理待播列表，下载视频到本机离线观看。当前提供 TestFlight 测试。',
+  betaNote: 'iPhone / iPad 正式版 0.0.1 已在 App Store 上架，地区、价格与设备要求以商店显示为准。TestFlight 测试版的资格、有效期与功能以实际可用构建为准。',
+  directoryDescription: '连接家中 WebDAV 服务器，浏览文件夹、整理待播列表，下载视频到本机离线观看。iPhone / iPad 可从 App Store 下载，Mac 提供官网安装包；商店地区可用性以实际显示为准。',
   category: 'NAS 视频播放器', featuresTitle: '从文件夹到离线观看',
   features: [
     '浏览 WebDAV 文件夹，搜索当前目录，查看视频格式与文件大小。',
@@ -62,14 +64,14 @@ const zh: Copy = {
     { question: '已有下载为什么只提示跳过？', answer: '同一来源的已有任务会跳过，包括已完成、排队、下载中、失败和取消的任务。需要重新传输失败或取消的任务时，请进入“本地视频”选择重试。' },
     { question: '可以多选视频或下载整个文件夹吗？', answer: '0.0.1 的最新构建支持多选视频和文件夹，确认数量后批量下载，也可递归下载 WebDAV 文件夹。已有任务会跳过并汇总提示。实际可用功能请以安装的构建为准。' },
     { question: '删除下载和移除服务器有什么区别？', answer: '删除下载会移除本机副本、该下载记录以及对应的本地待播和观看记录，不影响 NAS 原文件。移除服务器会移除保存的连接、密码及关联在线待播和观看记录，并取消未完成下载；已完成视频和下载来源记录仍保留，需要在“本地视频”单独删除。' },
-    { question: 'TestFlight 和 Mac 版本的状态是什么？', answer: 'Harbor 当前提供 0.0.1 测试版，尚未作为正式 App Store 版本发布。公开链接提供 iPhone / iPad 测试包，兼容的 Apple 芯片 Mac 也可运行该包；原生 Mac 版暂未提供公开安装入口。测试资格、到期时间和设备要求以 TestFlight 显示为准。' },
+    { question: '正式版、TestFlight 和 Mac 版如何获取？', answer: 'iPhone / iPad 正式版 0.0.1 可从 App Store 下载，地区、价格与设备要求以商店显示为准。Mac 原生版通过官网 DMG 安装包提供，支持 macOS 14 及以上的 Apple 芯片与 Intel Mac。TestFlight 是独立测试渠道，可用构建、资格、有效期和功能以实际显示为准。' },
   ],
   contactTitle: '联系 Harbor 支持',
   contactNote: '反馈时请附应用版本、设备与系统版本、复现步骤，以及已遮盖敏感信息的截图。请勿发送 NAS 密码、完整带令牌链接或私人视频。邮件由你主动发送。',
   effective: '生效日期', appleTerms: '查看 Apple TestFlight 条款',
   meta: {
     'open-source': { title: 'Harbor 开源组件｜VLC 对应源码、许可与重链接材料', description: '下载与 Harbor 指定版本对应的 VLCKit／libVLC 源码、修改、构建材料和许可，查阅替换及重链接步骤。Harbor 自有业务源码保持闭源。' },
-    overview: { title: 'Harbor 官网｜NAS 视频播放、待播与离线下载', description: 'Harbor 是 iPhone、iPad 和兼容 Apple 芯片 Mac 上的 WebDAV / HTTP 视频播放器，支持文件夹浏览、待播、续播与批量离线下载。查看 TestFlight 测试、使用帮助与隐私说明。' },
+    overview: { title: 'Harbor 官网｜NAS 视频播放、待播与离线下载', description: 'Harbor 是 iPhone、iPad 和 Mac 上的 WebDAV / HTTP 视频播放器，支持文件夹浏览、待播、续播与批量离线下载。查看 App Store、Mac 安装包、TestFlight 与使用帮助。' },
     privacy: { title: 'Harbor 隐私政策｜本机数据、NAS 连接与下载', description: '了解 Harbor 如何在本机保存连接、钥匙串密码、观看记录和下载，以及 NAS 网络请求、删除操作与 TestFlight 测试数据。' },
     terms: { title: 'Harbor 使用条款｜应用与测试版使用说明', description: 'Harbor 的使用范围、用户媒体与服务器责任、测试版说明、功能限制及官方联系渠道。' },
     support: { title: 'Harbor 使用帮助｜连接 NAS、播放与离线下载', description: '设置 WebDAV 连接，排查局域网发现与播放问题，了解单文件与批量下载、重复提示、离线播放和本地删除。' },
@@ -90,7 +92,7 @@ const zh: Copy = {
     sections: [
       { title: '应用与媒体', body: ['Harbor 用于连接你自行配置的 WebDAV 或 HTTP / HTTPS 视频服务、播放和管理本地副本。除明确标注的原创演示视频外，Harbor 不提供影视目录、内容订阅或第三方视频授权。', '请仅访问、播放、下载你拥有或获得授权的文件，并遵守服务器的使用规则和适用法律。媒体内容的权利归其各自权利人所有。'] },
       { title: '设备、连接与账号', body: ['你负责配置可访问的服务器、维护访问权限，并妥善保管设备和服务器凭据。请使用可信网络；HTTP 不加密传输。Harbor 无法控制服务器运营者、家庭网络或系统权限设置。', '本机待播、观看记录和下载由你管理。删除本地副本不删除服务器文件，移除服务器也不会自动删除完成的下载。重要文件请在原服务器或其他适当位置保留备份。'] },
-      { title: '测试版与功能范围', body: ['Harbor 当前处于 TestFlight 测试阶段。测试资格、可用设备、构建有效期及测试数据处理以 Apple TestFlight 显示和条款为准；测试版可能中断、变更或出现错误。', '播放能力取决于所安装的构建、系统、设备、编码和文件。采用 VLC 兼容播放的构建支持 MKV 等常见容器；具体格式与编码范围请查看应用内“支持的格式”。兼容播放暂不提供 Teletext 字幕、画中画或 AirPlay；当前不包含 SMB 接入、NAS 转码或跨设备进度同步。下载需保持应用打开，不支持 HLS / DASH 离线保存。应用不保证所有 NAS、媒体文件或网络环境均兼容。'] },
+      { title: '测试版与功能范围', body: ['通过 TestFlight 获取测试版时，测试资格、可用设备、构建有效期及测试数据处理以 Apple TestFlight 显示和条款为准；测试版可能中断、变更或出现错误。App Store 正式版的地区可用性、价格和设备要求以商店显示为准。', '播放能力取决于所安装的构建、系统、设备、编码和文件。采用 VLC 兼容播放的构建支持 MKV 等常见容器；具体格式与编码范围请查看应用内“支持的格式”。兼容播放暂不提供 Teletext 字幕、画中画或 AirPlay；当前不包含 SMB 接入、NAS 转码或跨设备进度同步。下载需保持应用打开，不支持 HLS / DASH 离线保存。应用不保证所有 NAS、媒体文件或网络环境均兼容。'] },
       { title: '应用使用和权利', body: ['请按适用的 Apple 条款，在你拥有或控制的兼容设备上使用 Harbor。除适用法律、相关开源许可或授权另有允许外，不得擅自分发应用、冒用开发者身份或利用应用侵犯他人的权利。', 'Harbor 的应用软件、品牌及原创演示内容的相关权利由其权利人保留。本条款不限制法律规定不能排除的消费者权利。', '第三方开源组件遵循其各自许可证。版本对应的组件源码、修改、许可及替换或重链接材料见“开源组件”页；本条款不限制这些许可证赋予的权利。'] },
       { title: '反馈、更新与联系', body: [`你可以停止使用应用或退出测试。功能、政策或条款更新会在相应页面说明。有关使用、版权或支持问题，请联系 ${HARBOR_CONTACT}；请勿发送不必要的私人媒体或登录凭据。`] },
     ],
@@ -104,9 +106,10 @@ const en: Copy = {
   screenshotAlt: { hero: 'Harbor original Demo Library', queue: 'Harbor playback queue', downloads: 'Harbor original demo video downloaded for offline playback' },
   title: 'A video player for your home NAS',
   lead: 'Connect to WebDAV on iPhone, iPad and Mac. Browse your videos, build a playback queue, or download them for offline viewing.',
+  appStore: 'Download on the App Store',
   beta: 'Join the TestFlight beta',
-  betaNote: 'The latest 0.0.1 builds support standalone audio/video files, batch downloads and WebDAV folder downloads. TestFlight features depend on the installed build. The public link provides an iPhone / iPad build that also runs on compatible Apple silicon Macs.',
-  directoryDescription: 'Browse your home WebDAV server, queue your videos, and download them for offline viewing. Currently available through TestFlight.',
+  betaNote: 'Version 0.0.1 for iPhone and iPad is released on the App Store. Regional availability, pricing and device requirements are shown in the store. TestFlight eligibility, expiry and features depend on the available build.',
+  directoryDescription: 'Browse your home WebDAV server, queue your videos, and download them for offline viewing. Get the iPhone / iPad app on the App Store or the Mac installer from this website; regional store availability may vary.',
   category: 'NAS video player', featuresTitle: 'From folders to offline playback',
   features: [
     'Browse WebDAV folders, search the current directory, and check file types and sizes.',
@@ -132,14 +135,14 @@ const en: Copy = {
     { question: 'Why are existing downloads skipped?', answer: 'Harbor skips an existing task for the same source, including completed, queued, active, failed or cancelled tasks. To transfer a failed or cancelled task again, choose Retry in Local Videos.' },
     { question: 'Can I download multiple videos or a whole folder?', answer: 'The latest 0.0.1 builds let you select videos and folders, review the count and download in batches, including WebDAV subfolders. Existing tasks are skipped with a summary. Available features depend on the build you have installed.' },
     { question: 'How does deleting a download differ from removing a server?', answer: 'Deleting a download removes its local copy, download record, and matching local queue and history entries. It leaves the NAS original untouched. Removing a server clears the connection, password, related online queue and history, and cancels unfinished transfers. Completed videos and download-source records remain until separately deleted in Local Videos.' },
-    { question: 'What is the status of TestFlight and the Mac version?', answer: 'Harbor is currently in beta at version 0.0.1 and has not been released as a production App Store app. The public link provides an iPhone / iPad build that can also run on compatible Apple silicon Macs. A native Mac installer is not yet publicly available. Test availability, expiry and device requirements are shown in TestFlight.' },
+    { question: 'How do I get the release, TestFlight beta or Mac app?', answer: 'Version 0.0.1 for iPhone and iPad is available on the App Store, where regional availability, pricing and device requirements are shown. The native Mac app is provided as a website DMG for Apple silicon and Intel Macs running macOS 14 or later. TestFlight is a separate testing channel; available builds, eligibility, expiry and features are shown there.' },
   ],
   contactTitle: 'Contact Harbor support',
   contactNote: 'Include your app version, device, system version, steps to reproduce, and a redacted screenshot. Do not send NAS passwords, full token-bearing links or private videos. Email is sent only when you choose to send it.',
   effective: 'Effective date', appleTerms: 'Read Apple’s TestFlight terms',
   meta: {
     'open-source': { title: 'Harbor open-source libraries | VLC sources, licences and relinking', description: 'Download version-matched VLC sources, patches, licences and Harbor relinking materials. Harbor application source remains proprietary.' },
-    overview: { title: 'Harbor | NAS video playback, queues and offline downloads', description: 'Harbor plays WebDAV and HTTP video on iPhone, iPad and compatible Apple silicon Macs, with queues, resume and batch offline downloads.' },
+    overview: { title: 'Harbor | NAS video playback, queues and offline downloads', description: 'Harbor plays WebDAV and HTTP video on iPhone, iPad and Mac, with queues, resume and batch offline downloads. Find the App Store app, Mac installer and TestFlight beta.' },
     privacy: { title: 'Harbor privacy policy | Device data, servers and downloads', description: 'How Harbor stores connections, Keychain passwords, history and downloads on your device, makes server requests, handles deletion, and works with TestFlight testing data.' },
     terms: { title: 'Harbor terms | App use and beta information', description: 'Harbor’s purpose, your media and server responsibilities, beta availability, feature limits and official contact information.' },
     support: { title: 'Harbor support | WebDAV, playback and offline downloads', description: 'Set up your NAS connection and troubleshoot discovery, playback, downloads, duplicate notices, offline viewing and local deletion, including single-file and batch downloads.' },
@@ -160,7 +163,7 @@ const en: Copy = {
     sections: [
       { title: 'The app and your media', body: ['Harbor connects to WebDAV or HTTP / HTTPS video services you configure and plays or manages local copies. Apart from its clearly labelled original demo clips, Harbor does not supply a film catalogue, content subscription or rights to third-party videos.', 'Access, play and download only files you own or are authorised to use. Follow your server’s rules and applicable law. Rights to media remain with their respective owners.'] },
       { title: 'Devices, connections and credentials', body: ['You are responsible for configuring a reachable server, maintaining your permissions, and securing your device and server credentials. Use trusted networks; HTTP is unencrypted. Harbor does not control server operators, home networks or system permissions.', 'You manage local queues, history and downloads. Deleting a local copy does not delete a server file; removing a server does not delete completed downloads. Keep important files backed up on the original server or another suitable location.'] },
-      { title: 'Beta status and feature limits', body: ['Harbor is currently in TestFlight testing. Eligibility, compatible devices, build expiry and testing-data processing are governed by TestFlight’s displayed information and Apple’s terms. Beta software can change, stop working or contain errors.', 'Playback depends on the installed build, system, device, codecs and files. Builds with VLC compatibility playback support MKV and other common containers; see Supported Formats in the app for the actual format and codec scope. Compatibility playback currently has no Teletext subtitles, Picture in Picture or AirPlay. SMB access, NAS transcoding and cross-device progress sync are not provided. Keep the app open for downloads; HLS / DASH offline downloads are unsupported. Compatibility with every NAS, file or network is not guaranteed.'] },
+      { title: 'Beta status and feature limits', body: ['When you obtain a beta through TestFlight, eligibility, compatible devices, build expiry and testing-data processing are governed by TestFlight’s displayed information and Apple’s terms. Beta software can change, stop working or contain errors. Regional availability, pricing and device requirements for the App Store release are shown in the store.', 'Playback depends on the installed build, system, device, codecs and files. Builds with VLC compatibility playback support MKV and other common containers; see Supported Formats in the app for the actual format and codec scope. Compatibility playback currently has no Teletext subtitles, Picture in Picture or AirPlay. SMB access, NAS transcoding and cross-device progress sync are not provided. Keep the app open for downloads; HLS / DASH offline downloads are unsupported. Compatibility with every NAS, file or network is not guaranteed.'] },
       { title: 'App use and rights', body: ['Use Harbor on compatible devices you own or control, in accordance with applicable Apple terms. Unless permitted by applicable law, relevant open-source licences or authorisation, do not redistribute the app, impersonate its developer or use it to infringe others’ rights.', 'Rights in Harbor’s software, brand and original demo content are reserved by their respective owners. These terms do not limit consumer rights that applicable law does not allow to be excluded.', 'Third-party open-source libraries are governed by their own licences. The Open-source libraries page provides version-matched component sources, changes, licences and replacement or relinking materials. These terms do not restrict rights granted by those licences.'] },
       { title: 'Feedback, updates and contact', body: [`You may stop using Harbor or leave the beta. Updates to features, policies or terms will be described on the relevant pages. For use, copyright or support questions, contact ${HARBOR_CONTACT}. Do not send unnecessary private media or login credentials.`] },
     ],

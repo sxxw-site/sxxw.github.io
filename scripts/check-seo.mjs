@@ -34,6 +34,7 @@ const pages = new Map(htmlFiles().filter((file) => !legacyFiles.has(file) && !le
   const links = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => m[0]);
   const canonical = attr(links.find((tag) => attr(tag, 'rel') === 'canonical') ?? '', 'href');
   const robots = attr(html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? '', 'content');
+  const ogLocale = attr(html.match(/<meta\b[^>]*property="og:locale"[^>]*>/)?.[0] ?? '', 'content');
   const description = decodeHtml(attr(html.match(/<meta\b[^>]*name="description"[^>]*>/)?.[0] ?? '', 'content') ?? '');
   const alternates = links.filter((tag) => attr(tag, 'rel') === 'alternate' && attr(tag, 'hreflang'))
     .map((tag) => ({ language: attr(tag, 'hreflang'), url: attr(tag, 'href') }));
@@ -42,7 +43,8 @@ const pages = new Map(htmlFiles().filter((file) => !legacyFiles.has(file) && !le
   assert.ok(html.includes('class="style-switcher-trigger"'), `SSR appearance control: ${url}`);
   assert.ok(canonical?.startsWith(origin + '/'), `Own canonical: ${url}`);
   assert.ok(robots?.includes('follow'), `Explicit crawl policy: ${url}`);
-  return [url, { html, canonical, description, index: !robots.includes('noindex'), alternates }];
+  assert.match(ogLocale ?? '', /^[a-z]{2,3}_(?:[A-Z]{2}|\d{3})$/, `Open Graph locale has a language and territory: ${url}`);
+  return [url, { html, canonical, description, ogLocale, index: !robots.includes('noindex'), alternates }];
 }));
 
 const sitemap = read('sitemap.xml');
@@ -142,6 +144,13 @@ const harborHeadings = {
   fr: 'Un lecteur vidéo pour votre NAS domestique', ar: 'مشغّل فيديو لجهاز NAS المنزلي',
 };
 const harborLanguageTags = ['zh-Hans', 'en', 'ja', 'ko', 'fr', 'ar', 'x-default'];
+const harborOgLocales = { 'zh-Hans': 'zh_CN', en: 'en_US', ja: 'ja_JP', ko: 'ko_KR', fr: 'fr_FR', ar: 'ar_EG' };
+for (const [url, page] of pages) {
+  if (!new URL(url).pathname.includes('/apps/harbor/')) continue;
+  const mainLanguage = attr(page.html.match(/<main\b[^>]*>/)?.[0] ?? '', 'lang');
+  assert.ok(Object.hasOwn(harborOgLocales, mainLanguage), `Harbor has an authored body language: ${url}`);
+  assert.equal(page.ogLocale, harborOgLocales[mainLanguage], `Harbor Open Graph locale matches its actual body language: ${url}`);
+}
 for (const [locale, heading] of Object.entries(harborHeadings)) {
   const prefix = locale === 'zh-hans' ? '' : `/${locale}`;
   const url = `${origin}${prefix}/apps/harbor/`;
@@ -151,6 +160,12 @@ for (const [locale, heading] of Object.entries(harborHeadings)) {
   assert.deepEqual(page.alternates.map((entry) => entry.language).sort(), [...harborLanguageTags].sort(), `Harbor has exactly six reciprocal product languages: ${locale}`);
   const main = page.html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? '';
   assert.ok(main.includes(`<h1 class="page-title">${heading}</h1>`), `Harbor real localized heading: ${locale}`);
+  assert.ok(/<a\b[^>]*class="btn-primary"[^>]*href="https:\/\/apps\.apple\.com\/app\/id6830230481"/.test(main), `Harbor primary download is the released iPhone/iPad app: ${locale}`);
+  assert.ok(main.includes('href="https://testflight.apple.com/join/pmT8CR8S"'), `Harbor retains its beta entry: ${locale}`);
+  const appSchema = JSON.parse(page.html.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1])
+    .find((node) => node['@type'] === 'SoftwareApplication');
+  assert.equal(appSchema.softwareVersion, '0.0.1', `Harbor schema describes the released version: ${locale}`);
+  assert.ok([appSchema.downloadUrl].flat().includes('https://apps.apple.com/app/id6830230481'), `Harbor schema includes the official store: ${locale}`);
   assert.equal(attr(main.match(/<main\b[^>]*>/)?.[0] ?? '', 'lang'), locale === 'zh-hans' ? 'zh-Hans' : locale, `Harbor content language: ${locale}`);
   if (['ja', 'ko', 'fr', 'ar'].includes(locale)) {
     assert.equal((main.match(new RegExp(`src="/apps/harbor/${locale}/`, 'g')) ?? []).length, 3, `Harbor uses three genuine localized screenshots: ${locale}`);

@@ -5,7 +5,7 @@ import { harborOpenSourceCopy } from '../content/apps/harbor.open-source';
 import { useI18n } from '../i18n/I18nProvider';
 import { localizedSiteHref } from '../lib/site-navigation';
 import {
-  APPLE_TESTFLIGHT_TERMS, HARBOR_BASE, HARBOR_BETA, HARBOR_COMPANY,
+  APPLE_TESTFLIGHT_TERMS, HARBOR_APP_STORE, HARBOR_BASE, HARBOR_BETA, HARBOR_COMPANY,
   HARBOR_CONTACT, HARBOR_DATE, HARBOR_TERMS_DATE, harborCopy, harborSection, type HarborSection,
 } from '../content/apps/harbor';
 import captures from '../content/apps/harbor.screenshots.json';
@@ -52,10 +52,11 @@ export default function HarborPage({ path }: { path: string }) {
             <p className="page-lead">{section === 'overview' ? copy.lead : copy.meta[section].description}</p>
             {section === 'overview' && <>
               <div className="action-row">
-                <a className="btn-primary" href={HARBOR_BETA} target="_blank" rel="noreferrer">{copy.beta}<span aria-hidden="true">↗</span></a>
+                <a className="btn-primary" href={HARBOR_APP_STORE} target="_blank" rel="noreferrer">{copy.appStore}<span aria-hidden="true">↗</span></a>
                 {harborMacRelease
                   ? <a className="btn-ghost" href={harborMacRelease.href} download={harborMacRelease.filename}>{macCopy.download}</a>
                   : <a className="btn-ghost" href={sectionHref('support', '#setup')}>{copy.tabs.support}</a>}
+                <a className="btn-ghost" href={HARBOR_BETA} target="_blank" rel="noreferrer">{copy.beta}<span aria-hidden="true">↗</span></a>
               </div>
               <p className="harbor-beta-note">{copy.betaNote}</p>
               {harborMacRelease && <div className="harbor-mac-release">

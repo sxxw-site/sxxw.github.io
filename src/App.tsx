@@ -26,7 +26,7 @@ const HOME_APPS = [
   { id: 'memoria', name: '纪念日', platform: 'iOS · HarmonyOS', image: '/apps/memoria/ios/shot-01.png', width: 1080, height: 2346, href: '/apps/memoria/' },
   { id: 'timetrails', name: '足迹-时光轨迹', platform: 'iPhone · iPad · Apple Watch', image: '', width: 1320, height: 2868, href: '/apps/timetrails/' },
   { id: 'traceapp', name: '出行轨迹 TraceApp', platform: 'iPhone', image: '/apps/traceapp/shot-01.png', width: 392, height: 250, href: '/apps/traceapp/' },
-  { id: 'harbor', name: 'Harbor', platform: 'TestFlight · iPhone · iPad · Mac', image: '/apps/harbor/icon.png', width: 1024, height: 1024, href: '/apps/harbor/' },
+  { id: 'harbor', name: 'Harbor', platform: 'App Store · TestFlight · Mac DMG', image: '/apps/harbor/icon.png', width: 1024, height: 1024, href: '/apps/harbor/' },
 ];
 
 function BrandMark() {

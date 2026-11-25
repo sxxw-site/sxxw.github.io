@@ -3,6 +3,7 @@ import { SiteHeader, SiteFooter } from '../components/SiteChrome';
 import { useI18n } from '../i18n/I18nProvider';
 import { FEEDBACK_APPS, FEEDBACK_CONTACTS_DEFAULT } from '../lib/feedback';
 import { localizedSiteHref } from '../lib/site-navigation';
+import { HARBOR_APP_STORE, HARBOR_BASE, HARBOR_CONTACT, harborCopy } from '../content/apps/harbor';
 import '../styles/service-pages.css';
 
 async function copyText(text: string): Promise<boolean> {
@@ -46,6 +47,7 @@ function ChannelAction({ item, pending, copied, copyLabel, copiedLabel, fullLabe
 
 export default function SupportPage() {
   const { t, language } = useI18n();
+  const harbor = harborCopy(language.normalizedCode, 'support');
   const zh = language.normalizedCode.startsWith('zh') || language.normalizedCode === 'yue';
   const href = (path: string) => localizedSiteHref(language.normalizedCode, path);
   const [copied, setCopied] = useState('');
@@ -76,15 +78,17 @@ export default function SupportPage() {
     { name: t('support.g3.tg.name'), desc: t('support.g3.tg.desc'), meta: 'TreeHouse Chat', cta: t('support.g3.join'), href: cc.telegram?.url },
   ];
   const products = [
-    { id: 'memoria', support: '/apps/memoria/support/', desc: t('mem.ui.desc.support').replace('{app}', FEEDBACK_APPS.memoria.name), guides: [{ label: 'iOS', href: '/apps/memoria/ios/getting-started/' }, { label: 'HarmonyOS', href: '/apps/memoria/harmony/getting-started/' }] },
-    { id: 'timetrails', support: '/apps/timetrails/support/', desc: t('tt.ui.desc.support'), guides: [{ label: '', href: '/apps/timetrails/getting-started/' }] },
-    { id: 'traceapp', support: '/apps/traceapp/support/', desc: t('trace.ui.desc.support'), guides: [{ label: '', href: '/apps/traceapp/getting-started/' }] },
+    { id: 'memoria', name: FEEDBACK_APPS.memoria.name, support: '/apps/memoria/support/', desc: t('mem.ui.desc.support').replace('{app}', FEEDBACK_APPS.memoria.name), guides: [{ label: 'iOS', href: '/apps/memoria/ios/getting-started/' }, { label: 'HarmonyOS', href: '/apps/memoria/harmony/getting-started/' }] },
+    { id: 'timetrails', name: FEEDBACK_APPS.timetrails.name, support: '/apps/timetrails/support/', desc: t('tt.ui.desc.support'), guides: [{ label: '', href: '/apps/timetrails/getting-started/' }] },
+    { id: 'traceapp', name: FEEDBACK_APPS.traceapp.name, support: '/apps/traceapp/support/', desc: t('trace.ui.desc.support'), guides: [{ label: '', href: '/apps/traceapp/getting-started/' }] },
+    { id: 'harbor', name: 'Harbor', support: `${HARBOR_BASE}support/`, desc: harbor.meta.support.description, guides: [{ label: '', href: `${HARBOR_BASE}support/#setup` }] },
   ];
   const reviews: Channel[] = [
     { name: '纪念日 · App Store', desc: 'iPhone · iPad · Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: FEEDBACK_APPS.memoria.stores.appstore?.url },
     { name: '纪念日 · Huawei AppGallery', desc: t('support.g2.memoria.huawei.platform'), meta: 'Huawei AppGallery', cta: t('support.g2.cta.goto'), href: FEEDBACK_APPS.memoria.stores.huawei?.url },
     { name: '足迹-时光轨迹 · App Store', desc: 'iPhone · iPad · Apple Watch', meta: 'App Store', cta: t('support.g2.cta.write'), href: FEEDBACK_APPS.timetrails.stores.appstore?.url },
     { name: '出行轨迹 TraceApp · App Store', desc: 'iPhone', meta: 'App Store', cta: t('support.g2.cta.write'), href: FEEDBACK_APPS.traceapp.stores.appstore?.url },
+    { name: 'Harbor · App Store', desc: 'iPhone · iPad', meta: 'App Store', cta: t('support.g2.cta.write'), href: `${HARBOR_APP_STORE}?action=write-review` },
   ];
   const action = (item: Channel) => <ChannelAction item={item} pending={t('support.pending')} copied={copied} copyLabel={copyLabel} copiedLabel={copiedLabel} fullLabel={zh ? '群已满' : 'Group full'} href={href} onCopy={onCopy} />;
   const foot = t('support.foot').split('house@sxxw.site');
@@ -112,11 +116,11 @@ export default function SupportPage() {
         <header className="service-section-heading"><p className="service-section-number" aria-hidden="true">02</p><h2 id="product-support-title">{technicalLabel}</h2><p>{zh ? '按应用查看常见问题和使用指南。' : 'Find answers and getting-started guides for your app.'}</p></header>
         <div className="service-section-content">
           <div className="service-product-list">{products.map((product) => <article className="service-product" key={product.id}>
-            <div><h3>{FEEDBACK_APPS[product.id].name}</h3><p>{product.desc}</p></div>
-            <nav className="service-product-links" aria-label={`${FEEDBACK_APPS[product.id].name} · ${technicalLabel}`}>
+            <div><h3>{product.name}</h3><p lang={product.id === 'harbor' ? harbor.lang : undefined}>{product.desc}</p></div>
+            <nav className="service-product-links" aria-label={`${product.name} · ${technicalLabel}`}>
               <a className="service-action" href={href(product.support)}>{t('app.tab.support')}<span aria-hidden="true">→</span></a>
               {product.guides.map((guide) => <a className="service-action" href={href(guide.href)} key={guide.href}>{guide.label && `${guide.label} · `}{t('app.tab.start')}<span aria-hidden="true">→</span></a>)}
-              <a className="service-action" href={href(`/feedback/?app=${product.id}`)}>{zh ? '提交反馈' : 'Send feedback'}<span aria-hidden="true">→</span></a>
+              <a className="service-action" href={product.id === 'harbor' ? `mailto:${HARBOR_CONTACT}?subject=Harbor%20support` : href(`/feedback/?app=${product.id}`)}>{zh ? '提交反馈' : 'Send feedback'}<span aria-hidden="true">→</span></a>
             </nav>
           </article>)}</div>
           <div className="service-reviews"><h3>{t('support.g2.title')}</h3><p>{t('support.g2.note')}</p>

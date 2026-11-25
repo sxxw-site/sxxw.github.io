@@ -11,7 +11,7 @@ const apps = [
   { id: 'memoria', name: '纪念日', platform: 'App Store · HarmonyOS', descKey: 'apps.memoria.desc', href: '/apps/memoria/', tagKey: 'apps.memoria.tag', documents: [{ platform: 'App Store', base: '/apps/memoria/ios' }, { platform: 'HarmonyOS', base: '/apps/memoria/harmony' }] },
   { id: 'timetrails', name: '足迹-时光轨迹', platform: 'iPhone · iPad · Apple Watch', descKey: 'apps.timetrails.desc', href: '/apps/timetrails/', tagKey: 'apps.timetrails.tag', documents: [{ platform: 'App Store', base: '/apps/timetrails' }] },
   { id: 'traceapp', name: '出行轨迹 TraceApp', platform: 'App Store · iPhone', descKey: 'apps.traceapp.desc', href: '/apps/traceapp/', tagKey: 'apps.traceapp.tag', documents: [{ platform: 'App Store', base: '/apps/traceapp' }] },
-  { id: 'harbor', name: 'Harbor', platform: 'TestFlight · iPhone · iPad · Mac', descKey: '', href: '/apps/harbor/', tagKey: '', documents: [{ platform: 'TestFlight', base: '/apps/harbor' }] },
+  { id: 'harbor', name: 'Harbor', platform: 'App Store · TestFlight · Mac DMG', descKey: '', href: '/apps/harbor/', tagKey: '', documents: [{ platform: 'App Store · TestFlight · Mac DMG', base: '/apps/harbor' }] },
 ];
 
 export default function AppsPage() {

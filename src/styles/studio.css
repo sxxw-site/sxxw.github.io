@@ -137,7 +137,7 @@ html[dir="rtl"] .studio-home a:hover > .action-arrow { transform: translateX(-3p
 }
 .studio-product-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px;
 }
 .studio-product { min-width: 0; }
@@ -164,6 +164,7 @@ html[dir="rtl"] .studio-home a:hover > .action-arrow { transform: translateX(-3p
     height: auto;
     border-radius: 0;
 }
+.studio-product-harbor .studio-product-image img { height: 180px; border-radius: 36px; }
 .studio-product:has(a:hover) .studio-product-image img { transform: scale(1.025); }
 .studio-product-body { padding-block: 24px 0; }
 .studio-platform { margin: 0 0 12px; color: var(--text-dim); font-size: 13px; }

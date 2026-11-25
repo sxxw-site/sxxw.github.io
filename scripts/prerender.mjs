@@ -6,6 +6,7 @@ import { sitemapHistory } from './seo-history.mjs';
 import { searchVerificationHead } from './search-verification.mjs';
 import { writeLegacyTimeTrailsRedirects } from './legacy-timetrails.mjs';
 import { writeLegacyTimeTrailsGuideRedirects } from './legacy-timetrails-guides.mjs';
+import { openGraphLocale } from './open-graph.mjs';
 
 const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
@@ -79,7 +80,7 @@ for (const route of sourceRoutes) {
     const description = escapeHtml(meta?.description ?? route.description);
     const kw = isDefault && route.keywords ? `<meta name="keywords" content="${escapeHtml(route.keywords)}">` : '';
     const canonical = `${SITE}${langHref(policy.canonicalLanguage, route.path)}`;
-    const ogLocale = L.htmlLang.replace('-', '_');
+    const ogLocale = openGraphLocale(policy.contentLanguage ?? L.htmlLang);
     const isTimeTrails = route.path.startsWith('/apps/timetrails/');
     const shareImage = isTimeTrails ? `/apps/timetrails/${L.code.startsWith('zh') ? '' : 'en/'}cover.png` : route.path.startsWith('/apps/harbor/') ? '/apps/harbor/icon.png' : '/logo.png';
     const structuredData = JSON.stringify(structuredDataFor(route, canonical, meta?.title ?? route.title, meta?.description ?? route.description, policy.contentLanguage ?? L.htmlLang, L.code, dict));
@@ -184,8 +185,8 @@ function appInfo(path, language = DEFAULT_LANG) {
     return {
       name: 'Harbor', applicationCategory: 'MultimediaApplication',
       operatingSystem: mac ? 'iOS 17+, iPadOS 17+, macOS 14+ (Apple silicon, Intel)' : 'iOS 17+, iPadOS 17+, macOS 14+ (Apple silicon)',
-      softwareVersion: mac ? `${mac.version} beta` : '0.0.1 beta',
-      downloadUrl: mac ? ['https://testflight.apple.com/join/pmT8CR8S', mac.href] : 'https://testflight.apple.com/join/pmT8CR8S',
+      softwareVersion: '0.0.1',
+      downloadUrl: mac ? [ssr.HARBOR_APP_STORE, mac.href] : ssr.HARBOR_APP_STORE,
     };
   }
   return null;
