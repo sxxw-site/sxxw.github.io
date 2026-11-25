@@ -17,13 +17,13 @@ export const siteRoutes: SiteRoute[] = [
 
   { path: '/apps/memoria/', title: '纪念日 App 官网｜倒数日、生日提醒与恋爱天数', description: '纪念日 App 帮你记录农历生日、恋爱纪念日、结婚周年和重要日子，支持倒数日、正计时与提前提醒。查看 iOS 和 HarmonyOS 版本介绍、下载入口与使用指南。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,恋爱倒计时,倒计时App,重要日子,人生进度,小组件' },
   { path: '/apps/memoria/ios/', title: '纪念日 iOS 版｜农历生日提醒、倒数日与小组件', description: '纪念日 iOS 版支持倒数日、农历生日提醒、恋爱天数与结婚纪念日记录，提供桌面和锁屏倒计时小组件。支持 iPhone、iPad、Apple Watch 与可选 iCloud 私密同步。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,iOS,小组件,Apple Watch' },
-  { path: '/apps/memoria/harmony/', title: '纪念日鸿蒙版｜倒数日、农历生日与纪念日提醒', description: '纪念日鸿蒙版支持倒数日、农历生日提醒、恋爱天数与结婚纪念日记录，查看还有多少天或已经多少天，提前提醒重要日子。前往华为应用市场下载。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,HarmonyOS,鸿蒙,华为应用市场' },
+  { path: '/apps/memoria/harmony/', title: '纪念日·Memoria 鸿蒙版｜倒数日、农历生日与纪念日提醒', description: '纪念日·Memoria 鸿蒙版支持倒数日、农历生日提醒、恋爱天数与结婚纪念日记录，查看还有多少天或已经多少天，提前提醒重要日子。前往华为应用市场下载。', keywords: '纪念日,倒数日,生日提醒,纪念日提醒,倒计时,HarmonyOS,鸿蒙,华为应用市场' },
   { path: '/apps/memoria/ios/getting-started/', title: '纪念日 iOS 新手引导', description: '纪念日 iOS 版的新手使用引导：创建纪念日、设置提醒与添加主屏小组件。' },
-  { path: '/apps/memoria/harmony/getting-started/', title: '纪念日 HarmonyOS 新手引导', description: '纪念日 HarmonyOS 版的新手使用引导：创建纪念日、设置提醒与添加桌面卡片。' },
+  { path: '/apps/memoria/harmony/getting-started/', title: '纪念日·Memoria HarmonyOS 新手引导', description: '纪念日·Memoria HarmonyOS 版的新手使用引导：创建纪念日、设置提醒与添加桌面卡片。' },
   { path: '/apps/memoria/ios/privacy/', title: '纪念日 iOS 隐私政策', description: '适用于 纪念日 App Store 版本的隐私政策。' },
-  { path: '/apps/memoria/harmony/privacy/', title: '纪念日 HarmonyOS 隐私政策', description: '适用于纪念日 HarmonyOS / 华为应用市场版本的隐私政策。' },
+  { path: '/apps/memoria/harmony/privacy/', title: '纪念日·Memoria HarmonyOS 隐私政策', description: '适用于纪念日·Memoria HarmonyOS / 华为应用市场版本的隐私政策。' },
   { path: '/apps/memoria/ios/terms/', title: '纪念日 iOS 用户协议', description: '适用于 纪念日 App Store 版本的用户协议。' },
-  { path: '/apps/memoria/harmony/terms/', title: '纪念日 HarmonyOS 用户协议', description: '适用于纪念日 HarmonyOS / 华为应用市场版本的用户协议。' },
+  { path: '/apps/memoria/harmony/terms/', title: '纪念日·Memoria HarmonyOS 用户协议', description: '适用于纪念日·Memoria HarmonyOS / 华为应用市场版本的用户协议。' },
   { path: '/apps/memoria/support/', title: '纪念日技术支持', description: '纪念日的常见问题与技术支持：提醒、小组件、数据与同步。' },
 
   { path: '/apps/timetrails/', title: '足迹-时光轨迹 TimeTrails 官网｜每日轨迹与一生轨迹地图', description: '足迹-时光轨迹（TimeTrails）是一款 GPS 足迹记录 App。自动记录每日轨迹，通过足迹地图、足迹洞察与足迹星球回顾路线、里程和到访城市，让日常出行积累为一生轨迹。支持 iPhone、iPad 和 Apple Watch，轨迹数据默认保存在本机。', keywords: '足迹,每日轨迹,一生轨迹,GPS轨迹记录,轨迹记录App,路线记录,运动轨迹,足迹地图,点亮城市,徒步骑行驾车记录,时光轨迹,TimeTrails' },

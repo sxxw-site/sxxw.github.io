@@ -165,7 +165,7 @@
     }
   },
   "harmony": {
-    "displayName": "纪念日",
+    "displayName": "纪念日·Memoria",
     "platformName": "HarmonyOS",
     "storeName": "华为应用市场",
     "storeUrl": "https://appgallery.huawei.com/app/C6917613545100329502",
@@ -198,7 +198,7 @@
       }
     ],
     "privacy": {
-      "effectiveDate": "2026 年 11 月 23 日",
+      "effectiveDate": "2026 年 11 月 25 日",
       "sections": [
         {
           "title": "一、我们收集哪些信息",
@@ -255,10 +255,10 @@
           ]
         }
       ],
-      "intro": "纪念日（英文名 Anniversary Countdown，以下简称“本应用”）是一款用于记录生日、纪念日与重要日子的工具。本应用将内容保存在设备本地，不提供账号登录、云同步或云备份服务，不主动联网上传你的内容。"
+      "intro": "纪念日·Memoria（英文描述 Anniversary Countdown，以下简称“本应用”）是一款用于记录生日、纪念日与重要日子的工具。本应用将内容保存在设备本地，不提供账号登录、云同步或云备份服务，不主动联网上传你的内容。"
     },
     "terms": {
-      "effectiveDate": "2026 年 11 月 23 日",
+      "effectiveDate": "2026 年 11 月 25 日",
       "sections": [
         {
           "title": "一、服务内容",
@@ -310,7 +310,7 @@
           ]
         }
       ],
-      "intro": "欢迎使用纪念日（以下简称\"本应用\"）。在使用本应用前，请你仔细阅读并同意本协议。你开始使用本应用，即表示你已阅读、理解并接受本协议的全部内容。"
+      "intro": "欢迎使用纪念日·Memoria（以下简称\"本应用\"）。在使用本应用前，请你仔细阅读并同意本协议。你开始使用本应用，即表示你已阅读、理解并接受本协议的全部内容。"
     },
     "backupGuidance": {
       "zh-Hans": {

@@ -170,8 +170,8 @@ function appInfo(path, language = DEFAULT_LANG) {
   if (path.startsWith('/apps/memoria/')) {
     const harmony = path.includes('/harmony/');
     return {
-      name: '纪念日',
-      alternateName: ['纪念日·倒数', 'Memoria', 'Anniversary Countdown'],
+      name: harmony ? '纪念日·Memoria' : '纪念日',
+      alternateName: harmony ? ['紀念日·Memoria', 'Anniversary Countdown'] : ['纪念日·倒数', 'Memoria', 'Anniversary Countdown'],
       applicationCategory: 'LifestyleApplication',
       operatingSystem: harmony ? 'HarmonyOS' : 'iOS, iPadOS, watchOS',
       downloadUrl: harmony ? 'https://appgallery.huawei.com/app/C6917613545100329502' : 'https://apps.apple.com/app/id6760106574',

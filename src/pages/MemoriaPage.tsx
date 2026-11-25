@@ -23,13 +23,14 @@ export default function MemoriaPage({ path }: { path: string }) {
   const product = memoria[platform];
   const backup = harmonyBackupCopy(language.normalizedCode);
   const name = product.displayName;
+  const pageBrand = platform === 'harmony' ? name : BRAND;
   const title = chooser ? t('mem.ui.pc.title') : section === 'overview' ? name : `${name} ${tabWord(t, section)}`;
   const desc = chooser ? t('mem.ui.pc.desc') : section === 'overview' ? platform === 'harmony' ? backup.storage : t(`${cprefix(platform)}.desc`) : t(`mem.ui.desc.${section === 'getting-started' ? 'start' : section}`).replace('{app}', name);
   const images = screenshots(platform);
   return <>
-    <SiteHeader brand={BRAND} subtitle={t('mem.ui.headerSub')} active={section === 'support' ? 'support' : 'apps'} />
+    <SiteHeader brand={pageBrand} subtitle={t('mem.ui.headerSub')} active={section === 'support' ? 'support' : 'apps'} />
     <main id="page-content" tabIndex={-1} className={`product-page product-editorial product-memoria${chooser ? ' product-chooser' : ''}`}><div className="container product-editorial-inner">
-      <nav className="breadcrumbs" aria-label="breadcrumb"><a href={href('/')}>{t('home.nav.home')}</a><span aria-hidden="true">/</span><a href={href('/apps/')}>{t('nav.apps')}</a><span aria-hidden="true">/</span>{chooser ? <span aria-current="page">{BRAND}</span> : <a href={href('/apps/memoria/')}>{BRAND}</a>}{!chooser && <><span aria-hidden="true">/</span><span aria-current="page">{section === 'support' ? tabWord(t, section) : product.platformName}</span></>}</nav>
+      <nav className="breadcrumbs" aria-label="breadcrumb"><a href={href('/')}>{t('home.nav.home')}</a><span aria-hidden="true">/</span><a href={href('/apps/')}>{t('nav.apps')}</a><span aria-hidden="true">/</span>{chooser ? <span aria-current="page">{BRAND}</span> : <a href={href('/apps/memoria/')}>{pageBrand}</a>}{!chooser && <><span aria-hidden="true">/</span><span aria-current="page">{section === 'support' ? tabWord(t, section) : product.platformName}</span></>}</nav>
       <section className={`product-intro${!chooser && section === 'overview' ? ' product-intro-visual' : ''}`} data-enter>
         <div className="product-intro-copy"><p className="page-eyebrow">{chooser ? BRAND : section === 'support' ? 'iOS · HarmonyOS' : `${product.platformName} · ${product.storeName}`}</p><h1 className="page-title">{title}</h1><p className="page-lead" lang={platform === 'harmony' && !chooser && section === 'overview' ? backup.lang : undefined} dir={platform === 'harmony' && !chooser && section === 'overview' ? 'ltr' : undefined}>{desc}</p>
           {!chooser && section === 'overview' && <div className="action-row">{product.storeUrl ? <a className="btn-primary" href={product.storeUrl} target="_blank" rel="noreferrer">{t('app.getInStore').replace('{store}', product.storeName).replace('{app}', name)}</a> : <p className="store-hint">{t('mem.ui.storeHint').replace('{store}', product.storeName).replace('{app}', name)}</p>}<a className="btn-ghost" href={href(`/apps/memoria/${platform}/getting-started/`)}>{t('app.cta.start')}</a></div>}
@@ -38,7 +39,7 @@ export default function MemoriaPage({ path }: { path: string }) {
       </section>
       {chooser ? <PlatformChooser /> : <><ProductNavigation active={section} platform={platform} /><PageBody section={section} platform={platform} /></>}
     </div></main>
-    <SiteFooter appName={BRAND} links={[{ href: '/apps/memoria/', label: BRAND }, { href: '/apps/memoria/ios/privacy/', label: `iOS ${t('app.tab.privacy')}` }, { href: '/apps/memoria/harmony/privacy/', label: `HarmonyOS ${t('app.tab.privacy')}` }, { href: '/apps/memoria/support/', label: t('app.tab.support') }]} />
+    <SiteFooter appName={pageBrand} links={[{ href: '/apps/memoria/', label: pageBrand }, { href: '/apps/memoria/ios/privacy/', label: `iOS ${t('app.tab.privacy')}` }, { href: '/apps/memoria/harmony/privacy/', label: `HarmonyOS ${t('app.tab.privacy')}` }, { href: '/apps/memoria/support/', label: t('app.tab.support') }]} />
   </>;
 }
 
@@ -56,7 +57,7 @@ function ProductNavigation({ active, platform }: { active: Section; platform: Pl
   const { t, language } = useI18n();
   const href = (target: string) => localizedSiteHref(language.normalizedCode, target);
   const route = (section: Section) => section === 'support' ? '/apps/memoria/support/' : `/apps/memoria/${platform}/${section === 'overview' ? '' : `${section}/`}`;
-  return <div className="product-navigation-wrap"><nav className="product-navigation" aria-label={BRAND}>{(['overview', 'getting-started', 'privacy', 'terms', 'support'] as const).map(section => <a href={href(route(section))} aria-current={active === section ? 'page' : undefined} key={section}>{tabWord(t, section)}</a>)}</nav>{active !== 'support' && <nav className="product-platform-switch" aria-label="iOS / HarmonyOS">{(['ios', 'harmony'] as const).map(item => <a href={href(`/apps/memoria/${item}/${active === 'overview' ? '' : `${active}/`}`)} aria-current={platform === item ? 'true' : undefined} key={item}>{item === 'ios' ? 'iOS' : 'HarmonyOS'}</a>)}</nav>}</div>;
+  return <div className="product-navigation-wrap"><nav className="product-navigation" aria-label={platform === 'harmony' ? memoria.harmony.displayName : BRAND}>{(['overview', 'getting-started', 'privacy', 'terms', 'support'] as const).map(section => <a href={href(route(section))} aria-current={active === section ? 'page' : undefined} key={section}>{tabWord(t, section)}</a>)}</nav>{active !== 'support' && <nav className="product-platform-switch" aria-label="iOS / HarmonyOS">{(['ios', 'harmony'] as const).map(item => <a href={href(`/apps/memoria/${item}/${active === 'overview' ? '' : `${active}/`}`)} aria-current={platform === item ? 'true' : undefined} key={item}>{item === 'ios' ? 'iOS' : 'HarmonyOS'}</a>)}</nav>}</div>;
 }
 
 // New backup guidance is reviewed in these three languages. Other shells show
