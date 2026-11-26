@@ -1,16 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { SiteHeader, SiteFooter } from '../components/SiteChrome';
 import { useI18n } from '../i18n/I18nProvider';
-import { siteRoutes } from '../app/routes';
-import { pageMeta } from '../app/meta';
 import { FEEDBACK_APPS } from '../lib/feedback';
 import { localizedSiteHref } from '../lib/site-navigation';
-import { HARBOR_BASE, harborCopy, harborSection } from '../content/apps/harbor';
+import { buildSiteSearchIndex, searchSiteIndex } from '../lib/site-search';
 import '../styles/service-pages.css';
-
-// The search page itself and app-embedded tools are not indexed.
-const EXCLUDE = new Set(['/search/', '/feedback/', '/migrate/']);
-type Item = { path: string; title: string; description: string; keywords: string; contentLanguage?: string };
 
 function queryFromUrl() {
   return typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('q') ?? '';
@@ -42,22 +36,8 @@ export default function SearchPage() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  const index = useMemo<Item[]>(() => siteRoutes
-    .filter((route) => !EXCLUDE.has(route.path))
-    .map((route) => {
-      const meta = language.normalizedCode === 'zh-hans' ? null : pageMeta(route.path, t, language.normalizedCode);
-      const harbor = route.path.startsWith(HARBOR_BASE) ? harborCopy(language.normalizedCode, harborSection(route.path)) : null;
-      return { path: route.path, title: meta?.title ?? route.title, description: meta?.description ?? route.description,
-        keywords: route.path === HARBOR_BASE ? harbor!.searchKeywords : route.keywords ?? '', contentLanguage: harbor?.lang };
-    }), [t, language.normalizedCode]);
-
-  const results = useMemo(() => {
-    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
-    return terms.length ? index.filter((item) => {
-      const text = `${item.title} ${item.description} ${item.keywords}`.toLowerCase();
-      return terms.every((term) => text.includes(term));
-    }) : [];
-  }, [query, index]);
+  const index = useMemo(() => buildSiteSearchIndex(t, language.normalizedCode), [t, language.normalizedCode]);
+  const results = useMemo(() => searchSiteIndex(index, query), [query, index]);
 
   const browseGroups = [
     { title: zh ? '应用与下载' : 'Apps and downloads', items: [

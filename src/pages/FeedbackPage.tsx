@@ -5,6 +5,7 @@ import {
   buildFeedbackBody, buildFeedbackMailto, collectFeedbackDiagnostics, contactsFor, resolveFeedbackApp, resolveFeedbackStrings,
   type Contacts, type FbStrings, type FeedbackApp, type StoreEntry,
 } from '../lib/feedback';
+import { shareFeedbackFiles } from '../lib/feedback-share';
 import '../styles/utility-pages.css';
 
 // 邮件主题：应用名 · 本地化「意见反馈」标题
@@ -46,6 +47,8 @@ export default function FeedbackPage() {
   const [isChinese, setIsChinese] = useState(true);
   const [files, setFiles] = useState<File[]>([]);
   const [canShareFiles, setCanShareFiles] = useState(false);
+  const [shareError, setShareError] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -65,10 +68,10 @@ export default function FeedbackPage() {
 
   function onPickFiles(event: React.ChangeEvent<HTMLInputElement>) {
     const picked = Array.from(event.target.files ?? []);
-    if (picked.length) setFiles((prev) => [...prev, ...picked]);
+    if (picked.length) { setFiles((prev) => [...prev, ...picked]); setShareError(false); }
     event.target.value = ''; // 允许再次选择同一文件
   }
-  function removeFile(idx: number) { setFiles((prev) => prev.filter((_, i) => i !== idx)); }
+  function removeFile(idx: number) { setFiles((prev) => prev.filter((_, i) => i !== idx)); setShareError(false); }
 
   function showCopyResult(key: string, ok: boolean, detail: string) {
     setCopyStatus(ok ? `${t.copied}${t.colon}${detail}` : (isChinese ? '复制失败，请手动选择并复制。' : 'Could not copy. Select and copy the text manually.'));
@@ -85,9 +88,11 @@ export default function FeedbackPage() {
   const ratingLine = rating ? `${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)\n\n` : '';
   const mailto = buildFeedbackMailto(app.email, subjectFor(app, t), t, fromApp ? diag : '', ratingLine + msg);
 
-  // 有附件时走系统分享；不支持或分享出错时回退纯邮件，用户主动取消时直接返回。
+  // 有附件时走系统分享；失败后保留草稿与附件，由用户重试或主动选择纯邮件。
   // 注意：Web Share 无「收件人」字段，分享到邮件会新建空收件人邮件——故把反馈邮箱写进正文首行，便于用户复制/知道发往何处。
   async function shareWithFiles() {
+    setShareError(false);
+    setIsSharing(true);
     const recipient = `${t.emailLabel}${t.colon}${app.email}\n\n`;
     const body = recipient + buildFeedbackBody(t, fromApp ? diag : '', ratingLine + msg);
     // Web Share 无收件人字段：发送时顺手把反馈邮箱复制到剪贴板，用户可直接粘贴到「收件人」。
@@ -95,15 +100,9 @@ export default function FeedbackPage() {
     void copyText(app.email).then((ok) => {
       showCopyResult('email', ok, app.email);
     });
-    try {
-      if (files.length && navigator.canShare?.({ files }) && navigator.share) {
-        await navigator.share({ files, title: subjectFor(app, t), text: body });
-        return;
-      }
-    } catch (err) {
-      if ((err as { name?: string })?.name === 'AbortError') return; // 用户主动取消，不回退
-    }
-    window.location.href = mailto;
+    const result = await shareFeedbackFiles({ files, title: subjectFor(app, t), text: body }, navigator);
+    setIsSharing(false);
+    setShareError(result === 'failed');
   }
   const useShare = canShareFiles && files.length > 0;
   const hasContacts = !!((contacts.qq && contacts.qq.length) || contacts.wechat || contacts.telegram);
@@ -166,8 +165,11 @@ export default function FeedbackPage() {
               ? (isChinese ? '分享正文首行包含反馈邮箱；请在所选应用中确认收件人与发送。' : 'The email address is included in the first line. Confirm the recipient and send in the app you choose.')
               : (isChinese ? '将打开邮件应用并填入反馈内容，请在邮件应用中确认发送。' : 'Your email app will open with this feedback filled in. Review and send it there.')}</p>
             {useShare
-              ? <button type="button" className="btn-primary fb-send" onClick={shareWithFiles} aria-describedby="feedback-send-help">{openShare}<span aria-hidden="true">↗</span></button>
+              ? <button type="button" className="btn-primary fb-send" onClick={shareWithFiles} disabled={isSharing} aria-busy={isSharing} aria-describedby={`feedback-send-help${shareError ? ' feedback-share-error' : ''}`}>{shareError ? (isChinese ? '重试分享' : 'Retry sharing') : openShare}<span aria-hidden="true">↗</span></button>
               : <a className="btn-primary fb-send" href={mailto} aria-label={`${t.button} · ${openMail}`} aria-describedby="feedback-send-help">{openMail}<span aria-hidden="true">↗</span></a>}
+            {useShare && shareError && <p className="utility-help" id="feedback-share-error" role="alert">{isChinese
+              ? `未能分享附件。反馈内容和附件已保留，请重试，或选择下方“${t.emailOnly}”。`
+              : 'Could not share the attachments. Your message and files are still here. Retry sharing, or choose email without attachments below.'}</p>}
             {useShare && <a className="fb-email-only" href={mailto}>{t.emailOnly}</a>}
           </div>
         </section>

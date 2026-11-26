@@ -142,7 +142,7 @@ export function resolveFeedbackApp(): { app: FeedbackApp; store?: StoreEntry } {
   if (typeof window === 'undefined') return { app: FEEDBACK_GENERIC, store: undefined };
   const q = new URLSearchParams(window.location.search);
   const appKey = (q.get('app') || '').trim().toLowerCase();
-  const app = FEEDBACK_APPS[appKey] || FEEDBACK_GENERIC;
+  const app = Object.prototype.hasOwnProperty.call(FEEDBACK_APPS, appKey) ? FEEDBACK_APPS[appKey] : FEEDBACK_GENERIC;
   const platform = (q.get('platform') || '').toLowerCase();
   const storeParam = (q.get('store') || '').toLowerCase();
   let key: StoreKey = app.defaultStore;

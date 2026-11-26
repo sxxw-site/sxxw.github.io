@@ -7,6 +7,7 @@ import { searchVerificationHead } from './search-verification.mjs';
 import { writeLegacyTimeTrailsRedirects } from './legacy-timetrails.mjs';
 import { writeLegacyTimeTrailsGuideRedirects } from './legacy-timetrails-guides.mjs';
 import { openGraphLocale } from './open-graph.mjs';
+import { hreflangAlternates } from './hreflang.mjs';
 
 const SITE = 'https://sxxw.site';
 const ORG_NAME = '上海树下小屋网络科技有限公司';
@@ -61,18 +62,11 @@ const verificationHead = searchVerificationHead();
 for (const route of sourceRoutes) {
   const prefixed = !NON_PREFIXED_ONLY.has(route.path);
   const langsForRoute = prefixed ? LANGS : LANGS.filter((l) => l.code === DEFAULT_LANG);
-  // 该路由的 hreflang 互指(仅多语言路由)
-  const routePolicy = indexingPolicy(route.path, DEFAULT_LANG);
-  const alternateLanguages = routePolicy.alternateLanguages
-    ? LANGS.filter((l) => routePolicy.alternateLanguages.includes(l.code)) : LANGS;
-  const alternates = prefixed && routePolicy.alternates
-    ? alternateLanguages.map((l) => `<link rel="alternate" hreflang="${route.path === '/apps/harbor/' ? l.code === DEFAULT_LANG ? 'zh-Hans' : l.code : l.htmlLang}" href="${SITE}${langHref(l.code, route.path)}">`).join('')
-      + `<link rel="alternate" hreflang="x-default" href="${SITE}${route.path}">`
-    : '';
-
   for (const L of langsForRoute) {
     const isDefault = L.code === DEFAULT_LANG;
     const policy = indexingPolicy(route.path, L.code);
+    const alternates = hreflangAlternates(route.path, L.code, LANGS, SITE)
+      .map((alternate) => `<link rel="alternate" hreflang="${alternate.language}" href="${alternate.url}">`).join('');
     const dict = dictFor(L.code);
     const t = (k) => dict[k] ?? k;
     const meta = isDefault ? null : ssr.pageMeta(route.path, t, L.code);

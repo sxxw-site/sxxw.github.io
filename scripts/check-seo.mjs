@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { legacyTimeTrailsRedirects, legacyTimeTrailsScript } from './legacy-timetrails.mjs';
 import { LEGACY_IMPORT_FRAGMENT, legacyTimeTrailsGuideRedirects, legacyTimeTrailsGuideScript, legacyTimeTrailsGuideTargets } from './legacy-timetrails-guides.mjs';
+import { assertHreflangAlternates, hreflangAlternates, splitHreflangPath } from './hreflang.mjs';
 
 const root = 'docs';
 const origin = 'https://sxxw.site';
@@ -115,6 +116,8 @@ for (const url of locations) {
 for (const [url, page] of pages) {
   assert.equal(listed.has(url), page.index && page.canonical === url, `Discovery matches canonical policy: ${url}`);
   assert.equal(new Set(page.alternates.map((a) => a.language)).size, page.alternates.length, `Unique alternate languages: ${url}`);
+  const localized = splitHreflangPath(new URL(url).pathname, languageCatalog);
+  assertHreflangAlternates(page.alternates, hreflangAlternates(localized.path, localized.language, languageCatalog, origin), url);
   for (const alternate of page.alternates) {
     const target = pages.get(alternate.url);
     assert.ok(target?.index && target.canonical === alternate.url, `Canonical alternate target: ${url} -> ${alternate.url}`);
